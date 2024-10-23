@@ -8,59 +8,221 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            padding: 50px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+        .cta {
+            margin-top: 20px;
+            background-color: #004494;
+            color: white;
+            padding: 20px;
+            display: inline-block;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .cta:hover {
+            background-color: #003377;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .section p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .form-section {
+            background-color: #f1f1f1;
+            padding: 50px;
+            margin-bottom: 40px;
+        }
+        .form-section input, .form-section textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .form-section button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .form-section button:hover {
+            background-color: #0056b3;
+        }
+        .trust-section {
+            background-color: #f1f1f1;
+            padding: 40px 20px;
+        }
+        .trust-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .success-stories {
+            width: 100%;
+            border-spacing: 20px;
+        }
+        .success-stories td {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            vertical-align: top;
+            width: 50%;
+        }
+        .success-stories p {
+            font-size: 1rem;
+            color: #555;
+        }
+        footer {
+            padding: 30px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
 
-    <!-- Link to external CSS file -->
-    <link href="assets/style.css" rel="stylesheet">
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            .cta {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            .success-stories {
+                width: 100%;
+                display: block;
+            }
+            .success-stories td {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .form-section {
+                padding: 30px 20px;
+            }
+            .form-section input, .form-section textarea {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+
+        /* Mobile Optimization for Smaller Devices */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .cta {
+                font-size: 0.9rem;
+                padding: 10px 15px;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            .section p {
+                font-size: 1rem;
+            }
+            .form-section input, .form-section textarea {
+                font-size: 0.9rem;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>Unlock Business Growth with Data Analytics</h1>
+        <h1>Unlock Business Growth with Data Analytics</h1> <!-- Clear, benefit-driven headline -->
         <p>Turn your data into actionable insights with Pinnacles Learning Solutions.</p>
-        <a href="#form" class="cta">Schedule My Free Consultation</a>
+        <a href="#form" class="cta">Schedule My Free Consultation</a> <!-- Strong, action-oriented CTA linked to the form -->
     </header>
 
     <div class="container">
         <section class="section">
-            <h2>Why Choose Pinnacles Learning Solutions?</h2>
+            <h2>Why Choose Pinnacles Learning Solutions?</h2> <!-- Benefit-Driven Content -->
             <p>We help businesses grow by transforming complex data into actionable insights. Our data-driven strategies enable businesses to improve sales, enhance customer engagement, and increase employee performance.</p>
         </section>
 
         <section class="trust-section">
-            <h3>Client Success Stories</h3>
-            <div class="success-stories">
-                <div class="success-story">
-                    <p>"Thanks to the insights, we were able to focus on high-spending customers and increase revenue with loyalty programs that worked!"</p>
-                    <p><strong>Ahmad Rizal, Service Center Manager</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/predicting-customer-lifetime-value-car-service-center.html">Read more</a>
-                </div>
-                <div class="success-story">
-                    <p>"By predicting demand, we reduced food wastage and maximized profits during peak hours. It made a real difference!"</p>
-                    <p><strong>Siti Aminah, Owner of Local Kopitiam</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecasting-food-demand-kopitiam.html">Read more</a>
-                </div>
-                <div class="success-story">
-                    <p>"We saw a 10% sales increase just by analyzing how our sales associates performed across shifts. Simple changes led to big results."</p>
-                    <p><strong>Jason Lim, Retail Manager at Footwear Hub</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/working-hours-analysis-footwear-shop.html">Read more</a>
-                </div>
-                <div class="success-story">
-                    <p>"We discovered what worked best with discount vouchers and adjusted our offers, leading to better sales performance and customer satisfaction."</p>
-                    <p><strong>Emily Tan, Marketing Lead at Women's Lingerie Store</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/evaluate-discount-voucher-women-lingerie.html">Read more</a>
-                </div>
-            </div>
+            <h3>Client Success Stories</h3> <!-- Trust Signals and Social Proof -->
+            <table class="success-stories">
+                <tr>
+                    <td>
+                        <p>"Thanks to the insights, we were able to focus on high-spending customers and increase revenue with loyalty programs that worked!"</p>
+                        <p><strong>Ahmad Rizal, Service Center Manager</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/predicting-customer-lifetime-value-car-service-center.html">Read more</a>
+                    </td>
+                    <td>
+                        <p>"By predicting demand, we reduced food wastage and maximized profits during peak hours. It made a real difference!"</p>
+                        <p><strong>Siti Aminah, Owner of Local Kopitiam</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecasting-food-demand-kopitiam.html">Read more</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>"We saw a 10% sales increase just by analyzing how our sales associates performed across shifts. Simple changes led to big results."</p>
+                        <p><strong>Jason Lim, Retail Manager at Footwear Hub</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/working-hours-analysis-footwear-shop.html">Read more</a>
+                    </td>
+                    <td>
+                        <p>"We discovered what worked best with discount vouchers and adjusted our offers, leading to better sales performance and customer satisfaction."</p>
+                        <p><strong>Emily Tan, Marketing Lead at Women's Lingerie Store</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/evaluate-discount-voucher-women-lingerie.html">Read more</a>
+                    </td>
+                </tr>
+            </table>
         </section>
 
         <section class="form-section" id="form">
             <h2>Get Started with a Free Consultation</h2>
-            <form action="https://forms.gle/hBeuMsP7HfCMubz19" method="get">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <input type="text" name="phone" placeholder="Your Phone Number" required>
-                <textarea name="message" placeholder="Tell us about your business needs..." required></textarea>
-                <button type="submit">Schedule My Free Consultation</button>
-            </form>
+            <!-- Google Form embedded -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSduMl9H7OW-6erWR9Z_Tl5MSiTcSNgnH9krmC8vTvTcbYaDSA/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">正在加载…</iframe>
         </section>
     </div>
 
@@ -68,7 +230,5 @@
         <p>© 2024 Pinnacles Learning Solutions | Data Analytics Consulting for Business Growth</p>
     </footer>
 
-    <!-- Link to external JavaScript file -->
-    <script src="assets/scripts.js"></script>
 </body>
 </html>
