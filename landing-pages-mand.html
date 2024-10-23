@@ -8,9 +8,159 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            padding: 50px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+        .cta {
+            margin-top: 20px;
+            background-color: #004494;
+            color: white;
+            padding: 20px;
+            display: inline-block;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .cta:hover {
+            background-color: #003377;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .section p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .trust-section {
+            background-color: #f1f1f1;
+            padding: 40px 20px;
+            text-align: left; /* Left-align text */
+        }
+        .trust-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .case-studies {
+            width: 100%;
+            display: table;
+        }
+        .case-studies td {
+            padding: 10px;
+            vertical-align: top;
+        }
+        .case-studies td p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .form-section {
+            background-color: #f1f1f1;
+            padding: 50px;
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-spacing: 10px;
+        }
+        table input, table textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        table button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        table button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            padding: 30px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
 
-    <!-- Link to external CSS file -->
-    <link href="assets/style.css" rel="stylesheet">
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            .cta {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            .case-studies td {
+                width: 100%;
+                display: block;
+            }
+            table input, table textarea {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .cta {
+                font-size: 0.9rem;
+                padding: 10px 15px;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            .section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -28,38 +178,54 @@
 
         <section class="trust-section">
             <h3>客户成功案例</h3>
-            <div class="success-stories">
-                <div class="success-story">
-                    <p>"分析客户数据后，我们专注于高消费客户群，并通过会员计划增加了营业额！"</p>
-                    <p><strong>Ahmad Rizal, 服务中心经理</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/predicting-customer-lifetime-value-car-service-center.html">阅读更多</a>
-                </div>
-                <div class="success-story">
-                    <p>"通过预测需求，我们减少了食物浪费，并在高峰时段大幅提升了效率和利润！"</p>
-                    <p><strong>Siti Aminah, 本地咖啡店店主</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecasting-food-demand-kopitiam.html">阅读更多</a>
-                </div>
-                <div class="success-story">
-                    <p>"我们通过分析销售助理在不同班次的表现，实现了10%的销售增长目标。"</p>
-                    <p><strong>Jason Lim, 鞋店零售经理</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/working-hours-analysis-footwear-shop.html">阅读更多</a>
-                </div>
-                <div class="success-story">
-                    <p>"我们从数据中发现了折扣券的最有效的使用方式，并调整了我们的优惠计划。一个月后整体销售业绩和客户满意度都提升了。"</p>
-                    <p><strong>Emily Tan, 女士内衣店营销主管</strong></p>
-                    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/evaluate-discount-voucher-women-lingerie.html">阅读更多</a>
-                </div>
-            </div>
+            <table class="case-studies">
+                <tr>
+                    <td>
+                        <p>"分析客户数据后，我们专注于高消费客户群，并通过会员计划增加了营业额！"</p>
+                        <p><strong>Ahmad Rizal, 服务中心经理</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/predicting-customer-lifetime-value-car-service-center.html">阅读更多</a>
+                    </td>
+                    <td>
+                        <p>"通过预测需求，我们减少了食物浪费，并在高峰时段大幅提升了效率和利润！"</p>
+                        <p><strong>Siti Aminah, 本地咖啡店店主</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecasting-food-demand-kopitiam.html">阅读更多</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>"我们通过分析销售助理在不同班次的表现，实现了10%的销售增长目标。"</p>
+                        <p><strong>Jason Lim, 鞋店零售经理</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/working-hours-analysis-footwear-shop.html">阅读更多</a>
+                    </td>
+                    <td>
+                        <p>"我们从数据中发现了折扣券的最有效的使用方式，并调整了我们的优惠计划。一个月后整体销售业绩和客户满意度都提升了。"</p>
+                        <p><strong>Emily Tan, 女士内衣店营销主管</strong></p>
+                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/evaluate-discount-voucher-women-lingerie.html">阅读更多</a>
+                    </td>
+                </tr>
+            </table>
         </section>
 
         <section class="form-section" id="form">
             <h2>欢迎预约免费咨询</h2>
             <form action="https://forms.gle/hBeuMsP7HfCMubz19" method="get">
-                <input type="text" name="name" placeholder="您的姓名" required>
-                <input type="email" name="email" placeholder="您的邮箱" required>
-                <input type="text" name="phone" placeholder="您的电话号码" required>
-                <textarea name="message" placeholder="请告诉我们您的业务需求..." required></textarea>
-                <button type="submit">欢迎预约咨询</button>
+                <table>
+                    <tr>
+                        <td><input type="text" name="name" placeholder="您的姓名" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="email" name="email" placeholder="您的邮箱" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="phone" placeholder="您的电话号码" required></td>
+                    </tr>
+                    <tr>
+                        <td><textarea name="message" placeholder="请告诉我们您的业务需求..." required></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">欢迎预约咨询</button></td>
+                    </tr>
+                </table>
             </form>
         </section>
     </div>
@@ -68,7 +234,5 @@
         <p>© 2024 Pinnacles Learning Solutions | 通过数据分析，推动你的业务增长</p>
     </footer>
 
-    <!-- Link to external JavaScript file -->
-    <script src="assets/scripts.js"></script>
 </body>
 </html>
