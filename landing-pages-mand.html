@@ -16,6 +16,7 @@
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
+            text-align: center;
         }
         .container {
             max-width: 1200px;
@@ -26,7 +27,6 @@
             padding: 50px 20px;
             background-color: #007BFF;
             color: white;
-            text-align: center;
         }
         header h1 {
             font-size: 3rem;
@@ -61,54 +61,40 @@
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-        .trust-section {
-            background-color: #f1f1f1;
-            padding: 40px 20px;
-            text-align: left; /* Left-align text */
-        }
-        .trust-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        .case-studies {
-            width: 100%;
-            display: table;
-        }
-        .case-studies td {
-            padding: 10px;
-            vertical-align: top;
-        }
-        .case-studies td p {
-            font-size: 1rem;
-            color: #555;
-        }
         .form-section {
             background-color: #f1f1f1;
             padding: 50px;
             margin-bottom: 40px;
         }
-        table {
-            width: 100%;
-            border-spacing: 10px;
+        .trust-section {
+            background-color: #f1f1f1;
+            padding: 40px 20px;
         }
-        table input, table textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
+        .trust-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .success-stories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .success-story {
+            background-color: white;
+            padding: 20px;
             border-radius: 5px;
+            width: 45%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .success-story h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .success-story p {
             font-size: 1rem;
-        }
-        table button {
-            background-color: #007BFF;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        table button:hover {
-            background-color: #0056b3;
+            color: #555;
         }
         footer {
             padding: 30px;
@@ -132,16 +118,15 @@
             .section h2 {
                 font-size: 1.8rem;
             }
-            .case-studies td {
+            .success-story {
                 width: 100%;
-                display: block;
             }
-            table input, table textarea {
-                font-size: 1rem;
-                padding: 12px;
+            .form-section {
+                padding: 30px 20px;
             }
         }
 
+        /* Mobile Optimization for Smaller Devices */
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.8rem;
@@ -156,10 +141,8 @@
             .section h2 {
                 font-size: 1.5rem;
             }
-            .section p {
-                font-size: 1rem;
-            }
         }
+
     </style>
 </head>
 <body>
@@ -178,26 +161,26 @@
 
         <section class="trust-section">
             <h3>客户成功案例</h3>
-            <table class="case-studies">
+            <table class="success-stories" style="width:100%">
                 <tr>
-                    <td>
+                    <td class="success-story">
                         <p>"分析客户数据后，我们专注于高消费客户群，并通过会员计划增加了营业额！"</p>
                         <p><strong>Ahmad Rizal, 服务中心经理</strong></p>
                         <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/predicting-customer-lifetime-value-car-service-center.html">阅读更多</a>
                     </td>
-                    <td>
+                    <td class="success-story">
                         <p>"通过预测需求，我们减少了食物浪费，并在高峰时段大幅提升了效率和利润！"</p>
                         <p><strong>Siti Aminah, 本地咖啡店店主</strong></p>
                         <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecasting-food-demand-kopitiam.html">阅读更多</a>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="success-story">
                         <p>"我们通过分析销售助理在不同班次的表现，实现了10%的销售增长目标。"</p>
                         <p><strong>Jason Lim, 鞋店零售经理</strong></p>
                         <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/working-hours-analysis-footwear-shop.html">阅读更多</a>
                     </td>
-                    <td>
+                    <td class="success-story">
                         <p>"我们从数据中发现了折扣券的最有效的使用方式，并调整了我们的优惠计划。一个月后整体销售业绩和客户满意度都提升了。"</p>
                         <p><strong>Emily Tan, 女士内衣店营销主管</strong></p>
                         <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/evaluate-discount-voucher-women-lingerie.html">阅读更多</a>
@@ -208,25 +191,8 @@
 
         <section class="form-section" id="form">
             <h2>欢迎预约免费咨询</h2>
-            <form action="https://forms.gle/hBeuMsP7HfCMubz19" method="get">
-                <table>
-                    <tr>
-                        <td><input type="text" name="name" placeholder="您的姓名" required></td>
-                    </tr>
-                    <tr>
-                        <td><input type="email" name="email" placeholder="您的邮箱" required></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="phone" placeholder="您的电话号码" required></td>
-                    </tr>
-                    <tr>
-                        <td><textarea name="message" placeholder="请告诉我们您的业务需求..." required></textarea></td>
-                    </tr>
-                    <tr>
-                        <td><button type="submit">欢迎预约咨询</button></td>
-                    </tr>
-                </table>
-            </form>
+            <!-- Google Form embedded -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSduMl9H7OW-6erWR9Z_Tl5MSiTcSNgnH9krmC8vTvTcbYaDSA/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">正在加载…</iframe>
         </section>
     </div>
 
