@@ -11,6 +11,36 @@
     
     <!-- Linking external stylesheet -->
     <link href="assets/style.css" rel="stylesheet">
+    <style>
+        .services-table {
+            width: 100%;
+            border-spacing: 20px;
+        }
+        .services-table td {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left;
+            vertical-align: top;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .services-table td p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .services-table {
+                display: block;
+            }
+            .services-table td {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
@@ -34,14 +64,24 @@
 
         <section id="services">
             <h2>Our Data Analytics Services</h2> <!-- Optimized section title with keyword -->
-            <p>Our comprehensive services are designed to help businesses make informed, data-driven decisions:</p> <!-- Clearer service description -->
-            <ul>
-                <li><strong>Consultation & Data Discovery:</strong> We assess your business needs and identify the best data sources for analysis.</li>
-                <li><strong>Data Analysis & Strategy Development:</strong> We analyze your data to generate actionable insights, such as customer segmentation, sales strategies, and employee performance improvements.</li>
-                <li><strong>Custom Dashboards:</strong> We create real-time dashboards that allow you to track performance metrics and make data-backed decisions.</li>
-                <li><strong>Ongoing Support & Improvement:</strong> Continuous support to help you maximize the impact of your data strategies and grow your business.</li>
-                <li><strong>Workshops & Training:</strong> We offer workshops to help your team effectively use data to drive growth.</li>
-            </ul>
+            <table class="services-table">
+                <tr>
+                    <td>
+                        <p><strong>Consultation & Data Discovery:</strong> We assess your business needs and identify the best data sources for analysis.</p>
+                    </td>
+                    <td>
+                        <p><strong>Data Analysis & Strategy Development:</strong> We analyze your data to generate actionable insights, such as customer segmentation, sales strategies, and employee performance improvements.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><strong>Custom Dashboards:</strong> We create real-time dashboards that allow you to track performance metrics and make data-backed decisions.</p>
+                    </td>
+                    <td>
+                        <p><strong>Ongoing Support & Improvement:</strong> Continuous support to help you maximize the impact of your data strategies and grow your business.</p>
+                    </td>
+                </tr>
+            </table>
             <p>Check out our <a href="https://lyven81.github.io/data-analyst-portfolio/" target="_blank">GitHub Portfolio</a> for case studies and examples of how we’ve helped businesses like yours achieve success.</p>
         </section>
 
