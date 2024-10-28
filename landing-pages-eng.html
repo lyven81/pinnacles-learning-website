@@ -61,11 +61,25 @@
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-        .form-section, .trust-section {
+        .form-section {
             background-color: #f1f1f1;
             padding: 30px;
             margin-bottom: 40px;
             border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-section h2 {
+            text-align: center;
+        }
+        .form-section form {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .form-section input, .form-section textarea {
             width: 100%;
@@ -87,26 +101,6 @@
         }
         .form-section button:hover {
             background-color: #0056b3;
-        }
-        .trust-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        .success-stories {
-            width: 100%;
-            border-spacing: 20px;
-        }
-        .success-stories td {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            vertical-align: top;
-        }
-        .success-stories p {
-            font-size: 1rem;
-            color: #555;
         }
         footer {
             padding: 30px;
@@ -130,16 +124,13 @@
             .section h2 {
                 font-size: 1.8rem;
             }
-            .success-stories {
-                display: block;
-            }
-            .success-stories td {
-                width: 100%;
-                margin-bottom: 20px;
-                display: block;
-            }
             .form-section {
-                padding: 30px 20px;
+                padding: 20px;
+                width: auto;
+                margin: 20px;
+            }
+            .form-section form {
+                padding: 15px;
             }
         }
 
@@ -181,43 +172,9 @@
             <p>We drive business growth by turning complex data into actionable insights, helping improve sales, boost customer engagement, and elevate employee performance.</p>
         </section>
 
-        <section class="trust-section">
-            <h3>Client Success Stories</h3>
-            <table class="success-stories">
-                <tr>
-                    <td>
-                        <p>"Thanks to the insights, we were able to focus on high-spending customers and increase revenue with loyalty programs that worked!"</p>
-                        <p><strong>Ahmad Rizal, Service Center Manager</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/predicting-customer-lifetime-value-car-service-center.html">Read more</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>"By predicting demand, we reduced food wastage and maximized profits during peak hours. It made a real difference!"</p>
-                        <p><strong>Siti Aminah, Owner of Local Kopitiam</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecasting-food-demand-kopitiam.html">Read more</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>"We saw a 10% sales increase just by analyzing how our sales associates performed across shifts. Simple changes led to big results."</p>
-                        <p><strong>Jason Lim, Retail Manager at Footwear Hub</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/working-hours-analysis-footwear-shop.html">Read more</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>"We discovered what worked best with discount vouchers and adjusted our offers, leading to better sales performance and customer satisfaction."</p>
-                        <p><strong>Emily Tan, Marketing Lead at Women's Lingerie Store</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/evaluate-discount-voucher-women-lingerie.html">Read more</a>
-                    </td>
-                </tr>
-            </table>
-        </section>
-
         <section class="form-section" id="form">
             <h2>Get Started with a Free Consultation</h2>
-            <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mjkvgada" method="post">
+            <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mldegpwy" method="post">
               <fieldset id="fs-frm-inputs">
                 <label for="full-name">Full Name</label>
                 <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
@@ -235,4 +192,12 @@
               </fieldset>
               <button type="submit">Send Message</button>
             </form>
-        </
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Pinnacles Learning | Data Analytics Consulting</p>
+    </footer>
+
+</body>
+</html>
