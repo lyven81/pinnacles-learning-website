@@ -15,6 +15,7 @@
         .services-table {
             width: 100%;
             border-spacing: 20px;
+            table-layout: fixed; /* Ensures boxes are the same width */
         }
         .services-table td {
             background-color: white;
@@ -23,10 +24,18 @@
             text-align: left;
             vertical-align: top;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 200px; /* Ensures consistent height for each box */
+        }
+        .services-table td h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
         }
         .services-table td p {
             font-size: 1rem;
             color: #555;
+            margin-top: 10px;
         }
 
         /* Mobile Optimization */
@@ -67,18 +76,22 @@
             <table class="services-table">
                 <tr>
                     <td>
-                        <p><strong>Consultation & Data Discovery:</strong> We assess your business needs and identify the best data sources for analysis.</p>
+                        <h3>Consultation & Data Discovery</h3>
+                        <p>We help you identify the most valuable data sources tailored to your business needs, laying a strong foundation for insightful analysis. This ensures a strategic focus on key areas that drive growth.</p>
                     </td>
                     <td>
-                        <p><strong>Data Analysis & Strategy Development:</strong> We analyze your data to generate actionable insights, such as customer segmentation, sales strategies, and employee performance improvements.</p>
+                        <h3>Data Analysis & Strategy Development</h3>
+                        <p>By analyzing your data, we uncover actionable insights such as customer segmentation and optimized sales strategies. This empowers your business to make informed, data-backed decisions that enhance performance.</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <p><strong>Custom Dashboards:</strong> We create real-time dashboards that allow you to track performance metrics and make data-backed decisions.</p>
+                        <h3>Custom Dashboards</h3>
+                        <p>Our custom dashboards provide real-time tracking of performance metrics, enabling quick decision-making. This visibility helps you stay agile, respond to trends, and capitalize on new opportunities.</p>
                     </td>
                     <td>
-                        <p><strong>Ongoing Support & Improvement:</strong> Continuous support to help you maximize the impact of your data strategies and grow your business.</p>
+                        <h3>Ongoing Support & Improvement</h3>
+                        <p>We offer continuous support to refine and evolve your data strategies, ensuring sustained growth. This proactive approach maximizes the long-term value of your analytics investments.</p>
                     </td>
                 </tr>
             </table>
