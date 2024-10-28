@@ -61,49 +61,17 @@
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-        .trust-section {
-            background-color: #f1f1f1;
-            padding: 40px 20px;
-            margin-bottom: 40px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .trust-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .success-stories {
-            width: 100%;
-            border-spacing: 20px;
-        }
-        .success-stories td {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            vertical-align: top;
-        }
-        .form-section {
+        .form-section, .trust-section {
             background-color: #f1f1f1;
             padding: 30px;
-            margin-top: 40px;
             margin-bottom: 40px;
             border-radius: 8px;
             border: 1px solid #ddd;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .form-section h2 {
-            text-align: center;
         }
         .form-section form {
-            padding: 20px;
             background: white;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -128,6 +96,26 @@
         .form-section button:hover {
             background-color: #0056b3;
         }
+        .trust-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .success-stories {
+            width: 100%;
+            border-spacing: 20px;
+        }
+        .success-stories td {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            vertical-align: top;
+        }
+        .success-stories p {
+            font-size: 1rem;
+            color: #555;
+        }
         footer {
             padding: 30px;
             background-color: #333;
@@ -147,11 +135,10 @@
                 font-size: 1rem;
                 padding: 15px 20px;
             }
-            .section h2, .trust-section h3, .form-section h2 {
+            .section h2 {
                 font-size: 1.8rem;
             }
             .success-stories {
-                width: 100%;
                 display: block;
             }
             .success-stories td {
@@ -160,12 +147,7 @@
                 display: block;
             }
             .form-section {
-                padding: 20px;
-                width: auto;
-                margin: 20px;
-            }
-            .form-section form {
-                padding: 15px;
+                padding: 30px 20px;
             }
         }
 
@@ -181,8 +163,11 @@
                 font-size: 0.9rem;
                 padding: 10px 15px;
             }
-            .section h2, .trust-section h3, .form-section h2 {
+            .section h2 {
                 font-size: 1.5rem;
+            }
+            .section p {
+                font-size: 1rem;
             }
             .form-section input, .form-section textarea {
                 font-size: 0.9rem;
@@ -240,4 +225,13 @@
 
         <section class="form-section" id="form">
             <h2>Get Started with a Free Consultation</h2>
-            <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formsp
+            <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mjkvgada" method="post">
+              <fieldset id="fs-frm-inputs">
+                <label for="full-name">Full Name</label>
+                <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
+
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" name="phone" id="phone-number" placeholder="123-456-7890" required="">
+
+                <label for="email-address">Email Address</label>
+                <input type="email" name="_replyto" id="
