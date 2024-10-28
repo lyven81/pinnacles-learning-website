@@ -66,14 +66,6 @@
             padding: 30px;
             margin-bottom: 40px;
             border-radius: 8px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .form-section form {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .form-section input, .form-section textarea {
             width: 100%;
@@ -234,4 +226,13 @@
                 <input type="tel" name="phone" id="phone-number" placeholder="123-456-7890" required="">
 
                 <label for="email-address">Email Address</label>
-                <input type="email" name="_replyto" id="
+                <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required="">
+
+                <label for="message">Message</label>
+                <textarea rows="5" name="message" id="message" placeholder="Your message here." required=""></textarea>
+
+                <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+              </fieldset>
+              <button type="submit">Send Message</button>
+            </form>
+        </
