@@ -40,7 +40,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-size: 1rem;
             color: #555;
-            width: 50%;
         }
         .services-table td strong {
             display: block;
@@ -51,7 +50,13 @@
         /* Mobile Optimization */
         @media (max-width: 768px) {
             .services-table {
-                display: block;
+                display: flex;
+                flex-direction: column;
+            }
+            .services-table tr {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
             }
             .services-table td {
                 width: 100%;
