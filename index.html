@@ -12,21 +12,7 @@
     <!-- Linking external stylesheet -->
     <link href="assets/style.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header, nav, footer {
-            text-align: center;
-        }
+        /* Style for the services table */
         .services-table {
             width: 100%;
             border-spacing: 20px;
@@ -38,25 +24,16 @@
             text-align: left;
             vertical-align: top;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .services-table td p {
             font-size: 1rem;
             color: #555;
         }
-        .services-table td strong {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
+
         /* Mobile Optimization */
         @media (max-width: 768px) {
             .services-table {
-                display: flex;
-                flex-direction: column;
-            }
-            .services-table tr {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
+                display: block;
             }
             .services-table td {
                 width: 100%;
@@ -77,6 +54,7 @@
         <a href="#services">Services</a>
         <a href="https://lyven81.github.io/data-analyst-portfolio/" target="_blank">Case Studies</a>
         <a href="#contact">Contact Us</a>
+        <a href="chinese-version.html">中文</a> <!-- Link to Chinese version -->
     </nav>
 
     <div class="container">
@@ -90,22 +68,22 @@
             <table class="services-table">
                 <tr>
                     <td>
-                        <strong>Consultation & Data Discovery</strong>
-                        Gain a comprehensive understanding of your data landscape. We assess your business needs and identify the best data sources for targeted analysis, enhancing strategic decision-making.
+                        <p><strong>Consultation & Data Discovery</strong></p>
+                        <p>Gain a comprehensive understanding of your data landscape. We assess your business needs and identify the best data sources for targeted analysis, enhancing strategic decision-making.</p>
                     </td>
                     <td>
-                        <strong>Data Analysis & Strategy Development</strong>
-                        Drive actionable insights with in-depth data analysis. Our strategies focus on customer segmentation, sales optimization, and improving employee performance to align with business goals.
+                        <p><strong>Data Analysis & Strategy Development</strong></p>
+                        <p>Drive actionable insights with in-depth data analysis. Our strategies focus on customer segmentation, sales optimization, and improving employee performance to align with business goals.</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <strong>Custom Dashboards</strong>
-                        Empower your team with real-time insights. Our custom dashboards allow you to track key performance metrics, making it easy to make data-backed decisions with confidence.
+                        <p><strong>Custom Dashboards</strong></p>
+                        <p>Empower your team with real-time, interactive dashboards. Track key performance metrics to make informed, data-driven decisions that boost business growth and efficiency.</p>
                     </td>
                     <td>
-                        <strong>Ongoing Support & Improvement</strong>
-                        Ensure long-term success with continuous support. We help you adapt and refine your data strategies, keeping pace with industry trends to sustain growth.
+                        <p><strong>Ongoing Support & Improvement</strong></p>
+                        <p>Ensure long-term success with continuous support. We help refine and optimize data strategies, ensuring they continue to deliver value as your business evolves.</p>
                     </td>
                 </tr>
             </table>
@@ -120,6 +98,7 @@
         </section>
     </div>
 
+    <!-- Call to Action Section -->
     <div class="cta">
         <h2>Unlock Your Business Growth with Data Analytics</h2>
         <p>Don't let your data go unused. Schedule a consultation with us today and turn your data into actionable insights!</p>
@@ -130,6 +109,7 @@
         <p>© 2024 Pinnacles Learning Solutions | Data Analytics Consulting for Business Growth</p>
     </footer>
 
+    <!-- Linking external JavaScript -->
     <script src="assets/scripts.js"></script>
 </body>
 </html>
