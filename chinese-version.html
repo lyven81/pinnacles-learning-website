@@ -24,14 +24,20 @@
             text-align: left;
             vertical-align: top;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 50%; /* Ensures equal size in web layout */
         }
         .services-table td p {
             font-size: 1rem;
             color: #555;
         }
 
-        /* Mobile Optimization */
+        /* Web View Optimization (2x2 table) */
+        @media (min-width: 769px) {
+            .services-table td {
+                width: 45%; /* Ensures equal size in web layout */
+            }
+        }
+
+        /* Mobile Optimization (Single column) */
         @media (max-width: 768px) {
             .services-table {
                 display: block;
@@ -39,6 +45,7 @@
             .services-table td {
                 width: 100%; /* Makes each cell full-width in mobile view */
                 margin-bottom: 20px;
+                display: block;
             }
         }
     </style>
@@ -72,6 +79,8 @@
                         <p><strong>咨询与数据发现</strong></p>
                         <p>全面了解您的数据环境。我们评估您的业务需求，并确定最佳数据源以进行针对性分析，从而增强战略决策。</p>
                     </td>
+                </tr>
+                <tr>
                     <td>
                         <p><strong>数据分析与战略发展</strong></p>
                         <p>通过深入的数据分析提供可操作的洞察。我们的策略专注于客户细分、销售优化，并提升员工绩效，以实现业务目标。</p>
@@ -82,6 +91,8 @@
                         <p><strong>定制仪表盘</strong></p>
                         <p>为您的团队提供实时、交互式的仪表盘。追踪关键绩效指标，以做出数据驱动的决策，提升业务增长和效率。</p>
                     </td>
+                </tr>
+                <tr>
                     <td>
                         <p><strong>持续支持与改进</strong></p>
                         <p>确保长期成功并提供持续支持。我们帮助优化数据策略，确保其在业务不断发展中持续发挥价值。</p>
