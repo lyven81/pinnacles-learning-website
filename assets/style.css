@@ -25,8 +25,8 @@ p {
 /* Header and Footer */
 header, footer {
     text-align: center;
-    background-color: #2C3E50;
-    color: white;
+    background-color: white;
+    color: #2C3E50;
     padding: 20px 0;
 }
 
