@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Pinnacles Holding Limited</title>
     <link rel="stylesheet" href="assets/style.css">
-    <style>
+ <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #FDFCFB;
-            color: #2F2F2F;
             margin: 0;
             padding: 0;
+            background-color: #FDFCFB;
+            color: #2F2F2F;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         header, footer {
             text-align: center;
@@ -33,48 +38,44 @@
         nav a:hover {
             color: #145A32;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .services-table {
+            width: 100%;
+            border-spacing: 20px;
         }
-        h1, h2, h3 {
-            color: #2C3E50;
-        }
-        section {
-            margin-bottom: 60px;
-        }
-        .bio-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .bio {
-            background: #ffffff;
+        .services-table td {
+            background-color: white;
             padding: 20px;
-            border-left: 5px solid #27AE60;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-        .bio:hover {
-            transform: translateY(-4px);
-        }
-        .bio h4 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            color: #2C3E50;
-            font-weight: 600;
-        }
-        .bio p {
-            margin: 0;
-            font-size: 0.95rem;
+            border-radius: 5px;
+            text-align: left;
+            vertical-align: top;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
             color: #555;
+            border-left: 5px solid #27AE60;
         }
-        strong {
-            color: #145A32;
+        .services-table td strong {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        @media (max-width: 768px) {
+            .services-table {
+                display: flex;
+                flex-direction: column;
+            }
+            .services-table tr {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .services-table td {
+                width: 100%;
+                margin-bottom: 20px;
+            }
         }
     </style>
+
 </head>
 <body>
     <header>
