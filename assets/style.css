@@ -1,10 +1,20 @@
+/* ====== Color Variables (Optional if using preprocessors) ======
+--bg-light: #FCF9F2;
+--text-main: #333333;
+--text-muted: #A6A6A6;
+--header-bg: #403B36;
+--accent: #CBA135;
+--accent-hover: #B17F28;
+--border-soft: #E3D9C6;
+=============================================================== */
+
 /* Base Typography and Layout */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FDFCFB;
-    color: #2F2F2F;
+    background-color: #FCF9F2;
+    color: #333333;
 }
 
 .container {
@@ -14,7 +24,7 @@ body {
 }
 
 h1, h2, h3 {
-    color: #2C3E50;
+    color: #403B36;
 }
 
 p {
@@ -25,15 +35,7 @@ p {
 /* Header and Footer */
 header, footer {
     text-align: center;
-    background-color: white;
-    color: #2C3E50;
-    padding: 20px 0;
-}
-
-/* Header and Footer */
-header, footer {
-    text-align: center;
-    background-color: #2C3E50;
+    background-color: #403B36;
     color: white;
     padding: 20px 0;
 }
@@ -58,14 +60,14 @@ nav {
 }
 
 nav a {
-    color: #27AE60;
+    color: #CBA135;
     text-decoration: none;
     margin: 0 10px;
     font-weight: 500;
 }
 
 nav a:hover {
-    color: #145A32;
+    color: #B17F28;
 }
 
 /* Services Table */
@@ -83,14 +85,14 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
     color: #555;
-    border-left: 5px solid #27AE60;
+    border-left: 5px solid #CBA135;
 }
 
 .services-table td strong {
     display: block;
     margin-bottom: 10px;
     font-weight: 600;
-    color: #2C3E50;
+    color: #403B36;
 }
 
 /* Responsive Adjustments */
@@ -122,7 +124,7 @@ nav a:hover {
 .bio {
     background: #ffffff;
     padding: 20px;
-    border-left: 5px solid #27AE60;
+    border-left: 5px solid #CBA135;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease;
@@ -135,7 +137,7 @@ nav a:hover {
 .bio h4 {
     margin-top: 0;
     margin-bottom: 8px;
-    color: #2C3E50;
+    color: #403B36;
     font-weight: 600;
 }
 
@@ -146,5 +148,5 @@ nav a:hover {
 }
 
 strong {
-    color: #145A32;
+    color: #B17F28;
 }
