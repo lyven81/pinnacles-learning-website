@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Pinnacles Holding Limited</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FCF9F2;
+            color: #333;
+        }
+        header, footer {
+            background-color: #403B36;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            color: #CBA135;
+            margin: 0;
+            font-size: 2rem;
+        }
+        nav {
+            background-color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #CBA135;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: #B17F28;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #403B36;
+        }
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+        form button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #CBA135;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #B17F28;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pinnacles Holding Limited</h1>
+        <p>Business Growth Through Data, Strategy & Innovation</p>
+    </header>
+
+    <nav>
+        <a href="index.html">About Us</a>
+        <a href="services.html">Our Business</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you. Whether you're looking for partnership opportunities, service inquiries, or have a question — our team is here to help. We value meaningful conversations and respond promptly.</p>
+
+        <h3>General Contact Information</h3>
+        <p><strong>Email:</strong> contact@pinnaclesholding.com</p>
+        <p><strong>Phone:</strong> +6013-66881820</p>
+        <p><strong>Registered Address:</strong> Wisma 88, Jalan Bukit Indah 1, Taman Bukit Indah, 58200 Kuala Lumpur, Malaysia</p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099">Message us</a></p>
+
+        <h3>Send Us a Message</h3>
+        <form action="#" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject">
+
+            <label for="division">Select a Division</label>
+            <select id="division" name="division">
+                <option value="">-- Please select --</option>
+                <option value="data">Data Consulting</option>
+                <option value="property">Short-Term Leasing</option>
+                <option value="ecommerce">E-Commerce</option>
+                <option value="plantation">Plantation</option>
+            </select>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2024 Pinnacles Holding Limited</p>
+    </footer>
+</body>
+</html>
