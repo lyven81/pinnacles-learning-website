@@ -110,39 +110,68 @@
       </div>
     </section>
 
-    <section class="section">
-      <h2>Case Studies</h2>
-      <div class="grid">
+<section class="section">
+  <h2>Case Studies</h2>
+  <div class="card" id="case-study-card">
+    <h4 id="case-title">Saving the Silent Spenders</h4>
+    <p id="case-description">
+      We helped a vending business identify and re-engage high-value but inactive members by modeling churn risk and estimating lifetime value.
+    </p>
+    <a id="case-link" href="/data-analyst-portfolio/case-studies/clv-churn-analysis-coffee-vending.html" target="_blank">Read More →</a>
+  </div>
+  <div style="text-align:center; margin-top: 15px;">
+    <button onclick="prevCase()">← Prev</button>
+    <button onclick="nextCase()">Next →</button>
+  </div>
+</section>
 
-        <div class="card">
-          <h4>Saving the Silent Spenders</h4>
-          <p>We helped a vending business identify and re-engage high-value but inactive members by modeling churn risk and estimating lifetime value.</p>
-          <a href="/data-analyst-portfolio/case-studies/clv-churn-analysis-coffee-vending.html" target="_blank">Read More →</a>
-        </div>
+<script>
+  const caseStudies = [
+    {
+      title: "Saving the Silent Spenders",
+      description: "We helped a vending business identify and re-engage high-value but inactive members by modeling churn risk and estimating lifetime value.",
+      link: "/data-analyst-portfolio/case-studies/clv-churn-analysis-coffee-vending.html"
+    },
+    {
+      title: "What Sells Best and When",
+      description: "We analyzed seasonal and time-of-day sales trends to optimize inventory and promotions for a local F&B membership program.",
+      link: "/data-analyst-portfolio/case-studies/what-sells-best.html"
+    },
+    {
+      title: "Do Dollars Drive Decisions?",
+      description: "We segmented members by income level and spending patterns to help design more effective marketing tiers and personalized offers.",
+      link: "/data-analyst-portfolio/case-studies/do-dollar-drive-decisions.html"
+    },
+    {
+      title: "Predicting Product Sales",
+      description: "We modeled which marketing channels were most effective in driving purchases and boosting member lifetime value.",
+      link: "/data-analyst-portfolio/case-studies/predict-product-sales.html"
+    }
+  ];
 
-        <div class="card">
-          <h4>What Sells Best and When</h4>
-          <p>We analyzed seasonal and time-of-day sales trends to optimize inventory and promotions for a local F&B membership program.</p>
-          <a href="/data-analyst-portfolio/case-studies/what-sells-best.html" target="_blank">Read More →</a>
-        </div>
+  let currentIndex = 0;
 
-        <div class="card">
-          <h4>Do Dollars Drive Decisions?</h4>
-          <p>We segmented members by income level and spending patterns to help design more effective marketing tiers and personalized offers.</p>
-          <a href="/data-analyst-portfolio/case-studies/do-dollar-drive-decisions.html" target="_blank">Read More →</a>
-        </div>
+  function showCase(index) {
+    const caseTitle = document.getElementById("case-title");
+    const caseDescription = document.getElementById("case-description");
+    const caseLink = document.getElementById("case-link");
 
-        <div class="card">
-          <h4>Predicting Product Sales</h4>
-          <p>We modeled which marketing channels were most effective in driving purchases and boosting member lifetime value.</p>
-          <a href="/data-analyst-portfolio/case-studies/predict-product-sales.html" target="_blank">Read More →</a>
-        </div>
+    caseTitle.textContent = caseStudies[index].title;
+    caseDescription.textContent = caseStudies[index].description;
+    caseLink.href = caseStudies[index].link;
+  }
 
-      </div>
-      <p style="text-align:center; margin-top: 20px;">
-        <a href="/data-analyst-portfolio/case-studies.html">View All Case Studies →</a>
-      </p>
-    </section>
+  function nextCase() {
+    currentIndex = (currentIndex + 1) % caseStudies.length;
+    showCase(currentIndex);
+  }
+
+  function prevCase() {
+    currentIndex = (currentIndex - 1 + caseStudies.length) % caseStudies.length;
+    showCase(currentIndex);
+  }
+</script>
+
 
     <section class="section">
       <h2>Why Choose Us</h2>
