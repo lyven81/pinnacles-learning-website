@@ -100,16 +100,6 @@
       </div>
     </section>
 
-    <section class="section">
-      <h2>Industries We Serve</h2>
-      <div class="grid">
-        <div class="card"><h4>Retail & E-Commerce</h4><p>Turn customer logs into insights for sales and inventory planning.</p></div>
-        <div class="card"><h4>Food & Beverage</h4><p>Forecast peak times, optimize menu pricing, and manage loyal diners effectively.</p></div>
-        <div class="card"><h4>Health & Beauty</h4><p>Use appointment and membership data to retain clients and upsell treatments.</p></div>
-        <div class="card"><h4>Local Services</h4><p>Track repeat usage, predict churn, and personalize outreach with minimal budget.</p></div>
-      </div>
-    </section>
-
 <section class="section">
   <h2>Case Studies</h2>
   <div class="card" id="case-study-card">
@@ -174,6 +164,59 @@
 
   // Initialize on page load
   showCase(currentIndex);
+</script>
+
+<div id="dashboard-slideshow" style="max-width: 800px; margin: 40px auto; font-family: 'Poppins', sans-serif;">
+  <div class="dashboard-slide" style="border-left: 5px solid #CBA135; background: #fff; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-radius: 6px; display: block;">
+    <h3 style="color: #403B36;">Customer Lifetime Value by Tier</h3>
+    <img src="https://via.placeholder.com/700x300?text=CLV+Dashboard" alt="Customer Lifetime Value" style="width:100%; margin: 15px 0;">
+    <p>This dashboard shows the estimated lifetime value of members segmented by tiers (Bronze, Silver, Gold), helping identify high-value groups to retain and reward.</p>
+    <a href="https://lyven81.github.io/data-analyst-portfolio/" target="_blank" style="display:inline-block; margin-top:10px; padding:8px 16px; background-color:#CBA135; color:white; text-decoration:none; border-radius:4px;">View Full Size</a>
+  </div>
+
+  <div class="dashboard-slide" style="border-left: 5px solid #CBA135; background: #fff; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-radius: 6px; display: none;">
+    <h3 style="color: #403B36;">Churn Risk Heatmap</h3>
+    <img src="https://via.placeholder.com/700x300?text=Churn+Risk+Heatmap" alt="Churn Risk" style="width:100%; margin: 15px 0;">
+    <p>This heatmap identifies members with declining engagement or no recent purchases, allowing proactive intervention to retain them.</p>
+    <a href="https://lyven81.github.io/data-analyst-portfolio/" target="_blank" style="display:inline-block; margin-top:10px; padding:8px 16px; background-color:#CBA135; color:white; text-decoration:none; border-radius:4px;">View Full Size</a>
+  </div>
+
+  <div class="dashboard-slide" style="border-left: 5px solid #CBA135; background: #fff; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-radius: 6px; display: none;">
+    <h3 style="color: #403B36;">Sales Forecast by Product Category</h3>
+    <img src="https://via.placeholder.com/700x300?text=Sales+Forecast+by+Category" alt="Sales Forecast" style="width:100%; margin: 15px 0;">
+    <p>This dashboard tracks historical demand trends and forecasts future sales by product category, assisting inventory planning for member-based businesses.</p>
+    <a href="https://lyven81.github.io/data-analyst-portfolio/" target="_blank" style="display:inline-block; margin-top:10px; padding:8px 16px; background-color:#CBA135; color:white; text-decoration:none; border-radius:4px;">View Full Size</a>
+  </div>
+
+  <div style="text-align:center; margin-top: 20px;">
+    <button onclick="prevDashboard()" style="margin-right: 10px;">← Prev</button>
+    <button onclick="nextDashboard()">Next →</button>
+    <br><br>
+    <a href="https://lyven81.github.io/data-analyst-portfolio/" target="_blank" style="display:inline-block; margin-top:10px; padding:10px 20px; background-color:#CBA135; color:white; text-decoration:none; border-radius:4px;">View All Dashboards</a>
+  </div>
+</div>
+
+<script>
+  let dashboardIndex = 0;
+  const slides = document.querySelectorAll('.dashboard-slide');
+
+  function showDashboard(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'block' : 'none';
+    });
+  }
+
+  function nextDashboard() {
+    dashboardIndex = (dashboardIndex + 1) % slides.length;
+    showDashboard(dashboardIndex);
+  }
+
+  function prevDashboard() {
+    dashboardIndex = (dashboardIndex - 1 + slides.length) % slides.length;
+    showDashboard(dashboardIndex);
+  }
+
+  showDashboard(dashboardIndex);
 </script>
 
     <section class="section">
