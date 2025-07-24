@@ -1,55 +1,143 @@
-<section class="section">
-  <h2>Our Packages</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
-    
-    <!-- Consultation Package -->
-    <div style="background: white; border: 2px solid #CBA135; border-radius: 8px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      <h3 style="text-align: center; color: #403B36;">Consultation</h3>
-      <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: #CBA135;">RM500</p>
-      <ul style="padding-left: 20px; line-height: 1.6;">
-        <li>1-hour online consultation session.</li>
-        <li>Initial discovery of business and data challenges.</li>
-        <li>Basic review of sales or customer data.</li>
-        <li>Identify 3–5 quick improvement opportunities.</li>
-        <li>Simple membership strategy suggestions.</li>
-        <li>Actionable advice for customer retention.</li>
-        <li>Follow-up email with summary recommendations.</li>
-        <li>Suitable for micro SMEs or first-time analytics users.</li>
-      </ul>
-    </div>
-    
-    <!-- Monthly Subscription Package -->
-    <div style="background: white; border: 2px solid #CBA135; border-radius: 8px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      <h3 style="text-align: center; color: #403B36;">Monthly Subscription</h3>
-      <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: #CBA135;">RM1,000/month</p>
-      <p style="text-align: center; font-size: 0.9rem; color: #555;">(RM10,000/year or RM20,000 for 2 years)</p>
-      <ul style="padding-left: 20px; line-height: 1.6;">
-        <li>Access to core membership dashboards (churn, CLV, inventory).</li>
-        <li>Monthly data updates and reports.</li>
-        <li>1 monthly strategy call (30 minutes).</li>
-        <li>Predictive analysis for churn prevention.</li>
-        <li>Quarterly performance summary and insights.</li>
-        <li>Targeted marketing recommendations.</li>
-        <li>Ongoing email support with 48-hour response time.</li>
-        <li>Best for SMEs with recurring membership data needs.</li>
-      </ul>
-    </div>
-    
-    <!-- Project-Based Package -->
-    <div style="background: white; border: 2px solid #CBA135; border-radius: 8px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      <h3 style="text-align: center; color: #403B36;">Project-Based</h3>
-      <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: #CBA135;">RM3,500</p>
-      <ul style="padding-left: 20px; line-height: 1.6;">
-        <li>Custom analytics project for one key business goal.</li>
-        <li>1 membership-focused dashboard (e.g., inventory forecast).</li>
-        <li>Data cleaning and preparation (up to 3 datasets).</li>
-        <li>Basic churn and customer lifetime value modeling.</li>
-        <li>1-hour project briefing and handover session.</li>
-        <li>Written summary report with key findings.</li>
-        <li>1 round of minor revisions (within 7 days).</li>
-        <li>Ideal for SMEs testing analytics impact before scaling.</li>
-      </ul>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing | Pinnacles Holding Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FCF9F2;
+      color: #333;
+    }
+    header, footer {
+      text-align: center;
+      background-color: #403B36;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h2 {
+      color: #CBA135;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 8px;
+      text-align: center;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .pricing-card {
+      background: white;
+      border: 2px solid #CBA135;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-5px);
+    }
+    .pricing-card h3 {
+      text-align: center;
+      color: #403B36;
+      margin: 0 0 10px;
+    }
+    .pricing-card p.price {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #CBA135;
+      margin-bottom: 10px;
+    }
+    .pricing-card p.sub-price {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .pricing-card ul {
+      list-style: disc;
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pinnacles Holding Limited</h1>
+    <p>Grow Smarter with Membership Analytics</p>
+  </header>
 
+  <div class="container">
+    <section class="section">
+      <h2>Our Packages</h2>
+      <div class="pricing-grid">
+
+        <!-- Consultation Package -->
+        <div class="pricing-card">
+          <h3>Consultation</h3>
+          <p class="price">RM500</p>
+          <ul>
+            <li>1-hour online consultation session.</li>
+            <li>Initial discovery of business and data challenges.</li>
+            <li>Basic review of sales or customer data.</li>
+            <li>Identify 3–5 quick improvement opportunities.</li>
+            <li>Simple membership strategy suggestions.</li>
+            <li>Actionable advice for customer retention.</li>
+            <li>Follow-up email with summary recommendations.</li>
+            <li>Suitable for micro SMEs or first-time analytics users.</li>
+          </ul>
+        </div>
+
+        <!-- Monthly Subscription Package -->
+        <div class="pricing-card">
+          <h3>Monthly Subscription</h3>
+          <p class="price">RM1,000/month</p>
+          <p class="sub-price">(RM10,000/year or RM20,000 for 2 years)</p>
+          <ul>
+            <li>Access to core membership dashboards (churn, CLV, inventory).</li>
+            <li>Monthly data updates and reports.</li>
+            <li>1 monthly strategy call (30 minutes).</li>
+            <li>Predictive analysis for churn prevention.</li>
+            <li>Quarterly performance summary and insights.</li>
+            <li>Targeted marketing recommendations.</li>
+            <li>Ongoing email support with 48-hour response time.</li>
+            <li>Best for SMEs with recurring membership data needs.</li>
+          </ul>
+        </div>
+
+        <!-- Project-Based Package -->
+        <div class="pricing-card">
+          <h3>Project-Based</h3>
+          <p class="price">RM3,500</p>
+          <ul>
+            <li>Custom analytics project for one key business goal.</li>
+            <li>1 membership-focused dashboard (e.g., inventory forecast).</li>
+            <li>Data cleaning and preparation (up to 3 datasets).</li>
+            <li>Basic churn and customer lifetime value modeling.</li>
+            <li>1-hour project briefing and handover session.</li>
+            <li>Written summary report with key findings.</li>
+            <li>1 round of minor revisions (within 7 days).</li>
+            <li>Ideal for SMEs testing analytics impact before scaling.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
   </div>
-</section>
+
+  <footer>
+    <p>© 2024 Pinnacles Holding Limited</p>
+  </footer>
+</body>
+</html>
