@@ -30,12 +30,6 @@
       padding-bottom: 8px;
       text-align: center;
     }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
     .pricing-card {
       background: white;
       border: 2px solid #CBA135;
@@ -44,6 +38,8 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       text-align: center;
       transition: transform 0.2s ease;
+      max-width: 400px;
+      margin: 0 auto;
     }
     .pricing-card:hover {
       transform: translateY(-5px);
@@ -65,15 +61,6 @@
       line-height: 1.6;
       margin-bottom: 15px;
     }
-    .select-button {
-      display: inline-block;
-      background-color: #CBA135;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      font-weight: 500;
-    }
     .form-section {
       margin-top: 40px;
       background: white;
@@ -86,7 +73,7 @@
       flex-direction: column;
       gap: 15px;
     }
-    .form-section input, .form-section textarea, .form-section select {
+    .form-section input, .form-section textarea {
       padding: 10px;
       border-radius: 4px;
       border: 1px solid #ccc;
@@ -130,106 +117,41 @@
 
   <div class="container">
     <section class="section">
-  <h2>Choose Your Package</h2>
-  <div class="card" id="package-card">
-    <h4 id="package-title">Consultation</h4>
-    <p id="package-price">RM500</p>
-    <p id="package-description">
-      1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data.
-    </p>
-    <button style="background-color:#CBA135; color:white; padding:10px 20px; border:none; border-radius:4px;" onclick="selectPackage()">Select</button>
-  </div>
+      <h2>Choose Your Package</h2>
+      <div class="pricing-card" id="package-card">
+        <h4 id="package-title">Consultation</h4>
+        <p id="package-price">RM500</p>
+        <p id="package-description">
+          1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data.
+        </p>
+        <button style="background-color:#CBA135; color:white; padding:10px 20px; border:none; border-radius:4px;" onclick="selectPackage()">Select</button>
+      </div>
 
-  <div style="text-align:center; margin-top: 15px;">
-    <button onclick="prevPackage()">← Prev</button>
-    <button onclick="nextPackage()">Next →</button>
-  </div>
-</section>
+      <div style="text-align:center; margin-top: 15px;">
+        <button onclick="prevPackage()">← Prev</button>
+        <button onclick="nextPackage()">Next →</button>
+      </div>
+    </section>
 
-<script>
-  const packages = [
-    {
-      title: "Consultation",
-      price: "RM500",
-      description: "1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data."
-    },
-    {
-      title: "Project-Based",
-      price: "RM3,500",
-      description: "1 custom analytics project, membership dashboard (e.g., inventory forecast), and data cleaning & summary report."
-    },
-    {
-      title: "Monthly Subscription",
-      price: "RM1,000/month",
-      description: "Monthly dashboard updates, 1 strategy call per month, churn & CLV analysis, and ongoing support."
-    },
-    {
-      title: "6 Months Subscription",
-      price: "RM5,800",
-      description: "6 months of analytics, quarterly performance reports, and priority email support."
-    },
-    {
-      title: "12 Months Subscription",
-      price: "RM10,000",
-      description: "1-year membership analytics, quarterly insights calls, and best value with priority support."
-    }
-  ];
+    <section id="form" class="form-section">
+      <h2>Complete Your Details</h2>
+      <p id="selected-package-display" style="font-weight: bold; color: #CBA135;"></p>
+      
+      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST">
+        <input type="hidden" id="package" name="package" required />
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="text" name="phone" placeholder="Phone Number (optional)" />
+        <textarea name="message" placeholder="Additional Notes (optional)" rows="4"></textarea>
 
-  let currentIndex = 0;
+        <div class="checkbox">
+          <input type="checkbox" name="terms" required />
+          <label>I agree to the <a href="#">terms and conditions</a>.</label>
+        </div>
 
-  function showPackage(index) {
-    document.getElementById("package-title").textContent = packages[index].title;
-    document.getElementById("package-price").textContent = packages[index].price;
-    document.getElementById("package-description").textContent = packages[index].description;
-  }
-
-  function nextPackage() {
-    currentIndex = (currentIndex + 1) % packages.length;
-    showPackage(currentIndex);
-  }
-
-  function prevPackage() {
-    currentIndex = (currentIndex - 1 + packages.length) % packages.length;
-    showPackage(currentIndex);
-  }
-
-  function selectPackage() {
-    alert("You selected: " + packages[currentIndex].title + " (" + packages[currentIndex].price + ")");
-  }
-
-  // Initialize on page load
-  showPackage(currentIndex);
-</script>
-
-    <script>
-  function selectPackage() {
-    const selected = packages[currentIndex];
-    document.getElementById("selected-package-display").textContent = 
-      "You selected: " + selected.title + " (" + selected.price + ")";
-    document.getElementById("package").value = selected.title + " - " + selected.price;
-    document.getElementById("form").scrollIntoView({ behavior: "smooth" });
-  }
-</script>
-
-<section id="form" class="form-section">
-  <h2>Complete Your Details</h2>
-  <p id="selected-package-display" style="font-weight: bold; color: #CBA135;"></p>
-  
-  <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST">
-    <input type="hidden" id="package" name="package" required />
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="email" name="email" placeholder="Email Address" required />
-    <input type="text" name="phone" placeholder="Phone Number (optional)" />
-    <textarea name="message" placeholder="Additional Notes (optional)" rows="4"></textarea>
-
-    <div class="checkbox">
-      <input type="checkbox" name="terms" required />
-      <label>I agree to the <a href="#">terms and conditions</a>.</label>
-    </div>
-
-    <button type="submit">Proceed to Payment</button>
-  </form>
-</section>
+        <button type="submit">Proceed to Payment</button>
+      </form>
+    </section>
 
     <section class="faq-section">
       <h2>FAQs</h2>
@@ -247,9 +169,62 @@
   </footer>
 
   <script>
-    function selectPackage(packageName) {
-      document.getElementById('package').value = packageName;
+    const packages = [
+      {
+        title: "Consultation",
+        price: "RM500",
+        description: "1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data."
+      },
+      {
+        title: "Project-Based",
+        price: "RM3,500",
+        description: "1 custom analytics project, membership dashboard (e.g., inventory forecast), and data cleaning & summary report."
+      },
+      {
+        title: "Monthly Subscription",
+        price: "RM1,000/month",
+        description: "Monthly dashboard updates, 1 strategy call per month, churn & CLV analysis, and ongoing support."
+      },
+      {
+        title: "6 Months Subscription",
+        price: "RM5,800",
+        description: "6 months of analytics, quarterly performance reports, and priority email support."
+      },
+      {
+        title: "12 Months Subscription",
+        price: "RM10,000",
+        description: "1-year membership analytics, quarterly insights calls, and best value with priority support."
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function showPackage(index) {
+      document.getElementById("package-title").textContent = packages[index].title;
+      document.getElementById("package-price").textContent = packages[index].price;
+      document.getElementById("package-description").textContent = packages[index].description;
     }
+
+    function nextPackage() {
+      currentIndex = (currentIndex + 1) % packages.length;
+      showPackage(currentIndex);
+    }
+
+    function prevPackage() {
+      currentIndex = (currentIndex - 1 + packages.length) % packages.length;
+      showPackage(currentIndex);
+    }
+
+    function selectPackage() {
+      const selected = packages[currentIndex];
+      document.getElementById("selected-package-display").textContent = 
+        "You selected: " + selected.title + " (" + selected.price + ")";
+      document.getElementById("package").value = selected.title + " - " + selected.price;
+      document.getElementById("form").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Initialize on page load
+    showPackage(currentIndex);
   </script>
 </body>
 </html>
