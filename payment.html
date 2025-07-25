@@ -130,60 +130,76 @@
 
   <div class="container">
     <section class="section">
-      <h2>Choose Your Package</h2>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Consultation</h3>
-          <p class="price">RM500</p>
-          <ul>
-            <li>1-hour online consultation session.</li>
-            <li>Initial data and business discovery.</li>
-            <li>Basic review of sales/customer data.</li>
-          </ul>
-          <a href="#form" class="select-button" onclick="selectPackage('Consultation - RM500')">Select</a>
-        </div>
-        <div class="pricing-card">
-          <h3>Project-Based</h3>
-          <p class="price">RM3,500</p>
-          <ul>
-            <li>1 custom analytics project.</li>
-            <li>Membership dashboard (e.g., inventory forecast).</li>
-            <li>Data cleaning & summary report.</li>
-          </ul>
-          <a href="#form" class="select-button" onclick="selectPackage('Project-Based - RM3,500')">Select</a>
-        </div>
-        <div class="pricing-card">
-          <h3>Monthly Subscription</h3>
-          <p class="price">RM1,000/month</p>
-          <ul>
-            <li>Monthly dashboard updates.</li>
-            <li>1 strategy call per month.</li>
-            <li>Churn & CLV analysis.</li>
-          </ul>
-          <a href="#form" class="select-button" onclick="selectPackage('Monthly Subscription - RM1,000/month')">Select</a>
-        </div>
-        <div class="pricing-card">
-          <h3>6 Months Subscription</h3>
-          <p class="price">RM5,800</p>
-          <ul>
-            <li>6 months of analytics.</li>
-            <li>Quarterly performance reports.</li>
-            <li>Priority email support.</li>
-          </ul>
-          <a href="#form" class="select-button" onclick="selectPackage('6 Months Subscription - RM5,800')">Select</a>
-        </div>
-        <div class="pricing-card">
-          <h3>12 Months Subscription</h3>
-          <p class="price">RM10,000</p>
-          <ul>
-            <li>1-year membership analytics.</li>
-            <li>Quarterly insights calls.</li>
-            <li>Best value & priority support.</li>
-          </ul>
-          <a href="#form" class="select-button" onclick="selectPackage('12 Months Subscription - RM10,000')">Select</a>
-        </div>
-      </div>
-    </section>
+  <h2>Choose Your Package</h2>
+  <div class="card" id="package-card">
+    <h4 id="package-title">Consultation</h4>
+    <p id="package-price">RM500</p>
+    <p id="package-description">
+      1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data.
+    </p>
+    <button style="background-color:#CBA135; color:white; padding:10px 20px; border:none; border-radius:4px;" onclick="selectPackage()">Select</button>
+  </div>
+
+  <div style="text-align:center; margin-top: 15px;">
+    <button onclick="prevPackage()">← Prev</button>
+    <button onclick="nextPackage()">Next →</button>
+  </div>
+</section>
+
+<script>
+  const packages = [
+    {
+      title: "Consultation",
+      price: "RM500",
+      description: "1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data."
+    },
+    {
+      title: "Project-Based",
+      price: "RM3,500",
+      description: "1 custom analytics project, membership dashboard (e.g., inventory forecast), and data cleaning & summary report."
+    },
+    {
+      title: "Monthly Subscription",
+      price: "RM1,000/month",
+      description: "Monthly dashboard updates, 1 strategy call per month, churn & CLV analysis, and ongoing support."
+    },
+    {
+      title: "6 Months Subscription",
+      price: "RM5,800",
+      description: "6 months of analytics, quarterly performance reports, and priority email support."
+    },
+    {
+      title: "12 Months Subscription",
+      price: "RM10,000",
+      description: "1-year membership analytics, quarterly insights calls, and best value with priority support."
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function showPackage(index) {
+    document.getElementById("package-title").textContent = packages[index].title;
+    document.getElementById("package-price").textContent = packages[index].price;
+    document.getElementById("package-description").textContent = packages[index].description;
+  }
+
+  function nextPackage() {
+    currentIndex = (currentIndex + 1) % packages.length;
+    showPackage(currentIndex);
+  }
+
+  function prevPackage() {
+    currentIndex = (currentIndex - 1 + packages.length) % packages.length;
+    showPackage(currentIndex);
+  }
+
+  function selectPackage() {
+    alert("You selected: " + packages[currentIndex].title + " (" + packages[currentIndex].price + ")");
+  }
+
+  // Initialize on page load
+  showPackage(currentIndex);
+</script>
 
     <section id="form" class="form-section">
       <h2>Complete Your Details</h2>
