@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Membership Analytics | Pinnacles Holding Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FCF9F2;
+      color: #333;
+    }
+    header, footer {
+      text-align: center;
+      background-color: #403B36;
+      color: white;
+      padding: 50px 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin: 10px 0 20px;
+    }
+    header a {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin: 5px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h2 {
+      color: #CBA135;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-left: 5px solid #CBA135;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card h4 {
+      margin: 0 0 10px;
+      color: #403B36;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pinnacles Learning</h1>
+    <p>Grow Smarter with Membership Analytics</p>
+    <a href="#contact">Book a Free Strategy Call</a>
+    <a href="#pricing">Request a Proposal</a>
+  </header>
+
+  <div class="container">
+    <!-- Overview -->
+    <section class="section">
+      <h2>Overview</h2>
+      <p>We help small and medium-sized businesses transform customer membership data into strategic insights. From predicting inventory needs to boosting retention and revenue, our analytics framework empowers business owners to make smarter, data-backed decisions.</p>
+    </section>
+
+    <!-- Our Services -->
+    <section class="section">
+      <h2>Our Services</h2>
+      <div class="grid">
+        <div class="card">
+          <h4>Predict Stock Quantity</h4>
+          <p>Forecast product demand based on member purchase patterns to prevent overstock and stockouts.</p>
+        </div>
+        <div class="card">
+          <h4>Understand Customer Behavior</h4>
+          <p>Analyze member preferences, frequency, and timing to uncover key purchasing trends.</p>
+        </div>
+        <div class="card">
+          <h4>Churn Rate Prediction</h4>
+          <p>Identify members at risk of leaving and act early to retain high-value customers.</p>
+        </div>
+        <div class="card">
+          <h4>Customer Lifetime Value</h4>
+          <p>Estimate potential revenue over the customer journey and prioritize profitable relationships.</p>
+        </div>
+        <div class="card">
+          <h4>Targeted Marketing & ROI</h4>
+          <p>Deliver the right offer to the right customer and reduce cost per acquisition with predictive targeting.</p>
+        </div>
+        <div class="card">
+          <h4>Price & Discount Optimization</h4>
+          <p>Set smart price ranges and plan discounts based on real purchase behavior and price sensitivity.</p>
+        </div>
+        <div class="card">
+          <h4>Inventory & Warehouse Planning</h4>
+          <p>Plan warehouse movement and restocking cycles aligned with member demand trends.</p>
+        </div>
+        <div class="card">
+          <h4>Test New Product Before Launch</h4>
+          <p>Use membership data to identify early adopters and improve launch success.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <h2>Our Pricing</h2>
+      <div class="grid">
+        <div class="card">
+          <h4>Consultation</h4>
+          <p>Starting from <strong>RM500</strong></p>
+          <a href="payment.html" class="cta-button">View Details</a>
+        </div>
+        <div class="card">
+          <h4>Project-Based</h4>
+          <p>Starting from <strong>RM3,500</strong></p>
+          <a href="payment.html" class="cta-button">View Details</a>
+        </div>
+        <div class="card">
+          <h4>Monthly Subscription</h4>
+          <p>From <strong>RM1,000/month</strong></p>
+          <a href="payment.html" class="cta-button">View Details</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section">
+      <h2>Featured Case Studies</h2>
+      <div class="card" id="case-study-card">
+        <h4 id="case-title">Saving the Silent Spenders</h4>
+        <p id="case-description">
+          We helped a vending business identify and re-engage high-value but inactive members by modeling churn risk and estimating lifetime value.
+        </p>
+        <a id="case-link" href="/data-analyst-portfolio/case-studies/clv-churn-analysis-coffee-vending.html" target="_blank">Read More →</a>
+      </div>
+
+      <div style="text-align:center; margin-top: 15px;">
+        <button onclick="prevCase()">← Prev</button>
+        <button onclick="nextCase()">Next →</button>
+        <br><br>
+        <a href="https://lyven81.github.io/data-analyst-portfolio/" target="_blank" class="cta-button">
+          Visit Full Portfolio
+        </a>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+      <h2>Why Choose Us</h2>
+      <div class="card">
+        <ul>
+          <li>Purpose-built analytics framework tailored for membership businesses</li>
+          <li>Easy-to-use dashboards with actionable insights</li>
+          <li>Strong background in Python-based forecasting and churn modeling</li>
+          <li>Experience working with local SMEs and resource-limited teams</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contact" class="section">
+      <h2>Contact Us</h2>
+      <div class="card" style="margin-bottom: 20px;">
+        <p>To schedule a consultation, reach out to us via:</p>
+        <p><strong>Email:</strong> <a href="mailto:director@pinnacleslearning.com">director@pinnacleslearning.com</a></p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
+      </div>
+
+      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST" style="display: flex; flex-direction: column; gap: 10px;">
+        <input type="hidden" name="_subject" value="New Contact Form Submission from Website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+
+        <input type="text" name="name" placeholder="Your Name" required style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+        <input type="email" name="email" placeholder="Your Email" required style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+        <textarea name="message" placeholder="Your Message" rows="4" required style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+
+        <button type="submit" style="background-color: #CBA135; color: white; padding: 10px 20px; border: none; border-radius: 4px;">Send Message</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2024 Pinnacles Holding Limited</p>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/60149207099" target="_blank" class="floating-whatsapp">💬</a>
+
+  <script>
+    const caseStudies = [
+      {
+        title: "Saving the Silent Spenders",
+        description: "We helped a vending business identify high-value but inactive members by modeling churn risk and estimating lifetime value.",
+        link: "/data-analyst-portfolio/case-studies/clv-churn-analysis-coffee-vending.html"
+      },
+      {
+        title: "What Sells Best and When",
+        description: "We analyzed seasonal and time-of-day sales trends to optimize inventory and promotions for a local F&B membership program.",
+        link: "/data-analyst-portfolio/case-studies/what-sells-best.html"
+      },
+      {
+        title: "Do Dollars Drive Decisions?",
+        description: "We segmented members by income level and spending patterns to design personalized offers.",
+        link: "/data-analyst-portfolio/case-studies/do-dollar-drive-decisions.html"
+      },
+      {
+        title: "Predicting Product Sales",
+        description: "We modeled which marketing channels were most effective in driving purchases and boosting member lifetime value.",
+        link: "/data-analyst-portfolio/case-studies/predict-product-sales.html"
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function showCase(index) {
+      document.getElementById("case-title").textContent = caseStudies[index].title;
+      document.getElementById("case-description").textContent = caseStudies[index].description;
+      document.getElementById("case-link").href = caseStudies[index].link;
+    }
+
+    function nextCase() {
+      currentIndex = (currentIndex + 1) % caseStudies.length;
+      showCase(currentIndex);
+    }
+
+    function prevCase() {
+      currentIndex = (currentIndex - 1 + caseStudies.length) % caseStudies.length;
+      showCase(currentIndex);
+    }
+
+    // Initialize case studies
+    showCase(currentIndex);
+  </script>
+</body>
+</html>
