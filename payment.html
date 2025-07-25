@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment | Pinnacles Holding Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FCF9F2;
+      color: #333;
+    }
+    header, footer {
+      text-align: center;
+      background-color: #403B36;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h2 {
+      color: #CBA135;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 8px;
+      text-align: center;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .pricing-card {
+      background: white;
+      border: 2px solid #CBA135;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-5px);
+    }
+    .pricing-card h3 {
+      color: #403B36;
+      margin: 0 0 10px;
+    }
+    .pricing-card p.price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #CBA135;
+      margin-bottom: 10px;
+    }
+    .pricing-card ul {
+      list-style: disc;
+      padding-left: 20px;
+      text-align: left;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .select-button {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .form-section {
+      margin-top: 40px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .form-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .form-section input, .form-section textarea, .form-section select {
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-section button {
+      background-color: #CBA135;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .form-section button:hover {
+      background-color: #b18f2d;
+    }
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .faq-section {
+      margin-top: 40px;
+    }
+    .faq-section h3 {
+      color: #403B36;
+      margin-bottom: 10px;
+    }
+    .faq-section p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pinnacles Holding Limited</h1>
+    <p>Secure Your Membership Analytics Package</p>
+  </header>
+
+  <div class="container">
+    <section class="section">
+      <h2>Choose Your Package</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Consultation</h3>
+          <p class="price">RM500</p>
+          <ul>
+            <li>1-hour online consultation session.</li>
+            <li>Initial data and business discovery.</li>
+            <li>Basic review of sales/customer data.</li>
+          </ul>
+          <a href="#form" class="select-button" onclick="selectPackage('Consultation - RM500')">Select</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Project-Based</h3>
+          <p class="price">RM3,500</p>
+          <ul>
+            <li>1 custom analytics project.</li>
+            <li>Membership dashboard (e.g., inventory forecast).</li>
+            <li>Data cleaning & summary report.</li>
+          </ul>
+          <a href="#form" class="select-button" onclick="selectPackage('Project-Based - RM3,500')">Select</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Monthly Subscription</h3>
+          <p class="price">RM1,000/month</p>
+          <ul>
+            <li>Monthly dashboard updates.</li>
+            <li>1 strategy call per month.</li>
+            <li>Churn & CLV analysis.</li>
+          </ul>
+          <a href="#form" class="select-button" onclick="selectPackage('Monthly Subscription - RM1,000/month')">Select</a>
+        </div>
+        <div class="pricing-card">
+          <h3>6 Months Subscription</h3>
+          <p class="price">RM5,800</p>
+          <ul>
+            <li>6 months of analytics.</li>
+            <li>Quarterly performance reports.</li>
+            <li>Priority email support.</li>
+          </ul>
+          <a href="#form" class="select-button" onclick="selectPackage('6 Months Subscription - RM5,800')">Select</a>
+        </div>
+        <div class="pricing-card">
+          <h3>12 Months Subscription</h3>
+          <p class="price">RM10,000</p>
+          <ul>
+            <li>1-year membership analytics.</li>
+            <li>Quarterly insights calls.</li>
+            <li>Best value & priority support.</li>
+          </ul>
+          <a href="#form" class="select-button" onclick="selectPackage('12 Months Subscription - RM10,000')">Select</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="form" class="form-section">
+      <h2>Complete Your Details</h2>
+      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="text" name="phone" placeholder="Phone Number (optional)" />
+        <input type="text" id="package" name="package" placeholder="Selected Package" readonly required />
+        <textarea name="message" placeholder="Additional Notes (optional)" rows="4"></textarea>
+
+        <div class="checkbox">
+          <input type="checkbox" name="terms" required />
+          <label>I agree to the <a href="#">terms and conditions</a>.</label>
+        </div>
+
+        <button type="submit">Proceed to Payment</button>
+      </form>
+    </section>
+
+    <section class="faq-section">
+      <h2>FAQs</h2>
+      <h3>What happens after payment?</h3>
+      <p>You will receive a confirmation email and we’ll contact you within 24 hours to schedule your session or project start.</p>
+      <h3>Can I get an invoice?</h3>
+      <p>Yes, invoices will be automatically emailed after payment.</p>
+      <h3>Do you offer refunds?</h3>
+      <p>Refunds are not provided after consultation or project kickoff, but we ensure quality delivery.</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2024 Pinnacles Holding Limited</p>
+  </footer>
+
+  <script>
+    function selectPackage(packageName) {
+      document.getElementById('package').value = packageName;
+    }
+  </script>
+</body>
+</html>
