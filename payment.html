@@ -201,23 +201,35 @@
   showPackage(currentIndex);
 </script>
 
-    <section id="form" class="form-section">
-      <h2>Complete Your Details</h2>
-      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="email" name="email" placeholder="Email Address" required />
-        <input type="text" name="phone" placeholder="Phone Number (optional)" />
-        <input type="text" id="package" name="package" placeholder="Selected Package" readonly required />
-        <textarea name="message" placeholder="Additional Notes (optional)" rows="4"></textarea>
+    <script>
+  function selectPackage() {
+    const selected = packages[currentIndex];
+    document.getElementById("selected-package-display").textContent = 
+      "You selected: " + selected.title + " (" + selected.price + ")";
+    document.getElementById("package").value = selected.title + " - " + selected.price;
+    document.getElementById("form").scrollIntoView({ behavior: "smooth" });
+  }
+</script>
 
-        <div class="checkbox">
-          <input type="checkbox" name="terms" required />
-          <label>I agree to the <a href="#">terms and conditions</a>.</label>
-        </div>
+<section id="form" class="form-section">
+  <h2>Complete Your Details</h2>
+  <p id="selected-package-display" style="font-weight: bold; color: #CBA135;"></p>
+  
+  <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST">
+    <input type="hidden" id="package" name="package" required />
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="email" name="email" placeholder="Email Address" required />
+    <input type="text" name="phone" placeholder="Phone Number (optional)" />
+    <textarea name="message" placeholder="Additional Notes (optional)" rows="4"></textarea>
 
-        <button type="submit">Proceed to Payment</button>
-      </form>
-    </section>
+    <div class="checkbox">
+      <input type="checkbox" name="terms" required />
+      <label>I agree to the <a href="#">terms and conditions</a>.</label>
+    </div>
+
+    <button type="submit">Proceed to Payment</button>
+  </form>
+</section>
 
     <section class="faq-section">
       <h2>FAQs</h2>
