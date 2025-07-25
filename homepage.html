@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Membership Analytics | Pinnacles Holding Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FCF9F2;
+      color: #333;
+    }
+    header, footer {
+      text-align: center;
+      background-color: #403B36;
+      color: white;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h2 {
+      color: #CBA135;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+    h3 {
+      color: #403B36;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-left: 5px solid #CBA135;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card h4 {
+      margin: 0 0 10px;
+      color: #403B36;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #CBA135;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .cta-button:hover {
+      background-color: #b18f2d;
+    }
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: linear-gradient(to bottom, #403B36, #5a5249);
+      color: white;
+    }
+    .hero h2 {
+      color: white;
+      border: none;
+      font-size: 2rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin: 10px 0 20px;
+    }
+    .hero .cta-button {
+      background-color: #CBA135;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer {
+      font-size: 0.9rem;
+      background-color: #403B36;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pinnacles Holding Limited</h1>
+    <p>Membership Analytics & Predictive Intelligence for SMEs</p>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Turn Your Customer Data into Growth</h2>
+    <p>We help SMEs unlock the power of membership analytics to boost retention, sales, and loyalty.</p>
+    <a href="#contact" class="cta-button">Book a Free Strategy Call</a>
+  </section>
+
+  <div class="container">
+
+    <!-- About Us / Story -->
+    <section class="section">
+      <h2>Why Membership Analytics?</h2>
+      <p>Many SMEs struggle to understand customer behavior, predict demand, or retain loyal customers. Our data-driven approach transforms raw membership data into actionable insights — enabling smarter decisions and sustainable growth.</p>
+    </section>
+
+    <!-- How We Help -->
+    <section class="section">
+      <h2>How We Help</h2>
+      <div class="grid">
+        <div class="card">
+          <h4>Step 1: Discovery</h4>
+          <p>We assess your membership data and business goals during an initial consultation.</p>
+        </div>
+        <div class="card">
+          <h4>Step 2: Insights</h4>
+          <p>We identify trends, churn risks, and revenue opportunities using advanced analytics.</p>
+        </div>
+        <div class="card">
+          <h4>Step 3: Strategy</h4>
+          <p>We provide tailored strategies and dashboards for inventory, marketing, and retention.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies Carousel -->
+    <section class="section">
+      <h2>Case Studies</h2>
+      <div class="card" id="case-study-card">
+        <h4 id="case-title">Saving the Silent Spenders</h4>
+        <p id="case-description">
+          We helped a vending business identify and re-engage high-value but inactive members by modeling churn risk and estimating lifetime value.
+        </p>
+        <a id="case-link" href="https://lyven81.github.io/data-analyst-portfolio/case-studies/clv-churn-analysis-coffee-vending.html" target="_blank">Read More →</a>
+      </div>
+      <div style="text-align:center; margin-top: 15px;">
+        <button onclick="prevCase()">← Prev</button>
+        <button onclick="nextCase()">Next →</button>
+      </div>
+    </section>
+
+    <script>
+      const caseStudies = [
+        {
+          title: "Saving the Silent Spenders",
+          description: "We helped a vending business identify high-value but inactive members by modeling churn risk and estimating lifetime value.",
+          link: "https://lyven81.github.io/data-analyst-portfolio/case-studies/clv-churn-analysis-coffee-vending.html"
+        },
+        {
+          title: "What Sells Best and When",
+          description: "We analyzed seasonal and time-of-day sales trends to optimize inventory and promotions for a local F&B membership program.",
+          link: "https://lyven81.github.io/data-analyst-portfolio/case-studies/what-sells-best.html"
+        },
+        {
+          title: "Do Dollars Drive Decisions?",
+          description: "We segmented members by income level and spending patterns to design personalized offers.",
+          link: "https://lyven81.github.io/data-analyst-portfolio/case-studies/do-dollar-drive-decisions.html"
+        }
+      ];
+      let currentIndex = 0;
+      function showCase(index) {
+        document.getElementById("case-title").textContent = caseStudies[index].title;
+        document.getElementById("case-description").textContent = caseStudies[index].description;
+        document.getElementById("case-link").href = caseStudies[index].link;
+      }
+      function nextCase() {
+        currentIndex = (currentIndex + 1) % caseStudies.length;
+        showCase(currentIndex);
+      }
+      function prevCase() {
+        currentIndex = (currentIndex - 1 + caseStudies.length) % caseStudies.length;
+        showCase(currentIndex);
+      }
+      showCase(currentIndex);
+    </script>
+
+    <!-- Pricing Snapshot -->
+    <section class="section">
+      <h2>Our Packages</h2>
+      <div class="grid">
+        <div class="card">
+          <h4>Consultation</h4>
+          <p>1-hour consultation session with actionable recommendations.</p>
+          <p><strong>RM500</strong></p>
+        </div>
+        <div class="card">
+          <h4>Project-Based</h4>
+          <p>Custom analytics dashboard + strategic insights for SMEs.</p>
+          <p><strong>RM3,500</strong></p>
+        </div>
+        <div class="card">
+          <h4>Monthly Subscription</h4>
+          <p>Ongoing dashboards, insights, and strategy calls.</p>
+          <p><strong>RM1,000/month</strong></p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 20px;">
+        <a href="pricing.html" class="cta-button">View Full Pricing</a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>Contact Us</h2>
+      <div class="card">
+        <p>Email us: <a href="mailto:director@pinnacleslearning.com">director@pinnacleslearning.com</a></p>
+        <p>or chat on WhatsApp: 
+          <a class="whatsapp-btn" href="https://wa.me/60149207099" target="_blank">+6014-9207099</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2024 Pinnacles Holding Limited</p>
+  </footer>
+</body>
+</html>
