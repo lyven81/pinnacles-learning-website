@@ -15,6 +15,10 @@
       overflow-x: hidden;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* Header Navigation */
     header {
       background-color: #403B36;
@@ -51,15 +55,17 @@
 
     /* Hero Section */
     .hero {
-      background-color: #6F6C68;
+      background: linear-gradient(rgba(64, 59, 54, 0.6), rgba(64, 59, 54, 0.6)),
+                  url('https://source.unsplash.com/1600x900/?business,analytics') center/cover no-repeat;
       color: white;
       text-align: center;
-      padding: 80px 20px;
+      padding: 100px 20px;
     }
 
     .hero h2 {
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 600;
+      margin-bottom: 15px;
     }
 
     .hero p {
@@ -69,7 +75,7 @@
 
     .cta-button {
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       background-color: #CBA135;
       color: white;
       text-decoration: none;
@@ -91,6 +97,7 @@
       color: #CBA135;
       border-bottom: 2px solid #CBA135;
       padding-bottom: 8px;
+      margin-bottom: 20px;
     }
 
     .section {
@@ -116,6 +123,33 @@
       color: #403B36;
     }
 
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .pricing-card {
+      background: white;
+      border: 2px solid #CBA135;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-card h3 {
+      color: #403B36;
+      margin-bottom: 10px;
+    }
+
+    .pricing-card p.price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #CBA135;
+    }
+
     footer {
       text-align: center;
       background-color: #403B36;
@@ -131,7 +165,7 @@
         margin-top: 10px;
       }
       .hero h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
       .hero p {
         font-size: 1rem;
@@ -146,7 +180,7 @@
       <a href="#about">About Us</a>
       <a href="#case-studies">Case Studies</a>
       <a href="#dashboard">Dashboard</a>
-      <a href="pricing.html">Pricing</a>
+      <a href="#pricing">Pricing</a>
       <a href="#contact">Contact Us</a>
     </nav>
   </header>
@@ -154,7 +188,74 @@
   <section class="hero">
     <h2>Unlock Your Business Potential</h2>
     <p>Empowering SMEs with data-driven membership analytics for smarter growth.</p>
-    <a href="pricing.html" class="cta-button">Get Started</a>
+    <a href="#pricing" class="cta-button">Get Started</a>
   </section>
+
+  <div class="container">
+    <!-- About Us -->
+    <section class="section" id="about">
+      <h2>About Us</h2>
+      <p>We specialize in helping SMEs leverage membership data to improve customer retention, predict inventory needs, and boost overall business performance through actionable insights.</p>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section" id="case-studies">
+      <h2>Case Studies</h2>
+      <div class="grid">
+        <div class="card">
+          <h4>Saving the Silent Spenders</h4>
+          <p>We identified and re-engaged inactive yet high-value members, reducing churn rates by 25%.</p>
+        </div>
+        <div class="card">
+          <h4>What Sells Best and When</h4>
+          <p>Analyzed seasonal sales trends to optimize stock and reduce waste by 15%.</p>
+        </div>
+        <div class="card">
+          <h4>Churn Prediction Model</h4>
+          <p>Implemented a predictive model to retain members before they drop off.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="section" id="dashboard">
+      <h2>Dashboard Preview</h2>
+      <p>Our easy-to-use dashboard offers insights into customer lifetime value, churn rate, and inventory planning. (Add screenshots here.)</p>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+      <h2>Pricing & Packages</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Consultation</h3>
+          <p class="price">RM500</p>
+          <p>1-hour session + data review.</p>
+        </div>
+        <div class="pricing-card">
+          <h3>Project-Based</h3>
+          <p class="price">RM3,500</p>
+          <p>Custom dashboard & analysis.</p>
+        </div>
+        <div class="pricing-card">
+          <h3>Monthly Subscription</h3>
+          <p class="price">RM1,000/month</p>
+          <p>Ongoing analytics & insights.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section class="section" id="contact">
+      <h2>Contact Us</h2>
+      <p>For inquiries or bookings, reach us at:</p>
+      <p><strong>Email:</strong> <a href="mailto:director@pinnacleslearning.com">director@pinnacleslearning.com</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2024 Pinnacles Holding Limited</p>
+  </footer>
 </body>
 </html>
