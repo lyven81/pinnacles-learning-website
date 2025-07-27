@@ -47,39 +47,24 @@
       color: #CBA135;
     }
 
-    /* Hero Slider */
-    .hero-slider {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      overflow: hidden;
-    }
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      background-size: cover;
-      background-position: center;
-    }
-    .slide.active {
-      opacity: 1;
-    }
-    .slide-content {
-      position: absolute;
-      bottom: 20%;
-      left: 10%;
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(rgba(64, 59, 54, 0.7), rgba(64, 59, 54, 0.7)),
+                  url('https://source.unsplash.com/1920x800/?business,analytics') center/cover no-repeat;
       color: #FFFFFF;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      text-align: center;
+      padding: 100px 20px;
     }
-    .slide-content h2 {
+    .hero-banner h2 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      font-weight: 600;
+      margin-bottom: 15px;
     }
-    .slide-content p {
+    .hero-banner p {
       font-size: 1.2rem;
-      max-width: 500px;
+      max-width: 700px;
+      margin: 10px auto 20px auto;
+      line-height: 1.5;
     }
     .cta-button {
       display: inline-block;
@@ -163,10 +148,10 @@
 
     /* Mobile */
     @media (max-width: 768px) {
-      .slide-content h2 {
-        font-size: 1.6rem;
+      .hero-banner h2 {
+        font-size: 1.8rem;
       }
-      .slide-content p {
+      .hero-banner p {
         font-size: 1rem;
       }
     }
@@ -184,108 +169,15 @@
     </nav>
   </header>
 
-  <!-- Hero Slider -->
-  <section class="hero-slider">
-  <div class="slide active" style="background-image: url('https://github.com/lyven81/pinnacles-learning-website/blob/main/hero-image/hero%20image%201.png?raw=true');">
-    <div class="slide-content">
-      <h2>Always Stock the Right Products</h2>
-      <p>We forecast product demand to prevent stockouts and wasted inventory.</p>
-      <a href="#pricing" class="cta-button">Get Started</a>
-    </div>
-  </div>
-  <div class="slide" style="background-image: url('https://github.com/lyven81/pinnacles-learning-website/blob/main/hero-image/hero%20image%202.png?raw=true');">
-    <div class="slide-content">
-      <h2>Set Prices That Sell — Without Cutting Profits</h2>
-      <p>We help you find the sweet spot for discounts and pricing strategies.</p>
-      <a href="#pricing" class="cta-button">Get Started</a>
-    </div>
-  </div>
-  <div class="slide" style="background-image: url('https://github.com/lyven81/pinnacles-learning-website/blob/main/hero-image/hero%20image%203.png?raw=true');">
-    <div class="slide-content">
-      <h2>Focus on Customers Who Bring the Most Value</h2>
-      <p>We reveal the long-term revenue potential of every customer.</p>
-      <a href="#pricing" class="cta-button">Get Started</a>
-    </div>
-  </div>
-</section>
-
-  <div class="container">
-    <!-- About Us -->
-    <section class="section" id="about">
-      <h2>About Us</h2>
-      <p>We help SMEs leverage membership data to improve customer retention, predict inventory needs, and boost overall performance through actionable analytics.</p>
-    </section>
-
-    <!-- Case Studies -->
-    <section class="section" id="case-studies">
-      <h2>Case Studies</h2>
-      <div class="grid">
-        <div class="card">
-          <h4>Saving the Silent Spenders</h4>
-          <p>We re-engaged high-value members, reducing churn by 25%.</p>
-        </div>
-        <div class="card">
-          <h4>What Sells Best and When</h4>
-          <p>Analyzed seasonal sales trends to cut waste by 15%.</p>
-        </div>
-        <div class="card">
-          <h4>Churn Prediction Model</h4>
-          <p>Retained key customers with predictive analytics.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dashboard Preview -->
-    <section class="section" id="dashboard">
-      <h2>Dashboard Preview</h2>
-      <p>Our dashboard offers insights into customer lifetime value, churn rate, and inventory planning. (Screenshots coming soon.)</p>
-    </section>
-
-    <!-- Pricing -->
-    <section class="section" id="pricing">
-      <h2>Pricing & Packages</h2>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Consultation</h3>
-          <p class="price">RM500</p>
-          <p>1-hour session + data review.</p>
-        </div>
-        <div class="pricing-card">
-          <h3>Project-Based</h3>
-          <p class="price">RM3,500</p>
-          <p>Custom dashboard & analysis.</p>
-        </div>
-        <div class="pricing-card">
-          <h3>Monthly Subscription</h3>
-          <p class="price">RM1,000/month</p>
-          <p>Ongoing analytics & insights.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
-      <h2>Contact Us</h2>
-      <p><strong>Email:</strong> <a href="mailto:director@pinnacleslearning.com">director@pinnacleslearning.com</a></p>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
-    </section>
-  </div>
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <h2>Transform Data into Growth</h2>
+    <p>We help SMEs and MSMEs turn raw membership data into powerful insights — reducing churn, optimizing pricing, predicting stock needs, and growing customer loyalty.</p>
+    <a href="#pricing" class="cta-button">See Packages</a>
+  </section>
 
   <footer>
     <p>© 2024 Pinnacles Holding Limited</p>
   </footer>
-
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
-
-    function showNextSlide() {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }
-
-    setInterval(showNextSlide, 5000); // Change slide every 5 seconds
-  </script>
 </body>
 </html>
