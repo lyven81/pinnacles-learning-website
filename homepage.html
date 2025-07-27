@@ -14,12 +14,11 @@
       color: #333;
       overflow-x: hidden;
     }
-
     html {
       scroll-behavior: smooth;
     }
 
-    /* Header Navigation */
+    /* Header */
     header {
       background-color: #403B36;
       color: #FFFFFF;
@@ -29,52 +28,61 @@
       align-items: center;
       flex-wrap: wrap;
     }
-
     header h1 {
       margin: 0;
       font-size: 1.6rem;
-      color: #FFFFFF;
     }
-
     .nav-links {
       display: flex;
       gap: 25px;
-      justify-content: flex-end;
       flex-wrap: wrap;
     }
-
     .nav-links a {
       color: #FFFFFF;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
     }
-
     .nav-links a:hover {
       color: #CBA135;
     }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(rgba(64, 59, 54, 0.6), rgba(64, 59, 54, 0.6)),
-                  url('https://source.unsplash.com/1600x900/?business,analytics') center/cover no-repeat;
+    /* Hero Slider */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .slide-content {
+      position: absolute;
+      bottom: 20%;
+      left: 10%;
       color: #FFFFFF;
-      text-align: center;
-      padding: 100px 20px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
     }
-
-    .hero h2 {
-      font-size: 2.4rem;
-      font-weight: 600;
-      margin-bottom: 15px;
+    .slide-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
-
-    .hero p {
+    .slide-content p {
       font-size: 1.2rem;
-      margin-top: 10px;
+      max-width: 500px;
     }
-
     .cta-button {
+      display: inline-block;
       margin-top: 20px;
       padding: 12px 24px;
       background-color: #CBA135;
@@ -84,34 +92,32 @@
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
-
     .cta-button:hover {
       background-color: #b08e2e;
     }
 
+    /* Container & Sections */
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 40px 20px;
     }
-
     h2 {
       color: #CBA135;
       border-bottom: 2px solid #CBA135;
       padding-bottom: 8px;
       margin-bottom: 20px;
     }
-
     .section {
       margin-bottom: 40px;
     }
 
+    /* Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
-
     .card {
       background: #FFFFFF;
       padding: 20px;
@@ -119,7 +125,6 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-
     .card h4 {
       margin: 0 0 10px;
       color: #403B36;
@@ -131,7 +136,6 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
-
     .pricing-card {
       background: #FFFFFF;
       border: 2px solid #CBA135;
@@ -140,12 +144,10 @@
       text-align: center;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-
     .pricing-card h3 {
       color: #403B36;
       margin-bottom: 10px;
     }
-
     .pricing-card p.price {
       font-size: 1.4rem;
       font-weight: bold;
@@ -159,17 +161,12 @@
       padding: 20px;
     }
 
-    /* Mobile Responsiveness */
+    /* Mobile */
     @media (max-width: 768px) {
-      .nav-links {
-        justify-content: center;
-        gap: 15px;
-        margin-top: 10px;
+      .slide-content h2 {
+        font-size: 1.6rem;
       }
-      .hero h2 {
-        font-size: 1.8rem;
-      }
-      .hero p {
+      .slide-content p {
         font-size: 1rem;
       }
     }
@@ -187,17 +184,36 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>Unlock Your Business Potential</h2>
-    <p>Empowering SMEs with data-driven membership analytics for smarter growth.</p>
-    <a href="#pricing" class="cta-button">Get Started</a>
+  <!-- Hero Slider -->
+  <section class="hero-slider">
+    <div class="slide active" style="background-image: url('https://github.com/lyven81/pinnacles-learning-website/blob/main/hero-image/hero%20imge%201.png?raw=true');">
+      <div class="slide-content">
+        <h2>Always Stock the Right Products</h2>
+        <p>We forecast product demand to prevent stockouts and wasted inventory.</p>
+        <a href="#pricing" class="cta-button">Get Started</a>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://github.com/lyven81/pinnacles-learning-website/blob/main/hero-image/hero%20image%202.png?raw=true');">
+      <div class="slide-content">
+        <h2>Set Prices That Sell — Without Cutting Profits</h2>
+        <p>We help you find the sweet spot for discounts and pricing strategies.</p>
+        <a href="#pricing" class="cta-button">Get Started</a>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://github.com/lyven81/pinnacles-learning-website/blob/main/hero-image/hero%20image%203.png?raw=true');">
+      <div class="slide-content">
+        <h2>Focus on Customers Who Bring the Most Value</h2>
+        <p>We reveal the long-term revenue potential of every customer.</p>
+        <a href="#pricing" class="cta-button">Get Started</a>
+      </div>
+    </div>
   </section>
 
   <div class="container">
     <!-- About Us -->
     <section class="section" id="about">
       <h2>About Us</h2>
-      <p>We specialize in helping SMEs leverage membership data to improve customer retention, predict inventory needs, and boost overall business performance through actionable insights.</p>
+      <p>We help SMEs leverage membership data to improve customer retention, predict inventory needs, and boost overall performance through actionable analytics.</p>
     </section>
 
     <!-- Case Studies -->
@@ -206,15 +222,15 @@
       <div class="grid">
         <div class="card">
           <h4>Saving the Silent Spenders</h4>
-          <p>We identified and re-engaged inactive yet high-value members, reducing churn rates by 25%.</p>
+          <p>We re-engaged high-value members, reducing churn by 25%.</p>
         </div>
         <div class="card">
           <h4>What Sells Best and When</h4>
-          <p>Analyzed seasonal sales trends to optimize stock and reduce waste by 15%.</p>
+          <p>Analyzed seasonal sales trends to cut waste by 15%.</p>
         </div>
         <div class="card">
           <h4>Churn Prediction Model</h4>
-          <p>Implemented a predictive model to retain members before they drop off.</p>
+          <p>Retained key customers with predictive analytics.</p>
         </div>
       </div>
     </section>
@@ -222,7 +238,7 @@
     <!-- Dashboard Preview -->
     <section class="section" id="dashboard">
       <h2>Dashboard Preview</h2>
-      <p>Our easy-to-use dashboard offers insights into customer lifetime value, churn rate, and inventory planning. (Add screenshots here.)</p>
+      <p>Our dashboard offers insights into customer lifetime value, churn rate, and inventory planning. (Screenshots coming soon.)</p>
     </section>
 
     <!-- Pricing -->
@@ -247,10 +263,9 @@
       </div>
     </section>
 
-    <!-- Contact Us -->
+    <!-- Contact -->
     <section class="section" id="contact">
       <h2>Contact Us</h2>
-      <p>For inquiries or bookings, reach us at:</p>
       <p><strong>Email:</strong> <a href="mailto:director@pinnacleslearning.com">director@pinnacleslearning.com</a></p>
       <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
     </section>
@@ -259,5 +274,18 @@
   <footer>
     <p>© 2024 Pinnacles Holding Limited</p>
   </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 5000); // Change slide every 5 seconds
+  </script>
 </body>
 </html>
