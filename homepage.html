@@ -10,88 +10,90 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #FCF9F2; /* Light Beige */
+      background-color: #FCF9F2;
       color: #333;
       overflow-x: hidden;
     }
-
     html {
       scroll-behavior: smooth;
     }
 
     /* Header */
     header {
-      background-color: #403B36; /* Dark Brown */
+      background-color: #403B36;
       color: #FFFFFF;
-      padding: 20px;
-      text-align: center;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
-      color: #FFFFFF;
+      font-size: 1.6rem;
     }
-    header nav {
-      margin-top: 10px;
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
     }
-    header nav a {
+    .nav-links a {
       color: #FFFFFF;
       text-decoration: none;
       font-weight: 500;
-      margin: 0 10px;
       transition: color 0.3s ease;
     }
-    header nav a:hover {
-      color: #CBA135; /* Gold */
+    .nav-links a:hover {
+      color: #CBA135;
     }
 
-    /* Hero Banner */
-.hero-banner {
-  background-color: #FFF6D5; /* Light Yellow Banner */
-  color: #000000; /* Default Text Black */
-  text-align: center;
-  padding: 100px 20px;
-}
+    /* Banner (Card Grid Style) */
+    .banner-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      margin: 20px auto;
+      max-width: 1100px;
+      padding: 20px;
+    }
+    .banner-card {
+      background-color: #FFF6D5; /* Light yellow background */
+      border: 2px solid #CBA135;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .banner-card h2 {
+      color: #403B36;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+    .banner-card p {
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .banner-card .cta-button {
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .banner-card .cta-button:hover {
+      background-color: #b08e2e;
+    }
 
-.hero-banner h2 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #403B36; /* Dark Brown for Heading */
-}
-
-.hero-banner p {
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 10px auto 20px auto;
-  line-height: 1.6;
-  color: #333333; /* Darker Gray-Black Text */
-}
-
-.cta-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
-  background-color: #CBA135;
-  color: #FFFFFF;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-.cta-button:hover {
-  background-color: #b08e2e;
-}
-
-    /* Container */
+    /* Container & Sections */
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 40px 20px;
     }
-
-    /* Section Titles */
     h2 {
       color: #CBA135;
       border-bottom: 2px solid #CBA135;
@@ -99,8 +101,52 @@
       margin-bottom: 20px;
       text-align: center;
     }
+    .section {
+      margin-bottom: 40px;
+    }
 
-    /* Footer */
+    /* Grid Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #FFFFFF;
+      padding: 20px;
+      border-left: 5px solid #CBA135;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card h4 {
+      margin: 0 0 10px;
+      color: #403B36;
+    }
+
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .pricing-card {
+      background: #FFFFFF;
+      border: 2px solid #CBA135;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .pricing-card h3 {
+      color: #403B36;
+      margin-bottom: 10px;
+    }
+    .pricing-card p.price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #CBA135;
+    }
+
     footer {
       text-align: center;
       background-color: #403B36;
@@ -108,12 +154,12 @@
       padding: 20px;
     }
 
-    /* Mobile Responsiveness */
+    /* Mobile */
     @media (max-width: 768px) {
-      .hero-banner h2 {
-        font-size: 1.8rem;
+      .banner-card h2 {
+        font-size: 1.6rem;
       }
-      .hero-banner p {
+      .banner-card p {
         font-size: 1rem;
       }
     }
@@ -121,22 +167,90 @@
 </head>
 <body>
   <header>
-    <h1>Pinnacles Holding Limited</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about-us.html">About Us</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact-us.html">Contact</a>
+    <h1>Pinnacles</h1>
+    <nav class="nav-links">
+      <a href="#about">About Us</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact Us</a>
     </nav>
   </header>
 
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-  <h2>Transform Data into Growth</h2>
-  <p>We help business turn raw membership data into powerful insights by reducing churn, optimizing pricing and predicting stock needs.</p>
-  <a href="pricing.html" class="cta-button">See Packages</a>
-</section>
-  
+  <!-- Banner in Card Grid Style -->
+  <section class="banner-grid">
+    <div class="banner-card">
+      <h2>Transform Data into Growth</h2>
+      <p>
+        We help businesses turn raw membership data into powerful insights —
+        reducing churn, optimizing pricing, predicting stock needs, and boosting customer loyalty.
+      </p>
+      <a href="#pricing" class="cta-button">See Packages</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- About Us -->
+    <section class="section" id="about">
+      <h2>About Us</h2>
+      <p>We help SMEs leverage membership data to improve customer retention, predict inventory needs, and boost overall performance through actionable analytics.</p>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section" id="case-studies">
+      <h2>Case Studies</h2>
+      <div class="grid">
+        <div class="card">
+          <h4>Saving the Silent Spenders</h4>
+          <p>We re-engaged high-value members, reducing churn by 25%.</p>
+        </div>
+        <div class="card">
+          <h4>What Sells Best and When</h4>
+          <p>Analyzed seasonal sales trends to cut waste by 15%.</p>
+        </div>
+        <div class="card">
+          <h4>Churn Prediction Model</h4>
+          <p>Retained key customers with predictive analytics.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="section" id="dashboard">
+      <h2>Dashboard Preview</h2>
+      <p>Our dashboard offers insights into customer lifetime value, churn rate, and inventory planning. (Screenshots coming soon.)</p>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+      <h2>Pricing & Packages</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Consultation</h3>
+          <p class="price">RM500</p>
+          <p>1-hour session + data review.</p>
+        </div>
+        <div class="pricing-card">
+          <h3>Project-Based</h3>
+          <p class="price">RM3,500</p>
+          <p>Custom dashboard & analysis.</p>
+        </div>
+        <div class="pricing-card">
+          <h3>Monthly Subscription</h3>
+          <p class="price">RM1,000/month</p>
+          <p>Ongoing analytics & insights.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <h2>Contact Us</h2>
+      <p><strong>Email:</strong> <a href="mailto:director@pinnacleslearning.com">director@pinnacleslearning.com</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
+    </section>
+  </div>
+
   <footer>
     <p>© 2024 Pinnacles Holding Limited</p>
   </footer>
