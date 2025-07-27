@@ -47,46 +47,43 @@
       color: #CBA135;
     }
 
-    /* Banner (Card Grid Style) */
-    .banner-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      justify-items: center;
-      margin: 20px auto;
-      max-width: 1100px;
-      padding: 20px;
-    }
     .banner-card {
-      background-color: #FFF6D5; /* Light yellow background */
-      border: 2px solid #CBA135;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .banner-card h2 {
-      color: #403B36;
-      margin-bottom: 10px;
-      font-size: 2rem;
-    }
-    .banner-card p {
-      color: #333;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .banner-card .cta-button {
-      background-color: #CBA135;
-      color: white;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-    .banner-card .cta-button:hover {
-      background-color: #b08e2e;
-    }
+  background-color: #FFF6D5; /* Light yellow background */
+  padding: 60px 20px;
+  text-align: center;
+  width: 100%; /* Full width */
+  border: none; /* Remove card border */
+  border-radius: 0; /* Remove rounded edges */
+  box-shadow: none; /* Remove shadow */
+}
+
+.banner-card h2 {
+  color: #403B36;
+  margin-bottom: 10px;
+  font-size: 2.2rem;
+}
+
+.banner-card p {
+  color: #333;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.banner-card .cta-button {
+  background-color: #CBA135;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.banner-card .cta-button:hover {
+  background-color: #b08e2e;
+}
+
 
     /* Container & Sections */
     .container {
@@ -178,16 +175,11 @@
   </header>
 
   <!-- Banner in Card Grid Style -->
-  <section class="banner-grid">
-    <div class="banner-card">
-      <h2>Transform Data into Growth</h2>
-      <p>
-        We help businesses turn raw membership data into powerful insights by
-        reducing churn, optimizing pricing and predicting stock needs.
-      </p>
-      <a href="#pricing" class="cta-button">See Packages</a>
-    </div>
-  </section>
+  <section class="banner-card">
+  <h2>Transform Data into Growth</h2>
+  <p>We help businesses turn raw membership data into powerful insights by reducing churn, optimizing pricing, and predicting stock needs.</p>
+  <a href="#pricing" class="cta-button">See Packages</a>
+</section>
   </div>
 
   <footer>
