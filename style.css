@@ -27,7 +27,7 @@ header, footer {
 /* Set consistent text color for both h1 and p */
 header h1,
 header p {
-  color: #CBA135;
+  color: white;
 }
 
 /* Style h1 specifically */
