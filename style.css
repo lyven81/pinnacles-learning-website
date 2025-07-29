@@ -24,11 +24,18 @@ header, footer {
   padding: 20px 0;
 }
 
-header h1 {
+/* Set consistent text color for both h1 and p */
+header h1,
+header p {
   color: #CBA135;
+}
+
+/* Style h1 specifically */
+header h1 {
   margin: 0;
   font-size: 2rem;
 }
+
 
 footer p {
   margin: 0;
