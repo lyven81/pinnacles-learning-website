@@ -1,0 +1,116 @@
+/* Base Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #FCF9F2;
+  color: #333;
+}
+
+a {
+  color: #CBA135;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header & Footer */
+header, footer {
+  background-color: #403B36;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+header h1 {
+  color: #CBA135;
+  margin: 0;
+  font-size: 2rem;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Containers */
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+/* Headings */
+h2, h3 {
+  color: #403B36;
+}
+
+/* Forms */
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #CBA135;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #B17F28;
+}
+
+/* Lists */
+ul {
+  list-style: disc;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+/* Utilities */
+.text-center {
+  text-align: center;
+}
+
+.highlight {
+  background-color: #CBA135;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #CBA135;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.cta-button:hover {
+  background-color: #B17F28;
+}
