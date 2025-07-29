@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment | Pinnacles Holding Limited</title>
+  <title>Payment | Pinnacles Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -111,20 +111,20 @@
 </head>
 <body>
   <header>
-    <h1>Pinnacles Holding Limited</h1>
+    <h1>Pinnacles Analytics</h1>
     <p>Secure Your Membership Analytics Package</p>
   </header>
 
   <div class="container">
     <section class="section">
-      <h2>Choose Your Package</h2>
+      <h2>Choose a Package That Fits Your Business</h2>
       <div class="pricing-card" id="package-card">
         <h4 id="package-title">Consultation</h4>
         <p id="package-price">RM500</p>
         <p id="package-description">
-          1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data.
+          One-hour discovery session to assess your membership data and explore how analytics can boost retention, revenue, or stock planning.
         </p>
-        <button style="background-color:#CBA135; color:white; padding:10px 20px; border:none; border-radius:4px;" onclick="selectPackage()">Select</button>
+        <button onclick="selectPackage()">Select This Package</button>
       </div>
 
       <div style="text-align:center; margin-top: 15px;">
@@ -134,7 +134,7 @@
     </section>
 
     <section id="form" class="form-section">
-      <h2>Complete Your Details</h2>
+      <h2>Tell Us Where to Begin</h2>
       <p id="selected-package-display" style="font-weight: bold; color: #CBA135;"></p>
       
       <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST">
@@ -142,7 +142,7 @@
         <input type="text" name="name" placeholder="Full Name" required />
         <input type="email" name="email" placeholder="Email Address" required />
         <input type="text" name="phone" placeholder="Phone Number (optional)" />
-        <textarea name="message" placeholder="Additional Notes (optional)" rows="4"></textarea>
+        <textarea name="message" placeholder="What are you hoping to achieve with data?" rows="4"></textarea>
 
         <div class="checkbox">
           <input type="checkbox" name="terms" required />
@@ -154,18 +154,20 @@
     </section>
 
     <section class="faq-section">
-      <h2>FAQs</h2>
-      <h3>What happens after payment?</h3>
-      <p>You will receive a confirmation email and we’ll contact you within 24 hours to schedule your session or project start.</p>
-      <h3>Can I get an invoice?</h3>
-      <p>Yes, invoices will be automatically emailed after payment.</p>
-      <h3>Do you offer refunds?</h3>
-      <p>Refunds are not provided after consultation or project kickoff, but we ensure quality delivery.</p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>What happens after I pay?</h3>
+      <p>You’ll receive a confirmation email, and our team will contact you within 24 hours to plan your session or kickstart your project.</p>
+
+      <h3>Will I get an invoice?</h3>
+      <p>Yes, you’ll receive a digital invoice automatically once payment is complete.</p>
+
+      <h3>Are refunds available?</h3>
+      <p>We don’t offer refunds after consultation or project work has started, but we guarantee a clear and committed delivery process.</p>
     </section>
   </div>
 
   <footer>
-    <p>© 2024 Pinnacles Holding Limited</p>
+    <p>© 2025 Pinnacles Analytics</p>
   </footer>
 
   <script>
@@ -173,27 +175,27 @@
       {
         title: "Consultation",
         price: "RM500",
-        description: "1-hour online consultation session, initial data and business discovery, and a basic review of sales/customer data."
+        description: "One-hour discovery session to assess your membership data and explore how analytics can boost retention, revenue, or stock planning."
       },
       {
         title: "Project-Based",
         price: "RM3,500",
-        description: "1 custom analytics project, membership dashboard (e.g., inventory forecast), and data cleaning & summary report."
+        description: "One custom analytics dashboard with membership metrics (e.g., inventory forecast or churn model) and business insights report."
       },
       {
         title: "Monthly Subscription",
         price: "RM1,000/month",
-        description: "Monthly dashboard updates, 1 strategy call per month, churn & CLV analysis, and ongoing support."
+        description: "Monthly member dashboard updates, churn/CLV tracking, and one strategy session each month."
       },
       {
         title: "6 Months Subscription",
         price: "RM5,800",
-        description: "6 months of analytics, quarterly performance reports, and priority email support."
+        description: "6 months of proactive analytics support, trend reports, and quarterly performance check-ins."
       },
       {
         title: "12 Months Subscription",
         price: "RM10,000",
-        description: "1-year membership analytics, quarterly insights calls, and best value with priority support."
+        description: "12-month partnership with ongoing insights, member segmentation, and quarterly analytics reviews."
       }
     ];
 
@@ -218,12 +220,11 @@
     function selectPackage() {
       const selected = packages[currentIndex];
       document.getElementById("selected-package-display").textContent = 
-        "You selected: " + selected.title + " (" + selected.price + ")";
+        "Selected: " + selected.title + " (" + selected.price + ")";
       document.getElementById("package").value = selected.title + " - " + selected.price;
       document.getElementById("form").scrollIntoView({ behavior: "smooth" });
     }
 
-    // Initialize on page load
     showPackage(currentIndex);
   </script>
 </body>
