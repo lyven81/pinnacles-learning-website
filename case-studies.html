@@ -6,6 +6,51 @@
   <title>Case Studies | Pinnacles Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #FCF9F2;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #403B36;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .case-card {
+      background: #FFFFFF;
+      padding: 1.5rem;
+      border: 1px solid #CBA135;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .case-card h3 {
+      margin-top: 0;
+      color: #403B36;
+    }
+    .case-card a {
+      color: #CBA135;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -18,61 +63,40 @@
       <p>A quiet yet convincing showcase of how data analysis has helped real businesses solve problems — in the language and rhythm that SME owners understand.</p>
     </section>
 
-    <section class="case-group">
-      <h2>Stocking is always guesswork</h2>
-      <div class="case-grid">
-        <div class="case-card">
-          <h3>Reduced excess inventory by 16%</h3>
-          <a href="#stock-forecasting">Read More</a>
-        </div>
-        <div class="case-card">
-          <h3>Improved restock timing with seasonal trends</h3>
-          <a href="#inventory-planning">Read More</a>
-        </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <h3>Reduced excess inventory by 16%</h3>
+        <a href="#stock-forecasting">Read More</a>
       </div>
-    </section>
-
-    <section class="case-group">
-      <h2>We’re losing customers quietly</h2>
-      <div class="case-grid">
-        <div class="case-card">
-          <h3>Identified at-risk customers before churn</h3>
-          <a href="#churn-prediction">Read More</a>
-        </div>
-        <div class="case-card">
-          <h3>Gained insight into member behavior</h3>
-          <a href="#customer-insights">Read More</a>
-        </div>
+      <div class="case-card">
+        <h3>Improved restock timing with seasonal trends</h3>
+        <a href="#inventory-planning">Read More</a>
       </div>
-    </section>
-
-    <section class="case-group">
-      <h2>Marketing feels like a shot in the dark</h2>
-      <div class="case-grid">
-        <div class="case-card">
-          <h3>Boosted campaign response by 18%</h3>
-          <a href="#targeted-campaigns">Read More</a>
-        </div>
-        <div class="case-card">
-          <h3>Focused offers on high-value customers</h3>
-          <a href="#lifetime-value">Read More</a>
-        </div>
+      <div class="case-card">
+        <h3>Identified at-risk customers before churn</h3>
+        <a href="#churn-prediction">Read More</a>
       </div>
-    </section>
-
-    <section class="case-group">
-      <h2>New products aren’t selling</h2>
-      <div class="case-grid">
-        <div class="case-card">
-          <h3>Validated new product idea before launch</h3>
-          <a href="#product-launch-testing">Read More</a>
-        </div>
-        <div class="case-card">
-          <h3>Tested discounts that moved stock without hurting margin</h3>
-          <a href="#price-optimization">Read More</a>
-        </div>
+      <div class="case-card">
+        <h3>Gained insight into member behavior</h3>
+        <a href="#customer-insights">Read More</a>
       </div>
-    </section>
+      <div class="case-card">
+        <h3>Boosted campaign response by 18%</h3>
+        <a href="#targeted-campaigns">Read More</a>
+      </div>
+      <div class="case-card">
+        <h3>Focused offers on high-value customers</h3>
+        <a href="#lifetime-value">Read More</a>
+      </div>
+      <div class="case-card">
+        <h3>Validated new product idea before launch</h3>
+        <a href="#product-launch-testing">Read More</a>
+      </div>
+      <div class="case-card">
+        <h3>Tested discounts that moved stock without hurting margin</h3>
+        <a href="#price-optimization">Read More</a>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -80,4 +104,3 @@
   </footer>
 </body>
 </html>
-
