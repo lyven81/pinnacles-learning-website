@@ -1,87 +1,88 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pinnacles Analytics | Friendly Insights for Everyday Decisions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinnacles Analytics | Friendly Data Help</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
+      margin: 0;
       background-color: #FCF9F2;
       color: #333;
     }
-    header {
-      background: url('assets/hero-business-data.jpg') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 5rem 1rem;
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
     }
+
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 3rem;
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+
     header h1 {
       font-size: 2.5rem;
-      margin: 0;
+      color: #403B36;
+      margin-top: 2rem;
     }
+
     header p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 600px;
+      margin: 1rem auto 2rem;
     }
 
     .cta-button {
       display: inline-block;
       background-color: #CBA135;
       color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 4px;
       text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 6px;
       font-weight: 600;
-      margin-top: 2rem;
+      font-size: 1.05rem;
     }
-    .section {
-      padding: 3rem 1.5rem;
-      max-width: 1100px;
-      margin: auto;
+
+    .cta-button:hover {
+      background-color: #b08e2e;
     }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: space-between;
+
+    .spacer {
+      height: 3rem;
     }
-    .feature-box {
-      flex: 1 1 250px;
-      background: white;
-      border-left: 6px solid #CBA135;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    }
-    .feature-box h3 {
-      margin-top: 0;
-      color: #403B36;
-    }
-    .mini-gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 1rem;
-    }
-    .mini-card {
-      min-width: 260px;
-      background: white;
-      border: 1px solid #CBA135;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-    }
-    .mini-card h4 {
-      margin-top: 0;
-      color: #403B36;
-    }
-    .center {
-      text-align: center;
-    }
+
     footer {
       background-color: #403B36;
       color: white;
@@ -89,71 +90,67 @@
       padding: 1.5rem;
       font-size: 0.9rem;
     }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
-      .features {
+      .navbar {
         flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .cta-button {
+        font-size: 1rem;
+        padding: 10px 20px;
       }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Friendly Data Help for Everyday Business</h1>
-  <p>We help you make better decisions without the jargon.</p>
-  <a class="cta-button" href="contact.html">Get Started</a>
-</header>
+  <div class="navbar">
+    <div class="brand">Pinnacles Analytics</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="dashboard.html">Dashboards</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
 
-<main>
-  <section class="section">
-    <div class="features">
-      <div class="feature-box">
-        <h3>See What’s Working</h3>
-        <p>We help you spot your best-selling items, top customers, and peak hours — so you can make informed decisions.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Plan Smarter</h3>
-        <p>Our tools help you prepare the right amount of stock, staff the right shifts, and avoid waste or shortages.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Grow Confidently</h3>
-        <p>Track what matters, try new ideas, and build your business with a clearer view of your numbers.</p>
-      </div>
-    </div>
-  </section>
+  <header>
+    <img src="your-image.jpg" alt="Small business working with data" class="hero-image">
+    <h1>Friendly Data Help for Everyday Business</h1>
+    <p>We help small businesses make clearer decisions — no pressure, no jargon, just practical insight that works.</p>
+    <a class="cta-button" href="contact.html">Get Started</a>
+  </header>
 
-  <section class="section">
-    <h2 class="center">Real Stories from Small Businesses</h2>
-    <div class="mini-gallery">
-      <div class="mini-card">
-        <h4>Chicken Rice Stall</h4>
-        <p>Used daily data to reduce waste and improve lunch prep.</p>
-        <a href="case-study/case-study-1.html">Read More</a>
-      </div>
-      <div class="mini-card">
-        <h4>Latte Timing</h4>
-        <p>Adjusted stock to match morning and evening coffee peaks.</p>
-        <a href="case-study/case-study-2.html">Read More</a>
-      </div>
-      <div class="mini-card">
-        <h4>Pizza Picks</h4>
-        <p>Sorted bestsellers by time and revenue to plan promos better.</p>
-        <a href="case-study/case-study-6.html">Read More</a>
-      </div>
-    </div>
-  </section>
+  <div class="spacer"></div>
 
-  <section class="section center">
-    <h2>Wondering if this is for you?</h2>
-    <p>We’re happy to chat — no pressure, no jargon. Just honest help with your business numbers.</p>
-    <a class="cta-button" href="contact.html">Let’s Talk</a>
-  </section>
-</main>
-
-<footer>
-  <p>📧 <a href="mailto:admin@pinnaclesanalytics.com" style="color:#CBA135;">admin@pinnaclesanalytics.com</a></p>
-  <p>&copy; 2025 Pinnacles Analytics</p>
-</footer>
+  <footer>
+    <p>📧 <a href="mailto:admin@pinnaclesanalytics.com">admin@pinnaclesanalytics.com</a></p>
+    <p>
+      <a href="about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+    <p>© 2025 Pinnacles Analytics</p>
+  </footer>
 
 </body>
 </html>
