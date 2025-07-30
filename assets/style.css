@@ -1,152 +1,243 @@
-/* ====== Color Variables (Optional if using preprocessors) ======
---bg-light: #FCF9F2;
---text-main: #333333;
---text-muted: #A6A6A6;
---header-bg: #403B36;
---accent: #CBA135;
---accent-hover: #B17F28;
---border-soft: #E3D9C6;
-=============================================================== */
-
-/* Base Typography and Layout */
+/* ====================
+   Base Styles & Layout
+   ==================== */
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #FCF9F2;
-    color: #333333;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #FCF9F2;
+  color: #333333;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 h1, h2, h3 {
-    color: #403B36;
+  color: #403B36;
 }
 
 p {
-    font-size: 1rem;
-    line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-/* Header and Footer */
+/* ====================
+   Header & Footer
+   ==================== */
 header, footer {
-    text-align: center;
-    background-color: #403B36;
-    color: white;
-    padding: 20px 0;
+  background-color: #403B36;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
 }
 
 header h1 {
-    font-size: 2.2rem;
-    margin: 0;
-    padding-top: 10px;
+  margin: 0;
+  font-size: 2.2rem;
+  padding-top: 10px;
 }
 
 header p {
-    margin-top: 8px;
-    font-size: 1.1rem;
-    font-weight: 400;
+  margin-top: 8px;
+  font-size: 1.1rem;
+  font-weight: 400;
 }
 
-/* Navigation */
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ====================
+   Navigation Bar
+   ==================== */
 nav {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #ffffff;
 }
 
 nav a {
-    color: #CBA135;
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: 500;
+  color: #CBA135;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
 }
 
 nav a:hover {
-    color: #B17F28;
+  color: #B17F28;
 }
 
-/* Services Table */
-.services-table {
-    width: 100%;
-    border-spacing: 20px;
+/* ====================
+   Links
+   ==================== */
+a {
+  color: #CBA135;
+  text-decoration: none;
 }
 
-.services-table td {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: left;
-    vertical-align: top;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
-    color: #555;
-    border-left: 5px solid #CBA135;
+a:hover {
+  text-decoration: underline;
 }
 
-.services-table td strong {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: #403B36;
+/* ====================
+   Forms & Buttons
+   ==================== */
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 500;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .services-table {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .services-table tr {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .services-table td {
-        width: 100%;
-        margin-bottom: 20px;
-    }
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Bio Cards for Teams/Board */
-.bio-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #CBA135;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.bio {
-    background: #ffffff;
-    padding: 20px;
-    border-left: 5px solid #CBA135;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
+form button:hover {
+  background-color: #B17F28;
 }
 
-.bio:hover {
-    transform: translateY(-4px);
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  background-color: #CBA135;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
-.bio h4 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    color: #403B36;
-    font-weight: 600;
+.cta-button:hover {
+  background-color: #B17F28;
 }
 
-.bio p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #555;
+/* ====================
+   Lists & Utilities
+   ==================== */
+ul {
+  list-style: disc;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.highlight {
+  background-color: #CBA135;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
 }
 
 strong {
-    color: #B17F28;
+  color: #B17F28;
+}
+
+/* ====================
+   Services Table
+   ==================== */
+.services-table {
+  width: 100%;
+  border-spacing: 20px;
+}
+
+.services-table td {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: left;
+  vertical-align: top;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  color: #555;
+  border-left: 5px solid #CBA135;
+}
+
+.services-table td strong {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #403B36;
+}
+
+/* ====================
+   Responsive Layout
+   ==================== */
+@media (max-width: 768px) {
+  .services-table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .services-table tr {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .services-table td {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* ====================
+   Team / Board Bio Cards
+   ==================== */
+.bio-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.bio {
+  background: #ffffff;
+  padding: 20px;
+  border-left: 5px solid #CBA135;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.bio:hover {
+  transform: translateY(-4px);
+}
+
+.bio h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #403B36;
+  font-weight: 600;
+}
+
+.bio p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
 }
