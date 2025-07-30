@@ -30,7 +30,7 @@
     }
     .case-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 2rem;
       margin-bottom: 2rem;
     }
@@ -54,6 +54,13 @@
     }
     .case-card a:hover {
       color: #b08e2e;
+    }
+
+    /* Responsive design: retain single column on all devices */
+    @media (min-width: 768px) {
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
  </head>
@@ -116,6 +123,6 @@
     </p>
     <p>© 2025 Pinnacles Analytics</p>
   </footer>
-  
+
  </body>
 </html>
