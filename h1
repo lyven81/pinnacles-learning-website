@@ -1,0 +1,14 @@
+---
+layout: default
+title: Home
+nav_order: 1
+---
+<!-- Version 1: Clean and Minimal Hero Only -->
+<section class="hero-banner">
+  <h2>Transform Data Into Growth</h2>
+  <p>We help SMEs and MSMEs reduce churn, optimize pricing, and forecast inventory using actionable membership analytics.</p>
+  <a href="/pricing.html" class="cta-button">See Packages</a>
+</section>
+
+<!-- Optional: Spacer for clean layout -->
+<div style="height: 40px;"></div>
