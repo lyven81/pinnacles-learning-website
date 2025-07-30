@@ -35,6 +35,7 @@ header, footer {
 }
 
 header h1 {
+  display: block;
   margin: 0;
   font-size: 2.2rem;
   padding-top: 10px;
