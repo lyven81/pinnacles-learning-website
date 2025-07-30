@@ -1,52 +1,99 @@
----
-layout: default
-title: Home
-nav_order: 1
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinnacles Analytics | Smarter Business Decisions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    body { background-color: #FCF9F2; font-family: 'Poppins', sans-serif; color: #333; margin: 0; padding: 0; }
+    header, footer { background-color: #403B36; color: white; text-align: center; padding: 1.5rem 1rem; }
+    nav { text-align: center; padding: 1rem 0; background: white; }
+    nav a { margin: 0 10px; color: #CBA135; font-weight: 500; text-decoration: none; }
+    nav a:hover { color: #B17F28; }
+    .hero { text-align: center; padding: 4rem 1rem; background: #fffbea; }
+    .hero h1 { font-size: 2.5rem; color: #403B36; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin: auto; }
+    .cta-button { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background: #CBA135; color: white; border-radius: 5px; font-weight: 600; text-decoration: none; }
+    .section { padding: 3rem 1rem; max-width: 1000px; margin: auto; }
+    .section h2 { color: #403B36; border-left: 5px solid #CBA135; padding-left: 0.5rem; }
+    .testimonials, .clients, .stats { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 1rem; }
+    .testimonial, .client-logo, .stat-box { background: white; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); flex: 1 1 30%; }
+    .client-logo img { max-width: 100%; height: 50px; object-fit: contain; }
+    footer p { margin: 0; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
 
-<!-- Hero Banner -->
-<section class="hero-banner">
-  <h2>We Help You Grow with Data</h2>
-  <p>Targeted analytics to reduce churn, forecast demand, and improve pricing — built for SME owners.</p>
-  <a href="pricing.html" class="cta-button">See Plans</a>
-</section>
+  <header>
+    <h1>Pinnacles Analytics</h1>
+    <p>Smarter Business Decisions with Data</p>
+  </header>
 
-<!-- What We Deliver -->
-<section class="container">
-  <h2>🚀 What You Get</h2>
-  <table class="services-table">
-    <tr>
-      <td>
-        <strong>Customer Churn Alerts</strong>
-        Know who’s about to leave and take timely action.
-      </td>
-      <td>
-        <strong>Price Strategy Reports</strong>
-        Set prices that work — for you and your customers.
-      </td>
-      <td>
-        <strong>Demand Forecast</strong>
-        Plan what to stock next week, not guess.
-      </td>
-    </tr>
-  </table>
-</section>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/case-studies.html">Case Studies</a>
+    <a href="/dashboard.html">Dashboards</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
 
-<!-- Evidence Section -->
-<section class="container">
-  <h2>📈 Proof That It Works</h2>
-  <ul>
-    <li><strong>+22% Revenue</strong> by using engagement data to refine promos</li>
-    <li><strong>−18% Wastage</strong> after switching to forecast-based inventory</li>
-    <li><strong>+11% Retention</strong> through churn modeling and alerts</li>
-  </ul>
-  <a href="case-study.html" class="cta-button">View Case Studies</a>
-</section>
+  <section class="hero">
+    <h1>Turn Membership Data Into Smart Decisions</h1>
+    <p>We help small and medium businesses reduce churn, forecast demand, and increase revenue through simple, insightful analytics.</p>
+    <a class="cta-button" href="/case-studies.html">See Our Work</a>
+  </section>
 
-<!-- Simple CTA -->
-<section class="container text-center">
-  <h2>📩 Get the Clarity You Need</h2>
-  <p>Our dashboards speak your language. No jargon. Just growth.</p>
-  <a href="pricing.html" class="cta-button">Start Now</a>
-  <a href="contact.html" class="cta-button">Talk to Us</a>
-</section>
+  <section class="section">
+    <h2>Trusted by SMEs</h2>
+    <div class="clients">
+      <div class="client-logo"><img src="/assets/images/client1.png" alt="Client Logo 1"></div>
+      <div class="client-logo"><img src="/assets/images/client2.png" alt="Client Logo 2"></div>
+      <div class="client-logo"><img src="/assets/images/client3.png" alt="Client Logo 3"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>“Their insights helped us cut inventory waste by 25% — and we didn’t need to learn SQL!”</p>
+        <strong>– Retail Manager, KL</strong>
+      </div>
+      <div class="testimonial">
+        <p>“The dashboards are so easy to read. I check them every morning before I open shop.”</p>
+        <strong>– F&B Business Owner</strong>
+      </div>
+      <div class="testimonial">
+        <p>“We used their forecast to plan stock and staffing. No more guesswork.”</p>
+        <strong>– Franchise Partner</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Results That Speak</h2>
+    <div class="stats">
+      <div class="stat-box">
+        <strong>25%</strong>
+        <p>Reduction in customer churn</p>
+      </div>
+      <div class="stat-box">
+        <strong>3x</strong>
+        <p>ROI from targeted campaigns</p>
+      </div>
+      <div class="stat-box">
+        <strong>15%</strong>
+        <p>Improved inventory turnover</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Pinnacles Analytics</p>
+  </footer>
+
+</body>
+</html>
