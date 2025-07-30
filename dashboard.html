@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
+<head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboards | Pinnacles Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link href="style.css" rel="stylesheet"/>
@@ -30,7 +30,7 @@
     }
     .case-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 2rem;
       margin-bottom: 2rem;
     }
@@ -55,59 +55,67 @@
     .case-card a:hover {
       color: #b08e2e;
     }
+
+    /* Responsive Padding (Optional Enhancement) */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+    }
   </style>
- </head>
- <body>
+</head>
+<body>
+
   <header>
-   <h1>Pinnacles Analytics</h1>
-   <p>Where Data Tells a Story</p>
+    <h1>Pinnacles Analytics</h1>
+    <p>Where Data Tells a Story</p>
   </header>
 
   <div class="container">
-   <section class="intro">
-    <p>Dashboards that show how businesses use data to uncover insights.</p>
-   </section>
+    <section class="intro">
+      <p>Dashboards that show how businesses use data to uncover insights.</p>
+    </section>
 
-   <div class="case-grid">
-    <div class="case-card">
-     <h3>Chicken Rice Stall: Prep Smarter</h3>
-     <p>Food vendors use daily sales dashboards to spot lunch trends, prepare the right amount, and avoid wasting food.</p>
-     <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-1.html">Explore Dashboard</a>
-    </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <h3>Chicken Rice Stall: Prep Smarter</h3>
+        <p>Food vendors use daily sales dashboards to spot lunch trends, prepare the right amount, and avoid wasting food.</p>
+        <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-1.html">Explore Dashboard</a>
+      </div>
 
-    <div class="case-card">
-     <h3>Café Restocking: Weekday Patterns</h3>
-     <p>See when customers buy the most coffee and croissants, so bakeries can stock just the right amount at the right time.</p>
-     <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-2.html">Explore Dashboard</a>
-    </div>
+      <div class="case-card">
+        <h3>Café Restocking: Weekday Patterns</h3>
+        <p>See when customers buy the most coffee and croissants, so bakeries can stock just the right amount at the right time.</p>
+        <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-2.html">Explore Dashboard</a>
+      </div>
 
-    <div class="case-card">
-     <h3>Customer Retention: Silent Spenders</h3>
-     <p>See which customers stopped buying and when, so you can reach out before they’re gone for good.</p>
-     <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-3.html">Explore Dashboard</a>
-    </div>
+      <div class="case-card">
+        <h3>Customer Retention: Silent Spenders</h3>
+        <p>See which customers stopped buying and when, so you can reach out before they’re gone for good.</p>
+        <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-3.html">Explore Dashboard</a>
+      </div>
 
-    <div class="case-card">
-     <h3>Marketing ROI: Spend Smarter</h3>
-     <p>This dashboard shows which ads work best, helping the business save money and get better results.</p>
-     <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-4.html">Explore Dashboard</a>
-    </div>
+      <div class="case-card">
+        <h3>Marketing ROI: Spend Smarter</h3>
+        <p>This dashboard shows which ads work best, helping the business save money and get better results.</p>
+        <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-4.html">Explore Dashboard</a>
+      </div>
 
-    <div class="case-card">
-     <h3>Social Media: Engagement to Sales</h3>
-     <p>See how your likes and shares connect to actual sales by tracking engagement and return on investment.</p>
-     <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-5.html">Explore Dashboard</a>
-    </div>
+      <div class="case-card">
+        <h3>Social Media: Engagement to Sales</h3>
+        <p>See how your likes and shares connect to actual sales by tracking engagement and return on investment.</p>
+        <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-5.html">Explore Dashboard</a>
+      </div>
 
-    <div class="case-card">
-     <h3>Pizza Menu: Real Bestsellers</h3>
-     <p>This dashboard shows which products are really selling and which aren't, so you can adjust your promotions based on what works.</p>
-     <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-6.html">Explore Dashboard</a>
+      <div class="case-card">
+        <h3>Pizza Menu: Real Bestsellers</h3>
+        <p>This dashboard shows which products are really selling and which aren't, so you can adjust your promotions based on what works.</p>
+        <a href="http://www.pinnaclesanalytics.com/dashboard/dashboard-6.html">Explore Dashboard</a>
+      </div>
     </div>
-   </div>
   </div>
 
-    <footer>
+  <footer>
     <p>📧 <a href="mailto:admin@pinnaclesanalytics.com">admin@pinnaclesanalytics.com</a></p>
     <p>
       <a href="http://www.pinnaclesanalytics.com/about.html">About Us</a> &nbsp;|&nbsp;
@@ -116,7 +124,6 @@
     </p>
     <p>© 2025 Pinnacles Analytics</p>
   </footer>
-  
- </body>
-</html>
 
+</body>
+</html>
