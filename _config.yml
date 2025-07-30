@@ -1,0 +1,13 @@
+title: Pinnacles Analytics
+theme: just-the-docs
+color_scheme: light
+permalink: pretty
+
+# Optional links in top-right nav
+aux_links:
+  "Pricing":
+    - "/pricing.html"
+  "Case Studies":
+    - "/case-study.html"
+  "Contact":
+    - "/contact.html"
