@@ -18,12 +18,12 @@
 
   <nav class="main-nav">
     <div class="container">
-      <a href="/index.html">Home</a>
-      <a href="/case-studies.html">Case Studies</a>
-      <a href="/dashboard.html">Dashboards</a>
-      <a href="/pricing.html">Pricing</a>
-      <a href="/about.html">About Us</a>
-      <a href="/contact.html">Contact</a>
+      <a href="{{ '/index.html' | relative_url }}">Home</a>
+      <a href="{{ '/case-studies.html' | relative_url }}">Case Studies</a>
+      <a href="{{ '/dashboard.html' | relative_url }}">Dashboards</a>
+      <a href="{{ '/pricing.html' | relative_url }}">Pricing</a>
+      <a href="{{ '/about.html' | relative_url }}">About Us</a>
+      <a href="{{ '/contact.html' | relative_url }}">Contact</a>
     </div>
   </nav>
 
@@ -33,6 +33,12 @@
 
   <footer class="site-footer">
     <div class="container">
+      <p>
+        📧 <a href="mailto:admin@pinnaclesanalytics.com">admin@pinnaclesanalytics.com</a><br/>
+        <a href="{{ '/about.html' | relative_url }}">About Us</a> &nbsp;|&nbsp;
+        <a href="{{ '/pricing.html' | relative_url }}">Pricing</a> &nbsp;|&nbsp;
+        <a href="{{ '/privacy-policy.html' | relative_url }}">Data Policy</a>
+      </p>
       <p>© 2025 Pinnacles Analytics</p>
     </div>
   </footer>
