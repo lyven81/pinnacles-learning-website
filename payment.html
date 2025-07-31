@@ -3,65 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pinnacles Analytics | Friendly Data Help</title>
+  <title>Payment | Pinnacles Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     html, body {
-      height: 100%;
       margin: 0;
+      padding: 0;
       font-family: 'Poppins', sans-serif;
       background-color: #FCF9F2;
       color: #333;
     }
 
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-    }
-
-    .navbar .brand {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #403B36;
-    }
-
-    .navbar nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
-
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
-
     header {
+      background-color: #403B36;
+      color: white;
       text-align: center;
-      padding: 4rem 1rem 3rem;
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+      padding: 2rem 1rem;
     }
 
     header h1 {
-      font-size: 2.5rem;
-      color: #403B36;
-      margin-top: 0.5rem;
+      margin: 0;
+      font-size: 2rem;
     }
 
     header p {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 600px;
-      margin: 1rem auto 2rem;
+      margin-top: 0.5rem;
     }
 
     .container {
@@ -70,118 +36,120 @@
       padding: 2rem 1rem;
     }
 
-    .package-card {
-      background: #fff;
+    h2 {
+      text-align: center;
+      color: #403B36;
+    }
+
+    .pricing-card {
+      background: white;
       border: 1px solid #e0ddd3;
       border-radius: 12px;
       padding: 2rem;
-      text-align: center;
+      margin-bottom: 2rem;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      text-align: center;
     }
 
-    .package-card h4 {
+    .pricing-card h4 {
+      margin-top: 0;
       color: #403B36;
-      margin-bottom: 0.5rem;
     }
 
-    .package-card p {
-      margin: 0.5rem 0;
+    .pricing-card p {
+      color: #555;
     }
 
-    .package-card button,
-    .submit-button {
+    .pricing-card button {
       background-color: #CBA135;
       color: white;
-      border: none;
-      padding: 12px 25px;
       font-weight: 600;
+      padding: 12px 25px;
+      border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 1.05rem;
+      font-size: 1rem;
       transition: background-color 0.3s ease;
     }
 
-    .package-card button:hover,
-    .submit-button:hover {
+    .pricing-card button:hover {
       background-color: #b08e2e;
     }
 
     .form-section {
-      margin-top: 3rem;
-    }
-
-    .form-section h2 {
-      text-align: center;
-      color: #403B36;
-    }
-
-    .form-section p {
-      text-align: center;
-    }
-
-    .contact-form {
-      max-width: 600px;
-      margin: 2rem auto;
-      text-align: left;
-      background: #fff;
+      background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       border: 1px solid #e0ddd3;
     }
 
-    .contact-form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #403B36;
-      font-weight: 500;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
+    form input, form textarea {
       width: 100%;
       padding: 12px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
+      background-color: #fdfcf7;
       font-family: 'Poppins', sans-serif;
-      box-sizing: border-box;
-      background: #fdfcf7;
     }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: #CBA135;
+    form textarea {
+      resize: vertical;
+    }
+
+    form input:focus, form textarea:focus {
       outline: none;
-      background: #fffef9;
+      border-color: #CBA135;
+      background-color: #fffef9;
+    }
+
+    .checkbox {
+      margin-bottom: 1.5rem;
+    }
+
+    .checkbox label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: #403B36;
+    }
+
+    .checkbox a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    .checkbox a:hover {
+      text-decoration: underline;
     }
 
     .submit-button {
       width: 100%;
-      margin-top: 1rem;
+      padding: 14px;
+      background-color: #CBA135;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #b08e2e;
     }
 
     .faq-section {
-      margin-top: 4rem;
-    }
-
-    .faq-section h2 {
-      color: #403B36;
-      text-align: center;
+      margin-top: 3rem;
     }
 
     .faq-section h3 {
+      margin-top: 1.5rem;
       color: #403B36;
-      margin-top: 2rem;
-    }
-
-    .faq-section p {
-      color: #555;
-    }
-
-    .spacer {
-      flex: 1;
     }
 
     footer {
@@ -200,39 +168,13 @@
     footer a:hover {
       text-decoration: underline;
     }
-
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-    }
   </style>
 </head>
-<body>
 
-  <div class="navbar">
-    <div class="brand">Pinnacles Analytics</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="dashboard.html">Dashboards</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-
-    <div class="container">
+  <div class="container">
     <section class="section">
-      <div class="package-card" id="package-card">
+      <h2>Choose a Package That Fits Your Business</h2>
+      <div class="pricing-card" id="package-card">
         <h4 id="package-title">Project-Based</h4>
         <p id="package-price">RM3,500</p>
         <p id="package-description">
@@ -251,26 +193,18 @@
       <h2>Tell Us Where to Begin</h2>
       <p id="selected-package-display" style="font-weight: bold; color: #CBA135;"></p>
 
-      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST" class="contact-form">
+      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST">
         <input type="hidden" id="package" name="package" required />
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-
-        <label for="phone">Phone Number (optional)</label>
-        <input type="text" id="phone" name="phone" placeholder="Phone Number" />
-
-        <label for="message">What are you hoping to achieve with data?</label>
-        <textarea id="message" name="message" rows="4" placeholder="e.g., churn prediction, inventory planning, ROI tracking"></textarea>
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="text" name="phone" placeholder="Phone Number (optional)" />
+        <textarea name="message" placeholder="What are you hoping to achieve with data? (e.g., churn prediction, inventory planning, ROI tracking)" rows="4"></textarea>
 
         <div class="checkbox">
-          <input type="checkbox" name="terms" required />
-          <label style="display: flex; align-items: center; gap: 10px;">
+          <label>
             <input type="checkbox" name="terms" required />
             I agree to the <a href="#">terms and conditions</a>.
-          <label>
+          </label>
         </div>
 
         <button type="submit" class="submit-button">Proceed to Payment</button>
@@ -279,7 +213,6 @@
 
     <section class="faq-section">
       <h2>Frequently Asked Questions</h2>
-
       <h3>What happens after I pay?</h3>
       <p>You’ll receive a confirmation email, and our team will contact you within 24 hours to plan your session or kickstart your project.</p>
 
