@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,12 +57,6 @@
       margin-top: 0.5rem;
     }
 
-    .intro h2 {
-  font-size: 2rem;
-  color: #403B36;
-  margin-bottom: 0.5rem;
-}
-    
     header p {
       font-size: 1.1rem;
       color: #555;
@@ -80,6 +73,7 @@
       border-radius: 6px;
       font-weight: 600;
       font-size: 1.05rem;
+      transition: background-color 0.3s ease;
     }
 
     .cta-button:hover {
@@ -87,46 +81,65 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 2rem 1rem;
-      text-align: center;
     }
 
     .intro {
+      text-align: center;
       margin-bottom: 2rem;
     }
 
-    .case-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .case-card {
-      background: #FFFFFF;
-      border: 1px solid #e0ddd3;
-      border-radius: 12px;
-      padding: 1.5rem;
-      width: 300px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
-
-    .case-card h3 {
+    .intro h2 {
+      font-size: 2rem;
       color: #403B36;
-      margin-top: 0;
+      margin-bottom: 0.5rem;
     }
 
-    .case-card a {
-      color: #CBA135;
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: left;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e0ddd3;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #403B36;
       font-weight: 500;
-      text-decoration: none;
     }
 
-    .case-card a:hover {
-      text-decoration: underline;
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+      background: #fdfcf7;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #CBA135;
+      outline: none;
+      background: #fffef9;
+    }
+
+    .contact-form .cta-button {
+      width: 100%;
+      text-align: center;
+      border: none;
+      cursor: pointer;
     }
 
     .spacer {
@@ -186,28 +199,30 @@
 
   <div class="container">
     <section class="intro">
-        <h2>Contact Us</h2>
-    <p>
-      Want to make your business more data-driven? Whether you’re looking to understand your customers, reduce overstocking, or make sense of your numbers — we’re here to help.
-    </p>
+      <h2>Contact Us</h2>
+      <p>
+        Want to make your business more data-driven? Whether you’re looking to understand your customers, reduce overstocking, or make sense of your numbers — we’re here to help.
+      </p>
 
-    <h3>Reach Us</h3>
-    <p><strong>Email:</strong> admin@pinnacleslearning.com</p>
-    <p><strong>Phone/WhatsApp:</strong> <a href="https://wa.me/60149207099">+6014-9207099</a></p>
+      <h3>Reach Us</h3>
+      <p><strong>Email:</strong> admin@pinnacleslearning.com</p>
+      <p><strong>Phone/WhatsApp:</strong> <a href="https://wa.me/60149207099">+6014-9207099</a></p>
 
-    <h3>Send Us Your Request</h3>
-    <form action="https://formsubmit.co/director@pinnacleslearning.com" method="post">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+      <h3>Send Us Your Request</h3>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="post" class="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
 
-      <label for="message">Tell Us About Your Needs</label>
-      <textarea id="message" name="message" rows="6" placeholder="What challenges are you facing? (e.g., sales forecasting, churn prediction, membership ROI)" required></textarea>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email Address" required>
 
-      <button type="submit">Submit Inquiry</button>
-    </form>
+        <label for="message">Tell Us About Your Needs</label>
+        <textarea id="message" name="message" rows="6" placeholder="What challenges are you facing? (e.g., sales forecasting, churn prediction, membership ROI)" required></textarea>
+
+        <button type="submit" class="cta-button">Submit Inquiry</button>
+      </form>
+    </section>
   </div>
 
   <div class="spacer"></div>
