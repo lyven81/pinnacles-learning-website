@@ -88,18 +88,21 @@
       margin: 0.5rem 0;
     }
 
-    .package-card button {
-      margin-top: 1rem;
+    .package-card button,
+    .submit-button {
       background-color: #CBA135;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-weight: 600;
       border-radius: 6px;
       cursor: pointer;
+      font-size: 1.05rem;
+      transition: background-color 0.3s ease;
     }
 
-    .package-card button:hover {
+    .package-card button:hover,
+    .submit-button:hover {
       background-color: #b08e2e;
     }
 
@@ -154,11 +157,9 @@
       background: #fffef9;
     }
 
-    .contact-form .cta-button {
+    .submit-button {
       width: 100%;
-      text-align: center;
-      border: none;
-      cursor: pointer;
+      margin-top: 1rem;
     }
 
     .faq-section {
@@ -213,11 +214,6 @@
       header h1 {
         font-size: 2rem;
       }
-
-      .cta-button {
-        font-size: 1rem;
-        padding: 10px 20px;
-      }
     }
   </style>
 </head>
@@ -234,12 +230,7 @@
     </nav>
   </div>
 
-  <header>
-    <h1>Pinnacles Analytics</h1>
-    <p>Secure Your Membership Analytics Package</p>
-  </header>
-
-  <div class="container">
+    <div class="container">
     <section class="section">
       <div class="package-card" id="package-card">
         <h4 id="package-title">Project-Based</h4>
@@ -279,7 +270,7 @@
           <label>I agree to the <a href="#">terms and conditions</a>.</label>
         </div>
 
-        <button type="submit" class="cta-button">Proceed to Payment</button>
+        <button type="submit" class="submit-button">Proceed to Payment</button>
       </form>
     </section>
 
