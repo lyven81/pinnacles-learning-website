@@ -6,11 +6,6 @@
 
   <title>{{ page.title }} | Pinnacles Analytics</title>
 
-  {%- comment -%}
-  Canonical + description:
-  - If a page sets "canonical" or "description" in its front matter, we use that.
-  - Otherwise we fall back to site.url + page.url and a generic description.
-  {%- endcomment -%}
   <link rel="canonical" href="{% if page.canonical %}{{ page.canonical }}{% else %}{{ site.url }}{{ page.url }}{% endif %}">
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}SME analytics consulting in Malaysia—dashboards for inventory forecasting, churn reduction, and marketing ROI.{% endif %}">
 
@@ -53,7 +48,6 @@
     gtag('config', 'G-3XSLR3FV22');
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Track CTA button clicks
       document.querySelectorAll('.cta-button').forEach(btn => {
         btn.addEventListener('click', () => {
           gtag('event', 'cta_click', {
@@ -62,7 +56,6 @@
           });
         });
       });
-      // Track Contact form submissions (if present)
       const contactForm = document.querySelector('form');
       if (contactForm) {
         contactForm.addEventListener('submit', () => {
@@ -75,22 +68,39 @@
     });
   </script>
 
-  <!-- Page-level styles (keep lightweight in layout) -->
+  <!-- Minimal layout styles -->
   <style>
     body { margin: 0; background-color: #FCF9F2; color: #333; font-family: 'Poppins', sans-serif; }
+
     .site-header { background-color: #FCF9F2; padding: 1rem 2rem; border-bottom: 1px solid #e0ddd3; }
     .site-title { font-size: 1.5rem; font-weight: 600; color: #403B36; margin: 0; text-decoration: none; display: inline-block; }
     .site-subtitle { color: #555; font-size: 1rem; margin-top: 0.25rem; }
-    .main-nav { background-color: #FCF9F2; padding: 0.5rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    /* Sticky navigation bar */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      background-color: #FCF9F2;
+      padding: 0.5rem 2rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
     .main-nav a { text-decoration: none; color: #403B36; font-weight: 500; }
     .main-nav a:hover { color: #CBA135; }
+
     .container { max-width: 1080px; margin: 0 auto; padding: 1rem; }
     main.container { padding: 2rem 1rem; }
+
     .site-footer { background-color: #403B36; color: #fff; text-align: center; padding: 1.5rem 1rem; font-size: 0.9rem; }
     .site-footer a { color: #CBA135; text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
+
     .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
     .skip-link:focus { position: static; width: auto; height: auto; padding: 0.5rem; background: #fff; border: 1px solid #CBA135; }
+
     @media (max-width: 768px) {
       .main-nav { flex-direction: column; gap: 0.75rem; }
     }
@@ -102,7 +112,6 @@
 
   <header class="site-header">
     <div class="container">
-      <!-- Make brand/title clickable to Home -->
       <a href="{{ '/index.html' | relative_url }}" class="site-title" aria-label="Pinnacles Analytics Home">Pinnacles Analytics</a>
       <p class="site-subtitle">Smarter Business Decisions with Data</p>
     </div>
@@ -111,7 +120,7 @@
   <nav class="main-nav" aria-label="Primary">
     <a href="{{ '/index.html' | relative_url }}">Home</a>
     <a href="{{ '/case-studies.html' | relative_url }}">Case Studies</a>
-    <a href="{{ '/dashboard.html' | relative_url }}">Dashboards</a>
+    <a href="{{ '/dashboards.html' | relative_url }}">Dashboards</a>
     <a href="{{ '/pricing.html' | relative_url }}">Pricing</a>
     <a href="{{ '/about.html' | relative_url }}">About Us</a>
     <a href="{{ '/contact.html' | relative_url }}">Contact</a>
