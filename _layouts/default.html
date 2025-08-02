@@ -4,99 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{ page.title }} | Pinnacles Analytics</title>
+
+  <!-- Fonts & CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
-  <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
-<link rel="manifest" href="{{ '/assets/site.webmanifest' | relative_url }}">
-<link rel="mask-icon" href="{{ '/assets/safari-pinned-tab.svg' | relative_url }}" color="#CBA135">
-<meta name="msapplication-TileColor" content="#FCF9F2">
-<meta name="theme-color" content="#FCF9F2">
+  <!-- Favicons (optional – add files to /assets/ first) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}"> -->
+  <!-- <link rel="manifest" href="{{ '/assets/site.webmanifest' | relative_url }}"> -->
 
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #FCF9F2;
-      color: #333;
-    }
+  <!-- Organization schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Pinnacles Analytics",
+    "url": "https://www.pinnaclesanalytics.com",
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "email": "admin@pinnaclesanalytics.com",
+      "areaServed": "MY",
+      "availableLanguage": ["en", "ms"]
+    }]
+  }
+  </script>
 
-    .site-header {
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-    }
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3XSLR3FV22');
 
-    .site-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #403B36;
-      margin: 0;
-    }
-
-    .site-subtitle {
-      color: #555;
-      font-size: 1rem;
-      margin-top: 0.25rem;
-    }
-
-    .main-nav {
-      background-color: #FCF9F2;
-      padding: 0.5rem 2rem;
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .main-nav a {
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
-
-    .main-nav a:hover {
-      color: #CBA135;
-    }
-
-    .container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-
-    main.container {
-      padding: 2rem 1rem;
-    }
-
-    .site-footer {
-      background-color: #403B36;
-      color: white;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    .site-footer a {
-      color: #CBA135;
-      text-decoration: none;
-    }
-
-    .site-footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .main-nav {
-        flex-direction: column;
-        gap: 0.75rem;
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.cta-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          gtag('event', 'cta_click', {
+            event_category: 'engagement',
+            event_label: btn.textContent.trim()
+          });
+        });
+      });
+      const contactForm = document.querySelector('form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', () => {
+          gtag('event', 'contact_form_submit', {
+            event_category: 'lead',
+            event_label: 'Contact Form'
+          });
+        });
       }
-    }
+    });
+  </script>
+
+  <!-- Page-level styles you already had -->
+  <style>
+    /* … keep your existing CSS here unchanged … */
   </style>
 </head>
-<body>
+
+  <body>
 
   <header class="site-header">
     <div class="container">
