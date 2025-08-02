@@ -11,6 +11,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3XSLR3FV22');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Track CTA button clicks
+    document.querySelectorAll('.cta-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        gtag('event', 'cta_click', {
+          event_category: 'engagement',
+          event_label: btn.textContent.trim()
+        });
+      });
+    });
+
+    // Track Contact form submissions
+    const contactForm = document.querySelector('form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', () => {
+        gtag('event', 'contact_form_submit', {
+          event_category: 'lead',
+          event_label: 'Contact Form'
+        });
+      });
+    }
+  });
+</script>
+
   <style>
     html, body {
       height: 100%;
