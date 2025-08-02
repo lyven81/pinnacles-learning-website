@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
   <!-- Home -->
   <url>
     <loc>https://www.pinnaclesanalytics.com/</loc>
@@ -41,7 +41,7 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- About (remove if not live) -->
+  <!-- About -->
   <url>
     <loc>https://www.pinnaclesanalytics.com/about.html</loc>
     <lastmod>2025-08-02</lastmod>
