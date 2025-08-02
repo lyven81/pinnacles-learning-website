@@ -1,0 +1,9 @@
+# robots.txt for https://www.pinnaclesanalytics.com
+User-agent: *
+Allow: /
+
+# Optional: block temporary or private paths if you have them
+# Disallow: /temp/
+# Disallow: /drafts/
+
+Sitemap: https://www.pinnaclesanalytics.com/sitemap.xml
