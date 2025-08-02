@@ -121,3 +121,24 @@ ul {
 .cta-button:hover {
   background-color: #B17F28;
 }
+
+/* Sticky nav */
+.navbar {
+  position: sticky;   /* stays at top while scrolling */
+  top: 0;
+  z-index: 1000;
+  background-color: #FCF9F2; /* ensure solid bg while overlapping content */
+  backdrop-filter: none;     /* keep simple; remove if not used */
+}
+
+/* Optional: subtle shadow when stuck */
+.navbar {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Keep link focus visible for accessibility */
+.navbar a:focus {
+  outline: 2px solid #CBA135;
+  outline-offset: 2px;
+}
+
