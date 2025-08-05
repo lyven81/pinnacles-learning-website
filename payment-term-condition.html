@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,79 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <meta name="description" content="SME analytics consulting in Malaysia—dashboards for inventory forecasting, churn prediction, marketing ROI, and pricing optimization." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Pau Analytics",
-  "url": "https://www.pauanalytics.com",
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "contactType": "Customer Service",
-    "email": "admin@pauanalytics.com",
-    "areaServed": "MY",
-    "availableLanguage": ["en", "ms"]
-  }]
-}
-</script>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-3XSLR3FV22');
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Track CTA button clicks
-    document.querySelectorAll('.cta-button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        gtag('event', 'cta_click', {
-          event_category: 'engagement',
-          event_label: btn.textContent.trim()
-        });
-      });
-    });
-
-    // Track Contact form submissions
-    const contactForm = document.querySelector('form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', () => {
-        gtag('event', 'contact_form_submit', {
-          event_category: 'lead',
-          event_label: 'Contact Form'
-        });
-      });
-    }
-  });
-</script>
-
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#FCF9F2">
-  
   <style>
-     /* Sticky top navbar */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    
     html, body {
       height: 100%;
       margin: 0;
@@ -96,12 +23,16 @@
     }
 
     .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: #FCF9F2;
       padding: 1rem 2rem;
       border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
     .navbar .brand {
@@ -121,42 +52,34 @@
       color: #CBA135;
     }
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem 3rem;
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: #403B36;
-      margin-top: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 600px;
-      margin: 1rem auto 2rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: #CBA135;
-      color: white;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-
-    .cta-button:hover {
-      background-color: #b08e2e;
-    }
-
-    .spacer {
+    .content-wrapper {
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      margin-bottom: 0.5rem;
+      color: #403B36;
+    }
+
+    .section p, .section ul {
+      margin: 0.5rem 0;
+      color: #555;
     }
 
     footer {
@@ -175,26 +98,6 @@
     footer a:hover {
       text-decoration: underline;
     }
-
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-
-      .cta-button {
-        font-size: 1rem;
-        padding: 10px 20px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -210,47 +113,46 @@
     </nav>
   </div>
 
-  <header>
-    <h1>Pau Analytics</h1>
-    <p>Payment Terms & Conditions</p>
-  </header>
+  <div class="content-wrapper">
+    <div class="container">
+      <h1 style="text-align:center;">Payment Terms & Conditions</h1>
 
-  <div class="container">
-    <section class="section">
-      <h2>1. Accepted Payment Methods</h2>
-      <p>We accept payment via online bank transfer, credit card, and PayPal. A confirmation receipt will be sent to your email once payment is successfully processed.</p>
-    </section>
+      <section class="section">
+        <h2>1. Accepted Payment Methods</h2>
+        <p>We accept payment via online bank transfer, credit card, and PayPal. A confirmation receipt will be sent to your email once payment is successfully processed.</p>
+      </section>
 
-    <section class="section">
-      <h2>2. Pricing & Packages</h2>
-      <p>Our service packages are transparently listed on the <a href="pricing.html">Pricing Page</a>. All prices are stated in Malaysian Ringgit (MYR) and include applicable service tax unless stated otherwise.</p>
-    </section>
+      <section class="section">
+        <h2>2. Pricing & Packages</h2>
+        <p>Our service packages are transparently listed on the <a href="pricing.html">Pricing Page</a>. All prices are stated in Malaysian Ringgit (MYR) and include applicable service tax unless stated otherwise.</p>
+      </section>
 
-    <section class="section">
-      <h2>3. Refund & Cancellation Policy</h2>
-      <ul>
-        <li>Once a project or consultation has begun, payments are non-refundable.</li>
-        <li>For monthly subscriptions, cancellations must be made before the renewal date to avoid future charges. Current cycle fees are non-refundable.</li>
-        <li>If project delays are caused by client inaction or communication gaps, payment terms and timelines remain unchanged.</li>
-      </ul>
-    </section>
+      <section class="section">
+        <h2>3. Refund & Cancellation Policy</h2>
+        <ul>
+          <li>Once a project or consultation has begun, payments are non-refundable.</li>
+          <li>For monthly subscriptions, cancellations must be made before the renewal date to avoid future charges. Current cycle fees are non-refundable.</li>
+          <li>If project delays are caused by client inaction or communication gaps, payment terms and timelines remain unchanged.</li>
+        </ul>
+      </section>
 
-    <section class="section">
-      <h2>4. Timeline & Deliverables</h2>
-      <p>Once payment is received, our team will contact you within 24 hours to confirm your goals and schedule. Dashboards and reports (for subscriptions or projects) follow an agreed delivery timeline to ensure consistent output.</p>
-    </section>
+      <section class="section">
+        <h2>4. Timeline & Deliverables</h2>
+        <p>Once payment is received, our team will contact you within 24 hours to confirm your goals and schedule. Dashboards and reports follow an agreed delivery timeline to ensure consistent output.</p>
+      </section>
 
-    <section class="section">
-      <h2>5. Data Confidentiality</h2>
-      <p>Your business and membership data are handled with strict confidentiality. We use your data solely to generate insights and recommendations. We do not sell or share your information with third parties without written consent. Please refer to our <a href="#">Privacy Policy</a> for details.</p>
-    </section>
+      <section class="section">
+        <h2>5. Data Confidentiality</h2>
+        <p>Your business and membership data are handled with strict confidentiality. We use your data solely to generate insights and recommendations. We do not sell or share your information with third parties without written consent. Please refer to our <a href="#">Privacy Policy</a> for details.</p>
+      </section>
 
-    <section class="section">
-      <h2>6. Need Help?</h2>
-      <p>If you have questions about our services, invoices, or payment instructions, don’t hesitate to reach out:</p>
-      <p><strong>Email:</strong> <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
-    </section>
+      <section class="section">
+        <h2>6. Need Help?</h2>
+        <p>If you have questions about our services, invoices, or payment instructions, don’t hesitate to reach out:</p>
+        <p><strong>Email:</strong> <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
+      </section>
+    </div>
   </div>
 
   <footer>
