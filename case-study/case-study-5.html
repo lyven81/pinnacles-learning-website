@@ -1,12 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>Real Stories | Pinnacles Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <meta name="description" content="SME analytics consulting in Malaysia—dashboards for inventory forecasting, churn prediction, marketing ROI, and pricing optimization." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Pau Analytics",
+  "url": "https://www.pauanalytics.com",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "admin@pauanalytics.com",
+    "areaServed": "MY",
+    "availableLanguage": ["en", "ms"]
+  }]
+}
+</script>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3XSLR3FV22');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Track CTA button clicks
+    document.querySelectorAll('.cta-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        gtag('event', 'cta_click', {
+          event_category: 'engagement',
+          event_label: btn.textContent.trim()
+        });
+      });
+    });
+
+    // Track Contact form submissions
+    const contactForm = document.querySelector('form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', () => {
+        gtag('event', 'contact_form_submit', {
+          event_category: 'lead',
+          event_label: 'Contact Form'
+        });
+      });
+    }
+  });
+</script>
+
+<!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#FCF9F2">
+
   <style>
+     /* Sticky top navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
     html, body {
       height: 100%;
       margin: 0;
@@ -134,13 +208,13 @@
 <body>
 
   <div class="navbar">
-    <div class="brand">Pinnacles Analytics</div>
+    <div class="brand">Pau Analytics</div>
     <nav>
-      <a href="http://www.pinnaclesanalytics.com/index.html">Home</a>
-      <a href="http://www.pinnaclesanalytics.com/case-studies.html">Case Studies</a>
-      <a href="http://www.pinnaclesanalytics.com/dashboard.html">Dashboards</a>
-      <a href="http://www.pinnaclesanalytics.com/pricing.html">Pricing</a>
-      <a href="http://www.pinnaclesanalytics.com/contact.html">Contact</a>
+      <a href="https://www.pauanalytics.com/index.html">Home</a>
+      <a href="https://www.pauanalytics.com/case-studies.html">Case Studies</a>
+      <a href="https://www.pauanalytics.com/dashboard.html">Dashboards</a>
+      <a href="https://www.pauanalytics.com/pricing.html">Pricing</a>
+      <a href="https://www.pauanalytics.com/contact.html">Contact</a>
     </nav>
   </div>
   
@@ -170,13 +244,13 @@
   </main>
 
   <footer>
-    <p>📧 <a href="mailto:admin@pinnaclesanalytics.com">admin@pinnaclesanalytics.com</a></p>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
     <p>
-      <a href="http://www.pinnaclesanalytics.com/about.html">About Us</a> &nbsp;|&nbsp;
-      <a href="http://www.pinnaclesanalytics.com/pricing.html">Pricing</a> &nbsp;|&nbsp;
-      <a href="http://www.pinnaclesanalytics.com/privacy-policy.html">Data Policy</a>
+      <a href="https://www.pauanalytics.com/about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="https://www.pauanalytics.com/pricing.html">Pricing</a> &nbsp;|&nbsp;
+      <a href="https://www.pauanalytics.com/privacy-policy.html">Data Policy</a>
     </p>
-    <p>© 2025 Pinnacles Analytics</p>
+    <p>© 2025 Pau Analytics</p>
   </footer>
 
 </body>
