@@ -3,7 +3,7 @@
 
   <!-- Home -->
   <url>
-    <loc>https://www.pinnaclesanalytics.com/</loc>
+    <loc>https://www.pauanalytics.com/</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,7 +11,7 @@
 
   <!-- Case Studies -->
   <url>
-    <loc>https://www.pinnaclesanalytics.com/case-studies.html</loc>
+    <loc>https://www.pauanalytics.com/case-studies.html</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -19,7 +19,7 @@
 
   <!-- Dashboards -->
   <url>
-    <loc>https://www.pinnaclesanalytics.com/dashboards.html</loc>
+    <loc>https://www.pauanalytics.com/dashboards.html</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -27,7 +27,7 @@
 
   <!-- Pricing -->
   <url>
-    <loc>https://www.pinnaclesanalytics.com/pricing.html</loc>
+    <loc>https://www.pauanalytics.com/pricing.html</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -35,7 +35,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://www.pinnaclesanalytics.com/contact.html</loc>
+    <loc>https://www.pauanalytics.com/contact.html</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
@@ -43,7 +43,7 @@
 
   <!-- About -->
   <url>
-    <loc>https://www.pinnaclesanalytics.com/about.html</loc>
+    <loc>https://www.pauanalytics.com/about.html</loc>
     <lastmod>2025-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
