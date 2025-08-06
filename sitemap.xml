@@ -49,4 +49,12 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- robots.txt -->
+  <url>
+    <loc>https://www.pauanalytics.com/robots.txt</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+
 </urlset>
