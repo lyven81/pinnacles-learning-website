@@ -1,4 +1,4 @@
-# robots.txt for https://www.pinnaclesanalytics.com
+# robots.txt for https://www.pauanalytics.com
 User-agent: *
 Allow: /
 
@@ -6,4 +6,4 @@ Allow: /
 # Disallow: /temp/
 # Disallow: /drafts/
 
-Sitemap: https://www.pinnaclesanalytics.com/sitemap.xml
+Sitemap: https://www.pauanalytics.com/sitemap.xml
