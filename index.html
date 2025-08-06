@@ -60,6 +60,51 @@
   });
 </script>
 
+<!-- Cookie Consent Code -->
+  <style>
+    #cookieConsent {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #403B36;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      z-index: 9999;
+    }
+    #cookieConsent button {
+      background-color: #CBA135;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #cookieConsent button:hover {
+      background-color: #b08e2e;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var consentBanner = document.getElementById('cookieConsent');
+      var acceptButton = document.getElementById('acceptCookies');
+      
+      // Show cookie consent if not accepted
+      if (!localStorage.getItem('cookieAccepted')) {
+        consentBanner.style.display = 'block';
+      }
+      
+      // If user accepts cookies, store their consent in localStorage
+      acceptButton.onclick = function() {
+        localStorage.setItem('cookieAccepted', 'true');
+        consentBanner.style.display = 'none';
+      };
+    };
+  </script>
+
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
