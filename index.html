@@ -277,6 +277,17 @@
         font-size: 2rem;
       }
 
+      .services-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .service-card {
+        max-width: 100%;
+        margin: 0 1rem;
+      }
+
       .cta-button {
         font-size: 1rem;
         padding: 10px 20px;
@@ -285,18 +296,6 @@
       .cta-button.primary {
         font-size: 1.1rem;
         padding: 12px 25px;
-      }
-
-      /* Mobile grid layout */
-      div[style*="grid-template-columns: 1fr 1fr"] {
-        grid-template-columns: 1fr !important;
-        gap: 2rem !important;
-      }
-
-      /* Mobile contact section */
-      div[style*="display: flex"][style*="gap: 2rem"] {
-        flex-direction: column !important;
-        gap: 1rem !important;
       }
     }
   </style>
@@ -315,55 +314,27 @@
   </div>
 
   <header>
-    <h1>Data Analytics and AI Solutions for Malaysian Businesses</h1>
-    <p style="font-size: 1.2rem; margin-bottom: 1rem;">Get clear answers from your business data</p>
+    <h1>Data Analytics & AI Solutions</h1>
+    <p>Turn your business data into direction. Build smart tools that work.</p>
     
-    <div class="main-cta">
-      <a href="https://wa.me/60149207099" class="cta-button primary">Start Conversation</a>
-    </div>
-  </header>
-
-  <div style="max-width: 1000px; margin: 3rem auto; padding: 0 2rem;">
-    <h2 style="text-align: center; color: #403B36; margin-bottom: 2rem;">What We Do</h2>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
-      <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
-        <h3 style="color: #403B36; margin-bottom: 1.5rem;">Analytics</h3>
-        <ul style="list-style: none; padding: 0; color: #666; line-height: 1.8;">
-          <li>📈 Dashboards</li>
-          <li>🔮 Forecasting</li>
-          <li>💡 Insights</li>
-          <li>📋 Reports</li>
-        </ul>
-        <a href="data-analytics.html" style="color: #CBA135; text-decoration: none; font-weight: 500; margin-top: 1rem; display: inline-block;">Learn more →</a>
+    <div class="services-section">
+      <div class="service-card">
+        <h3>Data Analytics Consulting</h3>
+        <p>Turn your business data into clear direction for smarter decisions.</p>
+        <a href="data-analytics.html" class="cta-button">See how we turn your business data into direction</a>
       </div>
       
-      <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
-        <h3 style="color: #403B36; margin-bottom: 1.5rem;">AI Tools</h3>
-        <ul style="list-style: none; padding: 0; color: #666; line-height: 1.8;">
-          <li>⚡ Automation</li>
-          <li>🛠️ Smart tools</li>
-          <li>🎯 Custom build</li>
-          <li>🚀 Implementation</li>
-        </ul>
-        <a href="ai-solutions.html" style="color: #CBA135; text-decoration: none; font-weight: 500; margin-top: 1rem; display: inline-block;">See examples →</a>
+      <div class="service-card">
+        <h3>AI Solutions Development</h3>
+        <p>Custom AI tools designed to solve your specific business challenges.</p>
+        <a href="ai-solutions.html" class="cta-button">Discover smart AI tools built for real business needs</a>
       </div>
     </div>
-  </div>
-
-  <div style="background: #f8f9fa; padding: 3rem 2rem; margin: 3rem 0; text-align: center;">
-    <h3 style="color: #403B36; margin-bottom: 1rem;">Let's discuss your business needs</h3>
-    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
-      <div style="color: #666;">
-        📧 <a href="mailto:admin@pauanalytics.com" style="color: #CBA135; text-decoration: none;">admin@pauanalytics.com</a>
-      </div>
-      <div style="color: #666;">
-        📱 <a href="https://wa.me/60149207099" style="color: #CBA135; text-decoration: none;">WhatsApp: +60 14-920 7099</a>
-      </div>
+    
+    <div class="main-cta">
+      <a href="https://wa.me/60149207099" class="cta-button primary">Book a Call</a>
     </div>
-  </div>
+  </header>
 
   <div class="spacer"></div>
 
