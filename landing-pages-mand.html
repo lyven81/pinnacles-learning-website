@@ -1,238 +1,876 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>通过数据分析，推动你的业务增长 | Pinnacles Learning</title>
-    <meta name="description" content="通过数据分析，推动你的业务增长。现在就与 Pinnacles Learning 预约免费咨询。">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            padding: 50px 20px;
-            background-color: #007BFF;
-            color: white;
-            text-align: left;
-        }
-        header h1 {
-            font-size: 2rem;
-            margin: 0;
-            font-weight: 700;
-        }
-        header p {
-            font-size: 1.5rem;
-            margin-top: 10px;
-        }
-        .cta {
-            margin-top: 20px;
-            background-color: #004494;
-            color: white;
-            padding: 20px;
-            display: inline-block;
-            font-size: 1.2rem;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .cta:hover {
-            background-color: #003377;
-        }
-        .section {
-            margin: 40px 0;
-        }
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        .section p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-        .form-section, .trust-section {
-            background-color: #f1f1f1;
-            padding: 30px;
-            margin-bottom: 40px;
-            border-radius: 8px;
-        }
-        .form-section input, .form-section textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        .form-section button {
-            background-color: #007BFF;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            width: 100%;
-        }
-        .form-section button:hover {
-            background-color: #0056b3;
-        }
-        .trust-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        .success-stories {
-            width: 100%;
-            border-spacing: 20px;
-        }
-        .success-stories td {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            vertical-align: top;
-        }
-        .success-stories p {
-            font-size: 1rem;
-            color: #555;
-        }
-        footer {
-            padding: 30px;
-            background-color: #333;
-            color: white;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中小企业数据分析与AI解决方案 | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/landing-pages-mand.html" />
+  <meta name="description" content="让您的业务数据变成决策方向。Pau Analytics为马来西亚中小企业提供数据分析咨询和AI解决方案服务。" />
 
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1rem;
-            }
-            header p {
-                font-size: 1rem;
-            }
-            .cta {
-                font-size: 1rem;
-                padding: 15px 20px;
-            }
-            .section h2 {
-                font-size: 1.8rem;
-            }
-            .success-stories {
-                display: block;
-            }
-            .success-stories td {
-                width: 100%;
-                margin-bottom: 20px;
-                display: block;
-            }
-            .form-section {
-                padding: 30px 20px;
-            }
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-        /* Mobile Optimization for Smaller Devices */
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-            header p {
-                font-size: 1rem;
-            }
-            .cta {
-                font-size: 0.9rem;
-                padding: 10px 15px;
-            }
-            .section h2 {
-                font-size: 1.5rem;
-            }
-            .section p {
-                font-size: 1rem;
-            }
-            .form-section input, .form-section textarea {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3XSLR3FV22');
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Track CTA button clicks
+      document.querySelectorAll('.cta-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          gtag('event', 'cta_click', {
+            event_category: 'engagement',
+            event_label: btn.textContent.trim()
+          });
+        });
+      });
+    });
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#FCF9F2">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+      background-color: #FCF9F2;
+      color: #333;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Mobile-first responsive navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      background-color: #FCF9F2;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .navbar .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #403B36;
+      text-decoration: none;
+    }
+
+    .navbar nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .navbar nav a {
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    /* Mobile menu toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
+      background-color: #403B36;
+      margin: 2px 0;
+      transition: 0.3s;
+    }
+
+    /* Mobile responsive header */
+    header {
+      text-align: center;
+      padding: 2.5rem 1rem 2rem;
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #403B36;
+      margin: 0 0 1rem 0;
+      line-height: 1.3;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 100%;
+      margin: 0 auto 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .cta-button:hover {
+      background-color: #b08e2e;
+    }
+
+    .cta-button.primary {
+      background-color: #403B36;
+      font-size: 1rem;
+      padding: 15px 25px;
+    }
+
+    .cta-button.primary:hover {
+      background-color: #2d2824;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section h2 {
+      color: #403B36;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .section p {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Mobile-optimized service grid */
+    .services-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .service-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 4px solid #CBA135;
+    }
+
+    .service-section h3 {
+      color: #403B36;
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .service-section > p {
+      text-align: left;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .service-card {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 3px solid #CBA135;
+    }
+
+    .service-card h4 {
+      color: #403B36;
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #666;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .service-section .cta-button {
+      margin-top: 1rem;
+      min-width: auto;
+      width: 100%;
+    }
+
+    /* Mobile-optimized pricing grid */
+    .pricing-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .pricing-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #e0ddd3;
+      text-align: center;
+    }
+
+    .pricing-card h3 {
+      color: #403B36;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #CBA135;
+      margin: 0.75rem 0;
+    }
+
+    .pricing-card ul {
+      text-align: left;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pricing-card .cta-button {
+      width: 100%;
+      margin-top: 1rem;
+      min-width: auto;
+    }
+
+    /* Mobile-optimized success stories */
+    .success-stories {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .story-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 4px solid #CBA135;
+    }
+
+    .story-card .quote {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .story-card .author {
+      font-weight: 600;
+      color: #403B36;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .story-card .result {
+      background: #e8f5e8;
+      padding: 0.75rem;
+      border-radius: 6px;
+      color: #1b5e20;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile-optimized contact form */
+    .contact-form {
+      max-width: 100%;
+      margin: 1.5rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e0ddd3;
+    }
+
+    .contact-form h3 {
+      color: #403B36;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #403B36;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Poppins', 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+      box-sizing: border-box;
+      background: #fdfcf7;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      border-color: #CBA135;
+      outline: none;
+      background: #fffef9;
+    }
+
+    .contact-form .cta-button {
+      width: 100%;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      margin: 0;
+      min-width: auto;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+
+    .contact-info a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Floating WhatsApp button - mobile optimized */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 15px;
+      background: #25D366;
+      color: white;
+      padding: 12px;
+      border-radius: 50%;
+      font-size: 18px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      z-index: 1000;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .floating-whatsapp:hover {
+      background: #128C7E;
+    }
+
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.85rem;
+      margin-top: auto;
+      line-height: 1.5;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Desktop responsive styles */
+    @media (min-width: 769px) {
+      .navbar {
+        padding: 1rem 2rem;
+      }
+
+      .navbar .brand {
+        font-size: 1.2rem;
+      }
+
+      .navbar nav a {
+        font-size: 1rem;
+        padding: 0;
+        margin-left: 1.5rem;
+      }
+
+      header {
+        padding: 4rem 1rem 3rem;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        padding: 0;
+      }
+
+      .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .cta-button {
+        min-width: auto;
+      }
+
+      .container {
+        padding: 2rem;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+      }
+
+      .services-grid {
+        flex-direction: row;
+        gap: 2rem;
+      }
+
+      .service-section {
+        flex: 1;
+        padding: 2rem;
+      }
+
+      .service-section h3 {
+        font-size: 1.4rem;
+      }
+
+      .service-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .service-section .cta-button {
+        width: auto;
+        padding: 12px 25px;
+      }
+
+      .pricing-grid {
+        flex-direction: row;
+        gap: 2rem;
+      }
+
+      .pricing-card {
+        flex: 1;
+        padding: 2rem;
+      }
+
+      .pricing-card .cta-button {
+        width: auto;
+        padding: 12px 25px;
+      }
+
+      .success-stories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        padding: 2rem;
+      }
+
+      .floating-whatsapp {
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+    }
+
+    /* Large screen optimizations */
+    @media (min-width: 1200px) {
+      .service-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Mobile navigation menu */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .navbar nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #FCF9F2;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      }
+
+      .navbar nav.active {
+        display: flex;
+      }
+
+      .navbar nav a {
+        padding: 0.75rem;
+        text-align: center;
+        border-bottom: 1px solid #e0ddd3;
+        margin: 0;
+      }
+
+      .navbar nav a:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>通过数据分析，推动你的业务增长</h1>
-        <p>Pinnacles Learning 将您的数据转化为宝藏，欢迎预约免费咨询！</p>
-        <a href="#form" class="cta">马上预约免费咨询</a>
-    </header>
+  <div class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="brand">Pau Analytics</a>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav id="navbar-menu">
+        <a href="index.html">首页</a>
+        <a href="data-analytics.html">数据分析</a>
+        <a href="ai-solutions.html">AI解决方案</a>
+        <a href="pricing.html">价格</a>
+        <a href="contact.html">联系我们</a>
+      </nav>
+    </div>
+  </div>
 
-    <div class="container">
-        <section class="section">
-            <h2>为什么选择 Pinnacles Learning？</h2>
-            <p>我们通过分析复杂的数据，帮助您提高销售额、更好地了解您的客户，并提升员工的效率</p>
-        </section>
+  <header>
+    <h1>数据分析与AI解决方案</h1>
+    <p>让您的业务数据变成决策方向。为马来西亚中小企业打造智能工具。</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="cta-button primary">预约免费咨询</a>
+      <a href="#pricing" class="cta-button">查看价格</a>
+    </div>
+  </header>
 
-        <section class="trust-section">
-            <h3>客户成功案例</h3>
-            <table class="success-stories">
-                <tr>
-                    <td>
-                        <p>"分析客户数据后，我们专注于高消费客户群，并通过会员计划增加了营业额！"</p>
-                        <p><strong>Ahmad Rizal, 服务中心经理</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/predicting-customer-lifetime-value-car-service-center.html">阅读更多</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>"通过预测需求，我们减少了食物浪费，并在高峰时段大幅提升了效率和利润！"</p>
-                        <p><strong>Siti Aminah, 本地咖啡店老板</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecasting-food-demand-kopitiam.html">阅读更多</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>"我们通过分析销售助理在不同班次的表现，实现了10%的销售增长目标。"</p>
-                        <p><strong>Jason Lim, Footwear Hub 零售经理</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/working-hours-analysis-footwear-shop.html">阅读更多</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>"我们从数据中发现了折扣券的最有效的使用方式，并调整了我们的优惠计划。一个月后整体销售业绩和客户满意度都提升了。"</p>
-                        <p><strong>Emily Tan, 女士内衣店市场主管</strong></p>
-                        <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/evaluate-discount-voucher-women-lingerie.html">阅读更多</a>
-                    </td>
-                </tr>
-            </table>
-        </section>
+  <div class="container">
+    <!-- Introduction -->
+    <section class="section">
+      <h2>我们如何帮助您的企业</h2>
+      <p>
+        Pau Analytics专门帮助马来西亚中小企业做出明智的数据驱动决策。
+        无论您需要更好地了解客户、优化运营，还是构建智能AI工具，
+        我们都能将您的业务挑战转化为竞争优势。
+      </p>
+    </section>
 
-        <section class="form-section" id="form">
-            <h2>欢迎预约免费咨询</h2>
-            <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mjkvgada" method="post">
-              <fieldset id="fs-frm-inputs">
-                <label for="full-name">您的姓名</label>
-                <input type="text" name="name" id="full-name" placeholder="名字和姓氏" required="">
+    <!-- Services -->
+    <section class="section">
+      <h2>我们提供什么服务</h2>
+      <div class="services-grid">
+        <div class="service-section">
+          <h3>数据分析咨询</h3>
+          <p>将您的业务数据转化为明确的决策方向。</p>
 
-                <label for="phone-number">您的电话号码</label>
-                <input type="tel" name="phone" id="phone-number" placeholder="123-456-7890" required="">
+          <div class="service-list">
+            <div class="service-card">
+              <h4>客户洞察</h4>
+              <p>了解客户保留模式，识别流失风险客户</p>
+            </div>
+            <div class="service-card">
+              <h4>库存预测</h4>
+              <p>通过需求预测优化库存水平，减少浪费</p>
+            </div>
+            <div class="service-card">
+              <h4>销售分析</h4>
+              <p>追踪业绩表现，发现增长机会</p>
+            </div>
+            <div class="service-card">
+              <h4>营销回报分析</h4>
+              <p>衡量营销活动效果，优化支出</p>
+            </div>
+          </div>
 
-                <label for="email-address">您的邮箱</label>
-                <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required="">
+          <a href="data-analytics.html" class="cta-button">了解更多</a>
+        </div>
 
-                <label for="message">请告诉我们您的业务需求</label>
-                <textarea rows="5" name="message" id="message" placeholder="在此输入您的留言。" required=""></textarea>
+        <div class="service-section">
+          <h3>AI解决方案开发</h3>
+          <p>为您的特定业务挑战定制AI工具。</p>
 
-                <input type="hidden" name="_subject" id="email-subject" value="联系表单提交">
-              </fieldset>
-              <button type="submit">发送</button>
-            </form>
-        </section>
+          <div class="service-list">
+            <div class="service-card">
+              <h4>文档处理</h4>
+              <p>自动化报告分析和数据提取</p>
+            </div>
+            <div class="service-card">
+              <h4>客服机器人</h4>
+              <p>24小时自动化支持和咨询</p>
+            </div>
+            <div class="service-card">
+              <h4>计算机视觉</h4>
+              <p>图像识别和视觉分析工具</p>
+            </div>
+            <div class="service-card">
+              <h4>业务自动化</h4>
+              <p>简化重复任务和工作流程</p>
+            </div>
+          </div>
+
+          <a href="ai-solutions.html" class="cta-button">探索AI解决方案</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="section">
+      <h2>客户成功案例</h2>
+      <div class="success-stories">
+        <div class="story-card">
+          <div class="quote">"通过预测分析识别流失风险客户后，我们实施了挽回策略。"</div>
+          <div class="author">咖啡自动售卖机业务</div>
+          <div class="result">结果：客户保留率提升30%</div>
+        </div>
+
+        <div class="story-card">
+          <div class="quote">"时间序列预测帮助我们优化季节性需求的库存管理。"</div>
+          <div class="author">饮料零售商</div>
+          <div class="result">结果：缺货情况减少40%</div>
+        </div>
+
+        <div class="story-card">
+          <div class="quote">"通过性别客户细分，我们制定了精准营销策略。"</div>
+          <div class="author">电子商务零售商</div>
+          <div class="result">结果：转化率提升45%</div>
+        </div>
+
+        <div class="story-card">
+          <div class="quote">"预测分析帮助我们识别有离职风险的员工。"</div>
+          <div class="author">马来西亚中小企业</div>
+          <div class="result">结果：员工流失率降低35%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <h2>简单透明的价格</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>分析月度服务</h3>
+          <div class="price">每月 RM1,000</div>
+          <p>持续洞察，每月报告和仪表板更新</p>
+          <ul>
+            <li>智能仪表板</li>
+            <li>每月策略通话</li>
+            <li>电邮支持</li>
+          </ul>
+          <a href="pricing.html" class="cta-button">开始使用</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>分析项目</h3>
+          <div class="price">RM3,500</div>
+          <p>针对特定业务挑战的一次性解决方案</p>
+          <ul>
+            <li>定制仪表板</li>
+            <li>数据整合</li>
+            <li>完整洞察报告</li>
+          </ul>
+          <a href="pricing.html" class="cta-button">开始项目</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>AI解决方案</h3>
+          <div class="price">从 RM1,688 起</div>
+          <p>为您的业务需求定制AI工具</p>
+          <ul>
+            <li>文档处理</li>
+            <li>智能聊天机器人</li>
+            <li>计算机视觉</li>
+          </ul>
+          <a href="pricing.html" class="cta-button">讨论AI项目</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>准备开始了吗？</h2>
+      <p>让我们讨论如何帮助您的企业做出更明智的决策。</p>
+
+      <div class="contact-info">
+        <p><strong>📧 邮箱:</strong> <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+        <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/60149207099">+60 14-920 7099</a></p>
+      </div>
+
+      <form action="https://formsubmit.co/admin@pauanalytics.com" method="POST" class="contact-form">
+        <h3>发送消息给我们</h3>
+
+        <input type="hidden" name="_subject" value="中文着陆页询问 - Pau Analytics">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+
+        <label for="name">姓名</label>
+        <input type="text" id="name" name="name" placeholder="您的全名" required>
+
+        <label for="email">邮箱</label>
+        <input type="email" id="email" name="email" placeholder="您的邮箱地址" required>
+
+        <label for="business">业务类型</label>
+        <input type="text" id="business" name="business" placeholder="例如：零售店、餐厅、电子商务" required>
+
+        <label for="service">您最感兴趣的是什么？</label>
+        <select id="service" name="service" required>
+          <option value="">选择一项服务</option>
+          <option value="data-analytics">数据分析咨询</option>
+          <option value="ai-solutions">AI解决方案开发</option>
+          <option value="both">数据分析和AI</option>
+          <option value="not-sure">不确定 - 需要咨询</option>
+        </select>
+
+        <label for="challenge">业务挑战</label>
+        <textarea id="challenge" name="challenge" rows="4" placeholder="您想解决什么具体问题？（例如：'我们不知道该进什么货'、'我们在悄悄失去客户'、'我们想要新的客户互动方式'）" required></textarea>
+
+        <button type="submit" class="cta-button">发送消息</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>
+      <a href="about.html">关于我们</a> &nbsp;|&nbsp;
+      <a href="privacy-policy.html">隐私政策</a>
+    </p>
+    <p>© 2025 Pau Analytics</p>
+  </footer>
+
+  <a href="https://wa.me/60149207099" target="_blank" class="floating-whatsapp">💬</a>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('navbar-menu');
+      menu.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navbar = document.querySelector('.navbar');
+      const menu = document.getElementById('navbar-menu');
+
+      if (!navbar.contains(event.target)) {
+        menu.classList.remove('active');
+      }
+    });
+
+    // Close menu when window is resized to desktop
+    window.addEventListener('resize', function() {
+      const menu = document.getElementById('navbar-menu');
+      if (window.innerWidth > 768) {
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

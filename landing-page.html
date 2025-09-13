@@ -39,12 +39,18 @@
   <meta name="theme-color" content="#FCF9F2">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       height: 100%;
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background-color: #FCF9F2;
       color: #333;
+      line-height: 1.6;
+      font-size: 16px;
     }
 
     body {
@@ -52,56 +58,94 @@
       flex-direction: column;
     }
 
-    /* Sticky top navbar */
+    /* Mobile-first responsive navbar */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       background-color: #FCF9F2;
-      padding: 1rem 2rem;
+      padding: 0.8rem 1rem;
       border-bottom: 1px solid #e0ddd3;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
     .navbar .brand {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: #403B36;
       text-decoration: none;
     }
 
+    .navbar nav {
+      display: flex;
+      gap: 1rem;
+    }
+
     .navbar nav a {
-      margin-left: 1.5rem;
       text-decoration: none;
       color: #403B36;
       font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      white-space: nowrap;
     }
 
     .navbar nav a:hover {
       color: #CBA135;
     }
 
+    /* Mobile menu toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
+      background-color: #403B36;
+      margin: 2px 0;
+      transition: 0.3s;
+    }
+
+    /* Mobile responsive header */
     header {
       text-align: center;
-      padding: 4rem 1rem 3rem;
+      padding: 2.5rem 1rem 2rem;
       background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 1.8rem;
       color: #403B36;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.3;
     }
 
     header p {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #555;
-      max-width: 600px;
-      margin: 0 auto 2rem;
+      max-width: 100%;
+      margin: 0 auto 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
     }
 
     .cta-button {
@@ -109,12 +153,13 @@
       background-color: #CBA135;
       color: white;
       text-decoration: none;
-      padding: 12px 25px;
+      padding: 12px 20px;
       border-radius: 6px;
       font-weight: 600;
-      font-size: 1.05rem;
-      margin: 0.5rem;
+      font-size: 0.95rem;
       transition: background-color 0.3s ease;
+      text-align: center;
+      min-width: 200px;
     }
 
     .cta-button:hover {
@@ -123,8 +168,8 @@
 
     .cta-button.primary {
       background-color: #403B36;
-      font-size: 1.2rem;
-      padding: 15px 30px;
+      font-size: 1rem;
+      padding: 15px 25px;
     }
 
     .cta-button.primary:hover {
@@ -134,30 +179,40 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem 1rem;
     }
 
     .section {
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
 
     .section h2 {
       color: #403B36;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
       text-align: center;
+      line-height: 1.3;
     }
 
+    .section p {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Mobile-optimized service grid */
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
 
     .service-section {
       background: white;
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       border-left: 4px solid #CBA135;
@@ -165,39 +220,63 @@
 
     .service-section h3 {
       color: #403B36;
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .service-section > p {
+      text-align: left;
+      font-size: 0.9rem;
       margin-bottom: 1rem;
-      font-size: 1.4rem;
     }
 
     .service-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1rem 0;
     }
 
     .service-card {
       background: #f8f9fa;
-      padding: 1.5rem;
+      padding: 1rem;
       border-radius: 8px;
       border-left: 3px solid #CBA135;
     }
 
     .service-card h4 {
       color: #403B36;
-      margin-bottom: 0.5rem;
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      line-height: 1.3;
     }
 
+    .service-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #666;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .service-section .cta-button {
+      margin-top: 1rem;
+      min-width: auto;
+      width: 100%;
+    }
+
+    /* Mobile-optimized pricing grid */
     .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
 
     .pricing-card {
       background: white;
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       border: 1px solid #e0ddd3;
@@ -206,24 +285,87 @@
 
     .pricing-card h3 {
       color: #403B36;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
     }
 
     .price {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
       color: #CBA135;
-      margin: 1rem 0;
+      margin: 0.75rem 0;
     }
 
-    .contact-form {
-      max-width: 600px;
-      margin: 2rem auto;
+    .pricing-card ul {
+      text-align: left;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pricing-card .cta-button {
+      width: 100%;
+      margin-top: 1rem;
+      min-width: auto;
+    }
+
+    /* Mobile-optimized success stories */
+    .success-stories {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .story-card {
       background: white;
-      padding: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 4px solid #CBA135;
+    }
+
+    .story-card .quote {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .story-card .author {
+      font-weight: 600;
+      color: #403B36;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .story-card .result {
+      background: #e8f5e8;
+      padding: 0.75rem;
+      border-radius: 6px;
+      color: #1b5e20;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile-optimized contact form */
+    .contact-form {
+      max-width: 100%;
+      margin: 1.5rem auto;
+      background: white;
+      padding: 1.5rem;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       border: 1px solid #e0ddd3;
+    }
+
+    .contact-form h3 {
+      color: #403B36;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.1rem;
     }
 
     .contact-form label {
@@ -231,6 +373,7 @@
       margin-bottom: 0.5rem;
       color: #403B36;
       font-weight: 500;
+      font-size: 0.9rem;
     }
 
     .contact-form input,
@@ -238,7 +381,7 @@
     .contact-form select {
       width: 100%;
       padding: 12px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
@@ -261,21 +404,47 @@
       border: none;
       cursor: pointer;
       margin: 0;
+      min-width: auto;
     }
 
+    .contact-info {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+
+    .contact-info a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Floating WhatsApp button - mobile optimized */
     .floating-whatsapp {
       position: fixed;
       bottom: 20px;
-      right: 20px;
+      right: 15px;
       background: #25D366;
       color: white;
-      padding: 12px 16px;
+      padding: 12px;
       border-radius: 50%;
-      font-size: 20px;
+      font-size: 18px;
       text-align: center;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       text-decoration: none;
       z-index: 1000;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .floating-whatsapp:hover {
@@ -286,9 +455,14 @@
       background-color: #403B36;
       color: white;
       text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
+      padding: 1.5rem 1rem;
+      font-size: 0.85rem;
       margin-top: auto;
+      line-height: 1.5;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
     }
 
     footer a {
@@ -300,40 +474,151 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
+    /* Desktop responsive styles */
+    @media (min-width: 769px) {
       .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 1rem 2rem;
       }
 
-      .navbar nav {
-        margin-top: 0.5rem;
+      .navbar .brand {
+        font-size: 1.2rem;
+      }
+
+      .navbar nav a {
+        font-size: 1rem;
+        padding: 0;
+        margin-left: 1.5rem;
+      }
+
+      header {
+        padding: 4rem 1rem 3rem;
       }
 
       header h1 {
+        font-size: 2.5rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        padding: 0;
+      }
+
+      .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .cta-button {
+        min-width: auto;
+      }
+
+      .container {
+        padding: 2rem;
+      }
+
+      .section h2 {
         font-size: 2rem;
       }
 
       .services-grid {
-        grid-template-columns: 1fr;
+        flex-direction: row;
+        gap: 2rem;
+      }
+
+      .service-section {
+        flex: 1;
+        padding: 2rem;
+      }
+
+      .service-section h3 {
+        font-size: 1.4rem;
       }
 
       .service-list {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .service-section .cta-button {
+        width: auto;
+        padding: 12px 25px;
       }
 
       .pricing-grid {
-        grid-template-columns: 1fr;
+        flex-direction: row;
+        gap: 2rem;
       }
 
-      .cta-button {
-        font-size: 1rem;
-        padding: 10px 20px;
+      .pricing-card {
+        flex: 1;
+        padding: 2rem;
       }
 
-      .cta-button.primary {
-        font-size: 1.1rem;
+      .pricing-card .cta-button {
+        width: auto;
         padding: 12px 25px;
+      }
+
+      .success-stories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        padding: 2rem;
+      }
+
+      .floating-whatsapp {
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+    }
+
+    /* Large screen optimizations */
+    @media (min-width: 1200px) {
+      .service-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Mobile navigation menu */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .navbar nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #FCF9F2;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      }
+
+      .navbar nav.active {
+        display: flex;
+      }
+
+      .navbar nav a {
+        padding: 0.75rem;
+        text-align: center;
+        border-bottom: 1px solid #e0ddd3;
+        margin: 0;
+      }
+
+      .navbar nav a:last-child {
+        border-bottom: none;
       }
     }
   </style>
@@ -341,28 +626,37 @@
 <body>
 
   <div class="navbar">
-    <a href="index.html" class="brand">Pau Analytics</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="data-analytics.html">Data Analytics</a>
-      <a href="ai-solutions.html">AI Solutions</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="navbar-container">
+      <a href="index.html" class="brand">Pau Analytics</a>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav id="navbar-menu">
+        <a href="index.html">Home</a>
+        <a href="data-analytics.html">Data Analytics</a>
+        <a href="ai-solutions.html">AI Solutions</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
   </div>
 
   <header>
     <h1>Data Analytics & AI Solutions</h1>
     <p>Turn your business data into direction. Build smart tools that work for Malaysian SMEs.</p>
-    <a href="#contact" class="cta-button primary">Book a Free Consultation</a>
-    <a href="#pricing" class="cta-button">View Pricing</a>
+    <div class="cta-buttons">
+      <a href="#contact" class="cta-button primary">Book a Free Consultation</a>
+      <a href="#pricing" class="cta-button">View Pricing</a>
+    </div>
   </header>
 
   <div class="container">
     <!-- Overview -->
     <section class="section">
       <h2>How We Help Your Business</h2>
-      <p style="text-align: center; font-size: 1.1rem; color: #555; max-width: 800px; margin: 0 auto;">
+      <p>
         At Pau Analytics, we specialize in helping Malaysian SMEs make confident, data-driven decisions.
         Whether you need to understand your customers better, optimize operations, or build smart AI tools,
         we turn your business challenges into competitive advantages.
@@ -396,9 +690,7 @@
             </div>
           </div>
 
-          <div style="text-align: center; margin-top: 1.5rem;">
-            <a href="data-analytics.html" class="cta-button">Learn More</a>
-          </div>
+          <a href="data-analytics.html" class="cta-button">Learn More</a>
         </div>
 
         <div class="service-section">
@@ -424,9 +716,37 @@
             </div>
           </div>
 
-          <div style="text-align: center; margin-top: 1.5rem;">
-            <a href="ai-solutions.html" class="cta-button">Explore AI Solutions</a>
-          </div>
+          <a href="ai-solutions.html" class="cta-button">Explore AI Solutions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="section">
+      <h2>Customer Success Stories</h2>
+      <div class="success-stories">
+        <div class="story-card">
+          <div class="quote">"After identifying at-risk customers through predictive analytics, we implemented retention strategies."</div>
+          <div class="author">Coffee Vending Business</div>
+          <div class="result">Result: 30% customer retention improvement</div>
+        </div>
+
+        <div class="story-card">
+          <div class="quote">"Time series forecasting helped us optimize inventory for seasonal demand management."</div>
+          <div class="author">Beverage Retailer</div>
+          <div class="result">Result: 40% reduction in stockouts</div>
+        </div>
+
+        <div class="story-card">
+          <div class="quote">"Gender-based customer segmentation helped us create targeted marketing campaigns."</div>
+          <div class="author">E-commerce Retailer</div>
+          <div class="result">Result: 45% conversion rate increase</div>
+        </div>
+
+        <div class="story-card">
+          <div class="quote">"Predictive analytics helped us identify employees at risk of leaving."</div>
+          <div class="author">Malaysian SME</div>
+          <div class="result">Result: 35% turnover reduction</div>
         </div>
       </div>
     </section>
@@ -439,7 +759,7 @@
           <h3>Analytics Monthly</h3>
           <div class="price">RM1,000 / month</div>
           <p>Ongoing insights with monthly reports and dashboard updates</p>
-          <ul style="text-align: left; padding-left: 1.2rem;">
+          <ul>
             <li>Smart dashboards</li>
             <li>Monthly strategy calls</li>
             <li>Email support</li>
@@ -451,7 +771,7 @@
           <h3>Analytics Project</h3>
           <div class="price">RM3,500</div>
           <p>One-time solution for specific business challenges</p>
-          <ul style="text-align: left; padding-left: 1.2rem;">
+          <ul>
             <li>Custom dashboard</li>
             <li>Data integration</li>
             <li>Full insights report</li>
@@ -463,7 +783,7 @@
           <h3>AI Solutions</h3>
           <div class="price">From RM1,688</div>
           <p>Custom AI tools built for your business needs</p>
-          <ul style="text-align: left; padding-left: 1.2rem;">
+          <ul>
             <li>Document processing</li>
             <li>Smart chatbots</li>
             <li>Computer vision</li>
@@ -476,17 +796,15 @@
     <!-- Contact -->
     <section id="contact" class="section">
       <h2>Ready to Get Started?</h2>
-      <p style="text-align: center; font-size: 1.1rem; color: #555; margin-bottom: 2rem;">
-        Let's discuss how we can help your business make smarter decisions.
-      </p>
+      <p>Let's discuss how we can help your business make smarter decisions.</p>
 
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <p><strong>📧 Email:</strong> <a href="mailto:admin@pauanalytics.com" style="color: #CBA135;">admin@pauanalytics.com</a></p>
-        <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/60149207099" style="color: #CBA135;">+60 14-920 7099</a></p>
+      <div class="contact-info">
+        <p><strong>📧 Email:</strong> <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+        <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/60149207099">+60 14-920 7099</a></p>
       </div>
 
       <form action="https://formsubmit.co/admin@pauanalytics.com" method="POST" class="contact-form">
-        <h3 style="color: #403B36; margin-bottom: 1rem; text-align: center;">Send Us a Message</h3>
+        <h3>Send Us a Message</h3>
 
         <input type="hidden" name="_subject" value="New Inquiry from Landing Page - Pau Analytics">
         <input type="hidden" name="_captcha" value="false">
@@ -528,6 +846,31 @@
   </footer>
 
   <a href="https://wa.me/60149207099" target="_blank" class="floating-whatsapp">💬</a>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('navbar-menu');
+      menu.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navbar = document.querySelector('.navbar');
+      const menu = document.getElementById('navbar-menu');
+
+      if (!navbar.contains(event.target)) {
+        menu.classList.remove('active');
+      }
+    });
+
+    // Close menu when window is resized to desktop
+    window.addEventListener('resize', function() {
+      const menu = document.getElementById('navbar-menu');
+      if (window.innerWidth > 768) {
+        menu.classList.remove('active');
+      }
+    });
+  </script>
 
 </body>
 </html>
