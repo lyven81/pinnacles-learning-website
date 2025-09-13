@@ -182,6 +182,34 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      .case-study-header h1 {
+        font-size: 2rem;
+      }
+
+      .methodology-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .content-section {
+        padding: 0 1rem;
+      }
+
+      .cta-section {
+        margin: 2rem 1rem;
+        padding: 2rem 1rem;
+      }
+    }
   </style>
 </head>
 <body>
