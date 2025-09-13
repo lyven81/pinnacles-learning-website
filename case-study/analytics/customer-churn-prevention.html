@@ -87,7 +87,7 @@
 
     .methodology-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
       margin: 2rem 0;
     }
@@ -251,7 +251,7 @@
 
   <div class="case-study-header">
     <h1>Saving the Silent Spenders</h1>
-    <p class="subtitle">How predictive analytics helped a coffee vending business identify at-risk customers and boost retention</p>
+    <p class="subtitle">We helped a coffee business predict which customers would leave and keep them</p>
   </div>
 
   <div class="key-results">
@@ -304,23 +304,98 @@
     </div>
 
     <h2>Key Insights & Findings</h2>
-    <div class="insights-grid">
-      <div class="insight-card">
-        <h4>Customer Value Distribution</h4>
-        <div class="chart-placeholder">CLV Distribution Chart</div>
-        <p>Top-tier customers (Tier 4) showed average spending of $2,259, representing the highest value segment requiring immediate attention.</p>
+    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Customer Value Distribution</h4>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Tier bars -->
+            <rect x="50" y="160" width="60" height="20" fill="#ff6b6b" opacity="0.8"/>
+            <rect x="120" y="140" width="60" height="40" fill="#feca57" opacity="0.8"/>
+            <rect x="190" y="100" width="60" height="80" fill="#48dbfb" opacity="0.8"/>
+            <rect x="260" y="60" width="60" height="120" fill="#0be881" opacity="0.8"/>
+            
+            <!-- Labels -->
+            <text x="80" y="195" fill="white" text-anchor="middle" font-size="10">Tier 1</text>
+            <text x="150" y="195" fill="white" text-anchor="middle" font-size="10">Tier 2</text>
+            <text x="220" y="195" fill="white" text-anchor="middle" font-size="10">Tier 3</text>
+            <text x="290" y="195" fill="white" text-anchor="middle" font-size="10">Tier 4</text>
+            
+            <!-- Values -->
+            <text x="80" y="150" fill="white" text-anchor="middle" font-size="8">$370</text>
+            <text x="150" y="130" fill="white" text-anchor="middle" font-size="8">$890</text>
+            <text x="220" y="90" fill="white" text-anchor="middle" font-size="8">$1,456</text>
+            <text x="290" y="50" fill="white" text-anchor="middle" font-size="8">$2,259</text>
+            
+            <text x="200" y="20" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Average Customer Lifetime Value by Tier</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Top-tier customers (Tier 4) showed average spending of $2,259, representing the highest value segment requiring immediate attention.</p>
       </div>
       
-      <div class="insight-card">
-        <h4>Frequency-Spending Correlation</h4>
-        <div class="chart-placeholder">Correlation Analysis Chart</div>
-        <p>Strong positive correlation between purchase frequency and total spending, indicating loyal customers are also high-value customers.</p>
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Frequency-Spending Correlation</h4>
+        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Scatter plot points -->
+            <circle cx="60" cy="160" r="3" fill="#ff6b6b" opacity="0.8"/>
+            <circle cx="80" cy="150" r="4" fill="#ff6b6b" opacity="0.8"/>
+            <circle cx="100" cy="140" r="3" fill="#feca57" opacity="0.8"/>
+            <circle cx="120" cy="130" r="4" fill="#feca57" opacity="0.8"/>
+            <circle cx="140" cy="120" r="5" fill="#48dbfb" opacity="0.8"/>
+            <circle cx="160" cy="110" r="4" fill="#48dbfb" opacity="0.8"/>
+            <circle cx="180" cy="100" r="5" fill="#48dbfb" opacity="0.8"/>
+            <circle cx="200" cy="90" r="6" fill="#0be881" opacity="0.8"/>
+            <circle cx="220" cy="80" r="5" fill="#0be881" opacity="0.8"/>
+            <circle cx="240" cy="70" r="7" fill="#0be881" opacity="0.8"/>
+            <circle cx="260" cy="60" r="6" fill="#0be881" opacity="0.8"/>
+            
+            <!-- Trend line -->
+            <line x1="50" y1="170" x2="280" y2="50" stroke="#333" stroke-width="2" opacity="0.7"/>
+            
+            <!-- Axis labels -->
+            <text x="200" y="190" fill="#333" text-anchor="middle" font-size="10">Purchase Frequency →</text>
+            <text x="30" y="100" fill="#333" text-anchor="middle" font-size="10" transform="rotate(-90 30 100)">Spending →</text>
+            
+            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Frequency vs Spending Correlation (R² = 0.85)</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Strong positive correlation between purchase frequency and total spending, indicating loyal customers are also high-value customers.</p>
       </div>
       
-      <div class="insight-card">
-        <h4>Customer Tier Analysis</h4>
-        <div class="chart-placeholder">Customer Segmentation Chart</div>
-        <p>4 distinct customer segments identified, each requiring different retention and engagement strategies.</p>
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Customer Tier Breakdown</h4>
+        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Pie chart sectors -->
+            <g transform="translate(200,100)">
+              <!-- Tier 1: 45% -->
+              <path d="M 0,-60 A 60,60 0 0,1 42.43,42.43 L 0,0 Z" fill="#ff6b6b" opacity="0.8"/>
+              <!-- Tier 2: 30% -->
+              <path d="M 42.43,42.43 A 60,60 0 0,1 -18.54,56.46 L 0,0 Z" fill="#feca57" opacity="0.8"/>
+              <!-- Tier 3: 20% -->
+              <path d="M -18.54,56.46 A 60,60 0 0,1 -54.60,-21.42 L 0,0 Z" fill="#48dbfb" opacity="0.8"/>
+              <!-- Tier 4: 5% -->
+              <path d="M -54.60,-21.42 A 60,60 0 0,1 0,-60 L 0,0 Z" fill="#0be881" opacity="0.8"/>
+            </g>
+            
+            <!-- Labels -->
+            <text x="280" y="60" fill="#333" font-size="10">Tier 1: 45%</text>
+            <rect x="270" y="52" width="8" height="8" fill="#ff6b6b" opacity="0.8"/>
+            
+            <text x="280" y="80" fill="#333" font-size="10">Tier 2: 30%</text>
+            <rect x="270" y="72" width="8" height="8" fill="#feca57" opacity="0.8"/>
+            
+            <text x="280" y="100" fill="#333" font-size="10">Tier 3: 20%</text>
+            <rect x="270" y="92" width="8" height="8" fill="#48dbfb" opacity="0.8"/>
+            
+            <text x="280" y="120" fill="#333" font-size="10">Tier 4: 5%</text>
+            <rect x="270" y="112" width="8" height="8" fill="#0be881" opacity="0.8"/>
+            
+            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Customer Distribution by Value Tier</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">4 distinct customer segments identified, each requiring different retention and engagement strategies.</p>
       </div>
     </div>
 

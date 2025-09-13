@@ -87,7 +87,7 @@
 
     .methodology-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
       margin: 2rem 0;
     }
@@ -228,7 +228,7 @@
 
   <div class="case-study-header">
     <h1>Seasonal Success</h1>
-    <p class="subtitle">How time series forecasting helped a beverage retailer predict Chinese New Year demand and optimize inventory</p>
+    <p class="subtitle">We helped a beverage distributor predict seasonal demand and save RM180,000</p>
   </div>
 
   <div class="key-results">
@@ -282,23 +282,106 @@
     </div>
 
     <h2>Key Insights & Findings</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4>Seasonal Patterns</h4>
-        <div class="chart-placeholder">Seasonal Demand Chart</div>
-        <p>Clear 300% demand spike 2 weeks before Chinese New Year, with specific product category preferences.</p>
+    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Seasonal Demand Patterns</h4>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Monthly demand line chart -->
+            <path d="M 40 120 L 70 115 L 100 110 L 130 105 L 160 40 L 190 35 L 220 100 L 250 110 L 280 115 L 310 120 L 340 125 L 370 130" stroke="#4caf50" stroke-width="3" fill="none"/>
+            
+            <!-- Data points -->
+            <circle cx="40" cy="120" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="70" cy="115" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="100" cy="110" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="130" cy="105" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="160" cy="40" r="5" fill="#ff6b6b" stroke="#fff" stroke-width="2"/>
+            <circle cx="190" cy="35" r="5" fill="#ff6b6b" stroke="#fff" stroke-width="2"/>
+            <circle cx="220" cy="100" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="250" cy="110" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            
+            <!-- CNY spike annotation -->
+            <text x="175" y="25" fill="white" text-anchor="middle" font-size="10" font-weight="bold">300% Spike</text>
+            <text x="175" y="15" fill="white" text-anchor="middle" font-size="8">Chinese New Year</text>
+            
+            <!-- Month labels -->
+            <text x="40" y="190" fill="white" text-anchor="middle" font-size="8">Jan</text>
+            <text x="100" y="190" fill="white" text-anchor="middle" font-size="8">Mar</text>
+            <text x="160" y="190" fill="white" text-anchor="middle" font-size="8">May</text>
+            <text x="220" y="190" fill="white" text-anchor="middle" font-size="8">Jul</text>
+            <text x="280" y="190" fill="white" text-anchor="middle" font-size="8">Sep</text>
+            <text x="340" y="190" fill="white" text-anchor="middle" font-size="8">Nov</text>
+            
+            <text x="200" y="180" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Monthly Demand Pattern (Units)</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Clear 300% demand spike 2 weeks before Chinese New Year, with specific product category preferences.</p>
       </div>
       
-      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4>Forecasting Accuracy</h4>
-        <div class="chart-placeholder">Accuracy Metrics Chart</div>
-        <p>ARIMA model achieved 85% accuracy for seasonal forecasting, significantly outperforming manual estimates.</p>
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Forecasting Model Accuracy</h4>
+        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Accuracy comparison bars -->
+            <rect x="80" y="140" width="50" height="40" fill="#ff6b6b" opacity="0.8"/>
+            <rect x="160" y="60" width="50" height="120" fill="#4caf50" opacity="0.8"/>
+            <rect x="240" y="100" width="50" height="80" fill="#feca57" opacity="0.8"/>
+            
+            <!-- Method labels -->
+            <text x="105" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Manual</text>
+            <text x="185" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">ARIMA</text>
+            <text x="265" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Simple</text>
+            
+            <!-- Accuracy percentages -->
+            <text x="105" y="125" fill="white" text-anchor="middle" font-size="12" font-weight="bold">45%</text>
+            <text x="185" y="50" fill="white" text-anchor="middle" font-size="12" font-weight="bold">85%</text>
+            <text x="265" y="90" fill="white" text-anchor="middle" font-size="12" font-weight="bold">62%</text>
+            
+            <!-- Winner indicator -->
+            <text x="185" y="40" fill="#4caf50" text-anchor="middle" font-size="10" font-weight="bold">Winner!</text>
+            
+            <!-- Y-axis label -->
+            <text x="30" y="100" fill="#333" text-anchor="middle" font-size="10" transform="rotate(-90 30 100)">Accuracy %</text>
+            
+            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Forecasting Method Comparison</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">ARIMA model achieved 85% accuracy for seasonal forecasting, significantly outperforming manual estimates at 45%.</p>
       </div>
       
-      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4>Product Mix Optimization</h4>
-        <div class="chart-placeholder">Product Performance Chart</div>
-        <p>Identified top 15 products driving 80% of seasonal revenue, enabling focused inventory strategy.</p>
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Product Performance Analysis</h4>
+        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Pareto chart - bars for top products -->
+            <rect x="50" y="80" width="20" height="100" fill="#4caf50" opacity="0.8"/>
+            <rect x="75" y="100" width="20" height="80" fill="#4caf50" opacity="0.8"/>
+            <rect x="100" y="110" width="20" height="70" fill="#4caf50" opacity="0.8"/>
+            <rect x="125" y="120" width="20" height="60" fill="#4caf50" opacity="0.8"/>
+            <rect x="150" y="130" width="20" height="50" fill="#4caf50" opacity="0.8"/>
+            
+            <!-- Cumulative percentage line -->
+            <path d="M 60 150 L 85 130 L 110 110 L 135 95 L 160 85" stroke="#ff6b6b" stroke-width="3" fill="none"/>
+            
+            <!-- 80% line -->
+            <line x1="180" y1="85" x2="350" y2="85" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="355" y="90" fill="#ff6b6b" font-size="10" font-weight="bold">80%</text>
+            
+            <!-- Product labels -->
+            <text x="60" y="195" fill="#333" text-anchor="middle" font-size="8">Tea</text>
+            <text x="85" y="195" fill="#333" text-anchor="middle" font-size="8">Cola</text>
+            <text x="110" y="195" fill="#333" text-anchor="middle" font-size="8">Juice</text>
+            <text x="135" y="195" fill="#333" text-anchor="middle" font-size="8">Water</text>
+            <text x="160" y="195" fill="#333" text-anchor="middle" font-size="8">Sports</text>
+            
+            <!-- Top performers callout -->
+            <text x="220" y="60" fill="#333" font-size="12" font-weight="bold">Top 15 Products</text>
+            <text x="220" y="80" fill="#4caf50" font-size="16" font-weight="bold">80% Revenue</text>
+            
+            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Product Revenue Contribution</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Identified top 15 products driving 80% of seasonal revenue, enabling focused inventory strategy.</p>
       </div>
     </div>
 

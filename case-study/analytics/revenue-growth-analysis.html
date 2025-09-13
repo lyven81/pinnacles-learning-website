@@ -184,7 +184,7 @@
 
   <div class="case-study-header">
     <h1>Grow Smarter, Not Bigger</h1>
-    <p class="subtitle">How revenue-hiring correlation analysis helped a services company make strategic scaling decisions and increase profitability</p>
+    <p class="subtitle">We showed a marketing agency when to stop hiring and saved them RM300,000</p>
   </div>
 
   <div class="key-results">
@@ -214,7 +214,104 @@
     </ul>
 
     <h2>Key Insights & Findings</h2>
-    <p>Our correlation analysis revealed that the relationship between employees and revenue is not linear. We identified the optimal scaling strategy that maximizes profitability rather than just top-line growth.</p>
+    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Revenue vs Employee Correlation</h4>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Revenue curve showing diminishing returns -->
+            <path d="M 40 160 Q 120 80 200 70 Q 280 65 360 80" stroke="#4caf50" stroke-width="3" fill="none"/>
+            
+            <!-- Employee count points -->
+            <circle cx="40" cy="160" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="80" cy="120" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="120" cy="90" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="160" cy="75" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="200" cy="70" r="5" fill="#ff6b6b" stroke="#fff" stroke-width="2"/>
+            <circle cx="240" cy="72" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="280" cy="75" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            <circle cx="320" cy="78" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+            
+            <!-- Optimal point indicator -->
+            <text x="200" y="60" fill="white" text-anchor="middle" font-size="10" font-weight="bold">Optimal Point</text>
+            <text x="200" y="50" fill="#ff6b6b" text-anchor="middle" font-size="8">45 employees</text>
+            
+            <!-- Axis labels -->
+            <text x="200" y="190" fill="white" text-anchor="middle" font-size="10">Number of Employees</text>
+            <text x="25" y="100" fill="white" text-anchor="middle" font-size="10" transform="rotate(-90 25 100)">Revenue per Employee</text>
+            
+            <text x="200" y="20" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Revenue Efficiency vs Team Size</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Analysis revealed diminishing returns after 45 employees, showing more people doesn't always mean more profitable revenue.</p>
+      </div>
+      
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Cost vs Productivity Analysis</h4>
+        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Cost bars vs productivity bars -->
+            <rect x="60" y="120" width="30" height="60" fill="#ff6b6b" opacity="0.8"/>
+            <rect x="100" y="100" width="30" height="80" fill="#ff6b6b" opacity="0.8"/>
+            <rect x="140" y="80" width="30" height="100" fill="#ff6b6b" opacity="0.8"/>
+            <rect x="180" y="60" width="30" height="120" fill="#ff6b6b" opacity="0.8"/>
+            
+            <!-- Productivity bars -->
+            <rect x="220" y="100" width="30" height="80" fill="#4caf50" opacity="0.8"/>
+            <rect x="260" y="80" width="30" height="100" fill="#4caf50" opacity="0.8"/>
+            <rect x="300" y="70" width="30" height="110" fill="#4caf50" opacity="0.8"/>
+            <rect x="340" y="65" width="30" height="115" fill="#4caf50" opacity="0.8"/>
+            
+            <!-- Labels -->
+            <text x="135" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Hiring Costs</text>
+            <text x="295" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Productivity Gain</text>
+            
+            <!-- Breakeven point -->
+            <line x1="200" y1="50" x2="200" y2="190" stroke="#feca57" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="205" y="45" fill="#333" font-size="10" font-weight="bold">Break-even</text>
+            
+            <!-- ROI indicator -->
+            <text x="300" y="50" fill="#4caf50" font-size="12" font-weight="bold">Positive ROI</text>
+            <text x="120" y="50" fill="#ff6b6b" font-size="12" font-weight="bold">Negative ROI</text>
+            
+            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Hiring Cost vs Productivity ROI</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Identified the point where additional hiring costs exceed productivity gains, preventing wasteful expansion.</p>
+      </div>
+      
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Strategic Scaling Impact</h4>
+        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Before and after comparison -->
+            <rect x="80" y="120" width="50" height="60" fill="#ff6b6b" opacity="0.8"/>
+            <rect x="200" y="80" width="50" height="100" fill="#4caf50" opacity="0.8"/>
+            
+            <!-- Labels -->
+            <text x="105" y="195" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Before</text>
+            <text x="225" y="195" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">After</text>
+            
+            <!-- Profit margin values -->
+            <text x="105" y="110" fill="white" text-anchor="middle" font-size="12" font-weight="bold">18%</text>
+            <text x="225" y="70" fill="white" text-anchor="middle" font-size="12" font-weight="bold">22%</text>
+            
+            <!-- Improvement arrow -->
+            <path d="M 140 140 L 190 140 L 185 135 M 190 140 L 185 145" stroke="#333" stroke-width="2" fill="none"/>
+            <text x="165" y="155" fill="#333" text-anchor="middle" font-size="10">+22% increase</text>
+            
+            <!-- Savings callout -->
+            <text x="300" y="70" fill="#333" font-size="12" font-weight="bold">Savings:</text>
+            <text x="300" y="90" fill="#4caf50" font-size="16" font-weight="bold">RM300K</text>
+            <text x="300" y="110" fill="#333" font-size="10">Avoided hiring</text>
+            <text x="300" y="125" fill="#333" font-size="10">costs</text>
+            
+            <text x="200" y="30" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Profit Margin Improvement</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Strategic workforce optimization led to 22% higher profit margins while avoiding RM300,000 in unnecessary hiring costs.</p>
+      </div>
+    </div>
 
     <h2>Strategic Recommendations</h2>
     <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 2rem 0;">

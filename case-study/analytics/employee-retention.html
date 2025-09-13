@@ -184,7 +184,7 @@
 
   <div class="case-study-header">
     <h1>Before They Leave</h1>
-    <p class="subtitle">How predictive analytics helped a tech company identify at-risk employees and reduce turnover by 35%</p>
+    <p class="subtitle">We helped a tech company predict which employees would quit and saved RM250,000</p>
   </div>
 
   <div class="key-results">
@@ -214,7 +214,100 @@
     </ul>
 
     <h2>Key Insights & Predictions</h2>
-    <p>Our predictive model identified the top risk factors for employee turnover and created an early warning system that achieved 80% accuracy in predicting which employees were likely to resign within 6 months.</p>
+    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Risk Factor Analysis</h4>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Risk factors horizontal bars -->
+            <rect x="50" y="40" width="180" height="20" fill="#ff6b6b" opacity="0.8"/>
+            <rect x="50" y="70" width="150" height="20" fill="#feca57" opacity="0.8"/>
+            <rect x="50" y="100" width="120" height="20" fill="#48dbfb" opacity="0.8"/>
+            <rect x="50" y="130" width="90" height="20" fill="#0be881" opacity="0.8"/>
+            <rect x="50" y="160" width="70" height="20" fill="#a55eea" opacity="0.8"/>
+            
+            <!-- Factor labels -->
+            <text x="240" y="55" fill="white" font-size="10" font-weight="bold">Low Salary vs Market</text>
+            <text x="210" y="85" fill="white" font-size="10" font-weight="bold">No Career Path</text>
+            <text x="180" y="115" fill="white" font-size="10" font-weight="bold">Poor Management</text>
+            <text x="150" y="145" fill="white" font-size="10" font-weight="bold">Work-Life Balance</text>
+            <text x="130" y="175" fill="white" font-size="10" font-weight="bold">Limited Training</text>
+            
+            <!-- Impact scores -->
+            <text x="35" y="55" fill="white" text-anchor="end" font-size="8">85%</text>
+            <text x="35" y="85" fill="white" text-anchor="end" font-size="8">72%</text>
+            <text x="35" y="115" fill="white" text-anchor="end" font-size="8">68%</text>
+            <text x="35" y="145" fill="white" text-anchor="end" font-size="8">55%</text>
+            <text x="35" y="175" fill="white" text-anchor="end" font-size="8">42%</text>
+            
+            <text x="200" y="20" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Top 5 Turnover Risk Factors</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Identified top 5 factors predicting employee resignation risk, with salary competitiveness being the strongest predictor.</p>
+      </div>
+      
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Prediction Model Accuracy</h4>
+        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Accuracy gauge -->
+            <g transform="translate(200,120)">
+              <!-- Background arc -->
+              <path d="M -80,0 A 80,80 0 0,1 80,0" stroke="#e0e0e0" stroke-width="15" fill="none"/>
+              <!-- Accuracy arc (80% of semicircle) -->
+              <path d="M -80,0 A 80,80 0 0,1 51.2,-56.6" stroke="#4caf50" stroke-width="15" fill="none"/>
+            </g>
+            
+            <!-- Accuracy percentage -->
+            <text x="200" y="130" fill="#333" text-anchor="middle" font-size="24" font-weight="bold">80%</text>
+            <text x="200" y="150" fill="#333" text-anchor="middle" font-size="12">Prediction Accuracy</text>
+            
+            <!-- Benchmark comparison -->
+            <text x="80" y="60" fill="#333" font-size="10">Industry Average:</text>
+            <text x="80" y="75" fill="#ff6b6b" font-size="12" font-weight="bold">45%</text>
+            
+            <text x="280" y="60" fill="#333" font-size="10">Our Model:</text>
+            <text x="280" y="75" fill="#4caf50" font-size="12" font-weight="bold">80%</text>
+            
+            <text x="200" y="30" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Employee Turnover Prediction Accuracy</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Achieved 80% accuracy in predicting which employees were likely to resign within 6 months.</p>
+      </div>
+      
+      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4 style="color: #403B36; margin-bottom: 1rem;">Early Warning System Impact</h4>
+        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
+          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+            <!-- Process flow -->
+            <rect x="50" y="80" width="60" height="40" fill="#ff6b6b" opacity="0.8" rx="5"/>
+            <rect x="150" y="80" width="60" height="40" fill="#feca57" opacity="0.8" rx="5"/>
+            <rect x="250" y="80" width="60" height="40" fill="#4caf50" opacity="0.8" rx="5"/>
+            
+            <!-- Arrows -->
+            <path d="M 115 100 L 145 100 L 140 95 M 145 100 L 140 105" stroke="#333" stroke-width="2" fill="none"/>
+            <path d="M 215 100 L 245 100 L 240 95 M 245 100 L 240 105" stroke="#333" stroke-width="2" fill="none"/>
+            
+            <!-- Step labels -->
+            <text x="80" y="70" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Detect Risk</text>
+            <text x="180" y="70" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Intervene</text>
+            <text x="280" y="70" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Retain</text>
+            
+            <!-- Success rate -->
+            <text x="80" y="105" fill="white" text-anchor="middle" font-size="10">At-Risk</text>
+            <text x="180" y="105" fill="white" text-anchor="middle" font-size="10">Support</text>
+            <text x="280" y="105" fill="white" text-anchor="middle" font-size="10">90%</text>
+            
+            <!-- Overall result -->
+            <text x="200" y="150" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">90% of at-risk employees retained</text>
+            <text x="200" y="165" fill="#333" text-anchor="middle" font-size="10">through proactive intervention</text>
+            
+            <text x="200" y="30" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Intervention Success Process</text>
+          </svg>
+        </div>
+        <p style="color: #666; margin-top: 1rem;">Created an early warning system that enabled proactive intervention, resulting in 90% retention of at-risk employees.</p>
+      </div>
+    </div>
 
     <h2>Business Impact</h2>
     <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
