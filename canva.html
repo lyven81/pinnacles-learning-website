@@ -3,85 +3,318 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>One-Pager | Pau Analytics</title>
+  <title>Business Brief: Data Analytics Services | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/canva.html" />
+  <meta name="description" content="Business overview: How Pau Analytics helps Malaysian SMEs make better decisions with data. Clear services, transparent pricing, honest approach." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3XSLR3FV22');
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#FCF9F2">
+
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       background-color: #FCF9F2;
       color: #333;
+      line-height: 1.6;
+      print-color-adjust: exact;
     }
     .one-pager {
-      max-width: 900px;
+      max-width: 850px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 30px;
       background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
     header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 3px solid #CBA135;
     }
     header h1 {
       color: #403B36;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-size: 2.4rem;
+      font-weight: 700;
     }
     header p {
       color: #CBA135;
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 0 0 20px 0;
     }
-    h2 {
-      color: #CBA135;
-      margin-top: 30px;
-      margin-bottom: 10px;
+    .intro-note {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+      margin-top: 20px;
+      font-style: italic;
     }
-    ul {
-      list-style: disc;
-      padding-left: 20px;
+    .intro-note p {
+      margin: 0;
+      color: #555;
       line-height: 1.6;
     }
-    .highlight {
-      display: inline-block;
-      background-color: #CBA135;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 4px;
+    h2 {
+      color: #403B36;
+      margin: 35px 0 20px 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+    }
+    h3 {
+      color: #403B36;
+      margin: 20px 0 10px 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .challenges-help {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin: 20px 0;
+    }
+    .challenge-item {
+      padding: 25px;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .challenge-item h3 {
+      margin-top: 0;
+      color: #403B36;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .challenge-item p {
+      margin-bottom: 10px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .challenge-item strong {
+      color: #403B36;
+    }
+    .services-offered {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin: 20px 0;
+    }
+    .service-item {
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+    }
+    .service-item h3 {
+      margin-top: 0;
+      color: #403B36;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    .service-item ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .service-item li {
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .service-item li:before {
+      content: "•";
+      color: #CBA135;
       font-weight: bold;
-      margin-top: 5px;
+      position: absolute;
+      left: 0;
+    }
+    .roi-comparison {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 25px 0;
+      padding: 25px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border: 2px solid #CBA135;
+    }
+    .investment, .returns {
+      flex: 1;
+      text-align: center;
+    }
+    .investment h3 {
+      color: #dc3545;
+      margin-bottom: 15px;
+    }
+    .returns h3 {
+      color: #28a745;
+      margin-bottom: 15px;
+    }
+    .investment-item, .return-item {
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      background: white;
+    }
+    .vs {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #CBA135;
+      margin: 0 20px;
+    }
+    .differentiators {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .diff-item {
+      padding: 15px;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+    }
+    .next-steps {
+      display: flex;
+      justify-content: space-between;
+      margin: 25px 0;
+    }
+    .step {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      margin: 0 15px;
+    }
+    .step-number {
+      background: #CBA135;
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    .step-content strong {
+      color: #403B36;
     }
     .cta {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 3px solid #CBA135;
     }
     .cta a {
       display: inline-block;
       background-color: #CBA135;
       color: white;
       text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 4px;
+      padding: 18px 35px;
+      border-radius: 8px;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      margin: 0 10px;
+      transition: background-color 0.3s ease;
     }
     .cta a:hover {
-      background-color: #b18f2d;
+      background-color: #b08e2e;
+    }
+    .cta a.primary {
+      background-color: #403B36;
+      font-size: 1.3rem;
+    }
+    .cta a.primary:hover {
+      background-color: #2d2824;
     }
     footer {
       text-align: center;
       margin-top: 40px;
+      padding-top: 25px;
+      border-top: 2px solid #f0f0f0;
       font-size: 0.9rem;
-      color: #555;
+      color: #666;
     }
     footer a {
       color: #CBA135;
       text-decoration: none;
+      font-weight: 500;
     }
     footer a:hover {
       text-decoration: underline;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .one-pager {
+        box-shadow: none;
+        max-width: none;
+        margin: 0;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .executive-stats {
+        flex-direction: column;
+      }
+      .stat {
+        margin: 5px 0;
+      }
+      .problem-solution {
+        grid-template-columns: 1fr;
+      }
+      .industry-results {
+        grid-template-columns: 1fr;
+      }
+      .roi-comparison {
+        flex-direction: column;
+        text-align: center;
+      }
+      .vs {
+        margin: 20px 0;
+      }
+      .differentiators {
+        grid-template-columns: 1fr;
+      }
+      .next-steps {
+        flex-direction: column;
+      }
+      .step {
+        margin: 15px 0;
+      }
+      .cta a {
+        display: block;
+        margin: 10px 0;
+      }
     }
   </style>
 </head>
@@ -89,48 +322,144 @@
   <div class="one-pager">
     <header>
       <h1>Pau Analytics</h1>
-      <p>Smarter Growth with Data-Driven Membership Insights</p>
+      <p>Data Analytics Support for Malaysian SMEs</p>
+      <div class="intro-note">
+        <p>Hi! We're here to help Malaysian SMEs like yours make sense of their business data. Whether you're drowning in spreadsheets or just curious about what your data could tell you, we'd love to chat and see how we can help.</p>
+      </div>
     </header>
 
     <section>
-      <h2>What We Do</h2>
-      <p>We help SMEs unlock the value of their membership or customer data through analytics. From retention strategies to inventory forecasts, we transform your data into actionable growth tools.</p>
+      <h2>Common Business Challenges We Help With</h2>
+      <div class="challenges-help">
+        <div class="challenge-item">
+          <h3>📊 "I have data everywhere, but what does it all mean?"</h3>
+          <p>Sound familiar? You've got sales data in one system, customer info in another, maybe some spreadsheets floating around... but putting it all together feels overwhelming.</p>
+          <p><strong>We get it.</strong> Let us help you connect the dots and turn that scattered information into clear insights about what's working (and what isn't) in your business.</p>
+        </div>
+
+        <div class="challenge-item">
+          <h3>📈 "I'm making decisions based on gut feeling"</h3>
+          <p>Should you focus on these customers or those ones? Stock more of this product or that one? Spend your marketing budget here or there? Sometimes it feels like you're just guessing.</p>
+          <p><strong>You don't have to guess.</strong> We'll help you build simple dashboards that give you confidence in your business decisions.</p>
+        </div>
+
+        <div class="challenge-item">
+          <h3>⚡ "I spend too much time on reports"</h3>
+          <p>Every month, you're pulling data from different places, making charts, trying to figure out trends. It takes forever and honestly, you'd rather be focusing on your customers.</p>
+          <p><strong>Let's automate that.</strong> We can set up systems that give you the insights you need automatically, so you can focus on what you do best.</p>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>Our Core Services</h2>
-      <ul>
-        <li>Churn prediction and customer retention strategies</li>
-        <li>Customer lifetime value (CLV) estimation</li>
-        <li>Predictive stock and inventory planning</li>
-        <li>Segmented and targeted marketing guidance</li>
-        <li>Membership-based pricing and discount optimization</li>
-      </ul>
+      <h2>Here's How We Can Help</h2>
+      <div class="services-offered">
+        <div class="service-item">
+          <h3>📊 Data Analytics Support</h3>
+          <p>Think of us as your friendly data team. We'll help you:</p>
+          <ul>
+            <li>Understand which customers are most valuable</li>
+            <li>Figure out what's driving your sales (up or down)</li>
+            <li>Optimize your inventory so you're not overstocking or running out</li>
+            <li>See which marketing efforts are actually working</li>
+          </ul>
+        </div>
+
+        <div class="service-item">
+          <h3>🤖 Simple AI Tools</h3>
+          <p>No fancy jargon, just practical tools that save you time:</p>
+          <ul>
+            <li>Basic chatbots to handle common customer questions</li>
+            <li>Tools to automatically process invoices or documents</li>
+            <li>Simple automation for repetitive tasks</li>
+            <li>Custom apps tailored to your specific needs</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>Our Packages</h2>
-      <p><span class="highlight">Project-Based</span> — RM3,500</p>
-      <p><span class="highlight">Monthly Subscription</span> — RM1,000/month (or RM10,000/year)</p>
+      <h2>Simple, Transparent Pricing</h2>
+      <div class="pricing-simple">
+        <div class="price-item">
+          <h3>One-Time Project</h3>
+          <div class="price">RM3,500</div>
+          <p>Perfect if you have a specific challenge to solve. We'll analyze your data, provide insights, and give you clear recommendations. No ongoing commitment.</p>
+        </div>
+
+        <div class="price-item">
+          <h3>Monthly Partnership</h3>
+          <div class="price">RM1,000/month</div>
+          <p>Think of us as your part-time data team. Monthly reports, dashboard updates, and regular check-ins to keep improving your business.</p>
+        </div>
+
+        <div class="price-item">
+          <h3>Custom AI Tools</h3>
+          <div class="price">From RM1,688</div>
+          <p>Need something specific built? We'll create simple, practical tools that fit your workflow. Price depends on what you need - we'll discuss it openly.</p>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>Why Choose Us?</h2>
-      <ul>
-        <li>Specialized in membership analytics for SMEs</li>
-        <li>Custom-built dashboards for real-world decisions</li>
-        <li>Fast delivery with actionable, visual insights</li>
-        <li>Transparent pricing and responsive support</li>
-      </ul>
+      <h2>Our Approach</h2>
+      <div class="our-approach">
+        <div class="approach-item">
+          <strong>🎯 We speak SME</strong><br>
+          We've worked with small businesses before. We know you don't have unlimited budgets or time to waste on complicated solutions that don't work.
+        </div>
+        <div class="approach-item">
+          <strong>📞 You'll work with us directly</strong><br>
+          No account managers or junior staff. When you call, you get us. We'll take the time to really understand your business first.
+        </div>
+        <div class="approach-item">
+          <strong>💡 Keep it simple</strong><br>
+          We're not here to impress you with fancy terminology. We want to build things that actually make your life easier and your business better.
+        </div>
+        <div class="approach-item">
+          <strong>🔍 Honest advice</strong><br>
+          If analytics isn't the right solution for your challenge right now, we'll tell you. Maybe you need something else first, and that's okay.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How We Work Together</h2>
+      <div class="how-we-work">
+        <div class="work-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <strong>Let's have a coffee chat</strong><br>
+            30 minutes, no pressure. Tell us what's keeping you up at night business-wise, and we'll share some ideas. Even if we're not the right fit, we might know someone who is.
+          </div>
+        </div>
+        <div class="work-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <strong>We'll be straight with you</strong><br>
+            After understanding your situation, we'll tell you honestly whether analytics can help right now, or if there's something else you should focus on first.
+          </div>
+        </div>
+        <div class="work-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <strong>Start with something small</strong><br>
+            If we decide to work together, let's start with a small project first. This way we can see if we're a good fit before committing to anything bigger.
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="cta">
-      <a href="https://wa.me/60149207099" target="_blank">WhatsApp Us Now</a>
+      <h3>Ready for that coffee chat?</h3>
+      <p>Drop us a message and let's see how we can help. No commitment, just a friendly conversation about your business.</p>
+      <a href="https://wa.me/60149207099" target="_blank" class="primary">WhatsApp Us</a>
+      <a href="mailto:admin@pauanalytics.com">Send an Email</a>
     </div>
 
     <footer>
-      <p>Contact: <a href="mailto:adminr@pauanalytics.com">admin@pauanalytics.com</a></p>
-      <p>© 2025 Pau Analytics</p>
+      <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a> | 📱 <a href="https://wa.me/60149207099">+60 14-920 7099</a></p>
+      <p>© 2025 Pau Analytics - Here to help Malaysian SMEs make sense of their data</p>
     </footer>
   </div>
 </body>

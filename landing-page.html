@@ -126,19 +126,63 @@
       background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
     }
 
-    header h1 {
-      font-size: 1.8rem;
-      color: #403B36;
-      margin: 0 0 1rem 0;
-      line-height: 1.3;
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #28a745, #20c997);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
     }
 
-    header p {
-      font-size: 1rem;
+    header h1 {
+      font-size: 2.2rem;
+      color: #403B36;
+      margin: 0 0 1rem 0;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .hero-subtext {
+      font-size: 1.1rem;
       color: #555;
       max-width: 100%;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 2rem;
       padding: 0 1rem;
+      line-height: 1.6;
+    }
+
+    .value-props {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .value-prop {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(203, 161, 53, 0.1);
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: 2px solid #CBA135;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .value-prop .icon {
+      font-size: 1.2rem;
+    }
+
+    .trust-indicators {
+      margin-top: 1.5rem;
+      color: #28a745;
+      font-weight: 600;
     }
 
     .cta-buttons {
@@ -174,6 +218,181 @@
 
     .cta-button.primary:hover {
       background-color: #2d2824;
+    }
+
+    .cta-button.secondary {
+      background-color: transparent;
+      border: 2px solid #CBA135;
+      color: #CBA135;
+    }
+
+    .cta-button.secondary:hover {
+      background-color: #CBA135;
+      color: white;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-5px); }
+      60% { transform: translateY(-3px); }
+    }
+
+    /* Urgency Section */
+    .urgency-section {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      margin: 0;
+      padding: 2rem 1rem;
+    }
+
+    .urgency-banner {
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .urgency-banner h2 {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .urgency-banner p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .timer-item {
+      background: rgba(255,255,255,0.2);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .timer-item span {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .timer-item small {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.8rem;
+    }
+
+    /* Enhanced Success Stories */
+    .story-card.featured {
+      border: 3px solid #28a745;
+      position: relative;
+    }
+
+    .story-card.featured::before {
+      content: "⭐ FEATURED SUCCESS";
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: #28a745;
+      color: white;
+      padding: 5px 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 15px;
+    }
+
+    .story-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .company-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .industry-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #CBA135;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-badge {
+      background: #28a745;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .metrics {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .metrics span {
+      background: #f8f9fa;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    /* Social Proof Numbers */
+    .social-proof-numbers {
+      display: flex;
+      justify-content: space-around;
+      margin: 3rem 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, #403B36, #2d2824);
+      border-radius: 15px;
+      color: white;
+    }
+
+    .proof-stat {
+      text-align: center;
+    }
+
+    .proof-stat strong {
+      display: block;
+      font-size: 2rem;
+      color: #CBA135;
+      font-weight: 700;
+    }
+
+    .proof-stat span {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
     }
 
     .container {
@@ -644,99 +863,124 @@
   </div>
 
   <header>
-    <h1>Data Analytics & AI Solutions</h1>
-    <p>Turn your business data into direction. Build smart tools that work for Malaysian SMEs.</p>
+    <div class="hero-badge">👋 Hello from Pau Analytics</div>
+    <h1>Making Sense of Your Business Data</h1>
+    <p class="hero-subtext">Hi there! We're here to help Malaysian SMEs like yours turn confusing data into clear business insights. No jargon, no pressure - just practical help when you need it.</p>
+
+    <div class="value-props">
+      <div class="value-prop">
+        <span class="icon">☕</span>
+        <span>Friendly, Personal Service</span>
+      </div>
+      <div class="value-prop">
+        <span class="icon">💡</span>
+        <span>Simple, Practical Solutions</span>
+      </div>
+      <div class="value-prop">
+        <span class="icon">🤝</span>
+        <span>Honest, Transparent Approach</span>
+      </div>
+    </div>
+
     <div class="cta-buttons">
-      <a href="#contact" class="cta-button primary">Book a Free Consultation</a>
-      <a href="#pricing" class="cta-button">View Pricing</a>
+      <a href="#contact" class="cta-button primary">Let's Have a Chat</a>
+      <a href="#how-we-help" class="cta-button secondary">See How We Help</a>
+    </div>
+
+    <div class="trust-indicators">
+      <small>✓ Free initial consultation  ✓ No hard sell  ✓ Honest advice even if we're not the right fit</small>
     </div>
   </header>
 
   <div class="container">
-    <!-- Our Services -->
-    <section class="section">
-      <h2>What We Do</h2>
+    <!-- How We Help -->
+    <section id="how-we-help" class="section">
+      <h2>Here's How We Can Help Your Business</h2>
       <div class="services-grid">
         <div class="service-section">
-          <h3>Data Analytics Consulting</h3>
-          <p>Turn your business data into clear direction for smarter decisions.</p>
+          <h3>📊 Making Sense of Your Data</h3>
+          <p>Got data scattered everywhere? Let's help you connect the dots and see what's really happening in your business.</p>
 
           <div class="service-list">
             <div class="service-card">
-              <h4>Customer Insights</h4>
-              <p>Understand retention patterns and identify at-risk customers</p>
+              <h4>"Which customers should I focus on?"</h4>
+              <p>We'll help you identify your most valuable customers and understand what keeps them coming back.</p>
             </div>
             <div class="service-card">
-              <h4>Inventory Forecasting</h4>
-              <p>Optimize stock levels and reduce waste with demand predictions</p>
+              <h4>"What should I stock more of?"</h4>
+              <p>Let's look at your sales patterns and help you make smarter inventory decisions.</p>
             </div>
             <div class="service-card">
-              <h4>Sales Analytics</h4>
-              <p>Track performance and identify growth opportunities</p>
+              <h4>"Is my marketing working?"</h4>
+              <p>We'll help you see which marketing efforts are bringing in customers and which aren't worth the cost.</p>
             </div>
             <div class="service-card">
-              <h4>Marketing ROI</h4>
-              <p>Measure campaign effectiveness and optimize spend</p>
+              <h4>"What's driving my sales up or down?"</h4>
+              <p>Together, we'll identify the factors that really impact your business performance.</p>
             </div>
           </div>
 
-          <a href="data-analytics.html" class="cta-button">Learn More</a>
+          <a href="#contact" class="cta-button">Let's Discuss Your Data</a>
         </div>
 
         <div class="service-section">
-          <h3>AI Solutions Development</h3>
-          <p>Custom AI tools designed to solve your specific business challenges.</p>
+          <h3>🤖 Simple AI Tools That Actually Help</h3>
+          <p>No complex systems or fancy AI buzzwords. Just practical tools that save you time and make your life easier.</p>
 
           <div class="service-list">
             <div class="service-card">
-              <h4>Document Processing</h4>
-              <p>Automate report analysis and data extraction</p>
+              <h4>"I spend too much time on paperwork"</h4>
+              <p>We can build simple tools to automatically process invoices, reports, and other documents.</p>
             </div>
             <div class="service-card">
-              <h4>Customer Service Bots</h4>
-              <p>24/7 automated support and consultation</p>
+              <h4>"Customers ask the same questions repeatedly"</h4>
+              <p>A basic chatbot can handle common questions, freeing you up for more important conversations.</p>
             </div>
             <div class="service-card">
-              <h4>Computer Vision</h4>
-              <p>Image recognition and visual analysis tools</p>
+              <h4>"I need help with repetitive tasks"</h4>
+              <p>Let's identify your most time-consuming routines and see what we can automate.</p>
             </div>
             <div class="service-card">
-              <h4>Business Automation</h4>
-              <p>Streamline repetitive tasks and workflows</p>
+              <h4>"I need something specific for my business"</h4>
+              <p>Tell us your unique challenge, and we'll build a simple tool that fits your exact needs.</p>
             </div>
           </div>
 
-          <a href="ai-solutions.html" class="cta-button">Explore AI Solutions</a>
+          <a href="#contact" class="cta-button">Tell Us About Your Challenge</a>
         </div>
       </div>
     </section>
 
-    <!-- Success Stories -->
+    <!-- Why Choose Us -->
+    <section class="section friendly-section">
+      <div class="friendly-banner">
+        <h2>☕ Why Work With Us?</h2>
+        <p>We're a small, new analytics consultancy, and we know that comes with questions. Here's why businesses choose to work with us anyway:</p>
+      </div>
+    </section>
+
+    <!-- Our Approach -->
     <section class="section">
-      <h2>Customer Success Stories</h2>
-      <div class="success-stories">
-        <div class="story-card">
-          <div class="quote">"Predictive analytics helped us identify at-risk customers, we implemented retention strategies."</div>
-          <div class="author">Coffee Vending Business</div>
-          <div class="result">Result: 30% customer retention improvement</div>
+      <h2>What Makes Us Different</h2>
+      <div class="approach-grid">
+        <div class="approach-card">
+          <h3>🤝 We're Real People</h3>
+          <p>When you call or message us, you'll talk to us directly - not a call center or junior staff. We take the time to understand your business before suggesting anything.</p>
         </div>
 
-        <div class="story-card">
-          <div class="quote">"Time series forecasting helped us optimize inventory for seasonal demand management."</div>
-          <div class="author">Beverage Retailer</div>
-          <div class="result">Result: 40% reduction in stockouts</div>
+        <div class="approach-card">
+          <h3>💡 We Keep It Simple</h3>
+          <p>No fancy jargon or overcomplicated solutions. We build things you can actually understand and use in your daily business operations.</p>
         </div>
 
-        <div class="story-card">
-          <div class="quote">"Gender-based customer segmentation helped us create targeted marketing campaigns."</div>
-          <div class="author">E-commerce Retailer</div>
-          <div class="result">Result: 45% conversion rate increase</div>
+        <div class="approach-card">
+          <h3>🎯 SME-Focused</h3>
+          <p>We get it - you don't have unlimited budgets or time for complex implementations. Our solutions are designed for real SME constraints.</p>
         </div>
 
-        <div class="story-card">
-          <div class="quote">"Predictive analytics helped us identify employees at risk of leaving."</div>
-          <div class="author">Malaysian SME</div>
-          <div class="result">Result: 35% turnover reduction</div>
+        <div class="approach-card">
+          <h3>💬 Honest Advice</h3>
+          <p>If analytics isn't the right solution for your challenge right now, we'll tell you. Sometimes you might need something else first, and that's perfectly fine.</p>
         </div>
       </div>
     </section>
