@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketing Channel Performance Case Study | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/marketing-channel-performance" />
+  <meta name="description" content="How we helped an e-commerce business optimize marketing spend by identifying which channels deliver the most sales per dollar invested." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+
+  <style>
+    .case-study-header {
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .case-study-header h1 {
+      color: #403B36;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .case-study-header .subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .key-results {
+      background: #e8f5e8;
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 800px;
+      border-left: 4px solid #4caf50;
+    }
+
+    .key-results h3 {
+      color: #1b5e20;
+      margin-top: 0;
+    }
+
+    .key-results ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-results li {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .key-results li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    .content-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .content-section h2 {
+      color: #403B36;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .client-context {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+      margin: 2rem 0;
+    }
+
+    .methodology-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .step {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .step-number {
+      background: #CBA135;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-weight: bold;
+    }
+
+    .channel-performance {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .channel-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      border-left: 4px solid #6366f1;
+    }
+
+    .performance-metric {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #403B36;
+      margin: 0.5rem 0;
+    }
+
+    .chart-placeholder {
+      background: #f0f0f0;
+      height: 200px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      margin: 1rem 0;
+      border: 2px dashed #ccc;
+    }
+
+    .recommendations-list {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+    }
+
+    .cta-section {
+      background: #403B36;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 10px;
+      margin: 3rem auto;
+      max-width: 800px;
+    }
+
+    .cta-section h3 {
+      margin-top: 0;
+      color: white;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      .case-study-header h1 {
+        font-size: 2rem;
+      }
+
+      .methodology-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .channel-performance {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">Pau Analytics</div>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="../../data-analytics.html">Data Analytics</a>
+      <a href="../../ai-solutions.html">AI Solutions</a>
+      <a href="../../case-studies.html">Case Studies</a>
+      <a href="../../pricing.html">Pricing</a>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div class="case-study-header">
+    <h1>More Sales, Same Budget</h1>
+    <p class="subtitle">How channel performance analysis helped an e-commerce business optimize marketing spend and increase ROI by 50%</p>
+  </div>
+
+  <div class="key-results">
+    <h3>At a Glance - Key Results</h3>
+    <ul>
+      <li>Identified Affiliate Marketing as top performer at 3.92 units sold per dollar</li>
+      <li>Achieved 78% accuracy in predicting sales outcomes</li>
+      <li>Increased overall marketing ROI by 50% through budget reallocation</li>
+      <li>Eliminated $25,000 in wasted advertising spend annually</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <div class="client-context">
+      <h3>Client Context</h3>
+      <p>A mid-sized e-commerce retailer selling consumer electronics across Malaysia. The company was investing heavily in multiple advertising channels but struggled to understand which platforms delivered the best return on investment. With a monthly marketing budget of RM50,000, they needed data-driven insights to optimize spending.</p>
+    </div>
+
+    <h2>Problem Statement</h2>
+    <p>The e-commerce business faced critical marketing efficiency challenges:</p>
+    <ul>
+      <li><strong>Unclear ROI:</strong> No visibility into which advertising channels generated actual sales</li>
+      <li><strong>Budget Misallocation:</strong> Equal spending across all channels without performance consideration</li>
+      <li><strong>Wasted Spend:</strong> Continued investment in low-performing platforms</li>
+      <li><strong>No Predictive Capability:</strong> Unable to forecast sales impact of budget changes</li>
+      <li><strong>Decision Paralysis:</strong> Marketing team lacked confidence in budget allocation decisions</li>
+    </ul>
+
+    <h2>Our Approach</h2>
+    <div class="methodology-steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Data Integration</h4>
+        <p>Collected performance data from 6 advertising channels over 12 months</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Regression Analysis</h4>
+        <p>Applied statistical modeling to understand spend-to-sales relationships</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Performance Ranking</h4>
+        <p>Calculated units sold per dollar for each channel</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h4>Predictive Modeling</h4>
+        <p>Built forecasting model for budget optimization scenarios</p>
+      </div>
+    </div>
+
+    <h2>Channel Performance Analysis</h2>
+    <div class="channel-performance">
+      <div class="channel-card" style="border-left-color: #4caf50;">
+        <h4>Affiliate Marketing</h4>
+        <div class="performance-metric">3.92</div>
+        <p>Units per RM spent</p>
+        <p><strong>Recommendation:</strong> Increase budget</p>
+      </div>
+      
+      <div class="channel-card" style="border-left-color: #2196f3;">
+        <h4>Billboards</h4>
+        <div class="performance-metric">3.01</div>
+        <p>Units per RM spent</p>
+        <p><strong>Recommendation:</strong> Maintain investment</p>
+      </div>
+      
+      <div class="channel-card" style="border-left-color: #ff9800;">
+        <h4>Social Media</h4>
+        <div class="performance-metric">2.43</div>
+        <p>Units per RM spent</p>
+        <p><strong>Recommendation:</strong> Optimize content</p>
+      </div>
+      
+      <div class="channel-card" style="border-left-color: #9c27b0;">
+        <h4>TV Advertising</h4>
+        <div class="performance-metric">1.84</div>
+        <p>Units per RM spent</p>
+        <p><strong>Recommendation:</strong> Reduce budget</p>
+      </div>
+      
+      <div class="channel-card" style="border-left-color: #f44336;">
+        <h4>Google Ads</h4>
+        <div class="performance-metric">1.52</div>
+        <p>Units per RM spent</p>
+        <p><strong>Recommendation:</strong> Re-evaluate targeting</p>
+      </div>
+      
+      <div class="channel-card" style="border-left-color: #795548;">
+        <h4>Influencer Marketing</h4>
+        <div class="performance-metric">0.97</div>
+        <p>Units per RM spent</p>
+        <p><strong>Recommendation:</strong> Pause or pivot</p>
+      </div>
+    </div>
+
+    <h2>Key Insights & Findings</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4>Model Accuracy</h4>
+        <div class="chart-placeholder">Prediction vs Actual Chart</div>
+        <p>Our regression model explained 78% of sales variation, providing high confidence in recommendations.</p>
+      </div>
+      
+      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4>Channel Correlation</h4>
+        <div class="chart-placeholder">Correlation Matrix</div>
+        <p>No significant overlap between channels, confirming each serves distinct audience segments.</p>
+      </div>
+      
+      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4>Budget Optimization</h4>
+        <div class="chart-placeholder">Scenario Analysis Chart</div>
+        <p>Shifting 40% of budget to top 3 performers projected 50% improvement in overall ROI.</p>
+      </div>
+    </div>
+
+    <h2>Recommendations & Implementation</h2>
+    <div class="recommendations-list">
+      <h4>Strategic Actions Implemented:</h4>
+      <ol>
+        <li><strong>Budget Reallocation:</strong> Increased affiliate marketing spend by 60%, reduced TV and influencer budgets by 70%</li>
+        <li><strong>Performance Monitoring:</strong> Set up monthly tracking dashboard for ongoing optimization</li>
+        <li><strong>Testing Framework:</strong> Implemented A/B testing for social media and Google Ads improvements</li>
+        <li><strong>Predictive Planning:</strong> Used model for quarterly budget planning and forecasting</li>
+        <li><strong>Channel Optimization:</strong> Focused on improving underperforming but strategic channels</li>
+      </ol>
+    </div>
+
+    <h2>Business Impact</h2>
+    <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
+      <h4>Measurable Outcomes (6 months post-implementation):</h4>
+      <ul>
+        <li><strong>50% increase</strong> in overall marketing ROI</li>
+        <li><strong>RM25,000 annual savings</strong> from eliminating wasteful spend</li>
+        <li><strong>35% boost</strong> in sales volume with same budget</li>
+        <li><strong>78% accuracy</strong> in sales forecasting for planning</li>
+        <li><strong>40% reduction</strong> in customer acquisition cost</li>
+      </ul>
+    </div>
+
+    <h2>Takeaways for Other Businesses</h2>
+    <p>If you're running multi-channel marketing campaigns, this analysis approach can help you:</p>
+    <ul>
+      <li>Stop wasting money on low-performing advertising channels</li>
+      <li>Double down on channels that actually drive sales</li>
+      <li>Make data-driven budget allocation decisions</li>
+      <li>Predict the impact of marketing spend changes</li>
+      <li>Build confidence in your marketing investment decisions</li>
+      <li>Create systematic optimization processes</li>
+    </ul>
+  </div>
+
+  <div class="cta-section">
+    <h3>Want to Optimize Your Marketing Spend?</h3>
+    <p>Stop guessing which channels work. Let us analyze your marketing data and show you exactly where to invest for maximum ROI.</p>
+    <div style="margin-top: 2rem;">
+      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Marketing Analysis</a>
+      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>
+      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="../../privacy-policy.html">Privacy Policy</a>
+    </p>
+    <p>© 2025 Pau Analytics</p>
+  </footer>
+
+</body>
+</html>

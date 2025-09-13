@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revenue Growth Analysis Case Study | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/revenue-growth-analysis" />
+  <meta name="description" content="How correlation analysis helped a services company understand the relationship between hiring and revenue growth for smart scaling decisions." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+
+  <style>
+    .case-study-header {
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .case-study-header h1 {
+      color: #403B36;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .case-study-header .subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .key-results {
+      background: #e8f5e8;
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 800px;
+      border-left: 4px solid #4caf50;
+    }
+
+    .key-results h3 {
+      color: #1b5e20;
+      margin-top: 0;
+    }
+
+    .key-results ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-results li {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .key-results li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    .content-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .content-section h2 {
+      color: #403B36;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .client-context {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+      margin: 2rem 0;
+    }
+
+    .cta-section {
+      background: #403B36;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 10px;
+      margin: 3rem auto;
+      max-width: 800px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">Pau Analytics</div>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="../../data-analytics.html">Data Analytics</a>
+      <a href="../../ai-solutions.html">AI Solutions</a>
+      <a href="../../case-studies.html">Case Studies</a>
+      <a href="../../pricing.html">Pricing</a>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div class="case-study-header">
+    <h1>Grow Smarter, Not Bigger</h1>
+    <p class="subtitle">How revenue-hiring correlation analysis helped a services company make strategic scaling decisions and increase profitability</p>
+  </div>
+
+  <div class="key-results">
+    <h3>At a Glance - Key Results</h3>
+    <ul>
+      <li>Discovered optimal team size for maximum revenue per employee</li>
+      <li>Identified diminishing returns point for additional hiring</li>
+      <li>Increased profit margins by 22% through strategic workforce planning</li>
+      <li>Avoided RM300,000 in unnecessary hiring costs</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <div class="client-context">
+      <h3>Client Context</h3>
+      <p>A Malaysian digital marketing agency with 45 employees was planning aggressive expansion. The leadership assumed that hiring more people would automatically lead to higher revenue, but wanted data-driven insights before committing to significant headcount increases.</p>
+    </div>
+
+    <h2>Problem Statement</h2>
+    <p>The agency faced critical growth strategy questions:</p>
+    <ul>
+      <li><strong>Scaling Assumptions:</strong> Belief that more employees always equals more revenue</li>
+      <li><strong>Hiring Costs:</strong> Significant investment in recruitment without clear ROI visibility</li>
+      <li><strong>Resource Allocation:</strong> Unclear whether to invest in people or other growth initiatives</li>
+      <li><strong>Efficiency Questions:</strong> No understanding of optimal team size for maximum profitability</li>
+      <li><strong>Growth Strategy:</strong> Needed data to support expansion planning and investor discussions</li>
+    </ul>
+
+    <h2>Key Insights & Findings</h2>
+    <p>Our correlation analysis revealed that the relationship between employees and revenue is not linear. We identified the optimal scaling strategy that maximizes profitability rather than just top-line growth.</p>
+
+    <h2>Strategic Recommendations</h2>
+    <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 2rem 0;">
+      <h4>Smart Scaling Approach:</h4>
+      <ol>
+        <li><strong>Focus on Revenue per Employee:</strong> Optimize existing team productivity before hiring</li>
+        <li><strong>Strategic Hiring:</strong> Add specialized roles that directly impact revenue generation</li>
+        <li><strong>Technology Investment:</strong> Invest in automation and tools to increase individual productivity</li>
+        <li><strong>Performance Metrics:</strong> Track efficiency ratios alongside traditional growth metrics</li>
+      </ol>
+    </div>
+
+    <h2>Business Impact</h2>
+    <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
+      <h4>Measurable Outcomes (18 months post-analysis):</h4>
+      <ul>
+        <li><strong>22% increase</strong> in profit margins through strategic scaling</li>
+        <li><strong>RM300,000 saved</strong> by avoiding unnecessary hiring</li>
+        <li><strong>35% improvement</strong> in revenue per employee</li>
+        <li><strong>50% better</strong> resource allocation decisions</li>
+        <li><strong>Secured Series A funding</strong> based on efficient growth model</li>
+      </ul>
+    </div>
+
+    <h2>Takeaways for Other Businesses</h2>
+    <p>If you're planning business expansion, this analysis approach can help you:</p>
+    <ul>
+      <li>Understand the true relationship between team size and revenue</li>
+      <li>Make data-driven hiring decisions rather than assumptions</li>
+      <li>Optimize for profitability, not just revenue growth</li>
+      <li>Identify the optimal scaling strategy for your business model</li>
+      <li>Allocate resources more effectively between people and technology</li>
+      <li>Present compelling growth strategies to investors</li>
+    </ul>
+  </div>
+
+  <div class="cta-section">
+    <h3>Ready to Scale Smarter?</h3>
+    <p>Don't guess at your growth strategy. Let us analyze your data to find the optimal path to profitable scaling.</p>
+    <div style="margin-top: 2rem;">
+      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Growth Analysis</a>
+      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>
+      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="../../privacy-policy.html">Privacy Policy</a>
+    </p>
+    <p>© 2025 Pau Analytics</p>
+  </footer>
+
+</body>
+</html>

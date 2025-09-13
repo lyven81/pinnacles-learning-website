@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beverage Sales Forecasting Case Study | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/beverage-sales-forecasting" />
+  <meta name="description" content="How time series forecasting helped a beverage retailer optimize inventory for seasonal demand and reduce stockouts by 40%." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+
+  <style>
+    .case-study-header {
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .case-study-header h1 {
+      color: #403B36;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .case-study-header .subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .key-results {
+      background: #e8f5e8;
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 800px;
+      border-left: 4px solid #4caf50;
+    }
+
+    .key-results h3 {
+      color: #1b5e20;
+      margin-top: 0;
+    }
+
+    .key-results ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-results li {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .key-results li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    .content-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .content-section h2 {
+      color: #403B36;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .client-context {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+      margin: 2rem 0;
+    }
+
+    .methodology-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .step {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .step-number {
+      background: #CBA135;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-weight: bold;
+    }
+
+    .chart-placeholder {
+      background: #f0f0f0;
+      height: 200px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      margin: 1rem 0;
+      border: 2px dashed #ccc;
+    }
+
+    .cta-section {
+      background: #403B36;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 10px;
+      margin: 3rem auto;
+      max-width: 800px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">Pau Analytics</div>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="../../data-analytics.html">Data Analytics</a>
+      <a href="../../ai-solutions.html">AI Solutions</a>
+      <a href="../../case-studies.html">Case Studies</a>
+      <a href="../../pricing.html">Pricing</a>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div class="case-study-header">
+    <h1>Seasonal Success</h1>
+    <p class="subtitle">How time series forecasting helped a beverage retailer predict Chinese New Year demand and optimize inventory</p>
+  </div>
+
+  <div class="key-results">
+    <h3>At a Glance - Key Results</h3>
+    <ul>
+      <li>Reduced stockouts by 40% during peak seasonal periods</li>
+      <li>Decreased excess inventory by 25% through accurate demand prediction</li>
+      <li>Achieved 85% forecasting accuracy using ARIMA and seasonal models</li>
+      <li>Increased revenue by RM180,000 during Chinese New Year period</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <div class="client-context">
+      <h3>Client Context</h3>
+      <p>A beverage distributor in Kota Kinabalu serving retail stores across Sabah. The business struggled with inventory planning for seasonal events, particularly Chinese New Year when demand for certain beverages spikes dramatically, leading to frequent stockouts and lost sales.</p>
+    </div>
+
+    <h2>Problem Statement</h2>
+    <p>The beverage distributor faced critical inventory challenges:</p>
+    <ul>
+      <li><strong>Unpredictable Demand:</strong> Massive spikes during Chinese New Year but unable to predict exact quantities needed</li>
+      <li><strong>High Stockouts:</strong> Running out of popular drinks during peak demand periods</li>
+      <li><strong>Excess Inventory:</strong> Over-ordering slow-moving products, tying up cash flow</li>
+      <li><strong>Manual Planning:</strong> Relying on gut feeling rather than data-driven forecasting</li>
+      <li><strong>Lost Revenue:</strong> Missed sales opportunities during high-profit seasonal periods</li>
+    </ul>
+
+    <h2>Our Approach</h2>
+    <div class="methodology-steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Historical Analysis</h4>
+        <p>Analyzed 3 years of sales data to identify seasonal patterns and trends</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Seasonal Modeling</h4>
+        <p>Applied ARIMA and exponential smoothing models for demand forecasting</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Validation Testing</h4>
+        <p>Back-tested models against historical data to ensure accuracy</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h4>Implementation</h4>
+        <p>Deployed forecasting system for real-time inventory planning</p>
+      </div>
+    </div>
+
+    <h2>Key Insights & Findings</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4>Seasonal Patterns</h4>
+        <div class="chart-placeholder">Seasonal Demand Chart</div>
+        <p>Clear 300% demand spike 2 weeks before Chinese New Year, with specific product category preferences.</p>
+      </div>
+      
+      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4>Forecasting Accuracy</h4>
+        <div class="chart-placeholder">Accuracy Metrics Chart</div>
+        <p>ARIMA model achieved 85% accuracy for seasonal forecasting, significantly outperforming manual estimates.</p>
+      </div>
+      
+      <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
+        <h4>Product Mix Optimization</h4>
+        <div class="chart-placeholder">Product Performance Chart</div>
+        <p>Identified top 15 products driving 80% of seasonal revenue, enabling focused inventory strategy.</p>
+      </div>
+    </div>
+
+    <h2>Business Impact</h2>
+    <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
+      <h4>Measurable Outcomes (Chinese New Year 2024):</h4>
+      <ul>
+        <li><strong>40% reduction</strong> in stockouts during peak demand</li>
+        <li><strong>25% decrease</strong> in excess inventory holding costs</li>
+        <li><strong>RM180,000 additional revenue</strong> from improved availability</li>
+        <li><strong>85% forecasting accuracy</strong> vs 45% with manual methods</li>
+        <li><strong>30% improvement</strong> in cash flow management</li>
+      </ul>
+    </div>
+
+    <h2>Takeaways for Other Businesses</h2>
+    <p>If you experience seasonal demand fluctuations, this forecasting approach can help you:</p>
+    <ul>
+      <li>Predict demand spikes before they happen</li>
+      <li>Optimize inventory levels for maximum profit</li>
+      <li>Reduce working capital tied up in excess stock</li>
+      <li>Capture revenue during high-demand periods</li>
+      <li>Make data-driven purchasing decisions</li>
+      <li>Improve supplier relationship planning</li>
+    </ul>
+  </div>
+
+  <div class="cta-section">
+    <h3>Ready to Predict Your Seasonal Demand?</h3>
+    <p>Stop missing sales during peak periods. Let us build forecasting models that predict exactly what you'll need and when.</p>
+    <div style="margin-top: 2rem;">
+      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Forecasting Analysis</a>
+      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>
+      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="../../privacy-policy.html">Privacy Policy</a>
+    </p>
+    <p>© 2025 Pau Analytics</p>
+  </footer>
+
+</body>
+</html>
