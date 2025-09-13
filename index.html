@@ -199,6 +199,49 @@
       background-color: #b08e2e;
     }
 
+    .cta-button.primary {
+      background-color: #403B36;
+      font-size: 1.2rem;
+      padding: 15px 30px;
+    }
+
+    .cta-button.primary:hover {
+      background-color: #2d2824;
+    }
+
+    .services-section {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin: 3rem 0 2rem;
+      flex-wrap: wrap;
+    }
+
+    .service-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 350px;
+      text-align: center;
+    }
+
+    .service-card h3 {
+      color: #403B36;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .main-cta {
+      margin-top: 2rem;
+    }
+
     .spacer {
       flex: 1;
     }
@@ -234,9 +277,25 @@
         font-size: 2rem;
       }
 
+      .services-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .service-card {
+        max-width: 100%;
+        margin: 0 1rem;
+      }
+
       .cta-button {
         font-size: 1rem;
         padding: 10px 20px;
+      }
+
+      .cta-button.primary {
+        font-size: 1.1rem;
+        padding: 12px 25px;
       }
     }
   </style>
@@ -247,17 +306,35 @@
     <div class="brand">Pau Analytics</div>
     <nav>
       <a href="index.html">Home</a>
+      <a href="data-analytics.html">Data Analytics</a>
+      <a href="ai-solutions.html">AI Solutions</a>
       <a href="case-studies.html">Case Studies</a>
-      <a href="dashboard.html">Dashboards</a>
       <a href="pricing.html">Pricing</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 
   <header>
-    <h1>Make Data Work for You</h1>
-    <p>We help you turn numbers into direction — simple, useful, and practical for better business decisions.</p>
-    <a href="https://wa.me/60149207099" class="cta-button">Book a Call</a>
+    <h1>Turning Numbers into Decisions. Building Tools that Work.</h1>
+    <p>We help businesses understand their data — and we also build AI tools to solve real-world problems.</p>
+    
+    <div class="services-section">
+      <div class="service-card">
+        <h3>Data Analytics Consulting</h3>
+        <p>Turn your business data into clear direction for smarter decisions.</p>
+        <a href="data-analytics.html" class="cta-button">See how we turn your business data into direction</a>
+      </div>
+      
+      <div class="service-card">
+        <h3>AI Solutions Development</h3>
+        <p>Custom AI tools designed to solve your specific business challenges.</p>
+        <a href="ai-solutions.html" class="cta-button">Discover smart AI tools built for real business needs</a>
+      </div>
+    </div>
+    
+    <div class="main-cta">
+      <a href="https://wa.me/60149207099" class="cta-button primary">Book a Call</a>
+    </div>
   </header>
 
   <div class="spacer"></div>

@@ -203,6 +203,53 @@
       text-decoration: underline;
     }
 
+    .category-section {
+      margin: 3rem 0;
+      text-align: left;
+    }
+
+    .category-title {
+      color: #403B36;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      background: linear-gradient(to right, #FCF9F2, #fff9e7);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+    }
+
+    .case-card h4 {
+      color: #403B36;
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .outcome {
+      background-color: #e8f5e8;
+      color: #1b5e20;
+      padding: 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+
+    .ai-card {
+      border-left: 4px solid #6366f1;
+    }
+
+    .ai-card .outcome {
+      background-color: #f0f0ff;
+      color: #4338ca;
+    }
+
+    .ai-section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e0ddd3;
+    }
+
     .spacer {
       flex: 1;
     }
@@ -251,8 +298,9 @@
     <div class="brand">Pau Analytics</div>
     <nav>
       <a href="index.html">Home</a>
+      <a href="data-analytics.html">Data Analytics</a>
+      <a href="ai-solutions.html">AI Solutions</a>
       <a href="case-studies.html">Case Studies</a>
-      <a href="dashboard.html">Dashboards</a>
       <a href="pricing.html">Pricing</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -260,45 +308,108 @@
 
   <div class="container">
     <section class="intro">
-       <h1>Real Stories, Real Results</h2>
-      <p>How retail businesses used data to boost operations, marketing, and customer loyalty</p>
+       <h1>Problems We Solve</h1>
+      <p>Real businesses, real challenges, real solutions. See how we turn data problems into business wins.</p>
     </section>
 
-    <div class="case-grid">
-      <div class="case-card">
-        <h3>No More Missed Orders</h3>
-        <p>We used daily sales data to help a chicken rice stall prepare food to reduce wastage or run out too early.</p>
-        <a href="http://www.pauanalytics.com/case-study/case-study-1.html">Read Full Case Study</a>
+    <div class="problem-categories">
+      <h2 style="color: #403B36; margin-bottom: 2rem;">Analytics Success Stories</h2>
+      
+      <div class="category-section" id="inventory">
+        <h3 class="category-title">"We don't know what to stock"</h3>
+        <div class="case-grid">
+          <div class="case-card">
+            <h4>Chicken Rice Stall: No More Missed Orders</h4>
+            <p class="outcome">40% reduction in stockouts, 25% less food waste</p>
+            <p>Used daily sales patterns to predict demand and optimize preparation schedules.</p>
+            <a href="http://www.pauanalytics.com/case-study/case-study-1.html">View Details →</a>
+          </div>
+          
+          <div class="case-card">
+            <h4>Coffee Shop: From Americano to Latte</h4>
+            <p class="outcome">30% better inventory turnover</p>
+            <p>Analyzed hourly purchasing patterns to optimize coffee bean and milk stocking.</p>
+            <a href="http://www.pauanalytics.com/case-study/case-study-2.html">View Details →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="case-card">
-        <h3>From Americano to Latte</h3>
-        <p>We looked at when people actually bought coffee and used that to restock.</p>
-        <a href="http://www.pauanalytics.com/case-study/case-study-2.html">Read Full Case Study</a>
+      <div class="category-section" id="retention">
+        <h3 class="category-title">"We're losing customers quietly"</h3>
+        <div class="case-grid">
+          <div class="case-card">
+            <h4>Retail Store: Saving the Silent Spenders</h4>
+            <p class="outcome">30% improvement in customer retention</p>
+            <p>Identified at-risk customers through purchase behavior analysis and implemented targeted retention campaigns.</p>
+            <a href="http://www.pauanalytics.com/case-study/case-study-3.html">View Details →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="case-card">
-        <h3>Saving the Silent Spenders</h3>
-        <p>We noticed some regular customers had stopped buying and took small steps to bring them back.</p>
-        <a href="http://www.pauanalytics.com/case-study/case-study-3.html">Read Full Case Study</a>
+      <div class="category-section" id="roi">
+        <h3 class="category-title">"We spend too much time reading reports"</h3>
+        <div class="case-grid">
+          <div class="case-card">
+            <h4>E-commerce: More Sales, Same Budget</h4>
+            <p class="outcome">50% increase in marketing ROI</p>
+            <p>Created automated dashboards showing which channels deliver the most sales per ringgit spent.</p>
+            <a href="http://www.pauanalytics.com/case-study/case-study-4.html">View Details →</a>
+          </div>
+          
+          <div class="case-card">
+            <h4>Restaurant: From Likes to Real Revenue</h4>
+            <p class="outcome">Connected social media to actual sales</p>
+            <p>Built tracking system linking social engagement to revenue, optimizing content strategy.</p>
+            <a href="http://www.pauanalytics.com/case-study/case-study-5.html">View Details →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="case-card">
-        <h3>More Sales, Same Budget</h3>
-        <p>We looked at which ads brought in the most sales for each ringgit spent and stop wasting marketing budget.</p>
-        <a href="http://www.pauanalytics.com/case-study/case-study-4.html">Read Full Case Study</a>
+      <div class="category-section" id="pricing">
+        <h3 class="category-title">"Are we pricing this right?"</h3>
+        <div class="case-grid">
+          <div class="case-card">
+            <h4>Pizza Shop: Not All Bestsellers Stay Best</h4>
+            <p class="outcome">20% increase in profit margins</p>
+            <p>Analyzed daily sales patterns to optimize pricing and promotional strategies by day of week.</p>
+            <a href="http://www.pauanalytics.com/case-study/case-study-6.html">View Details →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-section">
+      <h2 style="color: #403B36; margin: 3rem 0 2rem;">AI Solutions in Action</h2>
+      
+      <div class="category-section">
+        <h3 class="category-title">"We want new ways to engage customers"</h3>
+        <div class="case-grid">
+          <div class="case-card ai-card">
+            <h4>Virtual Try-On for Fashion Retailer</h4>
+            <p class="outcome">35% reduction in return rates</p>
+            <p>Implemented AI-powered virtual try-on technology for online clothing store.</p>
+            <a href="ai-solutions.html#virtual-try-on">Learn More →</a>
+          </div>
+          
+          <div class="case-card ai-card">
+            <h4>AI Recipe Generator for Restaurant</h4>
+            <p class="outcome">Doubled social media engagement</p>
+            <p>Created AI tool that turns customer food photos into shareable recipes.</p>
+            <a href="ai-solutions.html#recipe-generator">Learn More →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="case-card">
-        <h3>From Likes to Real Revenue</h3>
-        <p>We connected social media likes to real sales, helping the business see which campaigns actually bring in customers.</p>
-        <a href="http://www.pauanalytics.com/case-study/case-study-5.html">Read Full Case Study</a>
-      </div>
-
-      <div class="case-card">
-        <h3>Not All Bestsellers Stay Best</h3>
-        <p>We looked at daily sales to see which pizzas sold best on which days, so the shop could run better promos.</p>
-        <a href="http://www.pauanalytics.com/case-study/case-study-6.html">Read Full Case Study</a>
+      <div class="category-section">
+        <h3 class="category-title">"We spend too much time reading reports"</h3>
+        <div class="case-grid">
+          <div class="case-card ai-card">
+            <h4>AI Document Summarizer for Finance</h4>
+            <p class="outcome">70% faster report processing</p>
+            <p>Automated extraction of key insights from financial documents and market reports.</p>
+            <a href="ai-solutions.html#pdf-summarizer">Learn More →</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

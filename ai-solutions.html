@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Solutions Development | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/ai-solutions" />
+  <meta name="description" content="Custom AI tools built for real business needs. From document processing to customer engagement, we build smart solutions that work." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .hero-section {
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .hero-section h1 {
+      color: #403B36;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 3rem auto;
+      max-width: 1200px;
+      padding: 0 2rem;
+    }
+
+    .solution-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 4px solid #CBA135;
+      transition: transform 0.2s ease;
+    }
+
+    .solution-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .solution-card h3 {
+      color: #403B36;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .ai-tag {
+      background: linear-gradient(45deg, #6366f1, #8b5cf6);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .solution-description {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .business-applications {
+      background-color: #f8f9ff;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .business-applications h4 {
+      color: #4338ca;
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .business-applications ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: #555;
+    }
+
+    .business-applications li {
+      margin-bottom: 0.3rem;
+    }
+
+    .demo-link {
+      display: inline-block;
+      background-color: #6366f1;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 1rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .demo-link:hover {
+      background-color: #4f46e5;
+      text-decoration: none;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .featured-projects {
+      background: #f8f9fa;
+      padding: 3rem 2rem;
+      margin: 3rem 0;
+    }
+
+    .featured-projects h2 {
+      text-align: center;
+      color: #403B36;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .solutions-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">Pau Analytics</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="data-analytics.html">Data Analytics</a>
+      <a href="ai-solutions.html">AI Solutions</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div class="hero-section">
+    <h1>AI Solutions Development</h1>
+    <p>Custom AI tools built for real business needs. We don't just talk about AI — we build smart solutions that actually work for your business.</p>
+    <a href="https://wa.me/60149207099" class="cta-button">Discuss Your AI Project</a>
+  </div>
+
+  <div class="solutions-grid">
+    <div class="solution-card">
+      <div class="ai-tag">Document AI</div>
+      <h3>AI PDF Summarizer</h3>
+      <p class="solution-description">Speed up report reading and document analysis with intelligent summarization that extracts key insights automatically.</p>
+      <div class="business-applications">
+        <h4>Business Applications:</h4>
+        <ul>
+          <li>Financial report analysis</li>
+          <li>Contract review summaries</li>
+          <li>Market research processing</li>
+          <li>Meeting minutes extraction</li>
+        </ul>
+      </div>
+      <a href="#" class="demo-link">Try Demo →</a>
+    </div>
+
+    <div class="solution-card">
+      <div class="ai-tag">Computer Vision</div>
+      <h3>Virtual Try-On Studio</h3>
+      <p class="solution-description">Personalize retail experiences with AI-powered virtual try-on technology for fashion and accessories.</p>
+      <div class="business-applications">
+        <h4>Business Applications:</h4>
+        <ul>
+          <li>E-commerce product trials</li>
+          <li>Reduced return rates</li>
+          <li>Enhanced customer engagement</li>
+          <li>Fashion retail innovation</li>
+        </ul>
+      </div>
+      <a href="#" class="demo-link">See Examples →</a>
+    </div>
+
+    <div class="solution-card">
+      <div class="ai-tag">Creative AI</div>
+      <h3>Recipe Generator</h3>
+      <p class="solution-description">Turn ingredient photos into detailed recipes and cooking instructions using advanced image recognition.</p>
+      <div class="business-applications">
+        <h4>Business Applications:</h4>
+        <ul>
+          <li>Restaurant menu development</li>
+          <li>Food content creation</li>
+          <li>Culinary app features</li>
+          <li>Customer recipe suggestions</li>
+        </ul>
+      </div>
+      <a href="#" class="demo-link">Try Demo →</a>
+    </div>
+
+    <div class="solution-card">
+      <div class="ai-tag">Engagement AI</div>
+      <h3>Polaroid Moments Generator</h3>
+      <p class="solution-description">Create nostalgic, retro-style photos by blending personal images with AI for unique customer engagement.</p>
+      <div class="business-applications">
+        <h4>Business Applications:</h4>
+        <ul>
+          <li>Social media campaigns</li>
+          <li>Event photography services</li>
+          <li>Brand nostalgia marketing</li>
+          <li>Customer experience tools</li>
+        </ul>
+      </div>
+      <a href="#" class="demo-link">View Gallery →</a>
+    </div>
+
+    <div class="solution-card">
+      <div class="ai-tag">Fitness AI</div>
+      <h3>Pose Perfect AI</h3>
+      <p class="solution-description">Advanced computer vision for pose analysis and correction in fitness, sports, and wellness applications.</p>
+      <div class="business-applications">
+        <h4>Business Applications:</h4>
+        <ul>
+          <li>Fitness app development</li>
+          <li>Sports training tools</li>
+          <li>Rehabilitation assistance</li>
+          <li>Movement coaching</li>
+        </ul>
+      </div>
+      <a href="#" class="demo-link">See Demo →</a>
+    </div>
+
+    <div class="solution-card">
+      <div class="ai-tag">Consultation AI</div>
+      <h3>Smart Chatbot Consultants</h3>
+      <p class="solution-description">Specialized AI consultants for niche services like astrology, feng shui, and traditional wisdom applications.</p>
+      <div class="business-applications">
+        <h4>Business Applications:</h4>
+        <ul>
+          <li>24/7 customer consultation</li>
+          <li>Personalized advisory services</li>
+          <li>Cultural service automation</li>
+          <li>Expert knowledge scaling</li>
+        </ul>
+      </div>
+      <a href="#" class="demo-link">Chat Now →</a>
+    </div>
+  </div>
+
+  <div class="featured-projects">
+    <h2>Why Choose Our AI Solutions?</h2>
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div>
+          <h3 style="color: #403B36;">Business-First Approach</h3>
+          <p>We start with your business problem, not the technology. Every AI solution is designed to solve real challenges and deliver measurable results.</p>
+        </div>
+        <div>
+          <h3 style="color: #403B36;">Proven Technology</h3>
+          <p>Our AI tools are tested and working. No experimental projects — only solutions ready for real-world business use.</p>
+        </div>
+        <div>
+          <h3 style="color: #403B36;">Malaysian SME Focus</h3>
+          <p>Built specifically for the Malaysian market with local context, affordable pricing, and practical implementation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin: 3rem 0;">
+    <h2 style="color: #403B36;">Ready to Build Something Smart?</h2>
+    <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Let's discuss how AI can solve your specific business challenges.</p>
+    <a href="https://wa.me/60149207099" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">Start Your AI Project</a>
+  </div>
+
+  <footer>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>
+      <a href="about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+    <p>© 2025 Pau Analytics</p>
+  </footer>
+
+</body>
+</html>

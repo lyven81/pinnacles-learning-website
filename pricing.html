@@ -209,6 +209,28 @@
       background-color: #b08e2e;
     }
 
+    .ai-section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e0ddd3;
+    }
+
+    .ai-card {
+      border-left: 4px solid #6366f1;
+    }
+
+    .ai-button {
+      background-color: #6366f1;
+    }
+
+    .ai-button:hover {
+      background-color: #4f46e5;
+    }
+
+    .service-section {
+      margin-bottom: 3rem;
+    }
+
     .spacer {
       flex: 1;
     }
@@ -261,51 +283,99 @@
     <div class="brand">Pau Analytics</div>
     <nav>
       <a href="index.html">Home</a>
+      <a href="data-analytics.html">Data Analytics</a>
+      <a href="ai-solutions.html">AI Solutions</a>
       <a href="case-studies.html">Case Studies</a>
-      <a href="dashboard.html">Dashboards</a>
       <a href="pricing.html">Pricing</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 
   <div class="container">
-    <h1>Choose Your Plan</h2>
-    <div class="pricing-grid">
+    <h1>Simple Pricing for Real Solutions</h1>
+    <p style="font-size: 1.1rem; color: #555; margin-bottom: 3rem;">Affordable packages designed specifically for Malaysian SMEs</p>
+    
+    <!-- Analytics Packages Section -->
+    <div class="service-section">
+      <h2 style="color: #403B36; margin: 3rem 0 2rem;">Data Analytics Packages</h2>
+      <div class="pricing-grid">
+        
+        <!-- Analytics Monthly -->
+        <div class="pricing-card">
+          <h3>Analytics Monthly</h3>
+          <p class="price">RM1,000 / month</p>
+          <p class="sub-price">Best value: RM10,000 for 12 months</p>
+          <ul>
+            <li><strong>Smart Dashboards</strong> - Inventory, churn, sales insights</li>
+            <li><strong>Monthly Reports</strong> - Key metrics + action recommendations</li>
+            <li><strong>Strategy Calls</strong> - 30 minutes monthly</li>
+            <li><strong>Ongoing Support</strong> - Email support (48hr response)</li>
+            <li><strong>Perfect for:</strong> Growing businesses with regular data needs</li>
+          </ul>
+          <a href="https://wa.me/60149207099" class="cta-button">Start Monthly Plan</a>
+        </div>
 
-      <!-- Monthly Subscription -->
-      <div class="pricing-card">
-        <h3>Monthly Subscription</h3>
-        <p class="price">RM1,000 / month</p>
-        <p class="sub-price">(RM5,800 for 6 months • RM10,000 for 12 months)</p>
-        <ul>
-          <li>Membership dashboard: churn, CLV, stock patterns</li>
-          <li>Monthly data update + insight summary</li>
-          <li>One 30-min strategy call every month</li>
-          <li>Quarterly review of key metrics</li>
-          <li>Marketing and upsell targeting tips</li>
-          <li>Email support (48-hour response)</li>
-          <li>Best for growing SMEs with recurring needs</li>
-        </ul>
+        <!-- Analytics Project -->
+        <div class="pricing-card">
+          <h3>Analytics Project</h3>
+          <p class="price">RM3,500</p>
+          <p class="sub-price">One-time solution</p>
+          <ul>
+            <li><strong>Focused Solution</strong> - One specific business problem</li>
+            <li><strong>Custom Dashboard</strong> - Retention, inventory, or ROI</li>
+            <li><strong>Data Integration</strong> - Up to 3 data sources</li>
+            <li><strong>Full Report</strong> - Written insights + briefing call</li>
+            <li><strong>Perfect for:</strong> Testing analytics before scaling up</li>
+          </ul>
+          <a href="https://wa.me/60149207099" class="cta-button">Start Project</a>
+        </div>
+
       </div>
-
-      <!-- Project-Based -->
-      <div class="pricing-card">
-        <h3>Project-Based</h3>
-        <p class="price">RM3,500</p>
-        <ul>
-          <li>One-time project tailored to a specific goal</li>
-          <li>Custom dashboard (e.g., retention, inventory)</li>
-          <li>Data cleaning & integration (up to 3 sources)</li>
-          <li>Customer segmentation or churn analysis</li>
-          <li>Written summary report + 1 briefing call</li>
-          <li>1 round of feedback revision</li>
-          <li>Ideal for testing analytics before scaling</li>
-        </ul>
-      </div>
-
     </div>
 
-    <a class="cta-button" href="payment.html">Get Started with Pau Analytics</a>
+    <!-- AI Solutions Section -->
+    <div class="service-section ai-section">
+      <h2 style="color: #403B36; margin: 3rem 0 2rem;">AI Development Packages</h2>
+      <div class="pricing-grid">
+        
+        <!-- AI Basic -->
+        <div class="pricing-card ai-card">
+          <h3>AI Starter</h3>
+          <p class="price">RM8,000 - RM15,000</p>
+          <p class="sub-price">Simple AI tools</p>
+          <ul>
+            <li><strong>Document Processing</strong> - PDF summarizers, report extractors</li>
+            <li><strong>Basic Chatbots</strong> - Customer service automation</li>
+            <li><strong>Image Tools</strong> - Simple photo processing</li>
+            <li><strong>2-4 weeks delivery</strong></li>
+            <li><strong>Perfect for:</strong> Automating repetitive tasks</li>
+          </ul>
+          <a href="https://wa.me/60149207099" class="cta-button ai-button">Discuss AI Project</a>
+        </div>
+
+        <!-- AI Advanced -->
+        <div class="pricing-card ai-card">
+          <h3>AI Custom</h3>
+          <p class="price">RM15,000 - RM35,000</p>
+          <p class="sub-price">Advanced AI solutions</p>
+          <ul>
+            <li><strong>Computer Vision</strong> - Virtual try-on, pose analysis</li>
+            <li><strong>Smart Recommendations</strong> - Product/content suggestions</li>
+            <li><strong>Creative AI</strong> - Image generation, content creation</li>
+            <li><strong>4-8 weeks delivery</strong></li>
+            <li><strong>Perfect for:</strong> Innovative customer experiences</li>
+          </ul>
+          <a href="https://wa.me/60149207099" class="cta-button ai-button">Discuss AI Project</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 3rem 0; padding: 2rem; background: #f8f9fa; border-radius: 10px;">
+      <h3 style="color: #403B36;">Not sure which package fits your needs?</h3>
+      <p style="color: #555; margin-bottom: 1.5rem;">Let's have a quick chat about your business challenges and find the right solution.</p>
+      <a class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;" href="https://wa.me/60149207099">Book Free Consultation</a>
+    </div>
   </div>
 
   <div class="spacer"></div>
