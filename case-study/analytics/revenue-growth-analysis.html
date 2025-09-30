@@ -1,369 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revenue Growth Analysis Case Study | Pau Analytics</title>
-  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/revenue-growth-analysis" />
-  <meta name="description" content="How correlation analysis helped a services company understand the relationship between hiring and revenue growth for smart scaling decisions." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow Smarter, Not Bigger | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/revenue-growth-analysis" />
+    <meta name="description" content="We showed a marketing agency when to stop hiring and saved them RM300,000" />
 
-  <style>
-    .case-study-header {
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    .case-study-header h1 {
-      color: #403B36;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
 
-    .case-study-header .subtitle {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 2rem;
-    }
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
 
-    .key-results {
-      background: #e8f5e8;
-      padding: 2rem;
-      border-radius: 10px;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-left: 4px solid #4caf50;
-    }
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .key-results h3 {
-      color: #1b5e20;
-      margin-top: 0;
-    }
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
 
-    .key-results ul {
-      list-style: none;
-      padding: 0;
-    }
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
 
-    .key-results li {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
 
-    .key-results li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #4caf50;
-      font-weight: bold;
-    }
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
 
-    .content-section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-    }
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
 
-    .content-section h2 {
-      color: #403B36;
-      border-bottom: 2px solid #CBA135;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .client-context {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #CBA135;
-      margin: 2rem 0;
-    }
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
 
-    .cta-section {
-      background: #403B36;
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-      border-radius: 10px;
-      margin: 3rem auto;
-      max-width: 800px;
-    }
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    
-    .navbar .brand {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #403B36;
-    }
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
 
-    .navbar nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
 
-    footer {
-      background-color: #403B36;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
 
-    footer a {
-      color: #CBA135;
-      text-decoration: none;
-    }
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
 
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
 
-      .case-study-header h1 {
-        font-size: 2rem;
-      }
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-      .content-section {
-        padding: 0 1rem;
-      }
+        .contact a:hover {
+            text-decoration: underline;
+        }
 
-      .cta-section {
-        margin: 2rem 1rem;
-        padding: 2rem 1rem;
-      }
-    }
-  </style>
+        /* Work in Progress Section */
+        .work-in-progress {
+            background: #fff9e7;
+            border: 2px dashed #CBA135;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .work-in-progress h2 {
+            color: #403B36;
+            margin-bottom: 1rem;
+        }
+
+        .work-in-progress p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <header>
+                    <h1>Grow Smarter, Not Bigger</h1>
+                    <p class="subtitle">We showed a marketing agency when to stop hiring and saved them RM300,000</p>
+                </header>
 
-  <div class="navbar">
-    <div class="brand">Pau Analytics</div>
-    <nav>
-      <a href="../../index.html">Home</a>
-      <a href="../../data-analytics.html">Data Analytics</a>
-<a href="../../case-studies.html">Case Studies</a>
-      <a href="../../pricing.html">Pricing</a>
-      <a href="../../contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <div class="case-study-header">
-    <h1>Grow Smarter, Not Bigger</h1>
-    <p class="subtitle">We showed a marketing agency when to stop hiring and saved them RM300,000</p>
-  </div>
-
-  <div class="key-results">
-    <h3>At a Glance - Key Results</h3>
-    <ul>
-      <li>Discovered optimal team size for maximum revenue per employee</li>
-      <li>Identified diminishing returns point for additional hiring</li>
-      <li>Increased profit margins by 22% through strategic workforce planning</li>
-      <li>Avoided RM300,000 in unnecessary hiring costs</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="client-context">
-      <h3>Client Context</h3>
-      <p>A Malaysian digital marketing agency with 45 employees was planning aggressive expansion. The leadership assumed that hiring more people would automatically lead to higher revenue, but wanted data-driven insights before committing to significant headcount increases.</p>
+                <div class="work-in-progress">
+                    <h2>🚧 Work in Progress</h2>
+                    <p>This detailed case study is currently being prepared. We're crafting comprehensive insights, visualizations, and actionable recommendations.</p>
+                    <p style="margin-top: 1.5rem;">Check back soon, or contact us to discuss how similar analytics solutions can help your business.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <h2>Problem Statement</h2>
-    <p>The agency faced critical growth strategy questions:</p>
-    <ul>
-      <li><strong>Scaling Assumptions:</strong> Belief that more employees always equals more revenue</li>
-      <li><strong>Hiring Costs:</strong> Significant investment in recruitment without clear ROI visibility</li>
-      <li><strong>Resource Allocation:</strong> Unclear whether to invest in people or other growth initiatives</li>
-      <li><strong>Efficiency Questions:</strong> No understanding of optimal team size for maximum profitability</li>
-      <li><strong>Growth Strategy:</strong> Needed data to support expansion planning and investor discussions</li>
-    </ul>
-
-    <h2>Key Insights & Findings</h2>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Revenue vs Employee Correlation</h4>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Revenue curve showing diminishing returns -->
-            <path d="M 40 160 Q 120 80 200 70 Q 280 65 360 80" stroke="#4caf50" stroke-width="3" fill="none"/>
-            
-            <!-- Employee count points -->
-            <circle cx="40" cy="160" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="80" cy="120" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="120" cy="90" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="160" cy="75" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="200" cy="70" r="5" fill="#ff6b6b" stroke="#fff" stroke-width="2"/>
-            <circle cx="240" cy="72" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="280" cy="75" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="320" cy="78" r="4" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            
-            <!-- Optimal point indicator -->
-            <text x="200" y="60" fill="white" text-anchor="middle" font-size="10" font-weight="bold">Optimal Point</text>
-            <text x="200" y="50" fill="#ff6b6b" text-anchor="middle" font-size="8">45 employees</text>
-            
-            <!-- Axis labels -->
-            <text x="200" y="190" fill="white" text-anchor="middle" font-size="10">Number of Employees</text>
-            <text x="25" y="100" fill="white" text-anchor="middle" font-size="10" transform="rotate(-90 25 100)">Revenue per Employee</text>
-            
-            <text x="200" y="20" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Revenue Efficiency vs Team Size</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Analysis revealed diminishing returns after 45 employees, showing more people doesn't always mean more profitable revenue.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Cost vs Productivity Analysis</h4>
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Cost bars vs productivity bars -->
-            <rect x="60" y="120" width="30" height="60" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="100" y="100" width="30" height="80" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="140" y="80" width="30" height="100" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="180" y="60" width="30" height="120" fill="#ff6b6b" opacity="0.8"/>
-            
-            <!-- Productivity bars -->
-            <rect x="220" y="100" width="30" height="80" fill="#4caf50" opacity="0.8"/>
-            <rect x="260" y="80" width="30" height="100" fill="#4caf50" opacity="0.8"/>
-            <rect x="300" y="70" width="30" height="110" fill="#4caf50" opacity="0.8"/>
-            <rect x="340" y="65" width="30" height="115" fill="#4caf50" opacity="0.8"/>
-            
-            <!-- Labels -->
-            <text x="135" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Hiring Costs</text>
-            <text x="295" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Productivity Gain</text>
-            
-            <!-- Breakeven point -->
-            <line x1="200" y1="50" x2="200" y2="190" stroke="#feca57" stroke-width="2" stroke-dasharray="5,5"/>
-            <text x="205" y="45" fill="#333" font-size="10" font-weight="bold">Break-even</text>
-            
-            <!-- ROI indicator -->
-            <text x="300" y="50" fill="#4caf50" font-size="12" font-weight="bold">Positive ROI</text>
-            <text x="120" y="50" fill="#ff6b6b" font-size="12" font-weight="bold">Negative ROI</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Hiring Cost vs Productivity ROI</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Identified the point where additional hiring costs exceed productivity gains, preventing wasteful expansion.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Strategic Scaling Impact</h4>
-        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Before and after comparison -->
-            <rect x="80" y="120" width="50" height="60" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="200" y="80" width="50" height="100" fill="#4caf50" opacity="0.8"/>
-            
-            <!-- Labels -->
-            <text x="105" y="195" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Before</text>
-            <text x="225" y="195" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">After</text>
-            
-            <!-- Profit margin values -->
-            <text x="105" y="110" fill="white" text-anchor="middle" font-size="12" font-weight="bold">18%</text>
-            <text x="225" y="70" fill="white" text-anchor="middle" font-size="12" font-weight="bold">22%</text>
-            
-            <!-- Improvement arrow -->
-            <path d="M 140 140 L 190 140 L 185 135 M 190 140 L 185 145" stroke="#333" stroke-width="2" fill="none"/>
-            <text x="165" y="155" fill="#333" text-anchor="middle" font-size="10">+22% increase</text>
-            
-            <!-- Savings callout -->
-            <text x="300" y="70" fill="#333" font-size="12" font-weight="bold">Savings:</text>
-            <text x="300" y="90" fill="#4caf50" font-size="16" font-weight="bold">RM300K</text>
-            <text x="300" y="110" fill="#333" font-size="10">Avoided hiring</text>
-            <text x="300" y="125" fill="#333" font-size="10">costs</text>
-            
-            <text x="200" y="30" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Profit Margin Improvement</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Strategic workforce optimization led to 22% higher profit margins while avoiding RM300,000 in unnecessary hiring costs.</p>
-      </div>
-    </div>
-
-    <h2>Strategic Recommendations</h2>
-    <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 2rem 0;">
-      <h4>Smart Scaling Approach:</h4>
-      <ol>
-        <li><strong>Focus on Revenue per Employee:</strong> Optimize existing team productivity before hiring</li>
-        <li><strong>Strategic Hiring:</strong> Add specialized roles that directly impact revenue generation</li>
-        <li><strong>Technology Investment:</strong> Invest in automation and tools to increase individual productivity</li>
-        <li><strong>Performance Metrics:</strong> Track efficiency ratios alongside traditional growth metrics</li>
-      </ol>
-    </div>
-
-    <h2>Business Impact</h2>
-    <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
-      <h4>Measurable Outcomes (18 months post-analysis):</h4>
-      <ul>
-        <li><strong>22% increase</strong> in profit margins through strategic scaling</li>
-        <li><strong>RM300,000 saved</strong> by avoiding unnecessary hiring</li>
-        <li><strong>35% improvement</strong> in revenue per employee</li>
-        <li><strong>50% better</strong> resource allocation decisions</li>
-        <li><strong>Secured Series A funding</strong> based on efficient growth model</li>
-      </ul>
-    </div>
-
-    <h2>Takeaways for Other Businesses</h2>
-    <p>If you're planning business expansion, this analysis approach can help you:</p>
-    <ul>
-      <li>Understand the true relationship between team size and revenue</li>
-      <li>Make data-driven hiring decisions rather than assumptions</li>
-      <li>Optimize for profitability, not just revenue growth</li>
-      <li>Identify the optimal scaling strategy for your business model</li>
-      <li>Allocate resources more effectively between people and technology</li>
-      <li>Present compelling growth strategies to investors</li>
-    </ul>
-  </div>
-
-  <div class="cta-section">
-    <h3>Ready to Scale Smarter?</h3>
-    <p>Don't guess at your growth strategy. Let us analyze your data to find the optimal path to profitable scaling.</p>
-    <div style="margin-top: 2rem;">
-      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Growth Analysis</a>
-      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-    <p>
-      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
-      <a href="../../privacy-policy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 Pau Analytics</p>
-  </footer>
-
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>

@@ -1,518 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marketing Channel Performance Case Study | Pau Analytics</title>
-  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/marketing-channel-performance" />
-  <meta name="description" content="How we helped an e-commerce business optimize marketing spend by identifying which channels deliver the most sales per dollar invested." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Sales, Same Budget | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/marketing-channel-performance" />
+    <meta name="description" content="We showed an e-commerce business which ads work and saved them RM25,000" />
 
-  <style>
-    .case-study-header {
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    .case-study-header h1 {
-      color: #403B36;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
 
-    .case-study-header .subtitle {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 2rem;
-    }
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
 
-    .key-results {
-      background: #e8f5e8;
-      padding: 2rem;
-      border-radius: 10px;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-left: 4px solid #4caf50;
-    }
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .key-results h3 {
-      color: #1b5e20;
-      margin-top: 0;
-    }
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
 
-    .key-results ul {
-      list-style: none;
-      padding: 0;
-    }
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
 
-    .key-results li {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
 
-    .key-results li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #4caf50;
-      font-weight: bold;
-    }
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
 
-    .content-section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-    }
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
 
-    .content-section h2 {
-      color: #403B36;
-      border-bottom: 2px solid #CBA135;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .client-context {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #CBA135;
-      margin: 2rem 0;
-    }
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
 
-    .methodology-steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
 
-    .step {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
 
-    .step-number {
-      background: #CBA135;
-      color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      font-weight: bold;
-    }
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-    .channel-performance {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 2rem 0;
-    }
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
 
-    .channel-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-      border-left: 4px solid #6366f1;
-    }
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
 
-    .performance-metric {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #403B36;
-      margin: 0.5rem 0;
-    }
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .chart-placeholder {
-      background: #f0f0f0;
-      height: 200px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      margin: 1rem 0;
-      border: 2px dashed #ccc;
-    }
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
 
-    .recommendations-list {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-    }
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    .cta-section {
-      background: #403B36;
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-      border-radius: 10px;
-      margin: 3rem auto;
-      max-width: 800px;
-    }
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
 
-    .cta-section h3 {
-      margin-top: 0;
-      color: white;
-    }
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    
-    .navbar .brand {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #403B36;
-    }
+        .contact a:hover {
+            text-decoration: underline;
+        }
 
-    .navbar nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
+        /* Work in Progress Section */
+        .work-in-progress {
+            background: #fff9e7;
+            border: 2px dashed #CBA135;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
 
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
+        .work-in-progress h2 {
+            color: #403B36;
+            margin-bottom: 1rem;
+        }
 
-    footer {
-      background-color: #403B36;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
+        .work-in-progress p {
+            color: #666;
+            font-size: 1.1em;
+        }
 
-    footer a {
-      color: #CBA135;
-      text-decoration: none;
-    }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
 
-      .case-study-header h1 {
-        font-size: 2rem;
-      }
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
 
-      .methodology-steps {
-        grid-template-columns: 1fr;
-      }
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
 
-      .channel-performance {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <header>
+                    <h1>More Sales, Same Budget</h1>
+                    <p class="subtitle">We showed an e-commerce business which ads work and saved them RM25,000</p>
+                </header>
 
-  <div class="navbar">
-    <div class="brand">Pau Analytics</div>
-    <nav>
-      <a href="../../index.html">Home</a>
-      <a href="../../data-analytics.html">Data Analytics</a>
-<a href="../../case-studies.html">Case Studies</a>
-      <a href="../../pricing.html">Pricing</a>
-      <a href="../../contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <div class="case-study-header">
-    <h1>More Sales, Same Budget</h1>
-    <p class="subtitle">We showed an e-commerce business which ads work and saved them RM25,000</p>
-  </div>
-
-  <div class="key-results">
-    <h3>At a Glance - Key Results</h3>
-    <ul>
-      <li>Identified Affiliate Marketing as top performer at 3.92 units sold per dollar</li>
-      <li>Achieved 78% accuracy in predicting sales outcomes</li>
-      <li>Increased overall marketing ROI by 50% through budget reallocation</li>
-      <li>Eliminated $25,000 in wasted advertising spend annually</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="client-context">
-      <h3>Client Context</h3>
-      <p>A mid-sized e-commerce retailer selling consumer electronics across Malaysia. The company was investing heavily in multiple advertising channels but struggled to understand which platforms delivered the best return on investment. With a monthly marketing budget of RM50,000, they needed data-driven insights to optimize spending.</p>
+                <div class="work-in-progress">
+                    <h2>🚧 Work in Progress</h2>
+                    <p>This detailed case study is currently being prepared. We're crafting comprehensive insights, visualizations, and actionable recommendations.</p>
+                    <p style="margin-top: 1.5rem;">Check back soon, or contact us to discuss how similar analytics solutions can help your business.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <h2>Problem Statement</h2>
-    <p>The e-commerce business faced critical marketing efficiency challenges:</p>
-    <ul>
-      <li><strong>Unclear ROI:</strong> No visibility into which advertising channels generated actual sales</li>
-      <li><strong>Budget Misallocation:</strong> Equal spending across all channels without performance consideration</li>
-      <li><strong>Wasted Spend:</strong> Continued investment in low-performing platforms</li>
-      <li><strong>No Predictive Capability:</strong> Unable to forecast sales impact of budget changes</li>
-      <li><strong>Decision Paralysis:</strong> Marketing team lacked confidence in budget allocation decisions</li>
-    </ul>
-
-    <h2>Our Approach</h2>
-    <div class="methodology-steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>Data Integration</h4>
-        <p>Collected performance data from 6 advertising channels over 12 months</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>Regression Analysis</h4>
-        <p>Applied statistical modeling to understand spend-to-sales relationships</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>Performance Ranking</h4>
-        <p>Calculated units sold per dollar for each channel</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h4>Predictive Modeling</h4>
-        <p>Built forecasting model for budget optimization scenarios</p>
-      </div>
-    </div>
-
-    <h2>Channel Performance Analysis</h2>
-    <div class="channel-performance">
-      <div class="channel-card" style="border-left-color: #4caf50;">
-        <h4>Affiliate Marketing</h4>
-        <div class="performance-metric">3.92</div>
-        <p>Units per RM spent</p>
-        <p><strong>Recommendation:</strong> Increase budget</p>
-      </div>
-      
-      <div class="channel-card" style="border-left-color: #2196f3;">
-        <h4>Billboards</h4>
-        <div class="performance-metric">3.01</div>
-        <p>Units per RM spent</p>
-        <p><strong>Recommendation:</strong> Maintain investment</p>
-      </div>
-      
-      <div class="channel-card" style="border-left-color: #ff9800;">
-        <h4>Social Media</h4>
-        <div class="performance-metric">2.43</div>
-        <p>Units per RM spent</p>
-        <p><strong>Recommendation:</strong> Optimize content</p>
-      </div>
-      
-      <div class="channel-card" style="border-left-color: #9c27b0;">
-        <h4>TV Advertising</h4>
-        <div class="performance-metric">1.84</div>
-        <p>Units per RM spent</p>
-        <p><strong>Recommendation:</strong> Reduce budget</p>
-      </div>
-      
-      <div class="channel-card" style="border-left-color: #f44336;">
-        <h4>Google Ads</h4>
-        <div class="performance-metric">1.52</div>
-        <p>Units per RM spent</p>
-        <p><strong>Recommendation:</strong> Re-evaluate targeting</p>
-      </div>
-      
-      <div class="channel-card" style="border-left-color: #795548;">
-        <h4>Influencer Marketing</h4>
-        <div class="performance-metric">0.97</div>
-        <p>Units per RM spent</p>
-        <p><strong>Recommendation:</strong> Pause or pivot</p>
-      </div>
-    </div>
-
-    <h2>Key Insights & Findings</h2>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Model Accuracy</h4>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Scatter plot points for actual vs predicted -->
-            <circle cx="80" cy="160" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="90" cy="150" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="100" cy="140" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="110" cy="130" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="120" cy="120" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="130" cy="110" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="140" cy="100" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="150" cy="90" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="160" cy="80" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="170" cy="70" r="3" fill="#4caf50" opacity="0.8"/>
-            <circle cx="180" cy="60" r="3" fill="#4caf50" opacity="0.8"/>
-            
-            <!-- Perfect prediction line -->
-            <line x1="70" y1="170" x2="190" y2="50" stroke="#ff6b6b" stroke-width="2" opacity="0.8" stroke-dasharray="5,5"/>
-            
-            <!-- Actual trend line -->
-            <line x1="75" y1="165" x2="185" y2="55" stroke="#333" stroke-width="2" opacity="0.9"/>
-            
-            <!-- R² value -->
-            <text x="220" y="80" fill="white" font-size="16" font-weight="bold">R² = 0.78</text>
-            <text x="220" y="100" fill="white" font-size="12">78% Accuracy</text>
-            
-            <!-- Axis labels -->
-            <text x="200" y="190" fill="white" text-anchor="middle" font-size="10">Predicted Sales</text>
-            <text x="30" y="100" fill="white" text-anchor="middle" font-size="10" transform="rotate(-90 30 100)">Actual Sales</text>
-            
-            <text x="200" y="20" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Prediction vs Actual Sales</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Our regression model explained 78% of sales variation, providing high confidence in recommendations.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Channel Performance Ranking</h4>
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Performance bars -->
-            <rect x="50" y="160" width="30" height="25" fill="#4caf50" opacity="0.8"/>
-            <rect x="90" y="140" width="30" height="45" fill="#2196f3" opacity="0.8"/>
-            <rect x="130" y="120" width="30" height="65" fill="#ff9800" opacity="0.8"/>
-            <rect x="170" y="100" width="30" height="85" fill="#9c27b0" opacity="0.8"/>
-            <rect x="210" y="80" width="30" height="105" fill="#f44336" opacity="0.8"/>
-            <rect x="250" y="40" width="30" height="145" fill="#795548" opacity="0.8"/>
-            
-            <!-- Channel labels -->
-            <text x="65" y="195" fill="#333" text-anchor="middle" font-size="8">Influencer</text>
-            <text x="105" y="195" fill="#333" text-anchor="middle" font-size="8">Google</text>
-            <text x="145" y="195" fill="#333" text-anchor="middle" font-size="8">TV</text>
-            <text x="185" y="195" fill="#333" text-anchor="middle" font-size="8">Social</text>
-            <text x="225" y="195" fill="#333" text-anchor="middle" font-size="8">Billboard</text>
-            <text x="265" y="195" fill="#333" text-anchor="middle" font-size="8">Affiliate</text>
-            
-            <!-- Performance values -->
-            <text x="65" y="175" fill="white" text-anchor="middle" font-size="10" font-weight="bold">0.97</text>
-            <text x="105" y="155" fill="white" text-anchor="middle" font-size="10" font-weight="bold">1.52</text>
-            <text x="145" y="135" fill="white" text-anchor="middle" font-size="10" font-weight="bold">1.84</text>
-            <text x="185" y="115" fill="white" text-anchor="middle" font-size="10" font-weight="bold">2.43</text>
-            <text x="225" y="95" fill="white" text-anchor="middle" font-size="10" font-weight="bold">3.01</text>
-            <text x="265" y="55" fill="white" text-anchor="middle" font-size="10" font-weight="bold">3.92</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Units Sold per RM Spent</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Affiliate marketing delivered 4x better performance than influencer marketing, revealing significant optimization opportunities.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Budget Optimization Impact</h4>
-        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Before and After bars -->
-            <rect x="100" y="120" width="40" height="60" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="160" y="80" width="40" height="100" fill="#4caf50" opacity="0.8"/>
-            
-            <!-- Labels -->
-            <text x="120" y="195" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Before</text>
-            <text x="180" y="195" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">After</text>
-            
-            <!-- ROI values -->
-            <text x="120" y="110" fill="white" text-anchor="middle" font-size="14" font-weight="bold">2.1x</text>
-            <text x="180" y="70" fill="white" text-anchor="middle" font-size="14" font-weight="bold">3.2x</text>
-            
-            <!-- Improvement arrow -->
-            <path d="M 145 140 L 155 140 L 152 135 M 155 140 L 152 145" stroke="#333" stroke-width="2" fill="none"/>
-            <text x="150" y="155" fill="#333" text-anchor="middle" font-size="10">+50%</text>
-            
-            <!-- Savings callout -->
-            <text x="250" y="60" fill="#333" font-size="12" font-weight="bold">Annual Savings:</text>
-            <text x="250" y="80" fill="#4caf50" font-size="16" font-weight="bold">RM25,000</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Marketing ROI Improvement</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Shifting 40% of budget to top 3 performers projected 50% improvement in overall ROI with RM25,000 annual savings.</p>
-      </div>
-    </div>
-
-    <h2>Recommendations & Implementation</h2>
-    <div class="recommendations-list">
-      <h4>Strategic Actions Implemented:</h4>
-      <ol>
-        <li><strong>Budget Reallocation:</strong> Increased affiliate marketing spend by 60%, reduced TV and influencer budgets by 70%</li>
-        <li><strong>Performance Monitoring:</strong> Set up monthly tracking dashboard for ongoing optimization</li>
-        <li><strong>Testing Framework:</strong> Implemented A/B testing for social media and Google Ads improvements</li>
-        <li><strong>Predictive Planning:</strong> Used model for quarterly budget planning and forecasting</li>
-        <li><strong>Channel Optimization:</strong> Focused on improving underperforming but strategic channels</li>
-      </ol>
-    </div>
-
-    <h2>Business Impact</h2>
-    <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
-      <h4>Measurable Outcomes (6 months post-implementation):</h4>
-      <ul>
-        <li><strong>50% increase</strong> in overall marketing ROI</li>
-        <li><strong>RM25,000 annual savings</strong> from eliminating wasteful spend</li>
-        <li><strong>35% boost</strong> in sales volume with same budget</li>
-        <li><strong>78% accuracy</strong> in sales forecasting for planning</li>
-        <li><strong>40% reduction</strong> in customer acquisition cost</li>
-      </ul>
-    </div>
-
-    <h2>Takeaways for Other Businesses</h2>
-    <p>If you're running multi-channel marketing campaigns, this analysis approach can help you:</p>
-    <ul>
-      <li>Stop wasting money on low-performing advertising channels</li>
-      <li>Double down on channels that actually drive sales</li>
-      <li>Make data-driven budget allocation decisions</li>
-      <li>Predict the impact of marketing spend changes</li>
-      <li>Build confidence in your marketing investment decisions</li>
-      <li>Create systematic optimization processes</li>
-    </ul>
-  </div>
-
-  <div class="cta-section">
-    <h3>Want to Optimize Your Marketing Spend?</h3>
-    <p>Stop guessing which channels work. Let us analyze your marketing data and show you exactly where to invest for maximum ROI.</p>
-    <div style="margin-top: 2rem;">
-      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Marketing Analysis</a>
-      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-    <p>
-      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
-      <a href="../../privacy-policy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 Pau Analytics</p>
-  </footer>
-
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>

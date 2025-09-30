@@ -1,363 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Customer Segmentation Case Study | Pau Analytics</title>
-  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/customer-segmentation" />
-  <meta name="description" content="How gender-based customer segmentation helped an e-commerce retailer create targeted marketing campaigns and boost conversion rates." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Men and Women Buy | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/customer-segmentation" />
+    <meta name="description" content="We found what men and women buy differently and boosted sales by RM120,000" />
 
-  <style>
-    .case-study-header {
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    .case-study-header h1 {
-      color: #403B36;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
 
-    .case-study-header .subtitle {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 2rem;
-    }
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
 
-    .key-results {
-      background: #e8f5e8;
-      padding: 2rem;
-      border-radius: 10px;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-left: 4px solid #4caf50;
-    }
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .key-results h3 {
-      color: #1b5e20;
-      margin-top: 0;
-    }
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
 
-    .key-results ul {
-      list-style: none;
-      padding: 0;
-    }
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
 
-    .key-results li {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
 
-    .key-results li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #4caf50;
-      font-weight: bold;
-    }
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
 
-    .content-section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-    }
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
 
-    .content-section h2 {
-      color: #403B36;
-      border-bottom: 2px solid #CBA135;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .client-context {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #CBA135;
-      margin: 2rem 0;
-    }
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
 
-    .cta-section {
-      background: #403B36;
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-      border-radius: 10px;
-      margin: 3rem auto;
-      max-width: 800px;
-    }
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    
-    .navbar .brand {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #403B36;
-    }
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
 
-    .navbar nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
 
-    footer {
-      background-color: #403B36;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
 
-    footer a {
-      color: #CBA135;
-      text-decoration: none;
-    }
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
 
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
 
-      .case-study-header h1 {
-        font-size: 2rem;
-      }
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-      .content-section {
-        padding: 0 1rem;
-      }
+        .contact a:hover {
+            text-decoration: underline;
+        }
 
-      .cta-section {
-        margin: 2rem 1rem;
-        padding: 2rem 1rem;
-      }
-    }
-  </style>
+        /* Work in Progress Section */
+        .work-in-progress {
+            background: #fff9e7;
+            border: 2px dashed #CBA135;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .work-in-progress h2 {
+            color: #403B36;
+            margin-bottom: 1rem;
+        }
+
+        .work-in-progress p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <header>
+                    <h1>What Men and Women Buy</h1>
+                    <p class="subtitle">We found what men and women buy differently and boosted sales by RM120,000</p>
+                </header>
 
-  <div class="navbar">
-    <div class="brand">Pau Analytics</div>
-    <nav>
-      <a href="../../index.html">Home</a>
-      <a href="../../data-analytics.html">Data Analytics</a>
-<a href="../../case-studies.html">Case Studies</a>
-      <a href="../../pricing.html">Pricing</a>
-      <a href="../../contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <div class="case-study-header">
-    <h1>What Men and Women Buy</h1>
-    <p class="subtitle">We found what men and women buy differently and boosted sales by RM120,000</p>
-  </div>
-
-  <div class="key-results">
-    <h3>At a Glance - Key Results</h3>
-    <ul>
-      <li>Identified distinct purchasing preferences by gender across 12 product categories</li>
-      <li>Increased targeted campaign conversion rates by 45%</li>
-      <li>Reduced marketing waste by 30% through precise audience targeting</li>
-      <li>Generated RM120,000 additional revenue through personalized strategies</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="client-context">
-      <h3>Client Context</h3>
-      <p>A growing online retailer specializing in lifestyle and consumer goods with a diverse product catalog. The company had been using broad marketing campaigns but suspected that men and women had different purchasing preferences that could be leveraged for better targeting.</p>
+                <div class="work-in-progress">
+                    <h2>🚧 Work in Progress</h2>
+                    <p>This detailed case study is currently being prepared. We're crafting comprehensive insights, visualizations, and actionable recommendations.</p>
+                    <p style="margin-top: 1.5rem;">Check back soon, or contact us to discuss how similar analytics solutions can help your business.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <h2>Problem Statement</h2>
-    <p>The retailer faced challenges with generic marketing approaches:</p>
-    <ul>
-      <li><strong>One-Size-Fits-All Campaigns:</strong> Same marketing messages sent to all customers regardless of preferences</li>
-      <li><strong>Low Conversion Rates:</strong> Generic campaigns yielding poor engagement and sales</li>
-      <li><strong>Wasted Ad Spend:</strong> Promoting irrelevant products to wrong audience segments</li>
-      <li><strong>Unknown Preferences:</strong> No insights into customer behavior patterns by demographics</li>
-    </ul>
-
-    <h2>Our Approach & Key Findings</h2>
-    <p>We analyzed 12 months of purchasing data across 12 product categories, segmenting customers by gender to identify distinct preference patterns. The analysis revealed significant differences in purchasing behavior that enabled targeted marketing strategies.</p>
-
-    <h2>Business Impact</h2>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #4caf50;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Conversion Rate Improvement</h4>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Before and After bars -->
-            <rect x="120" y="140" width="50" height="40" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="200" y="80" width="50" height="100" fill="#4caf50" opacity="0.8"/>
-            
-            <!-- Labels -->
-            <text x="145" y="195" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Before</text>
-            <text x="225" y="195" fill="white" text-anchor="middle" font-size="12" font-weight="bold">After</text>
-            
-            <!-- Conversion rates -->
-            <text x="145" y="130" fill="white" text-anchor="middle" font-size="14" font-weight="bold">12%</text>
-            <text x="225" y="70" fill="white" text-anchor="middle" font-size="14" font-weight="bold">17.4%</text>
-            
-            <!-- Improvement arrow -->
-            <path d="M 175 120 L 185 120 L 182 115 M 185 120 L 182 125" stroke="#fff" stroke-width="2" fill="none"/>
-            <text x="180" y="135" fill="white" text-anchor="middle" font-size="10">+45%</text>
-            
-            <text x="200" y="20" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Campaign Conversion Rates</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;"><strong>45% increase</strong> in targeted campaign conversion rates through gender-specific messaging and product targeting.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #ff9800;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Marketing Waste Reduction</h4>
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Pie chart showing waste reduction -->
-            <g transform="translate(200,100)">
-              <!-- Effective spend: 70% -->
-              <path d="M 0,-60 A 60,60 0 1,1 -18.54,56.46 L 0,0 Z" fill="#4caf50" opacity="0.8"/>
-              <!-- Wasted spend: 30% -->
-              <path d="M -18.54,56.46 A 60,60 0 0,1 0,-60 L 0,0 Z" fill="#ff6b6b" opacity="0.8"/>
-            </g>
-            
-            <!-- Labels -->
-            <text x="280" y="80" fill="#333" font-size="12" font-weight="bold">Effective: 70%</text>
-            <rect x="270" y="72" width="8" height="8" fill="#4caf50" opacity="0.8"/>
-            
-            <text x="280" y="100" fill="#333" font-size="12" font-weight="bold">Waste: 30%</text>
-            <rect x="270" y="92" width="8" height="8" fill="#ff6b6b" opacity="0.8"/>
-            
-            <!-- Improvement callout -->
-            <text x="80" y="60" fill="#333" font-size="10">Previous waste:</text>
-            <text x="80" y="75" fill="#ff6b6b" font-size="12" font-weight="bold">60%</text>
-            
-            <text x="80" y="100" fill="#333" font-size="10">New waste:</text>
-            <text x="80" y="115" fill="#4caf50" font-size="12" font-weight="bold">30%</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Marketing Spend Efficiency</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;"><strong>30% reduction</strong> in marketing waste through precise audience targeting based on gender preferences.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #2196f3;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Revenue Growth</h4>
-        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Revenue growth chart -->
-            <rect x="100" y="120" width="40" height="60" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="160" y="60" width="40" height="120" fill="#4caf50" opacity="0.8"/>
-            
-            <!-- Revenue amounts -->
-            <text x="120" y="110" fill="white" text-anchor="middle" font-size="10" font-weight="bold">Baseline</text>
-            <text x="180" y="50" fill="white" text-anchor="middle" font-size="10" font-weight="bold">+RM120K</text>
-            
-            <!-- Arrow showing growth -->
-            <path d="M 145 140 L 155 140 L 152 135 M 155 140 L 152 145" stroke="#333" stroke-width="2" fill="none"/>
-            
-            <!-- Revenue breakdown -->
-            <text x="250" y="80" fill="#333" font-size="12" font-weight="bold">Additional Revenue:</text>
-            <text x="250" y="100" fill="#4caf50" font-size="16" font-weight="bold">RM120,000</text>
-            <text x="250" y="120" fill="#333" font-size="10">From personalized</text>
-            <text x="250" y="135" fill="#333" font-size="10">recommendations</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Incremental Revenue Impact</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;"><strong>RM120,000 additional revenue</strong> generated through personalized product recommendations based on gender segmentation.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #9c27b0;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Customer Engagement Metrics</h4>
-        <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Engagement metrics dashboard -->
-            <rect x="60" y="60" width="80" height="50" fill="#4caf50" opacity="0.8" rx="5"/>
-            <rect x="160" y="60" width="80" height="50" fill="#2196f3" opacity="0.8" rx="5"/>
-            <rect x="260" y="60" width="80" height="50" fill="#ff9800" opacity="0.8" rx="5"/>
-            
-            <!-- Metric labels -->
-            <text x="100" y="50" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Email Open</text>
-            <text x="200" y="50" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Click Rate</text>
-            <text x="300" y="50" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Time on Site</text>
-            
-            <!-- Improvement percentages -->
-            <text x="100" y="85" fill="white" text-anchor="middle" font-size="14" font-weight="bold">+28%</text>
-            <text x="200" y="85" fill="white" text-anchor="middle" font-size="14" font-weight="bold">+35%</text>
-            <text x="300" y="85" fill="white" text-anchor="middle" font-size="14" font-weight="bold">+18%</text>
-            
-            <!-- Overall improvement -->
-            <text x="200" y="140" fill="#333" text-anchor="middle" font-size="16" font-weight="bold">Average Improvement: 25%</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Engagement Metrics Improvement</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;"><strong>25% improvement</strong> in customer engagement metrics including email open rates, click-through rates, and time on site.</p>
-      </div>
-    </div>
-
-    <h2>Takeaways for Other Businesses</h2>
-    <p>Customer segmentation can help your business:</p>
-    <ul>
-      <li>Create highly targeted marketing campaigns</li>
-      <li>Improve product recommendation engines</li>
-      <li>Optimize inventory based on customer preferences</li>
-      <li>Increase conversion rates through personalization</li>
-      <li>Reduce advertising waste through better targeting</li>
-    </ul>
-  </div>
-
-  <div class="cta-section">
-    <h3>Want to Unlock Your Customer Insights?</h3>
-    <p>Discover hidden patterns in your customer data and create targeted strategies that actually convert.</p>
-    <div style="margin-top: 2rem;">
-      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Customer Analysis</a>
-      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-    <p>
-      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
-      <a href="../../privacy-policy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 Pau Analytics</p>
-  </footer>
-
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>

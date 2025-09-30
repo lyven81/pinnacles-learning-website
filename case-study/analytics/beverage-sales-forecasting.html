@@ -1,430 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beverage Sales Forecasting Case Study | Pau Analytics</title>
-  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/beverage-sales-forecasting" />
-  <meta name="description" content="How time series forecasting helped a beverage retailer optimize inventory for seasonal demand and reduce stockouts by 40%." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasonal Success | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/beverage-sales-forecasting" />
+    <meta name="description" content="We helped a beverage distributor predict seasonal demand and save RM180,000" />
 
-  <style>
-    .case-study-header {
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    .case-study-header h1 {
-      color: #403B36;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
 
-    .case-study-header .subtitle {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 2rem;
-    }
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
 
-    .key-results {
-      background: #e8f5e8;
-      padding: 2rem;
-      border-radius: 10px;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-left: 4px solid #4caf50;
-    }
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .key-results h3 {
-      color: #1b5e20;
-      margin-top: 0;
-    }
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
 
-    .key-results ul {
-      list-style: none;
-      padding: 0;
-    }
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
 
-    .key-results li {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
 
-    .key-results li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #4caf50;
-      font-weight: bold;
-    }
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
 
-    .content-section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-    }
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
 
-    .content-section h2 {
-      color: #403B36;
-      border-bottom: 2px solid #CBA135;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .client-context {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #CBA135;
-      margin: 2rem 0;
-    }
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
 
-    .methodology-steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
 
-    .step {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
 
-    .step-number {
-      background: #CBA135;
-      color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      font-weight: bold;
-    }
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-    .chart-placeholder {
-      background: #f0f0f0;
-      height: 200px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      margin: 1rem 0;
-      border: 2px dashed #ccc;
-    }
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
 
-    .cta-section {
-      background: #403B36;
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-      border-radius: 10px;
-      margin: 3rem auto;
-      max-width: 800px;
-    }
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    
-    .navbar .brand {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #403B36;
-    }
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .navbar nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
 
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    footer {
-      background-color: #403B36;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
 
-    footer a {
-      color: #CBA135;
-      text-decoration: none;
-    }
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+        .contact a:hover {
+            text-decoration: underline;
+        }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        /* Work in Progress Section */
+        .work-in-progress {
+            background: #fff9e7;
+            border: 2px dashed #CBA135;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
 
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
+        .work-in-progress h2 {
+            color: #403B36;
+            margin-bottom: 1rem;
+        }
 
-      .case-study-header h1 {
-        font-size: 2rem;
-      }
+        .work-in-progress p {
+            color: #666;
+            font-size: 1.1em;
+        }
 
-      .methodology-steps {
-        grid-template-columns: 1fr;
-      }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
 
-      .content-section {
-        padding: 0 1rem;
-      }
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
 
-      .cta-section {
-        margin: 2rem 1rem;
-        padding: 2rem 1rem;
-      }
-    }
-  </style>
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <header>
+                    <h1>Seasonal Success</h1>
+                    <p class="subtitle">We helped a beverage distributor predict seasonal demand and save RM180,000</p>
+                </header>
 
-  <div class="navbar">
-    <div class="brand">Pau Analytics</div>
-    <nav>
-      <a href="../../index.html">Home</a>
-      <a href="../../data-analytics.html">Data Analytics</a>
-<a href="../../case-studies.html">Case Studies</a>
-      <a href="../../pricing.html">Pricing</a>
-      <a href="../../contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <div class="case-study-header">
-    <h1>Seasonal Success</h1>
-    <p class="subtitle">We helped a beverage distributor predict seasonal demand and save RM180,000</p>
-  </div>
-
-  <div class="key-results">
-    <h3>At a Glance - Key Results</h3>
-    <ul>
-      <li>Reduced stockouts by 40% during peak seasonal periods</li>
-      <li>Decreased excess inventory by 25% through accurate demand prediction</li>
-      <li>Achieved 85% forecasting accuracy using ARIMA and seasonal models</li>
-      <li>Increased revenue by RM180,000 during Chinese New Year period</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="client-context">
-      <h3>Client Context</h3>
-      <p>A beverage distributor in Kota Kinabalu serving retail stores across Sabah. The business struggled with inventory planning for seasonal events, particularly Chinese New Year when demand for certain beverages spikes dramatically, leading to frequent stockouts and lost sales.</p>
+                <div class="work-in-progress">
+                    <h2>🚧 Work in Progress</h2>
+                    <p>This detailed case study is currently being prepared. We're crafting comprehensive insights, visualizations, and actionable recommendations.</p>
+                    <p style="margin-top: 1.5rem;">Check back soon, or contact us to discuss how similar analytics solutions can help your business.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <h2>Problem Statement</h2>
-    <p>The beverage distributor faced critical inventory challenges:</p>
-    <ul>
-      <li><strong>Unpredictable Demand:</strong> Massive spikes during Chinese New Year but unable to predict exact quantities needed</li>
-      <li><strong>High Stockouts:</strong> Running out of popular drinks during peak demand periods</li>
-      <li><strong>Excess Inventory:</strong> Over-ordering slow-moving products, tying up cash flow</li>
-      <li><strong>Manual Planning:</strong> Relying on gut feeling rather than data-driven forecasting</li>
-      <li><strong>Lost Revenue:</strong> Missed sales opportunities during high-profit seasonal periods</li>
-    </ul>
-
-    <h2>Our Approach</h2>
-    <div class="methodology-steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>Historical Analysis</h4>
-        <p>Analyzed 3 years of sales data to identify seasonal patterns and trends</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>Seasonal Modeling</h4>
-        <p>Applied ARIMA and exponential smoothing models for demand forecasting</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>Validation Testing</h4>
-        <p>Back-tested models against historical data to ensure accuracy</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h4>Implementation</h4>
-        <p>Deployed forecasting system for real-time inventory planning</p>
-      </div>
-    </div>
-
-    <h2>Key Insights & Findings</h2>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Seasonal Demand Patterns</h4>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Monthly demand line chart -->
-            <path d="M 40 120 L 70 115 L 100 110 L 130 105 L 160 40 L 190 35 L 220 100 L 250 110 L 280 115 L 310 120 L 340 125 L 370 130" stroke="#4caf50" stroke-width="3" fill="none"/>
-            
-            <!-- Data points -->
-            <circle cx="40" cy="120" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="70" cy="115" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="100" cy="110" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="130" cy="105" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="160" cy="40" r="5" fill="#ff6b6b" stroke="#fff" stroke-width="2"/>
-            <circle cx="190" cy="35" r="5" fill="#ff6b6b" stroke="#fff" stroke-width="2"/>
-            <circle cx="220" cy="100" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            <circle cx="250" cy="110" r="3" fill="#fff" stroke="#4caf50" stroke-width="2"/>
-            
-            <!-- CNY spike annotation -->
-            <text x="175" y="25" fill="white" text-anchor="middle" font-size="10" font-weight="bold">300% Spike</text>
-            <text x="175" y="15" fill="white" text-anchor="middle" font-size="8">Chinese New Year</text>
-            
-            <!-- Month labels -->
-            <text x="40" y="190" fill="white" text-anchor="middle" font-size="8">Jan</text>
-            <text x="100" y="190" fill="white" text-anchor="middle" font-size="8">Mar</text>
-            <text x="160" y="190" fill="white" text-anchor="middle" font-size="8">May</text>
-            <text x="220" y="190" fill="white" text-anchor="middle" font-size="8">Jul</text>
-            <text x="280" y="190" fill="white" text-anchor="middle" font-size="8">Sep</text>
-            <text x="340" y="190" fill="white" text-anchor="middle" font-size="8">Nov</text>
-            
-            <text x="200" y="180" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Monthly Demand Pattern (Units)</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Clear 300% demand spike 2 weeks before Chinese New Year, with specific product category preferences.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Forecasting Model Accuracy</h4>
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Accuracy comparison bars -->
-            <rect x="80" y="140" width="50" height="40" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="160" y="60" width="50" height="120" fill="#4caf50" opacity="0.8"/>
-            <rect x="240" y="100" width="50" height="80" fill="#feca57" opacity="0.8"/>
-            
-            <!-- Method labels -->
-            <text x="105" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Manual</text>
-            <text x="185" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">ARIMA</text>
-            <text x="265" y="195" fill="#333" text-anchor="middle" font-size="10" font-weight="bold">Simple</text>
-            
-            <!-- Accuracy percentages -->
-            <text x="105" y="125" fill="white" text-anchor="middle" font-size="12" font-weight="bold">45%</text>
-            <text x="185" y="50" fill="white" text-anchor="middle" font-size="12" font-weight="bold">85%</text>
-            <text x="265" y="90" fill="white" text-anchor="middle" font-size="12" font-weight="bold">62%</text>
-            
-            <!-- Winner indicator -->
-            <text x="185" y="40" fill="#4caf50" text-anchor="middle" font-size="10" font-weight="bold">Winner!</text>
-            
-            <!-- Y-axis label -->
-            <text x="30" y="100" fill="#333" text-anchor="middle" font-size="10" transform="rotate(-90 30 100)">Accuracy %</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Forecasting Method Comparison</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">ARIMA model achieved 85% accuracy for seasonal forecasting, significantly outperforming manual estimates at 45%.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Product Performance Analysis</h4>
-        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Pareto chart - bars for top products -->
-            <rect x="50" y="80" width="20" height="100" fill="#4caf50" opacity="0.8"/>
-            <rect x="75" y="100" width="20" height="80" fill="#4caf50" opacity="0.8"/>
-            <rect x="100" y="110" width="20" height="70" fill="#4caf50" opacity="0.8"/>
-            <rect x="125" y="120" width="20" height="60" fill="#4caf50" opacity="0.8"/>
-            <rect x="150" y="130" width="20" height="50" fill="#4caf50" opacity="0.8"/>
-            
-            <!-- Cumulative percentage line -->
-            <path d="M 60 150 L 85 130 L 110 110 L 135 95 L 160 85" stroke="#ff6b6b" stroke-width="3" fill="none"/>
-            
-            <!-- 80% line -->
-            <line x1="180" y1="85" x2="350" y2="85" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5,5"/>
-            <text x="355" y="90" fill="#ff6b6b" font-size="10" font-weight="bold">80%</text>
-            
-            <!-- Product labels -->
-            <text x="60" y="195" fill="#333" text-anchor="middle" font-size="8">Tea</text>
-            <text x="85" y="195" fill="#333" text-anchor="middle" font-size="8">Cola</text>
-            <text x="110" y="195" fill="#333" text-anchor="middle" font-size="8">Juice</text>
-            <text x="135" y="195" fill="#333" text-anchor="middle" font-size="8">Water</text>
-            <text x="160" y="195" fill="#333" text-anchor="middle" font-size="8">Sports</text>
-            
-            <!-- Top performers callout -->
-            <text x="220" y="60" fill="#333" font-size="12" font-weight="bold">Top 15 Products</text>
-            <text x="220" y="80" fill="#4caf50" font-size="16" font-weight="bold">80% Revenue</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Product Revenue Contribution</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Identified top 15 products driving 80% of seasonal revenue, enabling focused inventory strategy.</p>
-      </div>
-    </div>
-
-    <h2>Business Impact</h2>
-    <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
-      <h4>Measurable Outcomes (Chinese New Year 2024):</h4>
-      <ul>
-        <li><strong>40% reduction</strong> in stockouts during peak demand</li>
-        <li><strong>25% decrease</strong> in excess inventory holding costs</li>
-        <li><strong>RM180,000 additional revenue</strong> from improved availability</li>
-        <li><strong>85% forecasting accuracy</strong> vs 45% with manual methods</li>
-        <li><strong>30% improvement</strong> in cash flow management</li>
-      </ul>
-    </div>
-
-    <h2>Takeaways for Other Businesses</h2>
-    <p>If you experience seasonal demand fluctuations, this forecasting approach can help you:</p>
-    <ul>
-      <li>Predict demand spikes before they happen</li>
-      <li>Optimize inventory levels for maximum profit</li>
-      <li>Reduce working capital tied up in excess stock</li>
-      <li>Capture revenue during high-demand periods</li>
-      <li>Make data-driven purchasing decisions</li>
-      <li>Improve supplier relationship planning</li>
-    </ul>
-  </div>
-
-  <div class="cta-section">
-    <h3>Ready to Predict Your Seasonal Demand?</h3>
-    <p>Stop missing sales during peak periods. Let us build forecasting models that predict exactly what you'll need and when.</p>
-    <div style="margin-top: 2rem;">
-      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Forecasting Analysis</a>
-      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-    <p>
-      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
-      <a href="../../privacy-policy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 Pau Analytics</p>
-  </footer>
-
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>

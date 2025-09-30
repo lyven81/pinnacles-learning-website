@@ -1,454 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Customer Churn Prevention Case Study | Pau Analytics</title>
-  <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/customer-churn-prevention" />
-  <meta name="description" content="How we helped a coffee vending business identify at-risk customers and implement retention strategies using predictive analytics." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving the Silent Spenders | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/analytics/customer-churn-prevention" />
+    <meta name="description" content="We helped a coffee business predict which customers would leave and keep them" />
 
-  <style>
-    .case-study-header {
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    .case-study-header h1 {
-      color: #403B36;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
 
-    .case-study-header .subtitle {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 2rem;
-    }
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
 
-    .key-results {
-      background: #e8f5e8;
-      padding: 2rem;
-      border-radius: 10px;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-left: 4px solid #4caf50;
-    }
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .key-results h3 {
-      color: #1b5e20;
-      margin-top: 0;
-    }
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
 
-    .key-results ul {
-      list-style: none;
-      padding: 0;
-    }
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
 
-    .key-results li {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
 
-    .key-results li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #4caf50;
-      font-weight: bold;
-    }
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
 
-    .content-section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-    }
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
 
-    .content-section h2 {
-      color: #403B36;
-      border-bottom: 2px solid #CBA135;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .client-context {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #CBA135;
-      margin: 2rem 0;
-    }
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
 
-    .methodology-steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
 
-    .step {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
 
-    .step-number {
-      background: #CBA135;
-      color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      font-weight: bold;
-    }
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-    .insights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
 
-    .insight-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      border-left: 4px solid #6366f1;
-    }
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
 
-    .chart-placeholder {
-      background: #f0f0f0;
-      height: 200px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      margin: 1rem 0;
-      border: 2px dashed #ccc;
-    }
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
 
-    .recommendations-list {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-    }
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
 
-    .cta-section {
-      background: #403B36;
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-      border-radius: 10px;
-      margin: 3rem auto;
-      max-width: 800px;
-    }
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    .cta-section h3 {
-      margin-top: 0;
-      color: white;
-    }
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    
-    .navbar .brand {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #403B36;
-    }
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-    .navbar nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
+        .contact a:hover {
+            text-decoration: underline;
+        }
 
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
+        /* Work in Progress Section */
+        .work-in-progress {
+            background: #fff9e7;
+            border: 2px dashed #CBA135;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
 
-    footer {
-      background-color: #403B36;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
+        .work-in-progress h2 {
+            color: #403B36;
+            margin-bottom: 1rem;
+        }
 
-    footer a {
-      color: #CBA135;
-      text-decoration: none;
-    }
+        .work-in-progress p {
+            color: #666;
+            font-size: 1.1em;
+        }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
 
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-      .case-study-header h1 {
-        font-size: 2rem;
-      }
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
 
-      .methodology-steps {
-        grid-template-columns: 1fr;
-      }
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
 
-      .insights-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <header>
+                    <h1>Saving the Silent Spenders</h1>
+                    <p class="subtitle">We helped a coffee business predict which customers would leave and keep them</p>
+                </header>
 
-  <div class="navbar">
-    <div class="brand">Pau Analytics</div>
-    <nav>
-      <a href="../../index.html">Home</a>
-      <a href="../../data-analytics.html">Data Analytics</a>
-<a href="../../case-studies.html">Case Studies</a>
-      <a href="../../pricing.html">Pricing</a>
-      <a href="../../contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <div class="case-study-header">
-    <h1>Saving the Silent Spenders</h1>
-    <p class="subtitle">We helped a coffee business predict which customers would leave and keep them</p>
-  </div>
-
-  <div class="key-results">
-    <h3>At a Glance - Key Results</h3>
-    <ul>
-      <li>Identified top 10 high-value customers with CLV ranging from $370 to $3,663</li>
-      <li>Segmented customers into 4 tiers with targeted retention strategies</li>
-      <li>Discovered strong correlation between purchase frequency and spending</li>
-      <li>Enabled proactive churn prevention for high-risk, high-value customers</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="client-context">
-      <h3>Client Context</h3>
-      <p>A growing coffee vending machine service operating across multiple locations in Malaysia, serving office buildings and high-traffic areas. The business was experiencing customer churn but lacked insights into which customers were at risk and which were worth retaining.</p>
+                <div class="work-in-progress">
+                    <h2>🚧 Work in Progress</h2>
+                    <p>This detailed case study is currently being prepared. We're crafting comprehensive insights, visualizations, and actionable recommendations.</p>
+                    <p style="margin-top: 1.5rem;">Check back soon, or contact us to discuss how similar analytics solutions can help your business.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <h2>Problem Statement</h2>
-    <p>The coffee vending business faced several critical challenges:</p>
-    <ul>
-      <li><strong>Silent Customer Loss:</strong> Customers were leaving without warning, and the business only noticed after revenue dropped</li>
-      <li><strong>No Customer Prioritization:</strong> All customers were treated equally, despite varying value contributions</li>
-      <li><strong>Reactive Approach:</strong> Marketing efforts were generic rather than targeted at high-value customers</li>
-      <li><strong>Limited Insights:</strong> No understanding of purchasing patterns or customer behavior</li>
-    </ul>
-
-    <h2>Our Approach</h2>
-    <div class="methodology-steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>Data Collection</h4>
-        <p>Gathered transaction history, purchase frequency, and customer behavior data</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>CLV Calculation</h4>
-        <p>Estimated Customer Lifetime Value using historical spending patterns</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>Customer Segmentation</h4>
-        <p>Created 4 distinct customer tiers based on value and behavior</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h4>Risk Analysis</h4>
-        <p>Identified churn patterns and at-risk high-value customers</p>
-      </div>
-    </div>
-
-    <h2>Key Insights & Findings</h2>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Customer Value Distribution</h4>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Tier bars -->
-            <rect x="50" y="160" width="60" height="20" fill="#ff6b6b" opacity="0.8"/>
-            <rect x="120" y="140" width="60" height="40" fill="#feca57" opacity="0.8"/>
-            <rect x="190" y="100" width="60" height="80" fill="#48dbfb" opacity="0.8"/>
-            <rect x="260" y="60" width="60" height="120" fill="#0be881" opacity="0.8"/>
-            
-            <!-- Labels -->
-            <text x="80" y="195" fill="white" text-anchor="middle" font-size="10">Tier 1</text>
-            <text x="150" y="195" fill="white" text-anchor="middle" font-size="10">Tier 2</text>
-            <text x="220" y="195" fill="white" text-anchor="middle" font-size="10">Tier 3</text>
-            <text x="290" y="195" fill="white" text-anchor="middle" font-size="10">Tier 4</text>
-            
-            <!-- Values -->
-            <text x="80" y="150" fill="white" text-anchor="middle" font-size="8">$370</text>
-            <text x="150" y="130" fill="white" text-anchor="middle" font-size="8">$890</text>
-            <text x="220" y="90" fill="white" text-anchor="middle" font-size="8">$1,456</text>
-            <text x="290" y="50" fill="white" text-anchor="middle" font-size="8">$2,259</text>
-            
-            <text x="200" y="20" fill="white" text-anchor="middle" font-size="12" font-weight="bold">Average Customer Lifetime Value by Tier</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Top-tier customers (Tier 4) showed average spending of $2,259, representing the highest value segment requiring immediate attention.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Frequency-Spending Correlation</h4>
-        <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Scatter plot points -->
-            <circle cx="60" cy="160" r="3" fill="#ff6b6b" opacity="0.8"/>
-            <circle cx="80" cy="150" r="4" fill="#ff6b6b" opacity="0.8"/>
-            <circle cx="100" cy="140" r="3" fill="#feca57" opacity="0.8"/>
-            <circle cx="120" cy="130" r="4" fill="#feca57" opacity="0.8"/>
-            <circle cx="140" cy="120" r="5" fill="#48dbfb" opacity="0.8"/>
-            <circle cx="160" cy="110" r="4" fill="#48dbfb" opacity="0.8"/>
-            <circle cx="180" cy="100" r="5" fill="#48dbfb" opacity="0.8"/>
-            <circle cx="200" cy="90" r="6" fill="#0be881" opacity="0.8"/>
-            <circle cx="220" cy="80" r="5" fill="#0be881" opacity="0.8"/>
-            <circle cx="240" cy="70" r="7" fill="#0be881" opacity="0.8"/>
-            <circle cx="260" cy="60" r="6" fill="#0be881" opacity="0.8"/>
-            
-            <!-- Trend line -->
-            <line x1="50" y1="170" x2="280" y2="50" stroke="#333" stroke-width="2" opacity="0.7"/>
-            
-            <!-- Axis labels -->
-            <text x="200" y="190" fill="#333" text-anchor="middle" font-size="10">Purchase Frequency →</text>
-            <text x="30" y="100" fill="#333" text-anchor="middle" font-size="10" transform="rotate(-90 30 100)">Spending →</text>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Frequency vs Spending Correlation (R² = 0.85)</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">Strong positive correlation between purchase frequency and total spending, indicating loyal customers are also high-value customers.</p>
-      </div>
-      
-      <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #6366f1;">
-        <h4 style="color: #403B36; margin-bottom: 1rem;">Customer Tier Breakdown</h4>
-        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); height: 250px; border-radius: 8px; position: relative; margin: 1rem 0;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
-            <!-- Pie chart sectors -->
-            <g transform="translate(200,100)">
-              <!-- Tier 1: 45% -->
-              <path d="M 0,-60 A 60,60 0 0,1 42.43,42.43 L 0,0 Z" fill="#ff6b6b" opacity="0.8"/>
-              <!-- Tier 2: 30% -->
-              <path d="M 42.43,42.43 A 60,60 0 0,1 -18.54,56.46 L 0,0 Z" fill="#feca57" opacity="0.8"/>
-              <!-- Tier 3: 20% -->
-              <path d="M -18.54,56.46 A 60,60 0 0,1 -54.60,-21.42 L 0,0 Z" fill="#48dbfb" opacity="0.8"/>
-              <!-- Tier 4: 5% -->
-              <path d="M -54.60,-21.42 A 60,60 0 0,1 0,-60 L 0,0 Z" fill="#0be881" opacity="0.8"/>
-            </g>
-            
-            <!-- Labels -->
-            <text x="280" y="60" fill="#333" font-size="10">Tier 1: 45%</text>
-            <rect x="270" y="52" width="8" height="8" fill="#ff6b6b" opacity="0.8"/>
-            
-            <text x="280" y="80" fill="#333" font-size="10">Tier 2: 30%</text>
-            <rect x="270" y="72" width="8" height="8" fill="#feca57" opacity="0.8"/>
-            
-            <text x="280" y="100" fill="#333" font-size="10">Tier 3: 20%</text>
-            <rect x="270" y="92" width="8" height="8" fill="#48dbfb" opacity="0.8"/>
-            
-            <text x="280" y="120" fill="#333" font-size="10">Tier 4: 5%</text>
-            <rect x="270" y="112" width="8" height="8" fill="#0be881" opacity="0.8"/>
-            
-            <text x="200" y="20" fill="#333" text-anchor="middle" font-size="12" font-weight="bold">Customer Distribution by Value Tier</text>
-          </svg>
-        </div>
-        <p style="color: #666; margin-top: 1rem;">4 distinct customer segments identified, each requiring different retention and engagement strategies.</p>
-      </div>
-    </div>
-
-    <h2>Recommendations & Actions</h2>
-    <div class="recommendations-list">
-      <h4>Immediate Actions Implemented:</h4>
-      <ol>
-        <li><strong>VIP Loyalty Program:</strong> Created exclusive benefits for Tier 4 customers (top 10% by CLV)</li>
-        <li><strong>Early Warning System:</strong> Set up alerts when high-value customers show decreased activity</li>
-        <li><strong>Targeted Campaigns:</strong> Personalized offers based on customer tier and purchase history</li>
-        <li><strong>Inventory Optimization:</strong> Stocked popular items based on customer preferences by location</li>
-        <li><strong>Win-Back Strategy:</strong> Automated re-engagement campaigns for customers showing churn signals</li>
-      </ol>
-    </div>
-
-    <h2>Business Impact</h2>
-    <div style="background: #e8f5e8; padding: 2rem; border-radius: 8px; border-left: 4px solid #4caf50;">
-      <h4>Measurable Outcomes:</h4>
-      <ul>
-        <li><strong>30% improvement</strong> in high-value customer retention</li>
-        <li><strong>25% increase</strong> in average customer lifetime value</li>
-        <li><strong>40% reduction</strong> in customer acquisition costs through better retention</li>
-        <li><strong>15% boost</strong> in overall revenue from targeted campaigns</li>
-      </ul>
-    </div>
-
-    <h2>Takeaways for Other Businesses</h2>
-    <p>If you run a subscription-based business, retail operation, or service company, these insights can help you:</p>
-    <ul>
-      <li>Identify your most valuable customers before they leave</li>
-      <li>Allocate marketing budget more effectively</li>
-      <li>Create personalized retention strategies</li>
-      <li>Understand the true drivers of customer loyalty</li>
-      <li>Implement proactive rather than reactive customer management</li>
-    </ul>
-  </div>
-
-  <div class="cta-section">
-    <h3>Want Similar Insights for Your Business?</h3>
-    <p>Don't wait until customers leave to understand their value. Let us help you identify at-risk customers and create targeted retention strategies.</p>
-    <div style="margin-top: 2rem;">
-      <a href="../../contact.html" class="cta-button" style="background: #CBA135; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 1rem;">Get Started</a>
-      <a href="https://wa.me/60149207099" class="cta-button" style="background: transparent; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; border: 2px solid white;">WhatsApp Us</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-    <p>
-      <a href="../../about.html">About Us</a> &nbsp;|&nbsp;
-      <a href="../../privacy-policy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 Pau Analytics</p>
-  </footer>
-
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>
