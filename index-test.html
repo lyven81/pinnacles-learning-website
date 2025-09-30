@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Data Analytics Consulting for SMEs | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/" />
+  <meta name="description" content="We offer data analytics consulting for SMEs in Malaysia. Get insights on inventory forecasting, churn prediction, marketing ROI, and pricing optimization with custom dashboards." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Pau Analytics",
+  "url": "https://www.pauanalytics.com",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "admin@pauanalytics.com",
+    "areaServed": "MY",
+    "availableLanguage": ["en", "ms"]
+  }]
+}
+</script>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3XSLR3FV22');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Track CTA button clicks
+    document.querySelectorAll('.cta-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        gtag('event', 'cta_click', {
+          event_category: 'engagement',
+          event_label: btn.textContent.trim()
+        });
+      });
+    });
+
+    // Track Contact form submissions
+    const contactForm = document.querySelector('form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', () => {
+        gtag('event', 'contact_form_submit', {
+          event_category: 'lead',
+          event_label: 'Contact Form'
+        });
+      });
+    }
+  });
+</script>
+
+<!-- Cookie Consent Code -->
+  <style>
+    #cookieConsent {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #403B36;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      z-index: 9999;
+    }
+    #cookieConsent button {
+      background-color: #CBA135;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #cookieConsent button:hover {
+      background-color: #b08e2e;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var consentBanner = document.getElementById('cookieConsent');
+      var acceptButton = document.getElementById('acceptCookies');
+
+      // Show cookie consent if not accepted
+      if (!localStorage.getItem('cookieAccepted')) {
+        consentBanner.style.display = 'block';
+      }
+
+      // If user accepts cookies, store their consent in localStorage
+      acceptButton.onclick = function() {
+        localStorage.setItem('cookieAccepted', 'true');
+        consentBanner.style.display = 'none';
+      };
+    };
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#FCF9F2">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #FCF9F2;
+      color: #333;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky top navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      height: 450px;
+      background: linear-gradient(135deg, #403B36 0%, #5a5349 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 2rem;
+      z-index: 1;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-section p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    /* Magazine Layout Styles */
+    .magazine-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* Full Width Story Card */
+    .story-card-full {
+      position: relative;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: row;
+      min-height: 350px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .story-card-full:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .story-image {
+      flex: 1;
+      background: linear-gradient(135deg, #CBA135 0%, #e0b852 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+    }
+
+    .story-content {
+      flex: 1;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story-badge {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .story-badge.ai {
+      background-color: #403B36;
+    }
+
+    .story-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #403B36;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .story-description {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .story-result {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #CBA135;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .story-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #b08e2e;
+    }
+
+    .cta-button.secondary {
+      background-color: transparent;
+      color: #403B36;
+      border: 2px solid #403B36;
+    }
+
+    .cta-button.secondary:hover {
+      background-color: #403B36;
+      color: white;
+    }
+
+    /* Side-by-Side Story Cards */
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .story-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .story-card-image {
+      height: 200px;
+      background: linear-gradient(135deg, #CBA135 0%, #e0b852 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+    }
+
+    .story-card-image.ai {
+      background: linear-gradient(135deg, #403B36 0%, #5a5349 100%);
+    }
+
+    .story-card-content {
+      padding: 2rem;
+    }
+
+    .story-card .story-badge {
+      margin-bottom: 0.8rem;
+    }
+
+    .story-card .story-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .story-card .story-description {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .story-card .story-result {
+      font-size: 1.4rem;
+      margin: 0.8rem 0 1.2rem;
+    }
+
+    .story-card .story-buttons {
+      gap: 0.8rem;
+    }
+
+    .story-card .cta-button {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+    }
+
+    /* Closing Banner */
+    .closing-banner {
+      position: relative;
+      background: linear-gradient(135deg, #403B36 0%, #5a5349 100%);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+
+    .closing-banner h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .closing-banner p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .cta-button.primary {
+      background-color: #CBA135;
+      font-size: 1.2rem;
+      padding: 15px 35px;
+    }
+
+    .cta-button.primary:hover {
+      background-color: #b08e2e;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      .navbar nav a {
+        margin-left: 0;
+        margin-right: 1rem;
+      }
+
+      .hero-section {
+        height: 350px;
+      }
+
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+
+      .container {
+        padding: 0 1rem 2rem;
+      }
+
+      .story-card-full {
+        flex-direction: column;
+        min-height: auto;
+      }
+
+      .story-image {
+        min-height: 200px;
+      }
+
+      .story-content {
+        padding: 2rem;
+      }
+
+      .story-title {
+        font-size: 1.5rem;
+      }
+
+      .story-result {
+        font-size: 1.4rem;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .closing-banner h2 {
+        font-size: 1.5rem;
+      }
+
+      .closing-banner p {
+        font-size: 1rem;
+      }
+
+      .cta-button.primary {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">Pau Analytics</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="data-analytics.html">Data Analytics</a>
+      <a href="ai-solutions.html">AI Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Data Analytics & AI Solutions</h1>
+      <p>Turn your business data into direction. Build smart tools that work.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="magazine-container">
+
+      <!-- Story #1: Customer Churn Prevention (Full Width) -->
+      <article class="story-card-full">
+        <div class="story-image">📊</div>
+        <div class="story-content">
+          <span class="story-badge">Case Study</span>
+          <h2 class="story-title">Customer Churn Prevention</h2>
+          <p class="story-description"><strong>Problem:</strong> Identify at-risk high-value customers before they leave</p>
+          <div class="story-result">30% Retention Improvement</div>
+          <div class="story-buttons">
+            <a href="data-analytics.html" class="cta-button">View Case Study</a>
+            <a href="https://wa.me/60149207099" class="cta-button secondary">Book a Call</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Story #2 & #3: Marketing ROI + Document AI (Side-by-Side) -->
+      <div class="story-grid">
+        <article class="story-card">
+          <div class="story-card-image">📈</div>
+          <div class="story-card-content">
+            <span class="story-badge">Case Study</span>
+            <h3 class="story-title">Marketing Channel Performance</h3>
+            <p class="story-description"><strong>Problem:</strong> Which ads deliver most sales per dollar spent</p>
+            <div class="story-result">50% ROI Improvement</div>
+            <div class="story-buttons">
+              <a href="data-analytics.html" class="cta-button">View Case Study</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <div class="story-card-image ai">🤖</div>
+          <div class="story-card-content">
+            <span class="story-badge ai">AI Solution</span>
+            <h3 class="story-title">Document AI: PDF Summarizer</h3>
+            <p class="story-description">Speed up report reading and document analysis with intelligent summarization</p>
+            <div class="story-buttons">
+              <a href="ai-solutions.html" class="cta-button">Try Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Story #4: Virtual Try-On Studio (Full Width) -->
+      <article class="story-card-full">
+        <div class="story-content">
+          <span class="story-badge ai">AI Solution</span>
+          <h2 class="story-title">Virtual Try-On Studio</h2>
+          <p class="story-description">AI-powered virtual try-on technology for fashion and accessories. Reduce returns and increase customer engagement with realistic product visualization.</p>
+          <div class="story-buttons">
+            <a href="ai-solutions.html" class="cta-button">Try Demo</a>
+            <a href="https://wa.me/60149207099" class="cta-button secondary">Learn More</a>
+          </div>
+        </div>
+        <div class="story-image ai">👗</div>
+      </article>
+
+      <!-- Story #5 & #6: Beverage Forecasting + Smart Chatbot (Side-by-Side) -->
+      <div class="story-grid">
+        <article class="story-card">
+          <div class="story-card-image">📦</div>
+          <div class="story-card-content">
+            <span class="story-badge">Case Study</span>
+            <h3 class="story-title">Beverage Sales Forecasting</h3>
+            <p class="story-description"><strong>Problem:</strong> Seasonal demand planning for retailers</p>
+            <div class="story-result">40% Reduction in Stockouts</div>
+            <div class="story-buttons">
+              <a href="data-analytics.html" class="cta-button">View Case Study</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <div class="story-card-image ai">💬</div>
+          <div class="story-card-content">
+            <span class="story-badge ai">AI Solution</span>
+            <h3 class="story-title">Smart Chatbot Consultants</h3>
+            <p class="story-description">24/7 AI consultants for specialized services and customer support</p>
+            <div class="story-buttons">
+              <a href="ai-solutions.html" class="cta-button">Try Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+
+    <!-- Closing Banner -->
+    <section class="closing-banner">
+      <h2>Ready to Transform Your Business?</h2>
+      <p>Let's turn your data into direction and build smart tools that work.</p>
+      <a href="https://wa.me/60149207099" class="cta-button primary">Book a Call</a>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>
+      <a href="about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+    <p>© 2025 Pau Analytics</p>
+  </footer>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookieConsent" style="display: none;">
+    This website uses cookies to improve your experience.
+    <button id="acceptCookies">Accept</button>
+  </div>
+
+</body>
+</html>
