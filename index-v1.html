@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Data Analytics Consulting for SMEs | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/" />
+  <meta name="description" content="We offer data analytics consulting for SMEs in Malaysia. Get insights on inventory forecasting, churn prediction, marketing ROI, and pricing optimization with custom dashboards." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Pau Analytics",
+  "url": "https://www.pauanalytics.com",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "admin@pauanalytics.com",
+    "areaServed": "MY",
+    "availableLanguage": ["en", "ms"]
+  }]
+}
+</script>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3XSLR3FV22');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Track CTA button clicks
+    document.querySelectorAll('.cta-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        gtag('event', 'cta_click', {
+          event_category: 'engagement',
+          event_label: btn.textContent.trim()
+        });
+      });
+    });
+
+    // Track Contact form submissions
+    const contactForm = document.querySelector('form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', () => {
+        gtag('event', 'contact_form_submit', {
+          event_category: 'lead',
+          event_label: 'Contact Form'
+        });
+      });
+    }
+  });
+</script>
+
+<!-- Cookie Consent Code -->
+  <style>
+    #cookieConsent {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #403B36;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      z-index: 9999;
+    }
+    #cookieConsent button {
+      background-color: #CBA135;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #cookieConsent button:hover {
+      background-color: #b08e2e;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var consentBanner = document.getElementById('cookieConsent');
+      var acceptButton = document.getElementById('acceptCookies');
+      
+      // Show cookie consent if not accepted
+      if (!localStorage.getItem('cookieAccepted')) {
+        consentBanner.style.display = 'block';
+      }
+      
+      // If user accepts cookies, store their consent in localStorage
+      acceptButton.onclick = function() {
+        localStorage.setItem('cookieAccepted', 'true');
+        consentBanner.style.display = 'none';
+      };
+    };
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#FCF9F2">
+
+  <style>
+    /* Sticky top navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #FCF9F2;
+      color: #333;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+    }
+
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #403B36;
+      margin-top: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .cta-button:hover {
+      background-color: #b08e2e;
+    }
+
+    .cta-button.primary {
+      background-color: #403B36;
+      font-size: 1.2rem;
+      padding: 15px 30px;
+    }
+
+    .cta-button.primary:hover {
+      background-color: #2d2824;
+    }
+
+    .services-section {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin: 3rem 0 2rem;
+      flex-wrap: wrap;
+    }
+
+    .service-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 350px;
+      text-align: center;
+    }
+
+    .service-card h3 {
+      color: #403B36;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .main-cta {
+      margin-top: 2rem;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #CBA135;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .services-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .service-card {
+        max-width: 100%;
+        margin: 0 1rem;
+      }
+
+      .cta-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+      }
+
+      .cta-button.primary {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">Pau Analytics</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="data-analytics.html">Data Analytics</a>
+      <a href="ai-solutions.html">AI Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <header>
+    <h1>Data Analytics & AI Solutions</h1>
+    <p>Turn your business data into direction. Build smart tools that work.</p>
+    
+    <div class="services-section">
+      <div class="service-card">
+        <h3>Data Analytics Consulting</h3>
+        <p>Turn your business data into clear direction for smarter decisions.</p>
+        <a href="data-analytics.html" class="cta-button">See how we turn your business data into direction</a>
+      </div>
+      
+      <div class="service-card">
+        <h3>AI Solutions Development</h3>
+        <p>Custom AI tools designed to solve your specific business challenges.</p>
+        <a href="ai-solutions.html" class="cta-button">Discover smart AI tools built for real business needs</a>
+      </div>
+    </div>
+    
+    <div class="main-cta">
+      <a href="https://wa.me/60149207099" class="cta-button primary">Book a Call</a>
+    </div>
+  </header>
+
+  <div class="spacer"></div>
+
+  <footer>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>
+      <a href="about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+    <p>© 2025 Pau Analytics</p>
+  </footer>
+
+</body>
+</html>
