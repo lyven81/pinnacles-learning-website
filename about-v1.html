@@ -109,169 +109,17 @@
       color: #CBA135;
     }
 
-    /* Two-column layout container */
+    /* Single column layout container */
     .page-container {
-      display: flex;
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 3rem 2rem;
-      gap: 3rem;
       flex: 1;
     }
 
-    /* Left Sidebar */
-    .left-sidebar {
-      flex: 0 0 300px;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      height: fit-content;
-      position: sticky;
-      top: 20px;
-      align-self: flex-start;
-    }
-
-    .company-logo {
-      width: 100%;
-      max-width: 200px;
-      margin: 0 auto 1.5rem;
-      display: block;
-    }
-
-    .company-tagline {
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #403B36;
-      margin-bottom: 0.5rem;
-    }
-
-    .company-subtitle {
-      text-align: center;
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 2rem;
-      line-height: 1.5;
-    }
-
-    .approach-section {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-      border-left: 3px solid #CBA135;
-    }
-
-    .approach-section h3 {
-      font-size: 0.95rem;
-      color: #403B36;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 600;
-    }
-
-    .approach-item {
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .approach-item:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .approach-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #403B36;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .approach-title::before {
-      content: "✓";
-      color: #CBA135;
-      font-weight: bold;
-      margin-right: 0.5rem;
-      font-size: 1.2rem;
-    }
-
-    .approach-description {
-      font-size: 0.9rem;
-      color: #666;
-      line-height: 1.6;
-      padding-left: 1.7rem;
-    }
-
-    .sidebar-cta {
-      margin-top: 2rem;
-    }
-
-    .cta-button {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background-color: #CBA135;
-      color: white;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .cta-button:hover {
-      background-color: #b08e2e;
-    }
-
-    .sidebar-contact {
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid #e0e0e0;
-    }
-
-    .sidebar-contact h3 {
-      font-size: 1rem;
-      color: #403B36;
-      margin-bottom: 1rem;
-    }
-
-    .sidebar-contact p {
-      font-size: 0.9rem;
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .sidebar-contact ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar-contact li {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-
-    .sidebar-contact a {
-      color: #CBA135;
-      text-decoration: none;
-    }
-
-    .sidebar-contact a:hover {
-      text-decoration: underline;
-    }
-
-    /* Right Main Content */
+    /* Main Content */
     .main-content {
-      flex: 1;
+      width: 100%;
     }
 
     .main-content h1 {
@@ -305,6 +153,46 @@
 
     .about-section p:last-child {
       margin-bottom: 0;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .contact-info p {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info a {
+      color: #CBA135;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #b08e2e;
     }
 
     .services-grid {
@@ -377,38 +265,6 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 968px) {
-      .page-container {
-        flex-direction: column;
-        padding: 2rem 1rem;
-        gap: 2rem;
-      }
-
-      .left-sidebar {
-        flex: 1;
-        position: static;
-        margin-bottom: 0;
-        padding: 1.5rem;
-      }
-
-      .approach-section {
-        padding: 1.5rem;
-      }
-
-      .approach-item {
-        margin-bottom: 1.2rem;
-        padding-bottom: 1.2rem;
-      }
-
-      .main-content h1 {
-        font-size: 2rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -425,48 +281,11 @@
       }
 
       .page-container {
-        padding: 1.5rem 1rem;
-        gap: 1.5rem;
-      }
-
-      .left-sidebar {
-        padding: 1.5rem;
-      }
-
-      .company-tagline {
-        font-size: 1rem;
-      }
-
-      .company-subtitle {
-        font-size: 0.9rem;
-      }
-
-      .approach-section {
-        padding: 1.2rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .approach-section h3 {
-        font-size: 0.85rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .approach-item {
-        margin-bottom: 1rem;
-        padding-bottom: 1rem;
-      }
-
-      .approach-title {
-        font-size: 0.95rem;
-      }
-
-      .approach-description {
-        font-size: 0.85rem;
-        padding-left: 1.5rem;
+        padding: 2rem 1rem;
       }
 
       .main-content h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 1.5rem;
       }
 
@@ -483,26 +302,34 @@
         font-size: 0.95rem;
       }
 
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
       .service-card {
         padding: 1.2rem;
+      }
+
+      .contact-info {
+        padding: 0.8rem;
+      }
+
+      .contact-info p {
+        font-size: 0.9rem;
       }
     }
 
     @media (max-width: 480px) {
       .page-container {
-        padding: 1rem;
+        padding: 1.5rem 1rem;
       }
 
-      .left-sidebar {
-        padding: 1.2rem;
+      .main-content h1 {
+        font-size: 1.8rem;
       }
 
       .about-section {
         padding: 1.2rem;
-      }
-
-      .approach-description {
-        font-size: 0.8rem;
       }
     }
   </style>
@@ -522,42 +349,6 @@
   </div>
 
   <div class="page-container">
-    <!-- Left Sidebar -->
-    <aside class="left-sidebar">
-      <div class="company-tagline">Pau Analytics</div>
-      <div class="company-subtitle">Data Analytics & AI Solutions for Malaysian SMEs</div>
-
-      <div class="approach-section">
-        <h3>Our Approach</h3>
-        <div class="approach-item">
-          <div class="approach-title">Listen First</div>
-          <div class="approach-description">Understand your business challenges before diving into data</div>
-        </div>
-        <div class="approach-item">
-          <div class="approach-title">Keep It Simple</div>
-          <div class="approach-description">Clear insights, no technical jargon</div>
-        </div>
-        <div class="approach-item">
-          <div class="approach-title">Action-Focused</div>
-          <div class="approach-description">Every analysis comes with practical next steps</div>
-        </div>
-      </div>
-
-      <div class="sidebar-cta">
-        <a href="contact.html" class="cta-button">Book Free Consultation</a>
-      </div>
-
-      <div class="sidebar-contact">
-        <h3>Get In Touch</h3>
-        <p>Ready to turn your data into direction?</p>
-        <ul>
-          <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
-          <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
-        </ul>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
     <main class="main-content">
       <h1>About Pau Analytics</h1>
 
@@ -645,8 +436,12 @@
         <p>
           Let's discuss how we can turn your data into direction and build solutions that work for your business.
         </p>
-        <p style="margin-top: 1.5rem;">
-          <a href="contact.html" class="cta-button" style="display: inline-block; width: auto; padding: 12px 30px;">Book a Free Consultation</a>
+        <div class="contact-info">
+          <p>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+          <p>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></p>
+        </div>
+        <p style="text-align: center;">
+          <a href="contact.html" class="cta-button">Book a Free Consultation</a>
         </p>
       </section>
     </main>
