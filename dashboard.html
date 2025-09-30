@@ -1,74 +1,37 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Pau Analytics | Interactive Dashboards</title>
-  <link rel="canonical" href="https://www.pauanalytics.com/dashboards.html" />
-  <meta name="description" content="Explore Pau Analytics' dashboards to track inventory, sales trends, customer churn, and marketing performance. />
+  <title>Data Analytics Dashboards | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/dashboard" />
+  <meta name="description" content="Explore interactive data analytics dashboards for business insights - inventory forecasting, customer retention, sales analysis, and more." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Pau Analytics",
-  "url": "https://www.pauanalytics.com",
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "contactType": "Customer Service",
-    "email": "admin@pauanalytics.com",
-    "areaServed": "MY",
-    "availableLanguage": ["en", "ms"]
-  }]
-}
-</script>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-3XSLR3FV22');
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Track CTA button clicks
-    document.querySelectorAll('.cta-button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        gtag('event', 'cta_click', {
-          event_category: 'engagement',
-          event_label: btn.textContent.trim()
-        });
-      });
-    });
-
-    // Track Contact form submissions
-    const contactForm = document.querySelector('form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', () => {
-        gtag('event', 'contact_form_submit', {
-          event_category: 'lead',
-          event_label: 'Contact Form'
-        });
-      });
-    }
-  });
-</script>
-
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#FCF9F2">
+  <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Sticky top navbar */
+    .hero-section {
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .hero-section h1 {
+      color: #403B36;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
     .navbar {
       position: sticky;
       top: 0;
@@ -80,28 +43,6 @@
       padding: 1rem 2rem;
       border-bottom: 1px solid #e0ddd3;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #FCF9F2;
-      color: #333;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
     }
 
     .navbar .brand {
@@ -121,99 +62,13 @@
       color: #CBA135;
     }
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem 3rem;
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: #403B36;
-      margin-top: 0.5rem;
-    }
-
-    .intro h2 {
-  font-size: 2rem;
-  color: #403B36;
-  margin-bottom: 0.5rem;
-}
-    
-    header p {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 600px;
-      margin: 1rem auto 2rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: #CBA135;
-      color: white;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-
-    .cta-button:hover {
-      background-color: #b08e2e;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    .intro {
-      margin-bottom: 2rem;
-    }
-
-    .case-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .case-card {
-      background: #FFFFFF;
-      border: 1px solid #e0ddd3;
-      border-radius: 12px;
-      padding: 1.5rem;
-      width: 300px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
-
-    .case-card h3 {
-      color: #403B36;
-      margin-top: 0;
-    }
-
-    .case-card a {
-      color: #CBA135;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    .case-card a:hover {
-      text-decoration: underline;
-    }
-
-    .spacer {
-      flex: 1;
-    }
-
     footer {
       background-color: #403B36;
       color: white;
       text-align: center;
       padding: 1.5rem;
       font-size: 0.9rem;
+      margin-top: 3rem;
     }
 
     footer a {
@@ -235,13 +90,13 @@
         margin-top: 0.5rem;
       }
 
-      header h1 {
+      .hero-section h1 {
         font-size: 2rem;
       }
 
-      .cta-button {
-        font-size: 1rem;
-        padding: 10px 20px;
+      .case-studies-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
       }
     }
   </style>
@@ -252,67 +107,270 @@
     <div class="brand">Pau Analytics</div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="dashboard.html">Dashboards</a>
+      <a href="data-analytics.html">Data Analytics</a>
       <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 
-  <div class="container">
-    <section class="intro">
-       <h1>Real Insight, Real Impact</h1>
-       <p>How businesses used dashboards to manage inventory, increase sales, and keep customers coming back.</p>
-    </section>
+  <div class="hero-section">
+    <h1>Data Analytics Dashboards</h1>
+    <p>Interactive dashboards showcasing real-world business analytics solutions.</p>
+    <a href="https://wa.me/60149207099" class="cta-button">Get Your Dashboard</a>
+  </div>
 
-    <div class="case-grid">
-      <div class="case-card">
-        <h3>Chicken Rice Stall: Prep Smarter</h3>
-        <p>Food vendors use daily sales dashboards to spot lunch trends, prepare the right amount, and avoid wasting food.</p>
-        <a href="http://www.pauanalytics.com/dashboard/dashboard-1.html">Explore Dashboard</a>
+  <div style="margin: 2rem auto; max-width: 1200px; padding: 0 2rem;">
+    <div class="case-studies-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+
+      <!-- Left Column -->
+      <div>
+        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Predictive Modeling</h3>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Who Is Most at Risk of Leaving the Bank</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Identify which bank customers are most likely to churn.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/who-is-most-at-risk-of-leaving-the-bank.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/who-is-most-at-risk-of-leaving-the-bank.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Saving the Silent Spenders</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Identify which VIP coffee customers are about to stop buying.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/saving-the-silent-spenders.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/saving-the-silent-spenders.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Who's Likely to Quit</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Predict which employees are likely to quit before they resign.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/who-is-likely-to-quit.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/who-is-likely-to-quit.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Predicting Customer Response to Discounts</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Find out which customers respond to discount campaigns.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/predicting-customer-response-to-discounts.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/predicting-customer-response-to-discounts.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Regression Analysis</h3>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">When Good Cars Lose Value</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Learn which car features hold value best over time.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/when-good-cars-lose-value.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/when-good-cars-lose-value.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Grow Smarter, Not Bigger</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Find out if hiring more employees actually increases revenue.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/grow-smarter-not-bigger.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/grow-smarter-not-bigger.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Do Dollars Drive Decisions?</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Discover how income levels influence customer buying decisions.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/do-dollars-drive-decisions.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/do-dollars-drive-decisions.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">What Causes Product Returns</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Discover what price factors trigger the most product returns.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/what-causes-product-returns.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/what-causes-product-returns.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Statistical Testing</h3>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Cash or Credit Card</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Discover whether cash or credit card users spend more.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/cash-or-credit-card.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/cash-or-credit-card.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Did You Sleep Well Last Night?</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Explore what hotel factors contribute to better guest sleep quality.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/did-you-sleep-well-last-night.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/did-you-sleep-well-last-night.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Connected or Disconnected?</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Learn if social media usage strengthens or weakens relationships.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/connected-or-disconnected.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/connected-or-disconnected.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Nasi Lemak vs Kopi-O Preference Analysis</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Discover cultural preferences between nasi lemak and kopi-o choices.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/nasi-lemak-vs-kopi-o-preference.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/nasi-lemak-vs-kopi-o-preference.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="case-card">
-        <h3>Café Restocking: Weekday Patterns</h3>
-        <p>See when customers buy the most coffee and croissants, so bakeries can stock just the right amount at the right time.</p>
-        <a href="http://www.pauanalytics.com/dashboard/dashboard-2.html">Explore Dashboard</a>
-      </div>
+      <!-- Right Column -->
+      <div>
+        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Segmentation Analysis</h3>
 
-      <div class="case-card">
-        <h3>Customer Retention: Silent Spenders</h3>
-        <p>See which customers stopped buying and when, so you can reach out before they’re gone for good.</p>
-        <a href="http://www.pauanalytics.com/dashboard/dashboard-3.html">Explore Dashboard</a>
-      </div>
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">The Hidden Patterns in Malaysian Real Estate</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Uncover hidden patterns that drive Malaysian real estate success.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/hidden-patterns-malaysian-real-estate.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/hidden-patterns-malaysian-real-estate.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
 
-      <div class="case-card">
-        <h3>Marketing ROI: Spend Smarter</h3>
-        <p>This dashboard shows which ads work best, helping the business save money and get better results.</p>
-        <a href="http://www.pauanalytics.com/dashboard/dashboard-4.html">Explore Dashboard</a>
-      </div>
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">From Clicks to Check-Ins</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Transform hotel search traffic into confirmed bookings.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/from-clicks-to-check-ins.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/from-clicks-to-check-ins.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
 
-      <div class="case-card">
-        <h3>Social Media: Engagement to Sales</h3>
-        <p>See how your likes and shares connect to actual sales by tracking engagement and return on investment.</p>
-        <a href="http://www.pauanalytics.com/dashboard/dashboard-5.html">Explore Dashboard</a>
-      </div>
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">What Men and Women Buy</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Gender-based product preference analysis.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/what-men-and-women-buy.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/what-men-and-women-buy.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
 
-      <div class="case-card">
-        <h3>Pizza Menu: Real Bestsellers</h3>
-        <p>You can adjust promotions based on which products are selling, as shown in the dashboard.</p>
-        <a href="http://www.pauanalytics.com/dashboard/dashboard-6.html">Explore Dashboard</a>
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Not All Shoppers Are Equal</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Learn what customer spending patterns reveal.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/not-all-shoppers-are-equal.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/not-all-shoppers-are-equal.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Optimization Analysis</h3>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">The Hidden Power of Affiliates</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Uncover the hidden power of affiliate marketing partnerships.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/hidden-power-of-affiliates.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/hidden-power-of-affiliates.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Predicting Product Sales</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Find out which advertising channels deliver the most sales per dollar.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/predicting-product-sales.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/predicting-product-sales.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Beyond the Buzzwords</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Discover which jewelry keywords actually deliver clicks and sales.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/beyond-the-buzzwords.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/beyond-the-buzzwords.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Boost Sales and Restocking Efficiency</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Learn the best times to restock vending machines for maximum sales.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/boost-sales-restocking-efficiency.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/boost-sales-restocking-efficiency.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Time Series Analysis</h3>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Fruit Sales Forecast - October 2024</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Predict seasonal fruit demand to maximize sales.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/fruit-sales-forecast-october-2024.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/fruit-sales-forecast-october-2024.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">RON95 Fuel Price Volatility Analysis</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Forecast RON95 fuel prices to anticipate market volatility and costs.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/ron95-fuel-price-volatility.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/ron95-fuel-price-volatility.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Too Hot to Harvest</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Discover how climate patterns impact crop yields.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/too-hot-to-harvest.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/too-hot-to-harvest.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Trend or Trap?</h4>
+          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Decode Google's price moves to spot real trends.</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <a href="case-study/trend-or-trap.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Case Study →</a>
+            <a href="dashboard/trend-or-trap.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div style="text-align: center; background: #f8f9fa; padding: 2rem; border-radius: 10px;">
+      <p style="color: #555; margin-bottom: 1rem;"><strong>View complete portfolio:</strong> <a href="https://lyven81.github.io/data-analyst-portfolio/" style="color: #CBA135;">Data Analytics Portfolio →</a></p>
     </div>
   </div>
 
-  <div class="spacer"></div>
+  <div style="text-align: center; margin: 3rem 0;">
+    <h2 style="color: #403B36;">Ready to Turn Your Data into Direction?</h2>
+    <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Let's discuss how we can help your business make smarter decisions.</p>
+    <a href="https://wa.me/60149207099" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">Book a Free Consultation</a>
+  </div>
 
   <footer>
-    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-    <p>
-      <a href="about.html">About Us</a> &nbsp;|&nbsp;
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </p>
-    <p>© 2025 Pau Analytics</p>
+    <p>© 2025 Pau Analytics | <a href="https://www.pauanalytics.com/privacy-policy.html">Privacy Policy</a></p>
   </footer>
 
 </body>
