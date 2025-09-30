@@ -229,7 +229,8 @@
 
     .story-image {
       flex: 1;
-      background: linear-gradient(135deg, #CBA135 0%, #e0b852 100%);
+      background-size: cover;
+      background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -340,16 +341,13 @@
 
     .story-card-image {
       height: 200px;
-      background: linear-gradient(135deg, #CBA135 0%, #e0b852 100%);
+      background-size: cover;
+      background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
       color: white;
-    }
-
-    .story-card-image.ai {
-      background: linear-gradient(135deg, #403B36 0%, #5a5349 100%);
     }
 
     .story-card-content {
@@ -532,44 +530,44 @@
   <div class="container">
     <div class="magazine-container">
 
-      <!-- Story #1: Customer Churn Prevention (Full Width) -->
+      <!-- Story #1: Who Is Most at Risk of Leaving the Bank (Full Width) -->
       <article class="story-card-full">
-        <div class="story-image">📊</div>
+        <div class="story-image" style="background-image: url('https://lyven81.github.io/data-analyst-portfolio/images/who-is-most-at-risk-of-leaving-the-bank/chart 1 - bar chart.png'); filter: brightness(0.7);"></div>
         <div class="story-content">
-          <span class="story-badge">Case Study</span>
-          <h2 class="story-title">Customer Churn Prevention</h2>
-          <p class="story-description"><strong>Problem:</strong> Identify at-risk high-value customers before they leave</p>
-          <div class="story-result">30% Retention Improvement</div>
+          <span class="story-badge">Predictive Modeling</span>
+          <h2 class="story-title">Who Is Most at Risk of Leaving the Bank</h2>
+          <p class="story-description">Identify which bank customers are most likely to churn.</p>
           <div class="story-buttons">
-            <a href="data-analytics.html" class="cta-button">View Case Study</a>
-            <a href="https://wa.me/60149207099" class="cta-button secondary">Book a Call</a>
+            <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/who-is-most-at-risk-of-leaving-the-bank.html" class="cta-button" target="_blank">Read More</a>
+            <a href="https://lyven81.github.io/data-analyst-portfolio/dashboards/who-is-most-at-risk-of-leaving-the-bank-dashboard.html" class="cta-button secondary" target="_blank">Dashboard</a>
           </div>
         </div>
       </article>
 
-      <!-- Story #2 & #3: Marketing ROI + Document AI (Side-by-Side) -->
+      <!-- Story #2 & #3: Malaysian Real Estate + From Clicks to Check-Ins (Side-by-Side) -->
       <div class="story-grid">
         <article class="story-card">
-          <div class="story-card-image">📈</div>
+          <div class="story-card-image" style="background-image: url('https://lyven81.github.io/data-analyst-portfolio/images/hidden-patterns-malaysian-real-estate/cover image.png'); filter: brightness(0.7);"></div>
           <div class="story-card-content">
-            <span class="story-badge">Case Study</span>
-            <h3 class="story-title">Marketing Channel Performance</h3>
-            <p class="story-description"><strong>Problem:</strong> Which ads deliver most sales per dollar spent</p>
-            <div class="story-result">50% ROI Improvement</div>
+            <span class="story-badge">Segmentation Analysis</span>
+            <h3 class="story-title">The Hidden Patterns in Malaysian Real Estate</h3>
+            <p class="story-description">Why market types drive more returns than locations.</p>
             <div class="story-buttons">
-              <a href="data-analytics.html" class="cta-button">View Case Study</a>
+              <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/hidden-patterns-malaysian-real-estate.html" class="cta-button" target="_blank">Read More</a>
+              <a href="https://lyven81.github.io/data-analyst-portfolio/dashboards/hidden-patterns-malaysian-real-estate-dashboard.html" class="cta-button secondary" target="_blank">Dashboard</a>
             </div>
           </div>
         </article>
 
         <article class="story-card">
-          <div class="story-card-image ai">🤖</div>
+          <div class="story-card-image" style="background-image: url('https://lyven81.github.io/data-analyst-portfolio/images/from-clicks-to-check-ins/cover image.png'); filter: brightness(0.7);"></div>
           <div class="story-card-content">
-            <span class="story-badge ai">AI Solution</span>
-            <h3 class="story-title">Document AI: PDF Summarizer</h3>
-            <p class="story-description">Speed up report reading and document analysis with intelligent summarization</p>
+            <span class="story-badge">Segmentation Analysis</span>
+            <h3 class="story-title">From Clicks to Check-Ins</h3>
+            <p class="story-description">Transform hotel search traffic into confirmed bookings.</p>
             <div class="story-buttons">
-              <a href="ai-solutions.html" class="cta-button">Try Demo</a>
+              <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/from-clicks-to-check-ins.html" class="cta-button" target="_blank">Read More</a>
+              <a href="https://lyven81.github.io/data-analyst-portfolio/dashboards/from-clicks-to-check-ins-dashboard.html" class="cta-button secondary" target="_blank">Dashboard</a>
             </div>
           </div>
         </article>
