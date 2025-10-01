@@ -1,0 +1,97 @@
+Case Study: How a Bank Used Data to Keep Its Customers
+
+Introduction: The Challenge of the Vanishing Customer
+
+A leading bank faced a troubling mystery: some of its most valuable, long-term customers were quietly closing their accounts and walking away. When these customers leave, the bank loses more than just money; it loses relationships that took years to build. The executive team knew they had to act, but they weren't sure where to focus their efforts.
+
+This case study shows how the bank used data analysis to move from a reactive position to a proactive one. They set out to understand who was leaving, predict who would leave next, and create a smart, targeted strategy to keep their most valuable customers.
+
+To solve the mystery, the bank first had to look for clues hidden within its own customer data.
+
+1.0 The Initial Investigation: Searching for Clues in the Data
+
+The first step was a broad analysis to identify which customer characteristics were most strongly linked to the decision to leave the bank. The data science team sorted through dozens of factors to see which ones stood out. The initial findings provided a clear, if simple, starting point.
+
+Early Clues: What Factors Mattered Most?
+
+Strongly Linked to Leaving	Not Meaningfully Linked
+- Older age <br>- German residency <br>- High account balance <br>- Inactive status <br>- Gender	- Credit score <br>- Tenure with the bank <br>- Number of products <br>- Credit card ownership <br>- Estimated salary
+
+This first pass painted a picture of a disengaged, older, and wealthier customer being the most likely to leave—a high-value segment the bank could not afford to lose. While these initial clues were helpful, the bank needed a more reliable way to confirm which factors were truly significant and build a tool to predict future behavior.
+
+2.0 Building the "Crystal Ball": A Predictive Model
+
+To get a more powerful and reliable picture, the bank's analysts built a logistic regression model. Think of this as a sophisticated tool that doesn't just look at factors one by one, but understands how they work together to influence a customer's decision. The model's primary goal was to confirm which factors were statistically significant predictors of a customer leaving, allowing the bank to separate the real signals from the noise.
+
+Refining the Focus: What the Model Confirmed
+
+The model analyzed all the potential factors and delivered a clear verdict on which ones the bank's Relationship Managers should focus on.
+
+✅ Key Predictive Factors	❌ Factors to Ignore
+- Age: Older customers are more likely to leave. <br>- Activity Status: Active customers are much less likely to leave. <br>- Geography (Germany): German customers have a higher risk of leaving. <br>- Gender: Male customers are less likely to leave. <br>- Balance: Higher account balances are linked to a higher risk of leaving. <br>- Credit Score: Lower credit scores are linked to a higher risk. <br>- Number of products: Holding more products significantly reduces the risk of leaving.	- Tenure <br>- Credit Card Ownership <br>- Estimated Salary <br>- Geography (Spain)
+
+The analysis confirmed that the model was stable and reliable enough to guide the bank's retention strategy. With a validated predictive engine, the bank was ready to shift its focus from group analysis to individual action. The next step was to put a unique risk score on every single customer.
+
+3.0 Putting the Model to Work: From Data to Decisions
+
+The true power of the model wasn't just identifying important factors, but assigning every single customer a personalized "probability score" between 0 and 1. This score represents their individual risk of leaving the bank in the near future.
+
+For example, the model identified that customers with probabilities above 30% were in a higher-risk category. A quick look at the data showed specific examples, like Customer 1003 with a 34% probability of leaving. Even a customer like 1008, with a 29% score, was flagged for close monitoring.
+
+This provided an immediate benefit for Relationship Managers: they could now rank their entire portfolio of customers by this risk score and focus their limited time and attention on the top 10-20% who were most likely to leave.
+
+3.1 What-If Scenarios: Seeing the Impact of Customer Behavior
+
+The model also allowed managers to run "what-if" scenarios, demonstrating how a customer's risk score would change based on their actions or profile. This turned the model from a static report into a dynamic advisory tool.
+
+* Activity is Key: The model showed that a customer becoming inactive is the single strongest lever that sharply raises their risk of leaving. Re-engaging them is therefore a top priority.
+* Location Matters: German customers are more than twice as likely to leave as French customers, signaling a need for a geographically tailored strategy.
+* More Products, More Loyalty: Each additional bank product a customer uses (like a loan or investment account) significantly lowers their risk score. This proves the value of cross-selling.
+* An Unimportant Factor: Interestingly, the model confirmed that whether a customer has a credit card or not does not meaningfully affect their loyalty.
+
+The model provided clear direction, but before betting the bank's strategy on it, they had to answer one final question: Just how accurate was this crystal ball?
+
+4.0 Checking the Accuracy: How Good Is the Model?
+
+No predictive model is perfect, so the bank needed to understand its strengths and weaknesses. The results were impressive:
+
+The model correctly predicts the outcome for about 86% of customers. In simple terms, it gets roughly 8 to 9 out of every 10 predictions right.
+
+* Strength: It is exceptionally strong at correctly identifying customers who will stay with the bank, preventing managers from wasting time on happy clients.
+* Weakness: Its main limitation is that it sometimes misses customers who end up leaving (its "recall" rate was 54%). This means it might fail to flag about half of the customers who will eventually close their accounts.
+
+The key takeaway for the bank's leadership was clear: the model is accurate enough to be the central guide for the retention strategy. However, it should be used as a powerful tool to support, not replace, the deep knowledge and personal judgment of the Relationship Managers.
+
+Confident in their new tool, the bank's leadership developed a clear, data-driven strategy to turn these predictions into action.
+
+5.0 The Action Plan: A Tiered Strategy to Keep Customers
+
+The analysis and the predictive model led to a clear, actionable strategy designed to help Relationship Managers use their limited time and resources for maximum impact.
+
+5.1 Defining the High-Risk Customer Profile
+
+By combining the model's most significant factors, the bank could build a clear, actionable profile of its most at-risk customer:
+
+* Age: Older customers
+* Location: German customers
+* Activity: Inactive members
+* Finances: Those with high balances but fewer products
+
+5.2 The Three-Tiered Retention Strategy
+
+The bank implemented a simple but powerful three-tiered system for customer outreach, driven directly by the model's probability scores.
+
+Risk Level	Probability Score	Recommended Action for Managers
+High	Above 30%	Direct personal outreach (calls, meetings). Focus on relationship-building and tailored advice, not just discounts.
+Moderate	15% – 30%	Personalized messages or targeted offers to re-engage.
+Low	Below 15%	Maintain regular communication, no special attention required.
+
+This strategic, data-informed approach transformed how the bank retained its customers, offering powerful lessons for any business leader.
+
+6.0 Conclusion: Key Lessons from the Case Study
+
+This case study offers several critical insights for any business looking to use data to solve a real-world problem.
+
+1. Focus Your Firepower: Data analysis allows a business to move from guesswork to a targeted strategy. Instead of treating all customers the same, the bank could focus its most valuable resource—a manager's time—on the biggest risks and opportunities.
+2. Identify the Levers that Matter: A predictive model does more than just make predictions; it reveals which factors have the biggest impact on customer behavior. In this case, encouraging customer activity and cross-selling more products were identified as powerful and practical retention tools.
+3. Data Empowers People, It Doesn't Replace Them: Even a good model isn't perfect. The best strategies combine data-driven insights with the experience and personal judgment of front-line employees. The model told managers who to call, but it was still the manager's skill that would save the relationship.
