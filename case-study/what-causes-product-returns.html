@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pau Analytics | Pau Analytics</title>
+    <title>What Causes Product Returns | Pau Analytics</title>
     <link rel="canonical" href="https://www.pauanalytics.com/case-study/what-causes-product-returns" />
-    <meta name="description" content="Discover what price factors trigger the most product returns" />
+    <meta name="description" content="How a warehouse manager discovered that discounts and high prices drive returns—not ratings or stock levels—but couldn't predict which items" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -267,16 +267,31 @@
         </aside>
         <main class="right-column">
             <section class="case-study-content">
-                <header>
-                    <h1>Pau Analytics</h1>
-                    <p class="subtitle">Discover what price factors trigger the most product returns</p>
-                </header>
+                <h1>What Causes Product Returns</h1>
 
-                <div class="work-in-progress">
-                    <h2>🚧 Work in Progress</h2>
-                    <p>This detailed case study is currently being prepared. We're crafting comprehensive insights, visualizations, and actionable recommendations.</p>
-                    <p style="margin-top: 1.5rem;">Check back soon, or contact us to discuss how similar analytics solutions can help your business.</p>
-                </div>
+                <p>Steve managed a warehouse for an online retailer. Returns were killing his margins. Every returned item meant reverse logistics costs—restocking, inspection, repackaging, potential markdowns. Some products came back constantly. Others rarely returned. Steve needed to know why so he could flag high-risk items before shipping and work with other teams to fix root causes.</p>
+
+                <p>Steve hired a data analyst to study return patterns. The analyst examined thousands of transactions, looking at product price, discount percentage, customer ratings, review counts, and whether items were previously out of stock. The goal was to identify what drove returns and, if possible, build a prediction tool to flag risky products before they shipped.</p>
+
+                <p>The data revealed something unexpected. Returns correlated more with pricing factors than product quality. Items with higher discounts returned slightly more often—likely impulse buys where customers regretted the purchase. Higher-priced items also showed slightly higher return rates, probably because customer expectations were higher and easier to disappoint.</p>
+
+                <p>But product ratings and review counts barely mattered. Steve assumed low-rated products would come back more often. The data said otherwise. Whether an item had 4.5 stars or 3.5 stars didn't significantly affect return rates. Number of reviews didn't matter either. Returns were driven by how products were priced and promoted, not how customers rated them.</p>
+
+                <p>Stock availability didn't matter either. Steve thought out-of-stock items might return more often because customers got frustrated waiting and changed their minds. But return rates for in-stock and out-of-stock items were nearly identical. Inventory levels had no meaningful impact on whether products came back.</p>
+
+                <p>The analyst tried building a prediction model using rating, discount, and review count together. It failed. The model predicted nearly identical return rates for everything—it couldn't distinguish high-return items from low-return items. The three factors combined just didn't contain enough information to make useful predictions.</p>
+
+                <p>Steve asked if they could build a tool to flag high-return products before shipping. The analyst tried. The model accurately identified low-return items but completely missed high-return products. It treated nearly everything as low risk because there were too few high-return cases in the data, and the available signals (price, discount, ratings) weren't strong enough predictors.</p>
+
+                <p>Steve realized the data he had wasn't enough. To predict returns accurately, he'd need better signals—past return history for similar products, customer complaint patterns, delivery issues, product description accuracy, size/fit problems. The current dataset focused on product attributes but missed behavioral and operational factors that actually drove returns.</p>
+
+                <p>Steve couldn't fix the prediction problem immediately, but he could act on what the data showed. He worked with the marketing team to reassess discount strategies. Deep discounts drove volume but also returns—likely from impulse buyers with weak purchase intent. They tested smaller, more targeted discounts to reduce regret purchases.</p>
+
+                <p>For high-priced items, Steve pushed for better product information. Clearer photos, detailed specifications, size guides, customer Q&A sections. If high prices created high expectations, the solution was managing those expectations upfront, not dealing with disappointed customers after delivery. Better information reduced returns more than better pricing ever could.</p>
+
+                <p>Steve also started tracking return reasons manually. He had warehouse staff categorize every return: wrong size, changed mind, defective, didn't match description, arrived damaged. This qualitative data would feed future prediction models. He couldn't predict returns with the current data, but he could start building the dataset that would eventually make prediction possible.</p>
+
+                <p>Today, Steve knows what drives returns—pricing and promotions, not ratings or stock levels—but he still can't predict which specific items will come back. His warehouse processes improved slightly by focusing extra quality checks on high-discount and high-price items. But the real lesson was humbling: having data isn't the same as having the right data. Sometimes you learn what you can't predict, and that's valuable too.</p>
             </section>
         </main>
     </div>
