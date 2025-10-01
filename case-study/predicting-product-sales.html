@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pau Analytics | Pau Analytics</title>
+    <title>Predicting Product Sales | Pau Analytics</title>
     <link rel="canonical" href="https://www.pauanalytics.com/case-study/predicting-product-sales" />
-    <meta name="description" content="Find out which advertising channels deliver the most sales per dollar" />
+    <meta name="description" content="How a marketing manager discovered affiliate marketing returns 3.92 units per dollar spent using a 78% accurate predictive model" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -267,16 +267,31 @@
         </aside>
         <main class="right-column">
             <section class="case-study-content">
-                <header>
-                    <h1>Pau Analytics</h1>
-                    <p class="subtitle">Find out which advertising channels deliver the most sales per dollar</p>
-                </header>
+                <h1>Predicting Product Sales</h1>
 
-                <div class="work-in-progress">
-                    <h2>🚧 Work in Progress</h2>
-                    <p>This detailed case study is currently being prepared. We're crafting comprehensive insights, visualizations, and actionable recommendations.</p>
-                    <p style="margin-top: 1.5rem;">Check back soon, or contact us to discuss how similar analytics solutions can help your business.</p>
-                </div>
+                <p>Rachel managed marketing for a consumer goods company with a $500,000 annual advertising budget. She split money across six channels: affiliate marketing, billboards, social media, TV, Google Ads, and influencer campaigns. But she had no idea which channels actually drove sales. Every year, she guessed at budget allocations and hoped for the best.</p>
+
+                <p>Rachel hired a data analyst to study past campaigns and find out which advertising dollars worked hardest. The analyst built a regression model using historical spending and sales data. The goal was simple: figure out how much each channel contributed to sales, then use that information to allocate budget smarter.</p>
+
+                <p>The data revealed clear winners. Affiliate marketing had the strongest correlation with sales. Billboards and social media showed moderate impact. TV, Google Ads, and influencer marketing had weaker connections. The analyst checked whether any channels overlapped—if two channels always moved together, including both would be redundant. No overlap existed. Each channel was distinct enough to measure separately.</p>
+
+                <p>All six channels were statistically significant, meaning their impact wasn't random. The p-values were near zero. This gave Rachel confidence that the relationships were real and reliable, not flukes in the data. Every channel influenced sales to some degree, but the strength of that influence varied dramatically.</p>
+
+                <p>The model explained 78% of sales variation. That meant Rachel could predict sales outcomes based on ad spend with solid accuracy. The model passed technical checks—strong F-statistic, proper error distribution. It was reliable enough to use for planning future campaigns, not just analyzing past ones.</p>
+
+                <p>The analyst calculated return per dollar for each channel. Affiliate marketing delivered 3.92 units sold per dollar spent. Billboards returned 3.01 units per dollar. Social media produced 2.43 units per dollar. The other channels had lower returns. This was the answer Rachel needed: affiliate marketing wasn't just the strongest channel—it was nearly twice as effective as social media.</p>
+
+                <p>The model's predictions were accurate but not perfect. On average, predictions differed from actual sales by about 641 units—reasonable given campaigns typically sold 5,000-9,000 units. A few campaigns showed bigger gaps: one underpredicted by 1,000 units, another overpredicted by a similar amount. These outliers likely reflected factors not captured in the model—special promotions, competitor actions, seasonal events.</p>
+
+                <p>Rachel ran simulations to test different budget scenarios. If she increased affiliate marketing spend by 50%, the model predicted 7,981 units sold. A 100% increase predicted 8,930 units. Similar increases in billboards and social media boosted sales too, but not as dramatically. The simulations confirmed what the coefficients showed: affiliate marketing was the highest-leverage channel.</p>
+
+                <p>Rachel restructured her budget. She shifted 40% of total spend to affiliate marketing, up from 20%. Billboards got 25%, social media 20%. She reduced TV, Google Ads, and influencer spending to fill the remaining 15%. She didn't eliminate any channel completely—all were statistically significant—but she stopped treating them equally.</p>
+
+                <p>She used the model to forecast sales for upcoming campaigns. Before launching, she'd input planned spend across channels and get an expected sales number. This helped her set realistic targets and adjust budgets if projections fell short. The model became her planning tool, not just her analysis tool.</p>
+
+                <p>Rachel learned that statistical significance doesn't mean equal importance. All six channels mattered, but three delivered most of the value. The model gave her a framework for decision-making, but she stayed alert to its limitations—some campaigns still surprised her, and external factors the model couldn't see sometimes drove unexpected results.</p>
+
+                <p>Today, Rachel allocates budget based on proven return per dollar, not intuition. She runs scenario tests before committing money. She monitors actual performance against predictions and refines her approach when gaps appear. She's not guessing anymore. The model isn't perfect, but it's far better than flying blind with half a million dollars.</p>
             </section>
         </main>
     </div>
