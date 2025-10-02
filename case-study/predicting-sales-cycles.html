@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Sales Cycles | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/predicting-sales-cycles" />
+    <meta name="description" content="How an e-commerce seller used time series analysis to predict seasonal sales patterns and optimize inventory planning" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+            <!-- Dashboard Link Button -->
+            <section class="home-link-section">
+                <a href="../dashboard/predicting-sales-cycles.html" class="home-link-btn">Dashboard</a>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <h1>Predicting Sales Cycles</h1>
+
+                <p>David ran an e-commerce business that sold everything from electronics to home goods. His biggest headache was inventory. Some weeks, sales surged and he ran out of stock. Other weeks, revenue dropped and his warehouse filled with products he couldn't sell. He was spending too much money during slow periods and losing revenue during busy ones. Every month felt like a gamble.</p>
+
+                <p>David hired a data analyst to figure out if his sales followed any pattern. The analyst studied two years of transaction data—34,500 orders with details on revenue, discounts, delivery times, and returns. The goal was simple: stop guessing when to buy stock and start knowing when sales would rise or fall.</p>
+
+                <p>The analyst found that David's sales followed clear seasonal cycles. Weekly revenue wasn't random—it repeated in predictable patterns. Some weeks were consistently strong, others consistently weak. The analyst broke David's sales history into three phases: Peak weeks, Moderate weeks, and Slow weeks. Out of 105 weeks analyzed, 32 were Peak, 41 were Moderate, and 32 were Slow.</p>
+
+                <p>The analyst built a forecasting model that explained 78% of David's revenue ups and downs. The model revealed something David suspected but never proved: seasonality drove everything. Peak Season weeks boosted revenue by RM8,430 on average compared to Moderate weeks. Slow Season weeks cut revenue by RM7,914. Time itself—whether it was early 2024 or late 2025—barely mattered. What mattered was the season.</p>
+
+                <p>The analyst tested the model on 21 weeks of unseen data to make sure it worked on future sales, not just past ones. The model captured the seasonal swings correctly. Peak weeks stayed high, Slow weeks stayed low, and Moderate weeks held steady. David now had proof that his sales cycles weren't just history—they were predictable going forward.</p>
+
+                <p>The analyst showed David what would happen if he ran promotions during Slow weeks. A typical Slow week brought in RM47,000. A Moderate week brought in RM55,000. A Peak week brought in RM63,000. If David could shift just one Slow week into Moderate territory with a well-timed promotion, he'd gain RM8,000. Shifting two weeks would add RM16,000. The numbers were clear: promotions during Slow weeks could smooth out his revenue dips.</p>
+
+                <p>David looked at past events too. He remembered a government subsidy program that temporarily boosted online shopping. The data confirmed it: during that event, his weekly revenue jumped to RM58,878, compared to RM55,726 before and RM55,029 after. The event gave him a RM3,000 lift—but only while it lasted. David realized these temporary boosts were tactical opportunities, not long-term growth drivers.</p>
+
+                <p>The baseline forecast showed stable revenue of RM54,000 to RM55,000 per week if nothing changed. The projection was flat because it averaged out the seasonal swings. David understood this was his planning floor—his worst-case scenario for cash flow. Actual results would spike higher during Peak weeks and drop lower during Slow weeks, but the baseline gave him a number he could count on.</p>
+
+                <p>David redesigned his business around these findings. He stocked up before Peak weeks, when demand reliably surged. He kept inventory lean during Slow weeks to avoid tying up cash. He scheduled his big marketing campaigns for Peak weeks, where the return on ad spend was strongest. He saved smaller, targeted promotions for Slow weeks to keep revenue from crashing too hard.</p>
+
+                <p>He also changed how he dealt with suppliers. Instead of ordering randomly throughout the year, David timed his bulk purchases to arrive just before Peak seasons. He negotiated payment terms that aligned with his cash flow cycles—paying suppliers after Peak weeks when he had more cash on hand. He stopped overstocking products that didn't move during Slow periods.</p>
+
+                <p>David tested different scenarios using the model. He simulated what would happen if he boosted marketing spend, or if a competitor launched a promotion, or if another government subsidy came through. The model gave him a range of outcomes for each scenario. He could plan for best-case and worst-case results instead of hoping for the best.</p>
+
+                <p>Today, David's inventory decisions are data-driven. He knows when to stock up and when to hold back. He knows when to push marketing hard and when to save his budget. He knows Peak weeks will add RM8,400 and Slow weeks will cut RM7,900. His cash flow is stable, his warehouse isn't overflowing, and he's not running out of stock during busy periods. The guesswork is gone—he runs his business on patterns, not panic.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
