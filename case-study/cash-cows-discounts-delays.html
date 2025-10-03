@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How an Online Store Found Its Profit Winners and Losers | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/cash-cows-discounts-delays" />
+    <meta name="description" content="How an e-commerce seller analyzed 34,500 transactions to identify profit-driving categories, fix discount strategies, and reduce operational costs" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+            <!-- Dashboard Link Button -->
+            <section class="home-link-section">
+                <a href="../dashboard/cash-cows-discounts-delays.html" class="home-link-btn">Dashboard</a>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <h1>How an Online Store Found Its Profit Winners and Losers</h1>
+
+                <p>Sarah ran an online store selling everything from electronics to groceries. Sales looked good on paper, but profits were unpredictable. Some months she made money, other months she didn't. She spent hours offering discounts to boost sales, but margins kept shrinking. Returns and delivery delays added to her costs. She needed to know which products made money and which ones didn't.</p>
+
+                <p>Sarah pulled her transaction data—34,500 orders covering seven product categories. She looked at revenue, profit margins, discounts, return rates, and delivery times for each category. The numbers told a clear story. Electronics brought in RM3.3 million, nearly three times more than any other category. Home products added RM1.1 million. Sports, Fashion, Beauty, Toys, and Grocery all earned far less. Grocery made only RM82,000.</p>
+
+                <p>When Sarah checked profits instead of just sales, the picture got sharper. Electronics contributed RM344,000 in profit, followed by Home at RM263,000. Sports and Fashion added decent amounts. But Grocery lost RM9,000. She was literally paying to sell groceries. Electronics was her cash cow—the backbone of her business. Grocery was bleeding money.</p>
+
+                <p>Sarah then analyzed her discount strategy. She had been giving 5% discounts across all categories, sometimes going as high as 30%. The data showed this approach hurt her. Orders without discounts averaged RM178.9 in revenue. With discounts of 0-10%, revenue dropped to RM163.9. At 10-20%, it fell to RM152.3. At 20-30%, it crashed to RM132.5. Higher discounts didn't boost sales—they reduced how much customers spent per order.</p>
+
+                <p>The profit margin story was even worse. Non-discounted orders averaged a margin of 30.1. With 0-10% discounts, margins fell to 26.9. At 10-20%, they dropped to 24.1. At 20-30%, margins hit just 19.4. Sarah realized her blanket discount strategy was destroying profitability. She needed to stop discounting everything and focus promotions only where they helped.</p>
+
+                <p>Returns added another layer of cost. Fashion had the highest return rate at 8.3%, followed by Electronics at 7.3%. Since these were her biggest revenue categories, the waste was expensive. Grocery and Beauty had much lower return rates—1.3% and 3.8%. Size issues in Fashion and quality problems in Electronics were eating into profits. Fixing these would save thousands.</p>
+
+                <p>Delivery delays made things worse. Fashion and Electronics had nearly 1,750 and 1,650 delayed orders. Home had about 1,430 delays. These were her top profit contributors, so delays damaged customer trust exactly where it hurt most. Sarah knew she had to fix logistics for these three categories first.</p>
+
+                <p>Sarah grouped her products into three buckets. Electronics was the clear cash cow—high revenue, high profit, minimal discount dependency. Home, Sports, Fashion, Beauty, and Toys were discount-dependent—they sold well but only when marked down. Grocery and Fashion were problematic—one lost money, the other had high returns and delays. This gave Sarah a clear roadmap.</p>
+
+                <p>She made three immediate changes. First, she stopped discounting Electronics heavily and focused promotions on weaker categories like Grocery and Toys. Second, she limited all discounts to 0-10% maximum and tested bundles and loyalty offers instead of blanket markdowns. Third, she invested time fixing supplier issues in Fashion and quality checks in Electronics to reduce returns.</p>
+
+                <p>Sarah also prioritized logistics improvements for Electronics, Fashion, and Home. She worked with her shipping partners to reduce delays for these categories. For Grocery, she decided to either fix the supply chain or phase it out entirely—it wasn't worth the losses.</p>
+
+                <p>Within three months, Sarah's profit margins improved. Electronics revenue stayed strong without heavy discounts. Return rates in Fashion dropped after she improved sizing guides. Delivery delays decreased after she shifted resources to her top categories. Her discount spending fell by nearly 40%, but sales didn't drop—customers still bought, just at better margins.</p>
+
+                <p>Sarah learned that not all sales are equal. Revenue doesn't mean profit. Discounts above 10% destroy margins without boosting sales. Returns and delays hurt most in your best categories, so fix those first. Data didn't make decisions for her—it showed her where to focus. Now she knows exactly which products power her business and which ones drain it. And she's built her strategy around protecting what works.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
