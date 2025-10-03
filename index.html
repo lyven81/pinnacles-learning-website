@@ -805,56 +805,189 @@
   </div>
 
   <script>
-    // Auto-extract case studies from the page
-    function extractCaseStudies() {
-      const caseStudies = [];
-
-      // Extract from full-width story cards
-      const fullCards = document.querySelectorAll('.story-card-full');
-      fullCards.forEach(card => {
-        const badge = card.querySelector('.story-badge');
-        const title = card.querySelector('.story-title');
-        const description = card.querySelector('.story-description');
-        const links = card.querySelectorAll('.cta-button');
-
-        if (badge && title && description && links.length >= 2) {
-          caseStudies.push({
-            title: title.textContent.trim(),
-            description: description.textContent.trim(),
-            category: badge.textContent.trim(),
-            caseStudyUrl: links[0].href,
-            dashboardUrl: links[1].href
-          });
-        }
-      });
-
-      // Extract from grid story cards
-      const gridCards = document.querySelectorAll('.story-card');
-      gridCards.forEach(card => {
-        const badge = card.querySelector('.story-badge');
-        const title = card.querySelector('.story-title');
-        const description = card.querySelector('.story-description');
-        const links = card.querySelectorAll('.cta-button');
-
-        if (badge && title && description && links.length >= 2) {
-          caseStudies.push({
-            title: title.textContent.trim(),
-            description: description.textContent.trim(),
-            category: badge.textContent.trim(),
-            caseStudyUrl: links[0].href,
-            dashboardUrl: links[1].href
-          });
-        }
-      });
-
-      return caseStudies;
-    }
+    // Complete case studies database - AUTO-GENERATED from data-analytics.html
+    // Run sync_case_studies.py after adding new case studies to data-analytics.html
+    const caseStudies = [
+      // Predictive Modeling
+      {
+        title: "Who Is Most at Risk of Leaving the Bank",
+        description: "Identify which bank customers are most likely to churn.",
+        category: "Predictive Modeling",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/who-is-most-at-risk-of-leaving-the-bank.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/who-is-most-at-risk-of-leaving-the-bank.html"
+      },
+      {
+        title: "Saving the Silent Spenders",
+        description: "Identify which VIP coffee customers are about to stop buying.",
+        category: "Predictive Modeling",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/saving-the-silent-spenders.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/saving-the-silent-spenders.html"
+      },
+      {
+        title: "Who's Likely to Quit",
+        description: "Predict which employees are likely to quit before they resign.",
+        category: "Predictive Modeling",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/who-is-likely-to-quit.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/who-is-likely-to-quit.html"
+      },
+      {
+        title: "Predicting Customer Response to Discounts",
+        description: "Find out which customers respond to discount campaigns.",
+        category: "Predictive Modeling",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-customer-response-to-discounts.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-customer-response-to-discounts.html"
+      },
+      // Regression Analysis
+      {
+        title: "When Good Cars Lose Value",
+        description: "Learn which car features hold value best over time.",
+        category: "Regression Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/when-good-cars-lose-value.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/when-good-cars-lose-value.html"
+      },
+      {
+        title: "Grow Smarter, Not Bigger",
+        description: "Find out if hiring more employees actually increases revenue.",
+        category: "Regression Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/grow-smarter-not-bigger.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/grow-smarter-not-bigger.html"
+      },
+      {
+        title: "Do Dollars Drive Decisions?",
+        description: "Discover how income levels influence customer buying decisions.",
+        category: "Regression Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/do-dollars-drive-decisions.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/do-dollars-drive-decisions.html"
+      },
+      {
+        title: "What Causes Product Returns",
+        description: "Discover what price factors trigger the most product returns.",
+        category: "Regression Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/what-causes-product-returns.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/what-causes-product-returns.html"
+      },
+      // Statistical Testing
+      {
+        title: "Cash or Credit Card",
+        description: "Discover whether cash or credit card users spend more.",
+        category: "Statistical Testing",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/cash-or-credit-card.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/cash-or-credit-card.html"
+      },
+      {
+        title: "Did You Sleep Well Last Night?",
+        description: "Explore what hotel factors contribute to better guest sleep quality.",
+        category: "Statistical Testing",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/did-you-sleep-well-last-night.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/did-you-sleep-well-last-night.html"
+      },
+      {
+        title: "Connected or Disconnected?",
+        description: "Learn if social media usage strengthens or weakens relationships.",
+        category: "Statistical Testing",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/connected-or-disconnected.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/connected-or-disconnected.html"
+      },
+      {
+        title: "Nasi Lemak vs Kopi-O Preference Analysis",
+        description: "Discover cultural preferences between nasi lemak and kopi-o choices.",
+        category: "Statistical Testing",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/nasi-lemak-vs-kopi-o-preference.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/nasi-lemak-vs-kopi-o-preference.html"
+      },
+      // Segmentation Analysis
+      {
+        title: "The Hidden Patterns in Malaysian Real Estate",
+        description: "Uncover hidden patterns that drive Malaysian real estate success.",
+        category: "Segmentation Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/hidden-patterns-malaysian-real-estate.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/hidden-patterns-malaysian-real-estate.html"
+      },
+      {
+        title: "From Clicks to Check-Ins",
+        description: "Transform hotel search traffic into confirmed bookings.",
+        category: "Segmentation Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/from-clicks-to-check-ins.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/from-clicks-to-check-ins.html"
+      },
+      {
+        title: "What Men and Women Buy",
+        description: "Gender-based product preference analysis.",
+        category: "Segmentation Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/what-men-and-women-buy.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/what-men-and-women-buy.html"
+      },
+      {
+        title: "Not All Shoppers Are Equal",
+        description: "Learn what customer spending patterns reveal.",
+        category: "Segmentation Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/not-all-shoppers-are-equal.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/not-all-shoppers-are-equal.html"
+      },
+      // Optimization Analysis
+      {
+        title: "The Hidden Power of Affiliates",
+        description: "Uncover the hidden power of affiliate marketing partnerships.",
+        category: "Optimization Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/hidden-power-of-affiliates.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/hidden-power-of-affiliates.html"
+      },
+      {
+        title: "Predicting Product Sales",
+        description: "Find out which advertising channels deliver the most sales per dollar.",
+        category: "Optimization Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-product-sales.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-product-sales.html"
+      },
+      {
+        title: "Beyond the Buzzwords",
+        description: "Discover which jewelry keywords actually deliver clicks and sales.",
+        category: "Optimization Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/beyond-the-buzzwords.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/beyond-the-buzzwords.html"
+      },
+      {
+        title: "Cash Cows, Discounts, and Delays",
+        description: "Discover which product categories drive profit and which drain it.",
+        category: "Optimization Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/cash-cows-discounts-delays.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/cash-cows-discounts-delays.html"
+      },
+      // Time Series Analysis
+      {
+        title: "Fruit Sales Forecast - October 2024",
+        description: "Predict seasonal fruit demand to maximize sales.",
+        category: "Time Series Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/fruit-sales-forecast-october-2024.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/fruit-sales-forecast-october-2024.html"
+      },
+      {
+        title: "RON95 Fuel Price Volatility Analysis",
+        description: "Forecast RON95 fuel prices to anticipate market volatility and costs.",
+        category: "Time Series Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/ron95-fuel-price-volatility.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/ron95-fuel-price-volatility.html"
+      },
+      {
+        title: "What Really Drives Store Revenue?",
+        description: "Discover which product categories drive the most store revenue.",
+        category: "Time Series Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/what-really-drives-store-revenue.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/what-really-drives-store-revenue.html"
+      },
+      {
+        title: "Predicting Sales Cycles",
+        description: "Turn seasonal patterns into smarter inventory decisions.",
+        category: "Time Series Analysis",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-sales-cycles.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-sales-cycles.html"
+      }
+    ];
 
     // Initialize search functionality
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     const searchOverlay = document.getElementById('searchOverlay');
-    const caseStudies = extractCaseStudies();
 
     function performSearch(query) {
       if (query.length < 2) {
