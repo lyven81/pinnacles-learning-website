@@ -152,6 +152,143 @@
       text-decoration: underline;
     }
 
+    /* Search Section Styles */
+    .search-section {
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      display: flex;
+      justify-content: flex-end;
+      position: sticky;
+      top: 73px;
+      z-index: 1099;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .search-input {
+      padding: 8px 40px 8px 12px;
+      border: 2px solid #e0ddd3;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      width: 100%;
+      transition: all 0.3s ease;
+      background: white;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #CBA135;
+      box-shadow: 0 0 5px rgba(203, 161, 53, 0.3);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      pointer-events: none;
+    }
+
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #e0ddd3;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-height: 400px;
+      overflow-y: auto;
+      z-index: 1100;
+      display: none;
+      margin-top: 5px;
+    }
+
+    .search-result-item {
+      padding: 15px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .search-result-item:hover {
+      background-color: #FCF9F2;
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      color: #CBA135;
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+    }
+
+    .search-result-description {
+      color: #666;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .search-result-category {
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .search-result-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-result-btn {
+      padding: 4px 12px;
+      border: 1px solid #e0ddd3;
+      background: #FCF9F2;
+      color: #403B36;
+      text-decoration: none;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .search-result-btn:hover {
+      background: #CBA135;
+      color: white;
+      border-color: #CBA135;
+    }
+
+    .no-results {
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+    }
+
+    .search-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 1098;
+      display: none;
+    }
+
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -175,6 +312,26 @@
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
       }
+
+      .search-section {
+        padding: 1rem;
+        top: auto;
+        position: relative;
+      }
+
+      .search-container {
+        max-width: 100%;
+      }
+
+      .search-result-buttons {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .search-result-btn {
+        text-align: center;
+        padding: 8px 12px;
+      }
     }
   </style>
 </head>
@@ -190,6 +347,16 @@
       <a href="contact.html">Contact</a>
     </nav>
   </div>
+
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search case studies..." id="searchInput">
+      <span class="search-icon">🔍</span>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+  <div class="search-overlay" id="searchOverlay"></div>
 
   <div class="hero-section">
     <h1>Data Analytics Consulting</h1>
@@ -449,6 +616,101 @@
   <footer>
     <p>© 2025 Pau Analytics | <a href="https://www.pauanalytics.com/privacy-policy.html">Privacy Policy</a></p>
   </footer>
+
+  <script>
+    // Auto-extract case studies from the page
+    function extractCaseStudies() {
+      const caseStudies = [];
+      const caseStudyCards = document.querySelectorAll('.case-studies-grid > div > div[style*="background: white"]');
+
+      caseStudyCards.forEach(card => {
+        const titleElement = card.querySelector('h4');
+        const descriptionElement = card.querySelector('p');
+        const links = card.querySelectorAll('a');
+
+        if (titleElement && descriptionElement && links.length >= 2) {
+          // Get category from the nearest h3 heading
+          let categoryElement = card.previousElementSibling;
+          while (categoryElement && categoryElement.tagName !== 'H3') {
+            categoryElement = categoryElement.previousElementSibling;
+          }
+
+          caseStudies.push({
+            title: titleElement.textContent.trim(),
+            description: descriptionElement.textContent.trim(),
+            category: categoryElement ? categoryElement.textContent.trim() : '',
+            caseStudyUrl: links[0].href,
+            dashboardUrl: links[1].href
+          });
+        }
+      });
+
+      return caseStudies;
+    }
+
+    // Initialize search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const caseStudies = extractCaseStudies();
+
+    function performSearch(query) {
+      if (query.length < 2) {
+        searchResults.style.display = 'none';
+        searchOverlay.style.display = 'none';
+        return;
+      }
+
+      const filteredResults = caseStudies.filter(study =>
+        study.title.toLowerCase().includes(query.toLowerCase()) ||
+        study.description.toLowerCase().includes(query.toLowerCase()) ||
+        study.category.toLowerCase().includes(query.toLowerCase())
+      );
+
+      displayResults(filteredResults);
+    }
+
+    function displayResults(results) {
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">No case studies found. Try different keywords.</div>';
+      } else {
+        searchResults.innerHTML = results.map(study => `
+          <div class="search-result-item">
+            <div class="search-result-category">${study.category}</div>
+            <div class="search-result-title">${study.title}</div>
+            <div class="search-result-description">${study.description}</div>
+            <div class="search-result-buttons">
+              <a href="${study.caseStudyUrl}" class="search-result-btn">Read More</a>
+              <a href="${study.dashboardUrl}" class="search-result-btn">Dashboard</a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      searchResults.style.display = 'block';
+      searchOverlay.style.display = 'block';
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', (e) => {
+      performSearch(e.target.value);
+    });
+
+    searchOverlay.addEventListener('click', () => {
+      searchResults.style.display = 'none';
+      searchOverlay.style.display = 'none';
+      searchInput.value = '';
+    });
+
+    // Close search on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchResults.style.display = 'none';
+        searchOverlay.style.display = 'none';
+        searchInput.value = '';
+      }
+    });
+  </script>
 
 </body>
 </html>
