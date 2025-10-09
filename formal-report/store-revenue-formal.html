@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Driver Analysis | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/formal-report/store-revenue-formal" />
+    <meta name="description" content="Comprehensive analysis identifying key product categories and their impact on store revenue" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.3em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 2em;
+            font-style: italic;
+        }
+
+        .right-column h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+            color: #403B36;
+        }
+
+        .right-column h3 {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 1.5em;
+            margin-bottom: 0.6em;
+            color: #555;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.2em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul {
+            font-size: 1.05em;
+            margin-bottom: 1.2em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul li {
+            margin-bottom: 0.5em;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Executive Summary Box */
+        .executive-summary {
+            background-color: #f9f9f9;
+            border-left: 4px solid #CBA135;
+            padding: 20px;
+            margin: 2em 0;
+        }
+
+        .executive-summary h2 {
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            border-bottom: 2px solid #e0e0e0;
+            margin: 3em 0 2em 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 1.8rem;
+            }
+
+            .right-column h2 {
+                font-size: 1.5rem;
+            }
+
+            .right-column h3 {
+                font-size: 1.2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+        <main class="right-column">
+            <h1>Revenue Driver Analysis</h1>
+            <p class="subtitle">Identifying Key Product Categories and Their Impact</p>
+
+            <div class="executive-summary">
+                <h2>EXECUTIVE SUMMARY</h2>
+
+                <p>This assessment examines revenue performance across product subcategories within a hypermarket environment, analyzing 85 weeks of transactional data. The study identifies which product subcategories drive revenue and quantifies their specific contribution to overall store performance.</p>
+
+                <p>The analysis employs regression modeling to explain 99.5% of revenue variation across the analysis period. The findings reveal that Wearable Accessories accounts for 37% of total revenue influence—significantly exceeding all other subcategories. Sportswear and Footwear together contribute an additional 30% of revenue impact, establishing a clear hierarchy of revenue-driving categories.</p>
+
+                <p>The research demonstrates that marginal revenue impact varies substantially by subcategory. A 10% increase in Wearable Accessories sales generates +0.52 units of total revenue, while a similar increase in Sportswear produces +0.21 units. Notably, increased Footwear sales correlate with negative revenue impact (-0.20 units), indicating potential cannibalization effects with more profitable categories.</p>
+
+                <p>The report provides evidence-based recommendations for resource allocation, inventory management, and promotional strategy. These insights enable retail management to direct investment toward subcategories with demonstrated revenue impact while managing lower-performing categories strategically to optimize overall store profitability.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>1. BUSINESS CHALLENGE AND OBJECTIVES</h2>
+
+            <h3>1.1 Strategic Context</h3>
+
+            <p>Hypermarket operations require continuous investment decisions regarding shelf space allocation, promotional budget distribution, and supplier relationship management. These decisions involve substantial financial commitments—often exceeding millions of ringgit quarterly—yet are frequently based on subjective assessment rather than quantitative analysis.</p>
+
+            <p>The absence of data-driven decision frameworks results in inconsistent performance outcomes. Resource allocation based on intuition or historical precedent fails to account for changing market dynamics and customer preferences, leading to suboptimal returns on marketing investment and missed revenue opportunities.</p>
+
+            <h3>1.2 Research Objectives</h3>
+
+            <p>This analysis addresses three primary questions:</p>
+
+            <ul>
+                <li>Which product subcategories exert the strongest influence on total store revenue?</li>
+                <li>What is the quantified marginal impact of sales changes within each subcategory?</li>
+                <li>How do seasonal patterns affect subcategory performance across different time periods?</li>
+            </ul>
+
+            <p>The objective is to replace assumption-based resource allocation with evidence-derived investment strategies that optimize revenue generation across the product portfolio.</p>
+
+            <h3>1.3 Expected Outcomes</h3>
+
+            <p>The analysis aims to produce actionable insights supporting strategic decisions in four operational areas: promotional budget allocation, shelf space optimization, supplier negotiation priorities, and inventory management protocols. These insights enable management to direct resources toward high-impact subcategories while implementing appropriate strategies for lower-performing segments.</p>
+
+            <div class="section-divider"></div>
+
+            <h2>2. METHODOLOGY AND DATA ANALYSIS</h2>
+
+            <h3>2.1 Data Sources and Variables</h3>
+
+            <p>The study analyzes 85 weeks of sales data encompassing multiple product subcategories. The dataset includes the following variables:</p>
+
+            <ul>
+                <li>Weekly total revenue</li>
+                <li>Sales volume by subcategory (Footwear, Sportswear, Women's Wear, Home Appliances, Wearable Accessories, Kids Wear, Laptops, TVs, Storage)</li>
+                <li>Temporal indicators (week number, quarter)</li>
+            </ul>
+
+            <p>These variables provide comprehensive coverage of product performance across time, enabling identification of both absolute performance levels and relative contribution to overall revenue.</p>
+
+            <h3>2.2 Analytical Approach</h3>
+
+            <p>The analysis employs multiple regression modeling to quantify the relationship between subcategory sales and total revenue. The model specification includes:</p>
+
+            <ul>
+                <li>Dependent variable: Weekly total revenue</li>
+                <li>Independent variables: Sales volume for nine subcategories plus time trend</li>
+                <li>Model performance metric: R-squared (coefficient of determination)</li>
+            </ul>
+
+            <p>This approach isolates the individual contribution of each subcategory while controlling for temporal effects and inter-category relationships. The resulting coefficients represent the marginal impact of each subcategory on total revenue, expressed as revenue units generated per unit increase in subcategory sales.</p>
+
+            <h3>2.3 Scenario Simulation Framework</h3>
+
+            <p>To translate statistical findings into operational guidance, the analysis incorporates scenario simulation. The framework models revenue outcomes under different promotional strategies, including:</p>
+
+            <ul>
+                <li>Single-category promotion scenarios (10% sales increase in one subcategory)</li>
+                <li>Multi-category coordination scenarios (simultaneous increases across multiple subcategories)</li>
+                <li>Seasonal timing optimization (promotion timing aligned with natural demand cycles)</li>
+            </ul>
+
+            <p>This simulation capability enables management to evaluate alternative resource allocation strategies before implementation, reducing investment risk and improving expected returns.</p>
+
+            <div class="section-divider"></div>
+
+            <h2>3. KEY FINDINGS</h2>
+
+            <h3>3.1 Model Performance and Explanatory Power</h3>
+
+            <p>The regression model achieves an R-squared value of 0.995, indicating that 99.5% of revenue variation is explained by the included subcategory variables. This exceptionally high explanatory power demonstrates that store revenue follows predictable patterns driven by identifiable subcategory performance factors.</p>
+
+            <p>The model's accuracy enables confident forecasting of revenue outcomes under different operational scenarios, providing a reliable foundation for strategic planning and resource allocation decisions.</p>
+
+            <h3>3.2 Revenue Influence Hierarchy</h3>
+
+            <p>Analysis of standardized regression coefficients reveals a clear hierarchy of revenue influence:</p>
+
+            <p><strong>Dominant influence (37% of total):</strong> Wearable Accessories<br>
+            <strong>Secondary influence (30% combined):</strong> Sportswear and Footwear<br>
+            <strong>Tertiary influence:</strong> Home Appliances, Women's Wear, Laptops<br>
+            <strong>Minimal influence:</strong> TVs, Storage, Kids Wear</p>
+
+            <p>Wearable Accessories demonstrates influence exceeding all other subcategories, establishing it as the primary revenue driver. The concentration of influence in the top three subcategories indicates that focused investment in these areas yields disproportionate returns relative to broad-based promotional strategies.</p>
+
+            <h3>3.3 Marginal Revenue Impact Analysis</h3>
+
+            <p>Simulation of 10% sales increases across subcategories quantifies marginal revenue impact:</p>
+
+            <p><strong>Wearable Accessories:</strong> +0.52 revenue units<br>
+            <strong>Sportswear:</strong> +0.21 revenue units<br>
+            <strong>Home Appliances:</strong> +0.12 revenue units<br>
+            <strong>Footwear:</strong> -0.20 revenue units</p>
+
+            <p>The negative coefficient for Footwear indicates that increased Footwear sales correlate with reduced overall revenue, suggesting cannibalization of higher-margin categories. This finding demonstrates the importance of category-level optimization rather than uniform growth strategies across all subcategories.</p>
+
+            <h3>3.4 Seasonal Performance Patterns</h3>
+
+            <p>Revenue exhibits pronounced seasonal variation, with sharp increases during Q4 (holiday shopping period) followed by substantial declines in Q1. Subcategories demonstrate differential seasonal sensitivity:</p>
+
+            <p><strong>Seasonal amplifiers:</strong> Laptops and Women's Wear show strong performance during peak periods but contribute minimally during off-peak times.<br>
+            <strong>Stable performers:</strong> Sportswear maintains consistent contribution throughout the year, providing baseline revenue stability.</p>
+
+            <p>This pattern indicates the need for differentiated promotional strategies: seasonal amplifiers warrant concentrated promotional investment during peak periods, while stable performers require consistent year-round support to maintain baseline revenue.</p>
+
+            <h3>3.5 Baseline Revenue Forecast</h3>
+
+            <p>The model projects stable baseline revenue of RM1.35 million per week, representing average performance across seasonal cycles. This baseline serves as a conservative planning assumption for cash flow forecasting and budget development.</p>
+
+            <p>Actual performance will exceed baseline during peak seasons and fall below during slow periods, but the baseline provides a reliable minimum expectation for financial planning purposes.</p>
+
+            <h3>3.6 Coordinated Promotion Effectiveness</h3>
+
+            <p>Scenario analysis demonstrates that coordinated multi-category promotions generate larger revenue gains than single-category focus. While Wearable Accessories dominates individual subcategory impact, comprehensive strategies incorporating multiple high-performing subcategories produce cumulative benefits exceeding single-category approaches.</p>
+
+            <p>This finding supports integrated promotional planning that coordinates timing and messaging across complementary subcategories to maximize total revenue impact.</p>
+
+            <div class="section-divider"></div>
+
+            <h2>4. STRATEGIC FRAMEWORK</h2>
+
+            <h3>4.1 Resource Allocation Principles</h3>
+
+            <p>The evidence supports a tiered resource allocation framework based on demonstrated revenue impact:</p>
+
+            <p><strong>Tier 1 - Maximum investment:</strong> Wearable Accessories receives priority allocation of promotional budget, premium shelf space, and supplier relationship management attention. Stock availability must be maintained at all times, particularly during high-demand periods.</p>
+
+            <p><strong>Tier 2 - Strategic investment:</strong> Sportswear receives consistent year-round promotional support to maintain baseline revenue. This category serves as a stabilizing force, smoothing seasonal fluctuations.</p>
+
+            <p><strong>Tier 3 - Targeted investment:</strong> Laptops and Women's Wear receive concentrated promotional investment during Q4 when their revenue contribution peaks. Off-peak investment in these categories is minimized.</p>
+
+            <p><strong>Tier 4 - Managed reduction:</strong> Kids Wear demonstrates minimal marginal impact. Shelf space is reduced and reallocated to higher-performing subcategories.</p>
+
+            <h3>4.2 Category-Specific Management Strategies</h3>
+
+            <p><strong>Wearable Accessories:</strong> Secure prime floor positions and prominent shelf placement. Negotiate preferential supplier terms given volume importance. Implement stockout prevention protocols. Allocate maximum promotional budget share.</p>
+
+            <p><strong>Sportswear:</strong> Maintain consistent promotional calendar throughout the year. Use this category to stabilize revenue during seasonal troughs. Implement steady-state inventory management rather than seasonal fluctuation strategies.</p>
+
+            <p><strong>Footwear:</strong> Manage pricing carefully to prevent cannibalization of higher-margin Sportswear and Wearable Accessories. Consider bundling strategies rather than standalone promotion. Monitor for negative spillover effects on complementary categories.</p>
+
+            <p><strong>Seasonal categories (Laptops, Women's Wear):</strong> Concentrate inventory investment and promotional spending in Q4. Secure additional supplier capacity in advance of peak season. Reduce inventory exposure during off-peak periods.</p>
+
+            <h3>4.3 Promotional Budget Optimization</h3>
+
+            <p>Promotional budget allocation should reflect marginal revenue impact. Categories generating +0.50 units of marginal revenue receive proportionally greater investment than categories producing +0.05 units.</p>
+
+            <p>This approach ensures promotional spending flows toward proven revenue drivers rather than being distributed uniformly across all subcategories regardless of demonstrated impact.</p>
+
+            <h3>4.4 Supplier Negotiation Strategy</h3>
+
+            <p>Supplier relationship investment priorities align with revenue contribution hierarchy. Wearable Accessories and Sportswear suppliers receive priority attention for long-term partnership development, preferential payment terms, and joint promotional planning.</p>
+
+            <p>Lower-impact categories maintain transactional supplier relationships with shorter commitment periods and more flexible terms, preserving operational agility to adjust category mix as market conditions evolve.</p>
+
+            <div class="section-divider"></div>
+
+            <h2>5. IMPLEMENTATION OUTCOMES</h2>
+
+            <h3>5.1 Operational Changes Implemented</h3>
+
+            <p>Based on the analytical findings, management implemented four primary operational changes:</p>
+
+            <p><strong>Change 1:</strong> Wearable Accessories received priority shelf space allocation, moving from secondary positions to prime floor locations with maximum visibility. Promotional budget allocation increased proportionally to reflect demonstrated revenue impact.</p>
+
+            <p><strong>Change 2:</strong> Kids Wear shelf space was reduced by approximately 30%, with recovered space reallocated to Wearable Accessories and Sportswear. This reallocation reflects the minimal marginal impact demonstrated by Kids Wear analysis.</p>
+
+            <p><strong>Change 3:</strong> Footwear pricing strategy was restructured to minimize cannibalization effects. Bundle offers combining Footwear with complementary higher-margin categories replaced standalone Footwear promotions.</p>
+
+            <p><strong>Change 4:</strong> Promotional calendar timing shifted to align with seasonal performance patterns. Laptops and Women's Wear received concentrated Q4 promotional support, while Sportswear maintained steady year-round promotion.</p>
+
+            <h3>5.2 Performance Improvements</h3>
+
+            <p>Following implementation of the evidence-based strategy, quarterly performance reports demonstrated improved consistency. Revenue volatility decreased as management concentrated investment on predictable high-performing subcategories rather than pursuing opportunities across all categories indiscriminately.</p>
+
+            <p>The structured approach to resource allocation eliminated wasted promotional spending on low-impact categories, improving overall return on marketing investment. Supplier negotiations became more efficient as management focused relationship investment on strategically important categories.</p>
+
+            <h3>5.3 Decision Framework Adoption</h3>
+
+            <p>The analytical framework transitioned from one-time analysis to ongoing operational practice. Management now evaluates all promotional proposals against quantified marginal impact criteria, ensuring investment decisions align with demonstrated revenue drivers.</p>
+
+            <p>This shift from intuition-based to evidence-based decision-making improved decision quality and speed, as quantitative criteria replaced subjective debate regarding resource allocation priorities.</p>
+
+            <div class="section-divider"></div>
+
+            <h2>6. CONCLUSIONS AND RECOMMENDATIONS</h2>
+
+            <h3>6.1 Summary of Findings</h3>
+
+            <p>This analysis demonstrates that hypermarket revenue follows predictable patterns driven by identifiable subcategory performance factors. Wearable Accessories exerts dominant influence, accounting for 37% of total revenue impact. Sportswear and Footwear together contribute 30% of influence, establishing a clear hierarchy of revenue drivers.</p>
+
+            <p>Marginal revenue analysis reveals substantial performance variation across subcategories. A 10% increase in Wearable Accessories generates +0.52 revenue units, while similar increases in other categories produce significantly lower returns. Some subcategories, notably Footwear, demonstrate negative marginal impact, indicating cannibalization effects requiring careful management.</p>
+
+            <p>Seasonal patterns create differential opportunities for promotional investment. Categories like Laptops amplify seasonal peaks but contribute minimally during off-peak periods, while Sportswear provides stable year-round performance. This finding supports differentiated promotional strategies tailored to subcategory-specific seasonal characteristics.</p>
+
+            <h3>6.2 Strategic Recommendations</h3>
+
+            <p><strong>Recommendation 1: Implement tiered resource allocation</strong></p>
+
+            <p>Establish formal resource allocation tiers based on demonstrated revenue impact. Tier 1 categories (Wearable Accessories) receive maximum investment priority across promotional budget, shelf space, and supplier relationships. Lower tiers receive proportionally reduced investment aligned with measured marginal impact.</p>
+
+            <p><strong>Recommendation 2: Restructure promotional calendar</strong></p>
+
+            <p>Align promotional timing with category-specific seasonal patterns. Concentrate investment in seasonal amplifiers (Laptops, Women's Wear) during Q4 peak periods. Maintain steady promotional support for stable performers (Sportswear) throughout the year to stabilize baseline revenue.</p>
+
+            <p><strong>Recommendation 3: Optimize category interactions</strong></p>
+
+            <p>Implement coordinated multi-category promotional strategies rather than isolated single-category campaigns. Bundle complementary subcategories to generate cumulative revenue impact exceeding individual category contributions. Manage Footwear pricing to prevent cannibalization of higher-margin categories.</p>
+
+            <p><strong>Recommendation 4: Establish performance monitoring systems</strong></p>
+
+            <p>Deploy dashboard-based monitoring to track subcategory performance against baseline expectations. Implement exception reporting to identify emerging opportunities or performance deterioration requiring management attention. Update regression models quarterly to capture evolving market dynamics.</p>
+
+            <h3>6.3 Implementation Priorities</h3>
+
+            <p>Immediate priorities focus on high-impact, low-complexity changes: reallocating shelf space from low-performing to high-performing subcategories, adjusting promotional budget distribution to reflect marginal impact hierarchy, and restructuring Footwear pricing to eliminate cannibalization effects.</p>
+
+            <p>Medium-term priorities address supplier relationship restructuring and promotional calendar realignment, requiring coordination across multiple operational functions but delivering substantial performance improvements.</p>
+
+            <p>Long-term priorities center on establishing continuous performance monitoring and analytical refinement capabilities, building organizational competency in data-driven decision-making that extends beyond initial analysis to sustained competitive advantage.</p>
+
+            <h3>6.4 Expected Business Impact</h3>
+
+            <p>Implementation of these recommendations will improve resource allocation efficiency, directing investment toward subcategories with demonstrated revenue impact. This focused approach increases return on marketing investment while reducing waste on low-performing categories.</p>
+
+            <p>Organizational decision-making quality improves as quantitative performance criteria replace subjective assessment. The analytical framework enables rapid evaluation of alternative strategies, reducing decision cycle time and improving responsiveness to market changes.</p>
+
+            <p>The ultimate objective extends beyond individual operational improvements to building systematic capability in translating data into profitable action—creating sustainable competitive advantage through superior resource allocation and promotional effectiveness.</p>
+
+            <div class="section-divider"></div>
+
+            <p style="text-align: center; font-weight: 600; margin-top: 3em;">END OF REPORT</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
