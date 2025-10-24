@@ -4,87 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beyond the Price Tag | Pau Analytics</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/beyond-the-price-tag" />
+    <meta name="description" content="How a marketing team analyzed 30,000+ smartphone reviews to discover battery life drives satisfaction more than price or camera quality" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Work in Progress Section */
+        .work-in-progress {
+            background: #fff9e7;
+            border: 2px dashed #CBA135;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .work-in-progress h2 {
+            color: #403B36;
+            margin-bottom: 1rem;
+        }
+
+        .work-in-progress p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Two-Column Layout Wrapper -->
     <div class="container">
-
-        <!-- Left Column (Personal Info and Contact) -->
         <aside class="left-column">
             <header>
                 <h1>Pau Analytics</h1>
-                <h2>Data Analytics Portfolio</h2>
+                <h2>Data Analytics Consulting</h2>
             </header>
-
             <section class="intro">
-                <p>Data-driven insights to unlock business growth and innovation. Specializing in helping businesses make smarter, faster decisions.</p>
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
             </section>
-
-            <!-- Home Navigation -->
-            <section class="home-nav">
-                <a href="../index.html" class="home-link">← Home</a>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
             </section>
-
-            <!-- Contact Section in Left Column -->
             <section class="contact">
                 <h2>Contact</h2>
-                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
                 <ul>
-                    <li>Email: <a href="mailto:director@pinnacleslearning.com">director@pinnacleslearning.com</a></li>
-                    <li>Phone: +6014-9207099</li>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
                 </ul>
             </section>
-
             <!-- Dashboard Link Button -->
-            <section class="dashboard-link-section">
-                <a class="dashboard-link-btn" href="../dashboard/beyond-the-price-tag-dashboard.html">View Dashboard</a>
+            <section class="home-link-section">
+                <a href="../dashboard/beyond-the-price-tag-dashboard.html" class="home-link-btn">Dashboard</a>
             </section>
         </aside>
-
-        <!-- Right Column (Full Case Study Content) -->
         <main class="right-column">
             <section class="case-study-content">
-                <header>
-                    <img src="https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/beyond-the-price-tag/cover%20image.png" alt="Beyond the Price Tag Cover">
-                    <h1>Beyond the Price Tag</h1>
-                    <p>What Drives Customer Satisfaction in Smartphones</p>
-                </header>
+                <h1>Beyond the Price Tag</h1>
 
-                <section>
-                    <p>A smartphone marketing team was struggling with a familiar problem. They had dozens of campaigns running across different platforms, promoting various brands and features. Some ads performed well, others didn't. But they couldn't pinpoint why. Were customers responding to price? Camera quality? Brand reputation? Without clear answers, they were spending marketing dollars on guesswork.</p>
+                <p>A smartphone marketing team was struggling with a familiar problem. They had dozens of campaigns running across different platforms, promoting various brands and features. Some ads performed well, others didn't. But they couldn't pinpoint why. Were customers responding to price? Camera quality? Brand reputation? Without clear answers, they were spending marketing dollars on guesswork.</p>
 
-                    <p>The team decided to stop guessing and start listening. They collected over 30,000 customer reviews from major e-commerce platforms across eight countries, covering everything from budget phones to flagship models. Each review included ratings, written feedback, and details about the buyer's age, location, and where they purchased the phone. The goal was simple: figure out what actually makes smartphone customers happy, so they could craft campaigns that resonate.</p>
+                <p>The team decided to stop guessing and start listening. They collected over 30,000 customer reviews from major e-commerce platforms across eight countries, covering everything from budget phones to flagship models. Each review included ratings, written feedback, and details about the buyer's age, location, and where they purchased the phone. The goal was simple: figure out what actually makes smartphone customers happy, so they could craft campaigns that resonate.</p>
 
-                    <p>The first breakthrough came from analyzing which product features drove satisfaction. Battery life stood out as the strongest factor by far. Customers consistently mentioned long-lasting power as a reason for high ratings, far more than camera quality or processing speed. Design and overall performance mattered too, but the camera—despite being heavily marketed—played a surprisingly smaller role. This revealed a gap between what brands were shouting about and what customers actually valued.</p>
+                <p>The first breakthrough came from analyzing which product features drove satisfaction. Battery life stood out as the strongest factor by far. Customers consistently mentioned long-lasting power as a reason for high ratings, far more than camera quality or processing speed. Design and overall performance mattered too, but the camera—despite being heavily marketed—played a surprisingly smaller role. This revealed a gap between what brands were shouting about and what customers actually valued.</p>
 
-                    <p>Next, the team looked at brand performance. Apple and Samsung dominated in both customer sentiment and ratings, which wasn't shocking. But Realme emerged as a standout performer, delivering strong satisfaction scores at mid-range prices. Customers praised it for being "worth every penny." Meanwhile, Motorola and Xiaomi lagged behind, with recurring complaints about reliability and customer service. The data was clear: trust and dependability drove loyalty more than flashy specs.</p>
+                <p>Next, the team looked at brand performance. Apple and Samsung dominated in both customer sentiment and ratings, which wasn't shocking. But Realme emerged as a standout performer, delivering strong satisfaction scores at mid-range prices. Customers praised it for being "worth every penny." Meanwhile, Motorola and Xiaomi lagged behind, with recurring complaints about reliability and customer service. The data was clear: trust and dependability drove loyalty more than flashy specs.</p>
 
-                    <p>An unexpected pattern appeared when the team segmented reviews by age. Customers aged 50 to 59 gave the most positive feedback, with the highest ratings and sentiment scores. Younger buyers—those between 18 and 49—were more critical and demanding, often looking for the latest innovations. Older users, on the other hand, appreciated reliability, ease of use, and solid performance. This insight opened up new possibilities for age-targeted messaging.</p>
+                <p>An unexpected pattern appeared when the team segmented reviews by age. Customers aged 50 to 59 gave the most positive feedback, with the highest ratings and sentiment scores. Younger buyers—those between 18 and 49—were more critical and demanding, often looking for the latest innovations. Older users, on the other hand, appreciated reliability, ease of use, and solid performance. This insight opened up new possibilities for age-targeted messaging.</p>
 
-                    <p>The team also checked whether price influenced satisfaction. They expected budget phone buyers to be less satisfied than premium buyers, but the data showed otherwise. Satisfaction levels were consistent across all price categories. Whether someone spent $200 or $1,200, their happiness depended on whether the phone met expectations—not on how much they paid. Value perception mattered more than price tags, which meant marketing should focus on fairness and real-world benefits, not just discounts.</p>
+                <p>The team also checked whether price influenced satisfaction. They expected budget phone buyers to be less satisfied than premium buyers, but the data showed otherwise. Satisfaction levels were consistent across all price categories. Whether someone spent $200 or $1,200, their happiness depended on whether the phone met expectations—not on how much they paid. Value perception mattered more than price tags, which meant marketing should focus on fairness and real-world benefits, not just discounts.</p>
 
-                    <p>Platform differences were another surprise. The team compared reviews from Amazon, Bestbuy, Aliexpress, and Flipkart, expecting ratings to vary widely. Instead, average scores hovered around three stars across all platforms, and positive sentiment dominated everywhere. However, the tone of reviews differed slightly. Aliexpress buyers were more enthusiastic, while Bestbuy customers were more demanding and critical. This suggested that platform audiences had different expectations, which meant campaigns should be tailored accordingly.</p>
+                <p>Platform differences were another surprise. The team compared reviews from Amazon, Bestbuy, Aliexpress, and Flipkart, expecting ratings to vary widely. Instead, average scores hovered around three stars across all platforms, and positive sentiment dominated everywhere. However, the tone of reviews differed slightly. Aliexpress buyers were more enthusiastic, while Bestbuy customers were more demanding and critical. This suggested that platform audiences had different expectations, which meant campaigns should be tailored accordingly.</p>
 
-                    <p>To test whether sentiment varied by region or language, the team analyzed reviews from India, Brazil, the UAE, Australia, Germany, the UK, Canada, and the USA, written in English, Portuguese, Hindi, and German. The results showed remarkable consistency. Sentiment scores barely changed across countries or languages, indicating that customers worldwide perceived brands in similar ways. This was good news—it meant a unified global message could work, with only minor local adjustments.</p>
+                <p>To test whether sentiment varied by region or language, the team analyzed reviews from India, Brazil, the UAE, Australia, Germany, the UK, Canada, and the USA, written in English, Portuguese, Hindi, and German. The results showed remarkable consistency. Sentiment scores barely changed across countries or languages, indicating that customers worldwide perceived brands in similar ways. This was good news—it meant a unified global message could work, with only minor local adjustments.</p>
 
-                    <p>With these insights in hand, the marketing team reshaped their strategy. They shifted budget toward Apple, Samsung, and Realme, which showed the highest satisfaction and engagement. Motorola and Xiaomi campaigns were paused until customer service and reliability issues could be addressed. Messaging was overhauled to emphasize "all-day battery life" and "reliable performance" instead of technical specs. Creative assets featured real-world use cases rather than feature lists.</p>
+                <p>With these insights in hand, the marketing team reshaped their strategy. They shifted budget toward Apple, Samsung, and Realme, which showed the highest satisfaction and engagement. Motorola and Xiaomi campaigns were paused until customer service and reliability issues could be addressed. Messaging was overhauled to emphasize "all-day battery life" and "reliable performance" instead of technical specs. Creative assets featured real-world use cases rather than feature lists.</p>
 
-                    <p>They also tailored campaigns by platform and audience. On Aliexpress and Flipkart, ads highlighted affordability and value. On Amazon and Bestbuy, the focus shifted to quality and service. For younger audiences, campaigns emphasized innovation and new features. For older buyers, messaging centered on ease of use and dependability. Testimonials from the 50-to-59 age group were featured prominently to build trust.</p>
+                <p>They also tailored campaigns by platform and audience. On Aliexpress and Flipkart, ads highlighted affordability and value. On Amazon and Bestbuy, the focus shifted to quality and service. For younger audiences, campaigns emphasized innovation and new features. For older buyers, messaging centered on ease of use and dependability. Testimonials from the 50-to-59 age group were featured prominently to build trust.</p>
 
-                    <p>The team didn't stop at executing campaigns—they also used the findings to guide product positioning discussions with brand partners. They shared data showing that battery life was the top satisfaction driver, encouraging brands to prioritize endurance in future models and marketing materials. They flagged recurring complaints about overheating and service quality, giving brands a clear roadmap for improving customer experience and rebuilding trust.</p>
+                <p>The team didn't stop at executing campaigns—they also used the findings to guide product positioning discussions with brand partners. They shared data showing that battery life was the top satisfaction driver, encouraging brands to prioritize endurance in future models and marketing materials. They flagged recurring complaints about overheating and service quality, giving brands a clear roadmap for improving customer experience and rebuilding trust.</p>
 
-                    <p>This project reinforced an important lesson: marketing effectiveness comes from understanding what customers truly care about, not what brands assume they care about. By analyzing real feedback at scale, the team uncovered the gap between advertised features and actual satisfaction drivers. They learned that battery life, reliability, and value perception matter more than price or camera specs—and that insight shaped smarter, more profitable campaigns moving forward.</p>
-                </section>
+                <p>This project reinforced an important lesson: marketing effectiveness comes from understanding what customers truly care about, not what brands assume they care about. By analyzing real feedback at scale, the team uncovered the gap between advertised features and actual satisfaction drivers. They learned that battery life, reliability, and value perception matter more than price or camera specs—and that insight shaped smarter, more profitable campaigns moving forward.</p>
             </section>
         </main>
-
     </div>
 
     <footer>
-        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
     </footer>
-
 </body>
 </html>
