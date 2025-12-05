@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Are Your High-Value Customers? - Dashboard | Pau Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #403B36;
+            --secondary-color: #CBA135;
+            --background-color: #FCF9F2;
+            --text-color: #2C2C2C;
+            --card-background: #FFFFFF;
+            --shadow: 0 4px 20px rgba(64, 59, 54, 0.1);
+            --gradient: linear-gradient(135deg, #403B36 0%, #5A524B 100%);
+            --gold-gradient: linear-gradient(135deg, #CBA135 0%, #E8C55A 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.05"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--gold-gradient);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .metric-card {
+            background: var(--card-background);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(64, 59, 54, 0.15);
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .metric-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Insights Section */
+        .insights {
+            background: var(--card-background);
+            padding: 60px 40px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 80px;
+        }
+
+        .insights h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .insights h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gold-gradient);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .insight-item {
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f6f3 0%, #ffffff 100%);
+            border-radius: 15px;
+            border-left: 5px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .insight-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .insight-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .insight-text {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Visualization Section */
+        .visualization {
+            margin-bottom: 80px;
+        }
+
+        .visualization h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .visualization h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gold-gradient);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .viz-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .viz-card {
+            background: var(--card-background);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .viz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(64, 59, 54, 0.15);
+        }
+
+        .viz-content {
+            padding: 30px;
+        }
+
+        .viz-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .viz-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .viz-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .data-visual {
+            background: var(--gold-gradient);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Recommendations Section */
+        .recommendations {
+            background: var(--gradient);
+            padding: 80px 40px;
+            border-radius: 25px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendations::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .recommendations-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .recommendations h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .recommendation-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .recommendation-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .recommendation-text {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+            background: var(--card-background);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-number {
+                font-size: 2.5rem;
+            }
+
+            .insights {
+                padding: 40px 20px;
+            }
+
+            .insights h2 {
+                font-size: 2rem;
+            }
+
+            .visualization h2 {
+                font-size: 2rem;
+            }
+
+            .recommendations {
+                padding: 60px 20px;
+            }
+
+            .recommendations h2 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Where Are Your High-Value Customers?</h1>
+                <p>Comprehensive segmentation analysis identifying which marketing channels attract the most loyal, high-value customers to optimize acquisition efficiency and maximize long-term customer value</p>
+                <div class="cta-buttons">
+                    <a href="https://www.pauanalytics.com/case-study/high-value-customers.html" class="btn btn-primary">View Full Case Study</a>
+                    <a href="data-analytics.html" class="btn btn-secondary">More Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="main-content">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">4</div>
+                    <div class="metric-label">Customer Segments</div>
+                    <div class="metric-description">Four distinct segments identified: Paid Search, Organic & Email, Social Media, and Referral cohorts</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">100K</div>
+                    <div class="metric-label">Customers Analyzed</div>
+                    <div class="metric-description">Comprehensive analysis of 100,000 customers across age, gender, loyalty, and acquisition channels</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">1.582</div>
+                    <div class="metric-label">Highest Loyalty Score</div>
+                    <div class="metric-description">Paid Search customers show the highest loyalty score, followed closely by Referral at 1.579</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">45K</div>
+                    <div class="metric-label">Largest Segment Size</div>
+                    <div class="metric-description">Organic & Email audience represents the largest customer group with cost-efficient reach</div>
+                </div>
+            </div>
+
+            <section class="insights">
+                <h2>Customer Segmentation Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-item">
+                        <div class="insight-title">Methodology Overview</div>
+                        <div class="insight-text">K-Means clustering analysis of 100,000 customers based on age, loyalty, and acquisition channel. The analysis revealed that channel-driven segmentation provides the most reliable framework for targeting, investment allocation, and personalized engagement strategies.</div>
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-title">Channel-Driven Segmentation</div>
+                        <div class="insight-text">Customers differ mainly by how they discover the brand, not by demographics. Four clear segments emerged: Paid Search Specialists (high-intent users), Organic & Email Audience (trust-based), Social Media Cohort (trend-driven), and Referral Advocates (social proof influenced).</div>
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-title">Loyalty Score Patterns</div>
+                        <div class="insight-text">Paid Search leads with loyalty score of 1.582, followed by Referral at 1.579, Organic & Email at 1.573, and Social Media at 1.566. These patterns confirm that acquisition channel strongly predicts long-term customer value.</div>
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-title">Top Performing Channels</div>
+                        <div class="insight-text">Paid Search and Referral deliver the highest-value customers. Paid Search attracts users with defined needs and high intent, while Referral brings customers with confidence built from personal recommendations.</div>
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-title">Scale vs. Value Balance</div>
+                        <div class="insight-text">Organic & Email provides the largest reach (45,103 customers) with low acquisition costs, while Paid Search brings fewer customers (29,950) but with higher loyalty and lifetime value. This balance informs optimal budget allocation.</div>
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-title">Messaging Recommendations by Segment</div>
+                        <div class="insight-text">Paid Search customers respond to direct, solution-focused messaging. Organic & Email prefer educational, trust-building content. Social Media engages with community-driven, conversational content. Referral customers value testimonials and dual-reward offers.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="visualization">
+                <h2>Data Visualization Insights</h2>
+                <div class="viz-grid">
+                    <div class="viz-card">
+                        <div class="viz-content">
+                            <div class="viz-title">Optimal Cluster Selection</div>
+                            <div class="viz-description">Elbow chart analysis determined that 4 clusters provide the optimal segmentation, balancing granularity with actionable insights for marketing strategy.</div>
+                            <img src="https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/high-value-customers/Q1%20elbow_chart.png" alt="Elbow Chart" class="viz-image">
+                        </div>
+                    </div>
+                    <div class="viz-card">
+                        <div class="viz-content">
+                            <div class="viz-title">Channel Composition by Segment</div>
+                            <div class="viz-description">Each customer segment is dominated by its primary acquisition channel, confirming clear channel-driven differentiation. This visualization shows how each segment concentrates around specific marketing channels.</div>
+                            <img src="https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/high-value-customers/Q2%20channel_composition_segment.png" alt="Channel Composition by Segment" class="viz-image">
+                        </div>
+                    </div>
+                    <div class="viz-card">
+                        <div class="viz-content">
+                            <div class="viz-title">Loyalty Score by Channel</div>
+                            <div class="viz-description">Comparative analysis reveals Paid Search and Referral channels consistently deliver customers with the highest loyalty scores, making them prime targets for increased investment.</div>
+                            <img src="https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/high-value-customers/Q3%20loyalty_by_channel.png" alt="Loyalty by Channel" class="viz-image">
+                        </div>
+                    </div>
+                    <div class="viz-card">
+                        <div class="viz-content">
+                            <div class="viz-title">Customer Segment Sizes</div>
+                            <div class="viz-description">Segment size analysis shows Organic & Email provides the largest customer base, enabling scalable growth, while Paid Search and Referral offer higher per-customer value despite smaller volumes.</div>
+                            <img src="https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/high-value-customers/Q4%20segment_sizes.png" alt="Segment Sizes" class="viz-image">
+                            <div class="data-visual">
+                                📊 Paid Search: 1.582 Loyalty | Referral: 1.579 | Organic: 1.573 | Social: 1.566 | Total: 100K Customers
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <section class="recommendations">
+        <div class="container">
+            <div class="recommendations-content">
+                <h2>Strategic Marketing Recommendations</h2>
+                <div class="recommendations-grid">
+                    <div class="recommendation-item">
+                        <div class="recommendation-title">Invest More in Paid Search & Referral</div>
+                        <div class="recommendation-text">These channels consistently deliver the highest-value customers with loyalty scores of 1.582 and 1.579 respectively. Increase budget allocation, enhance visibility, optimize conversion paths, and improve incentive structures to maximize acquisition of high-intent and trust-based customers.</div>
+                    </div>
+                    <div class="recommendation-item">
+                        <div class="recommendation-title">Scale Organic & Email Reach</div>
+                        <div class="recommendation-text">With 45,103 customers and low acquisition costs, Organic & Email channels provide efficient growth. Invest in SEO improvements, content marketing, and refined email nurture flows to increase both volume and customer quality from these cost-effective channels.</div>
+                    </div>
+                    <div class="recommendation-item">
+                        <div class="recommendation-title">Reposition Social Media as Brand Awareness Tool</div>
+                        <div class="recommendation-text">Social Media attracts the least loyal customers (1.566 score). Shift strategy from direct acquisition to brand building, community engagement, and top-of-funnel awareness. Use social channels to warm prospects who will convert through higher-value channels.</div>
+                    </div>
+                    <div class="recommendation-item">
+                        <div class="recommendation-title">Implement Channel-Specific Messaging</div>
+                        <div class="recommendation-text">Tailor communication strategies by segment: solution-focused messaging for Paid Search, educational content for Organic & Email, community-driven content for Social Media, and testimonial-based messaging for Referral. This targeted approach maximizes conversion rates and customer engagement.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+        </div>
+    </footer>
+
+</body>
+</html>
