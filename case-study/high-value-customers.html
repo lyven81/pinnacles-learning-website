@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a Sports Retailer Found Its Best Customers | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/high-value-customers" />
+    <meta name="description" content="How a marketing manager at a Malaysian online sports retailer used customer segmentation to identify which marketing channels bring the most loyal, high-value customers" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <h1>How a Sports Retailer Found Its Best Customers</h1>
+
+                <p>Sarah ran marketing for an online sports retailer in Kuala Lumpur. She had a RM300,000 monthly budget spread across four channels: paid search, organic search and email, social media, and referral programs. Every channel brought in customers, but Sarah had no idea which ones stayed loyal and which ones disappeared after their first purchase. She was spending blindly, hoping for the best.</p>
+
+                <p>Sarah asked her data team to analyze 100,000 customers to find patterns. The team grouped customers by how they first found the store—paid search, organic and email, social media, or referral. They measured each group's loyalty score based on repeat purchases and lifetime value. The results surprised Sarah. Paid search customers scored highest at 1.582, followed closely by referral customers at 1.579. Social media customers scored lowest at 1.566, barely staying engaged after their first order.</p>
+
+                <p>The numbers told a clear story. Paid search attracted buyers who knew exactly what they wanted—running shoes, badminton rackets, gym equipment. They came with intent and often came back. Referral customers arrived with trust already built by friends or influencers who recommended the store. They stayed loyal too. Social media brought in browsers who stumbled upon ads while scrolling Instagram or Facebook. Most bought once, then vanished.</p>
+
+                <p>Sarah also learned about scale versus quality. Organic search and email brought the most customers—45,103 people—but their loyalty score sat in the middle at 1.573. Social media brought only 14,979 customers with the lowest loyalty. Paid search delivered 29,950 customers with the highest loyalty. Referral brought the smallest group at 9,968, but these customers were nearly as loyal as paid search buyers. Sarah now understood that big numbers didn't always mean good business.</p>
+
+                <p>Armed with this data, Sarah restructured her entire marketing strategy. She doubled her paid search budget because those customers stayed and bought repeatedly. She invested more in referral programs—offering discounts to customers who brought friends, and partnering with local fitness influencers. She kept organic and email campaigns running because they brought volume at low cost. Most importantly, she cut back on social media spending for direct sales, using it instead for brand awareness and community building.</p>
+
+                <p>Sarah also changed how she spoke to each group. Paid search ads became more direct: "Shop Marathon Running Shoes Now—Free Delivery." Email campaigns focused on education: "5 Tips to Choose the Right Badminton Racket." Referral messages highlighted trust: "Join 50,000 Malaysians Who Trust Us for Their Sports Gear." Social media posts shifted to engagement: photos of local athletes, fitness challenges, customer stories. Each channel got messaging that matched why customers came there in the first place.</p>
+
+                <p>Within three months, Sarah saw results. Customer retention improved by 18%. Revenue from paid search and referral customers grew by 34%. Social media still brought in new buyers, but Sarah stopped expecting them to become loyal customers. Instead, she used social media to warm up potential buyers who would eventually convert through higher-quality channels like organic search or referrals.</p>
+
+                <p>Sarah learned three lessons from this experience. First, not all customers are equal—some channels bring buyers who stay, others bring one-time shoppers. Second, you need data to know where to invest your limited budget. Third, understanding your customer segments helps you speak to them in ways that actually work. Today, Sarah starts her planning by asking one question: which channels bring customers who come back? The data gives her the answer every time.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
