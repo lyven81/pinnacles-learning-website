@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixing the Sales Leaks | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/fixing-the-sales-leaks" />
+    <meta name="description" content="How an online kitchenware seller in Malaysia fixed conversion leaks by analyzing 500,000 sessions to discover email and mobile customers convert best" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Work in Progress Section */
+        .work-in-progress {
+            background: #fff9e7;
+            border: 2px dashed #CBA135;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .work-in-progress h2 {
+            color: #403B36;
+            margin-bottom: 1rem;
+        }
+
+        .work-in-progress p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+            <!-- Dashboard Link Button -->
+            <section class="home-link-section">
+                <a href="../dashboard/fixing-the-sales-leaks.html" class="home-link-btn">Dashboard</a>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <h1>Fixing the Sales Leaks</h1>
+
+                <p>Ahmad ran an online kitchenware store in Malaysia. Traffic looked good—thousands of visitors every month. But sales stayed flat. People browsed products, some added items to cart, then disappeared. Ahmad watched customers slip away at every step. He needed to know where the leaks were and how to plug them.</p>
+
+                <p>He hired an analyst to examine 500,000 shopping sessions. The analyst tracked every step: product views, cart additions, checkout starts, completed purchases. The data covered five marketing channels—Email, Paid Search, Social, Organic, and Direct. It also split customers by device type and included an A/B test Ahmad was running. The goal was to find where customers dropped off and which channels actually brought buyers, not just browsers.</p>
+
+                <p>The funnel revealed two massive leaks. Most customers who viewed products never added anything to their cart. Then, half the people who did add items quit before checkout. Ahmad's product pages weren't convincing people to buy, and his checkout process was losing customers who were already interested. These two points alone explained why traffic didn't convert to sales.</p>
+
+                <p>The analyst compared marketing channels. Email brought customers who bought. Paid Search performed almost as well. Social was decent. But Organic and Direct traffic barely converted. Ahmad had been treating all traffic equally, but email subscribers and paid search visitors were far more likely to complete a purchase. He was wasting effort trying to scale channels that didn't deliver buyers.</p>
+
+                <p>Mobile customers converted better than desktop users—both for adding to cart and finishing checkout. This surprised Ahmad. He'd assumed mobile was just for browsing. The data said otherwise. Mobile shoppers were ready to buy. His mobile experience was already working. Desktop needed improvement.</p>
+
+                <p>The A/B test showed Variant A didn't increase cart additions, but slightly more people completed checkout with it. The difference was small but real. Customers felt more confident finishing their purchase with Variant A, even though it didn't help earlier in the funnel. Ahmad decided to keep testing it, focusing on checkout improvements.</p>
+
+                <p>One finding stood out: customers from email converted best, but viewing too many products or adding too many items to cart actually lowered the chance of purchase. When people browsed heavily without buying, they were overwhelmed or confused, not engaged. Ahmad realized he needed clearer product recommendations and simpler choices to guide customers, not just more options.</p>
+
+                <p>Ahmad restructured everything. He shifted marketing budget to Email and Paid Search, cutting spend on Organic and Direct until he fixed those channels. He rewrote product pages with clearer descriptions and better photos to reduce the first leak. He simplified checkout to stop losing people at the finish line. He prioritized mobile optimization since those customers were already converting. Today, Ahmad doesn't guess where problems are. He knows which channels work, where customers get stuck, and what changes actually increase sales.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
