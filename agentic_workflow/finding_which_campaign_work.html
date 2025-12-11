@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Campaign Assistant | Finding Which Campaigns Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="/">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="/case-study/finding-which-campaign-work.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="/dashboard/finding-which-campaign-work.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="/agentic_workflow/finding_which_campaign_work.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Campaign Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">How are my Display Ads performing?</button>
+                    <button class="question-btn" onclick="showResponse(2)">What's my best channel-segment combination?</button>
+                    <button class="question-btn" onclick="showResponse(3)">Why is Email underperforming?</button>
+                    <button class="question-btn" onclick="showResponse(4)">Should I increase budget for November?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Which customer segments should I focus on?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "How are my Display Ads performing?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Query campaign data for Display Ads performance, (2) Compare with other channels, (3) Provide context from analysis insights"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Structured Data (CSV)",
+                        content: "Querying campaign metrics for channel='Display'..."
+                    }
+                ],
+                dataResult: {
+                    title: "Query Results:",
+                    items: [
+                        "Display Ads: Average uplift = 0.09435 (highest among all channels)",
+                        "Number of Display campaigns: 11",
+                        "Performance rank: #1 of 5 channels"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Unstructured Data (Analysis Report)",
+                        content: "Searching insights for 'Display' performance context..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Insights Found:",
+                    items: [
+                        "\"Display delivers the highest uplift at 0.09435, followed closely by Paid Search\"",
+                        "\"Display and Paid Search—two of the best-performing channels—have fewer campaigns at 11\"",
+                        "\"Marketing Managers should expand the use of Display to better align effort with performance\""
+                    ]
+                },
+                answer: "Your Display Ads are your top-performing channel with an uplift of 0.09435, outperforming all other channels. Despite this strong performance, you're currently running only 11 Display campaigns. The data suggests this channel is underutilized relative to its effectiveness. I recommend increasing your Display Ad budget allocation, as it consistently delivers the highest customer response rates across your campaign portfolio."
+            },
+            2: {
+                question: "What's my best channel-segment combination?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Query all channel-segment combinations from CSV, (2) Identify top performers by uplift, (3) Cross-reference with strategic insights"
+                    },
+                    {
+                        title: "🔍 Data Analysis - Structured Data",
+                        content: "Analyzing all channel × segment combinations and calculating average uplift..."
+                    }
+                ],
+                dataResult: {
+                    title: "Top 3 Combinations:",
+                    items: [
+                        "Social + New Customers: 0.144 uplift",
+                        "Display + High Value: 0.140 uplift",
+                        "Email + New Customers (Retention): 0.140 uplift"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📊 Pattern Recognition",
+                        content: "Identifying strategic implications from combination analysis..."
+                    }
+                ],
+                answer: "Your best channel-segment combination is Social campaigns targeting New Customers with Cross-sell objectives, delivering 0.144 uplift—68% above your average. Close behind is Display targeting High Value customers for Retention (0.140 uplift). Interestingly, even Email—your weakest channel overall—performs exceptionally when used for New Customer retention (0.140 uplift). This shows that context matters significantly: the right channel-segment-objective alignment can lift performance by 40-70% compared to average campaigns."
+            },
+            3: {
+                question: "Why is Email underperforming?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Investigation requires: (1) Retrieve Email performance data, (2) Compare with benchmark, (3) Identify usage patterns, (4) Search for diagnostic insights"
+                    },
+                    {
+                        title: "🔍 Performance Data - Email Channel",
+                        content: "Querying Email campaign metrics..."
+                    }
+                ],
+                dataResult: {
+                    title: "Email Performance:",
+                    items: [
+                        "Average uplift: 0.07491 (lowest among all channels)",
+                        "Number of campaigns: 14 (highest volume)",
+                        "Performance gap: 26% below Display Ads",
+                        "Budget allocation vs. response: 30% budget → only 12% of total response"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Root Cause Analysis",
+                        content: "Searching analysis insights for Email performance explanations..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Key Findings:",
+                    items: [
+                        "\"Email has the highest number of campaigns (14) but delivers the lowest uplift\"",
+                        "\"Too much effort is going into channels that deliver less impact\"",
+                        "\"Email can still be useful, but should not carry the main load given its lower performance\"",
+                        "Exception: \"Email performs strongly when paired with Retention for New Customers (0.140)\""
+                    ]
+                },
+                answer: "Email is underperforming because it's being overused for the wrong purposes. With 14 campaigns (your highest volume), it generates only 0.07491 average uplift—26% below Display Ads. The efficiency gap is striking: Email consumes 30% of your budget but delivers only 12% of total response. However, the data reveals Email isn't inherently weak—when used strategically for New Customer retention, it achieves 0.140 uplift (87% above its average). The solution: reduce Email's role as a primary channel and deploy it selectively for proven high-performing scenarios like New Customer retention campaigns."
+            },
+            4: {
+                question: "Should I increase budget for November?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Seasonal analysis requires: (1) Query November historical performance, (2) Compare with other months, (3) Retrieve timing intelligence from insights"
+                    },
+                    {
+                        title: "📊 Seasonal Performance Analysis",
+                        content: "Analyzing month-by-month campaign performance..."
+                    }
+                ],
+                dataResult: {
+                    title: "Monthly Performance Data:",
+                    items: [
+                        "November: 0.11350 uplift (highest of all months)",
+                        "February: 0.10600 uplift (second highest)",
+                        "Annual average: 0.085 uplift",
+                        "September: 0.06200 uplift (lowest)",
+                        "November performance: +34% above annual average"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "🔍 Strategic Context",
+                        content: "Retrieving seasonal planning insights..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Timing Intelligence:",
+                    items: [
+                        "\"November (0.11350) is the strongest month for customer responsiveness\"",
+                        "\"High-impact campaigns should be scheduled in November when customers are naturally more responsive\"",
+                        "\"Using seasonal insights helps maximize results during peak months\"",
+                        "\"This allows stronger outcomes without increasing spend\"—but higher spend in November amplifies already-strong performance"
+                    ]
+                },
+                answer: "Yes, absolutely increase your November budget. November is your strongest month with 0.11350 uplift—34% above your annual average and 83% higher than September. Customer responsiveness naturally peaks in November, making it your most efficient spending period. Historical data shows this pattern is consistent, not random. Strategic recommendation: reallocate budget from low-performing months (especially September) into November. Even maintaining the same total annual budget, shifting 20-30% more into November should significantly improve overall ROI. For maximum impact, combine November timing with your best-performing channels (Display, Paid Search) and segments (High Value, New Customers)."
+            },
+            5: {
+                question: "Which customer segments should I focus on?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Segment analysis requires: (1) Query performance by customer segment, (2) Rank by uplift, (3) Calculate ROI implications, (4) Retrieve strategic recommendations"
+                    },
+                    {
+                        title: "📊 Segment Performance Analysis",
+                        content: "Analyzing uplift across all customer segments..."
+                    }
+                ],
+                dataResult: {
+                    title: "Segment Performance Rankings:",
+                    items: [
+                        "High Value: 0.0913 uplift (rank #1)",
+                        "New Customers: 0.0904 uplift (rank #2)",
+                        "Churn Risk: 0.0751 uplift (rank #3)",
+                        "Deal Seekers: 0.0714 uplift (rank #4)",
+                        "Performance gap: Top 2 segments outperform bottom 2 by 22-28%"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Strategic Implications",
+                        content: "Cross-referencing with business strategy insights..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Guidance:",
+                    items: [
+                        "\"High Value and New Customers deliver the strongest results and offer the highest return\"",
+                        "\"Churn Risk and Deal Seekers are more challenging to influence\"",
+                        "\"Focusing more campaigns on High Value and New Customer groups is likely to improve returns without increasing budget\"",
+                        "\"These segments may require different messaging or more precise targeting\""
+                    ]
+                },
+                answer: "Focus primarily on High Value customers (0.0913 uplift) and New Customers (0.0904 uplift)—these two segments deliver 22-28% better performance than Churn Risk and Deal Seekers. The efficiency advantage is clear: directing campaigns toward these responsive segments improves overall returns without requiring additional budget. This doesn't mean abandoning other segments entirely, but rather rebalancing your portfolio. Current best practice: allocate 60-70% of campaign efforts to High Value and New Customers, reserving 30-40% for strategically important but lower-response segments. When targeting Churn Risk or Deal Seekers, use proven high-performing channels (Display, Paid Search) to compensate for lower baseline responsiveness."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Campaign Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
