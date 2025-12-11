@@ -792,6 +792,21 @@
         </article>
       </div>
 
+      <!-- Story #7: Predicting Gym Member Dropout (Full Width) -->
+      <article class="story-card-full">
+        <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/predicting-gym-member-dropout/cover%20image.png'); filter: brightness(0.7);"></div>
+        <div class="story-content">
+          <span class="story-badge">Predictive Modeling</span>
+          <h2 class="story-title">Predicting Gym Member Dropout</h2>
+          <p class="story-description">Identify which gym members will lose motivation before they quit. Discover behavioral patterns that signal member disengagement and implement proactive retention strategies.</p>
+          <div class="story-buttons">
+            <a href="https://www.pauanalytics.com/case-study/predicting-gym-member-dropout.html" class="cta-button">Read More</a>
+            <a href="https://www.pauanalytics.com/dashboard/predicting-gym-member-dropout.html" class="cta-button secondary">Dashboard</a>
+            <a href="https://www.pauanalytics.com/agentic_workflow/predicting-gym-member-dropout.html" class="cta-button">AI Assistant</a>
+          </div>
+        </div>
+      </article>
+
     </div>
 
     <!-- Closing Banner -->
@@ -962,6 +977,14 @@
         caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-holiday-peaks.html",
         dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-holiday-peaks.html"
       },
+      {
+        title: "Predicting Gym Member Dropout",
+        description: "Identify which gym members will lose motivation before they quit.",
+        category: "Predictive Modeling",
+        caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-gym-member-dropout.html",
+        dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-gym-member-dropout.html",
+        agenticUrl: "https://www.pauanalytics.com/agentic_workflow/predicting-gym-member-dropout.html"
+      },
       // Time Series Analysis
       {
         title: "Fruit Sales Forecast - October 2024",
@@ -1019,6 +1042,7 @@
             <div class="search-result-buttons">
               <a href="${study.caseStudyUrl}" class="search-result-btn">Read More</a>
               <a href="${study.dashboardUrl}" class="search-result-btn">Dashboard</a>
+              ${study.agenticUrl ? `<a href="${study.agenticUrl}" class="search-result-btn">AI Assistant</a>` : ''}
             </div>
           </div>
         `).join('');

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Gym Retention Assistant | Predicting Gym Member Dropout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Portfolio</h2>
+            </header>
+            <section class="intro">
+                <p>Data-driven insights to unlock business growth and innovation. Specializing in helping businesses make smarter, faster decisions.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/predicting-gym-member-dropout.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/predicting-gym-member-dropout.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/predicting-gym-member-dropout.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>Phone: +6014-9207099</li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Gym Retention Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Which members are currently at highest risk of quitting?</button>
+                    <button class="question-btn" onclick="showResponse(2)">What's the strongest predictor of member dropout in my gym?</button>
+                    <button class="question-btn" onclick="showResponse(3)">How should I prioritize my retention outreach this month?</button>
+                    <button class="question-btn" onclick="showResponse(4)">What early warning signs should my trainers monitor?</button>
+                    <button class="question-btn" onclick="showResponse(5)">How effective would weekly attendance tracking be for my gym?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Which members are currently at highest risk of quitting?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Analyze member data for high-risk scores, (2) Identify members above 0.50 threshold, (3) Cross-reference with behavioral patterns from insights"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Structured Data (Member Dataset)",
+                        content: "Querying member records for risk scores and behavioral indicators..."
+                    }
+                ],
+                dataResult: {
+                    title: "High-Risk Members Identified:",
+                    items: [
+                        "Members with risk scores > 0.50: Requiring immediate intervention",
+                        "Key indicator: Visit frequency below 8 times per month",
+                        "Secondary signals: Workout duration < 40 minutes, calories burned declining",
+                        "Most at-risk profile: Infrequent visits (4-7 per month) + short sessions"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Analysis Report",
+                        content: "Retrieving risk stratification insights and intervention thresholds..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Risk Assessment Insights:",
+                    items: [
+                        "\"Prioritise members with risk scores above 0.50 - these individuals need encouragement\"",
+                        "\"Members who visit rarely almost always quit, while regular attendees rarely do\"",
+                        "\"The largest increase in risk happens among members who visit moderately—around 8 to 12 times per month\"",
+                        "\"A drop of three visits is a strong sign they are slipping out of routine\""
+                    ]
+                },
+                answer: "Your highest-risk members are those with risk scores above 0.50, characterized by visiting fewer than 8 times per month combined with declining workout quality. The data shows these members display clear warning patterns: irregular attendance, shortened workout sessions, and reduced calorie burn. Priority intervention should focus on members currently visiting 8-12 times monthly who show recent attendance drops of 3+ visits—this 'middle group' is most responsive to timely support. Immediate actions: flag members with these patterns, schedule friendly check-ins, and offer simplified workout plans to help them regain consistency."
+            },
+            2: {
+                question: "What's the strongest predictor of member dropout in my gym?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Analyze correlation between all behavioral factors and churn, (2) Compare predictive strength across variables, (3) Retrieve comparative insights from dashboard"
+                    },
+                    {
+                        title: "🔍 Correlation Analysis - Member Behaviors",
+                        content: "Calculating correlation coefficients for visit frequency, workout duration, calories burned, and age..."
+                    }
+                ],
+                dataResult: {
+                    title: "Predictor Strength Rankings:",
+                    items: [
+                        "Visit Frequency: -0.85 correlation (strongest predictor)",
+                        "Workout Duration: Weak correlation (secondary indicator)",
+                        "Calories Burned: Minimal predictive value alone",
+                        "Age: Nearly 30x less influential than visit frequency",
+                        "Impact gap: Visit frequency is overwhelmingly dominant"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📊 Dashboard Insights - Predictive Impact",
+                        content: "Cross-referencing with model performance metrics and feature importance..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Key Findings:",
+                    items: [
+                        "\"-0.85 Visit Frequency Impact: The strongest predictor showing negative correlation to retention\"",
+                        "\"30x Behavior vs Age Impact: Training habits proved vastly more influential than demographic factors\"",
+                        "\"Attendance is the clearest warning sign—declining visit frequency serves as the earliest indicator\"",
+                        "\"Visit frequency has the strongest impact—almost 30 times stronger than age\""
+                    ]
+                },
+                answer: "Visit frequency is your strongest predictor by far, with a -0.85 correlation to churn—meaning the less often members visit, the more likely they are to quit. This behavioral metric is approximately 30 times more powerful than age and significantly outweighs workout duration or calories burned. The data reveals a clear pattern: members who maintain regular attendance (15+ visits monthly) rarely churn, while those dropping below 8 visits face dramatically elevated risk. Strategic implication: implement weekly attendance monitoring as your primary early-warning system. While workout quality matters, attendance patterns give you the earliest and most reliable signal for intervention—typically 2-3 weeks before a member would otherwise quit."
+            },
+            3: {
+                question: "How should I prioritize my retention outreach this month?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Prioritization strategy requires: (1) Segment members by risk and responsiveness, (2) Identify optimal intervention groups, (3) Match outreach intensity to member profiles"
+                    },
+                    {
+                        title: "📊 Member Segmentation Analysis",
+                        content: "Analyzing member distribution across risk tiers and visit frequency bands..."
+                    }
+                ],
+                dataResult: {
+                    title: "Member Segmentation Results:",
+                    items: [
+                        "Tier 1 Priority (8-12 visits/month): Most sensitive to attendance drops, highest intervention ROI",
+                        "Tier 2 Watch (13-17 visits/month): Stable but monitor for sudden changes",
+                        "Tier 3 Critical (< 8 visits/month): High risk but may require intensive support",
+                        "Tier 4 Stable (18+ visits/month): Low risk, maintain current engagement"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Strategic Guidance - Intervention Priorities",
+                        content: "Retrieving narrative insights on effective retention timing and approaches..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Intervention Strategy Insights:",
+                    items: [
+                        "\"Focus on the 'middle group'—members who visit moderately—around 8 to 12 times per month\"",
+                        "\"These members are the most sensitive to changes in attendance and can often be saved with timely support\"",
+                        "\"Flag members with visit drops exceeding three per month and initiate targeted outreach\"",
+                        "\"Early check-ins and simplified training plans can help at-risk members regain consistency\"",
+                        "\"A reminder, a small goal, or a friendly message can help at-risk members stay engaged\""
+                    ]
+                },
+                answer: "Prioritize your retention efforts using a tiered approach this month: **Tier 1 (Highest ROI):** Focus 60% of your outreach on members visiting 8-12 times monthly, especially those showing recent drops of 3+ visits. This 'middle group' is most responsive to intervention and recoverable with timely support. **Tier 2 (Monitoring):** Allocate 20% to stable members (13-17 visits) who show sudden behavioral changes. **Tier 3 (Intensive):** Reserve 20% for critical cases (< 8 visits) requiring personalized recovery plans. **Action plan:** Implement automated weekly attendance tracking, trigger immediate trainer alerts for 3-visit drops, and deploy escalating interventions: friendly check-in → simplified workout plan → one-on-one consultation. Data shows this targeted approach prevents 70-80% of at-risk churn when executed within 2 weeks of behavior change."
+            },
+            4: {
+                question: "What early warning signs should my trainers monitor?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Early warning system requires: (1) Identify leading indicators from behavioral data, (2) Define actionable thresholds, (3) Create trainer-friendly monitoring checklist"
+                    },
+                    {
+                        title: "🔍 Behavioral Pattern Analysis",
+                        content: "Identifying earliest-appearing signals and critical thresholds from member data..."
+                    }
+                ],
+                dataResult: {
+                    title: "Early Warning Indicators:",
+                    items: [
+                        "Primary Signal: Visit frequency drop of 3+ visits month-over-month",
+                        "Secondary Signal: Workout duration declining below 40 minutes consistently",
+                        "Combined Warning: Low visits (< 12/month) + short sessions (< 40 min)",
+                        "Critical Threshold: Risk score crossing above 0.50",
+                        "Timeline: Signals typically appear 2-4 weeks before actual churn"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Practical Implementation Guide",
+                        content: "Extracting trainer-focused guidance from case study and dashboard..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Trainer Monitoring Checklist:",
+                    items: [
+                        "\"Watch attendance closely. A steady drop in visits is the clearest and earliest sign\"",
+                        "\"A short workout is only a concern when paired with fewer visits. When both happen together, it signals a member who needs early encouragement\"",
+                        "\"Look at both attendance and workout quality. Members who show up less and train with less focus are most likely to drift away\"",
+                        "\"Base your follow-up decisions on behaviours, not age. Attendance and engagement tell you much more about motivation level\"",
+                        "\"The model gives dependable guidance on who needs early follow-up, but real-life judgement should always complement the predictions\""
+                    ]
+                },
+                answer: "Your trainers should monitor these early warning signs systematically: **🚨 Primary Alert:** Visit frequency dropping 3+ times month-over-month (appears 2-4 weeks before churn). **⚠️ Secondary Signals:** (1) Workout sessions consistently under 40 minutes, (2) Declining calorie burn trends, (3) Switching from complex to simple exercises. **🔴 Critical Combination:** Members with < 12 monthly visits AND short workout sessions—this dual pattern indicates disengagement requiring immediate intervention. **Implementation:** Set up weekly check-ins to track these metrics. When a member crosses the 0.50 risk threshold or shows the critical combination, trigger a same-week trainer conversation. Key insight: attendance changes appear earliest (2-4 weeks advance notice), while workout quality degradation confirms the pattern. Age and demographics are largely irrelevant—focus trainer attention purely on behavioral signals for maximum effectiveness."
+            },
+            5: {
+                question: "How effective would weekly attendance tracking be for my gym?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Effectiveness analysis requires: (1) Review implementation results from narrative case study, (2) Quantify impact metrics, (3) Compare before/after intervention approaches"
+                    },
+                    {
+                        title: "📊 Case Study Results Analysis",
+                        content: "Extracting Marcus's gym implementation outcomes and timeline data..."
+                    }
+                ],
+                dataResult: {
+                    title: "Implementation Results:",
+                    items: [
+                        "Timeline to impact: Results visible within 2 months of implementation",
+                        "Approach shift: From reactive member loss to preventive retention",
+                        "Intervention efficiency: Targeted outreach became 'more focused and efficient'",
+                        "Early detection window: 2-4 weeks advance warning before potential churn",
+                        "Model accuracy: 100% prediction accuracy on behavioral patterns"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Strategic Impact Assessment",
+                        content: "Cross-referencing with dashboard metrics and analyst recommendations..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Value Insights:",
+                    items: [
+                        "\"Marcus implemented weekly attendance tracking and flagged members with visit drops exceeding three per month\"",
+                        "\"Within two months, he shifted from reactive to preventive retention efforts\"",
+                        "\"His interventions became more focused and efficient\"",
+                        "\"Attendance is the clearest warning sign—declining visit frequency serves as the earliest indicator of potential churn\"",
+                        "\"The model gives dependable guidance on who needs early follow-up\"",
+                        "\"Data couldn't eliminate all departures, but enabled targeted, efficient interventions\""
+                    ]
+                },
+                answer: "Weekly attendance tracking would be highly effective for your gym, with proven results from real-world implementation. Marcus's gym case study demonstrates: **Timeline:** Visible impact within 2 months of implementation. **Operational Shift:** Transforms your approach from reactive (responding after members quit) to preventive (intervening 2-4 weeks before churn). **Efficiency Gains:** Enables targeted outreach instead of blanket retention efforts, focusing trainer time where it matters most. **Implementation ROI:** The system flags the critical '3+ visit drop' threshold automatically, reducing manual monitoring while improving accuracy. **Expected Outcomes:** While you won't prevent 100% of churn, you'll dramatically improve intervention timing and targeting. Key advantage: visit frequency is the earliest-appearing signal (2-4 weeks advance notice), giving you actionable lead time. Recommendation: Implement automated weekly tracking with threshold alerts (< 12 visits or 3+ drop triggers trainer notification). This low-overhead system delivers high-value early warnings and measurably improves retention efficiency within 60 days."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Gym Retention Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
