@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Insights Assistant | Where Are Your High-Value Customers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Portfolio</h2>
+            </header>
+            <section class="intro">
+                <p>Data-driven insights to unlock business growth and innovation. Specializing in helping businesses make smarter, faster decisions.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/high-value-customers.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/high-value-customers.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/high-value-customers.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>Phone: +6014-9207099</li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Customer Insights Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Which marketing channel should I invest in most?</button>
+                    <button class="question-btn" onclick="showResponse(2)">What type of customers does each channel attract?</button>
+                    <button class="question-btn" onclick="showResponse(3)">Which customer segment is most valuable?</button>
+                    <button class="question-btn" onclick="showResponse(4)">How should I reallocate my RM300,000 marketing budget?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Which channels bring repeat customers vs one-time buyers?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Which marketing channel should I invest in most?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Compare loyalty scores across channels, (2) Evaluate customer quality metrics, (3) Recommend highest-ROI channel"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Channel Performance (CSV)",
+                        content: "Analyzing 100,000 customer records by acquisition channel..."
+                    }
+                ],
+                dataResult: {
+                    title: "Loyalty Score Comparison:",
+                    items: [
+                        "Paid Search: 1.582 (highest)",
+                        "Referral: 1.579 (second highest)",
+                        "Organic & Email: 1.574 (mid-tier)",
+                        "Social Media: 1.566 (lowest)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Strategic Recommendations",
+                        content: "Retrieving investment guidance from case study..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Insight:",
+                    items: [
+                        "\"Sarah doubled paid search investment based on highest loyalty scores\"",
+                        "\"Paid Search and Referral customers showed strongest repeat purchase behavior\"",
+                        "\"18% retention improvement and 34% revenue growth after reallocation\""
+                    ]
+                },
+                answer: "Invest most in Paid Search—it delivers the highest loyalty score (1.582) and attracts customers who make repeat purchases. Sarah doubled her Paid Search budget and saw 34% revenue growth in three months."
+            },
+            2: {
+                question: "What type of customers does each channel attract?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Segment customers by acquisition channel, (2) Analyze demographic and behavioral profiles, (3) Identify channel-specific customer characteristics"
+                    },
+                    {
+                        title: "🔍 Customer Profiling Analysis",
+                        content: "Analyzing customer attributes across channels from 100K records..."
+                    }
+                ],
+                dataResult: {
+                    title: "Customer Profiles by Channel:",
+                    items: [
+                        "Paid Search: Solution-seekers with high intent, 1.582 loyalty, active purchasers",
+                        "Organic & Email: Information-gatherers, largest volume (45,103), mid-tier loyalty (1.574)",
+                        "Social Media: Casual browsers, lowest loyalty (1.566), smallest segment (14,979)",
+                        "Referral: Trust-driven buyers, high loyalty (1.579), word-of-mouth advocates"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Segmentation Insights",
+                        content: "Cross-referencing with messaging strategy recommendations..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Channel-Specific Behaviors:",
+                    items: [
+                        "\"Paid Search customers respond to solution-focused messaging\"",
+                        "\"Organic & Email audiences need educational, informative content\"",
+                        "\"Social Media users engage with community-driven content\"",
+                        "\"Referral customers value trust signals and testimonials\""
+                    ]
+                },
+                answer: "Paid Search attracts high-intent solution-seekers, Referral brings trust-driven advocates, Organic & Email reaches information-gatherers (largest volume), and Social Media draws casual browsers. Each channel needs tailored messaging matching their behavior patterns."
+            },
+            3: {
+                question: "Which customer segment is most valuable?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Evaluation requires: (1) Compare loyalty scores across segments, (2) Assess lifetime value indicators, (3) Balance quality vs volume trade-offs"
+                    },
+                    {
+                        title: "📊 Segment Value Analysis",
+                        content: "Evaluating customer lifetime value across four segments..."
+                    }
+                ],
+                dataResult: {
+                    title: "Segment Value Rankings:",
+                    items: [
+                        "Paid Search Specialists: Loyalty 1.582 (highest quality)",
+                        "Referral Advocates: Loyalty 1.579 (high quality, word-of-mouth growth)",
+                        "Organic & Email Audience: Loyalty 1.574, 45,103 customers (scale advantage)",
+                        "Social Media Cohort: Loyalty 1.566, 14,979 customers (lowest value)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "🔍 Value Optimization Strategy",
+                        content: "Analyzing quality-volume balance for maximum ROI..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Value Assessment:",
+                    items: [
+                        "\"Paid Search delivers highest per-customer value\"",
+                        "\"Referral offers dual benefit: high loyalty + organic growth through recommendations\"",
+                        "\"Organic & Email provides cost-efficient volume despite mid-tier loyalty\"",
+                        "\"Focus investment on Paid Search and Referral for maximum returns\""
+                    ]
+                },
+                answer: "Paid Search Specialists are most valuable with 1.582 loyalty scores and highest repeat purchase rates. Referral Advocates come close second (1.579) with the bonus of generating new customers through word-of-mouth."
+            },
+            4: {
+                question: "How should I reallocate my RM300,000 marketing budget?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Budget optimization requires: (1) Calculate ROI by channel, (2) Balance quality vs volume needs, (3) Develop data-driven allocation strategy"
+                    },
+                    {
+                        title: "💰 ROI-Based Budget Modeling",
+                        content: "Calculating optimal allocation based on loyalty scores and segment sizes..."
+                    }
+                ],
+                dataResult: {
+                    title: "Channel Performance Metrics:",
+                    items: [
+                        "Paid Search: 1.582 loyalty → Double investment priority",
+                        "Referral: 1.579 loyalty → Expand referral programs",
+                        "Organic & Email: 45,103 customers → Maintain for volume",
+                        "Social Media: 1.566 loyalty, 14,979 customers → Reposition to brand awareness"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📊 Sarah's Successful Reallocation",
+                        content: "Reviewing proven budget restructuring strategy..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Recommended Budget Split:",
+                    items: [
+                        "\"Sarah doubled Paid Search budget for highest-value acquisition\"",
+                        "\"Expanded referral program investment for word-of-mouth growth\"",
+                        "\"Maintained Organic & Email for cost-efficient volume\"",
+                        "\"Repositioned Social Media to brand awareness vs direct acquisition\"",
+                        "\"Results: 18% retention boost, 34% revenue growth in 3 months\""
+                    ]
+                },
+                answer: "Double your Paid Search investment (highest loyalty 1.582), expand Referral programs, maintain Organic & Email for volume, and shift Social Media to brand awareness only. This strategy delivered 34% revenue growth for Sarah in three months."
+            },
+            5: {
+                question: "Which channels bring repeat customers vs one-time buyers?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Retention analysis requires: (1) Compare repeat purchase rates by channel, (2) Identify loyalty tier distribution, (3) Distinguish long-term vs transactional customers"
+                    },
+                    {
+                        title: "🔍 Repeat Purchase Analysis",
+                        content: "Analyzing customer retention patterns across channels..."
+                    }
+                ],
+                dataResult: {
+                    title: "Repeat Customer Rankings:",
+                    items: [
+                        "Paid Search: 1.582 loyalty → Highest repeat purchase rate",
+                        "Referral: 1.579 loyalty → Strong repeat behavior + advocacy",
+                        "Organic & Email: 1.574 loyalty → Moderate repeat purchases",
+                        "Social Media: 1.566 loyalty → Highest one-time buyer ratio"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Customer Lifetime Value Insights",
+                        content: "Cross-referencing with loyalty tier distribution..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Retention Patterns:",
+                    items: [
+                        "\"Paid Search and Referral customers consistently showed strongest repeat purchase behavior\"",
+                        "\"Social Media attracted more casual, one-time browsers\"",
+                        "\"Organic & Email balanced volume with mid-tier retention\"",
+                        "\"Focus acquisition budget on channels proven to bring loyal, repeat customers\""
+                    ]
+                },
+                answer: "Paid Search (1.582) and Referral (1.579) bring the most repeat customers, while Social Media (1.566) attracts mainly one-time buyers. Invest in channels that build long-term customer relationships, not just transaction volume."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Customer Insights Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
