@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Business Assistant | Where Revenue Comes From</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/where-revenue-comes-from.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Business Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Should I offer more discounts to increase revenue?</button>
+                    <button class="question-btn" onclick="showResponse(2)">Why are some campaigns failing while others succeed?</button>
+                    <button class="question-btn" onclick="showResponse(3)">How do I identify my most valuable customers?</button>
+                    <button class="question-btn" onclick="showResponse(4)">Should I encourage customers to buy more items per transaction?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Do I have bestseller products I should stock more of?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Should I offer more discounts to increase revenue?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Analyze revenue by discount levels, (2) Compare full-price vs discounted sales, (3) Check net revenue after refunds"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Transaction Analysis",
+                        content: "Querying sales data by discount levels (0%, 5%, 10%, 15%, 20%)..."
+                    }
+                ],
+                dataResult: {
+                    title: "Revenue Analysis by Discount Level:",
+                    items: [
+                        "0% discount (full-price): Highest average transaction value at RM 94.20",
+                        "5-20% discounts: Lower average transactions (RM 76-88 range)",
+                        "Net revenue: Full-price sales generate 18-24% more value per transaction",
+                        "Refund rate: Discounted purchases show 15% higher refund likelihood"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Analysis Report Insights",
+                        content: "Retrieving strategic findings on discount effectiveness..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Key Insights:",
+                    items: [
+                        "\"Net revenue is highest when no discount is offered\"",
+                        "\"Full-price purchases bring in more valuable customers and larger transaction amounts\"",
+                        "\"Low and medium discounts do not outperform full price, and often attract customers who spend less\"",
+                        "\"Broad discounts reduce revenue quality and do not create long-term value\""
+                    ]
+                },
+                answer: "No—full-price sales generate 18-24% higher revenue per transaction and attract better customers. Use discounts only for targeted goals like clearing old stock, not as your main strategy."
+            },
+            2: {
+                question: "Why are some campaigns failing while others succeed?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Compare successful vs unsuccessful campaigns, (2) Identify key characteristics, (3) Analyze product variety, duration, and discount patterns"
+                    },
+                    {
+                        title: "🔍 Campaign Performance Analysis",
+                        content: "Analyzing campaign characteristics and net revenue outcomes..."
+                    }
+                ],
+                dataResult: {
+                    title: "Campaign Success Factors:",
+                    items: [
+                        "Product variety: Top campaigns feature 120-180 products; weak campaigns have 30-60 products",
+                        "Campaign duration: Best performers run 28-45 days; failures average 7-14 days",
+                        "Discount levels: SUCCESS campaigns offer 0-10% discounts; FAILURES push 15-20% discounts",
+                        "Revenue concentration: Top 5 campaigns generate 67% of total net revenue"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📊 Pattern Recognition - Strategic Analysis",
+                        content: "Identifying what drives campaign success from analysis report..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Findings:",
+                    items: [
+                        "\"Campaigns perform best when they offer a wide range of products\"",
+                        "\"Product variety is the strongest predictor of campaign success, far exceeding the impact of discount levels\"",
+                        "\"Strong campaigns come from choosing the right products, not cutting prices\"",
+                        "\"Only a few campaigns contribute most of the net revenue—learn from top performers and repeat what works\""
+                    ]
+                },
+                answer: "Successful campaigns offer wide product variety (120+ items) and run longer (28+ days), not deeper discounts. Failed campaigns rely on heavy discounts (15-20%) with narrow selection—customers want choice, not just low prices."
+            },
+            3: {
+                question: "How do I identify my most valuable customers?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Analysis requires: (1) Segment customers by behavior patterns, (2) Calculate lifetime value indicators, (3) Identify loyalty signals"
+                    },
+                    {
+                        title: "🔍 Customer Segmentation Analysis",
+                        content: "Analyzing purchase frequency, tenure, refund rates, and spending patterns..."
+                    }
+                ],
+                dataResult: {
+                    title: "Customer Lifetime Value Segments:",
+                    items: [
+                        "High-Value Loyalists (12%): 8+ purchases, 280+ days active, <5% refund rate, RM 850+ lifetime value",
+                        "Moderate Buyers (23%): 3-7 purchases, 90-280 days active, 8% refund rate, RM 320-600 lifetime value",
+                        "One-Time Shoppers (65%): 1-2 purchases, <90 days active, 14% refund rate, RM 45-180 lifetime value",
+                        "Key predictor: Customers who make 2nd purchase within 60 days have 78% chance of becoming loyal"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Strategic Intelligence - Loyalty Drivers",
+                        content: "Retrieving insights on customer value prediction..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Behavioral Indicators:",
+                    items: [
+                        "\"Active tenure, repeat purchases, and low refund rates are the strongest indicators of customer lifetime value\"",
+                        "\"Customers who stay active for a longer time keep coming back, make more purchases, and rarely refund items\"",
+                        "\"Repeat buying is a strong sign of future value—customers who make several purchases early on are far more likely to become loyal\"",
+                        "\"Encouraging that second or third purchase is key to shifting customers from disengaged to loyal\""
+                    ]
+                },
+                answer: "Look for customers who make their second purchase within 60 days—they have 78% chance of becoming high-value loyalists (RM 850+ lifetime value). Focus retention efforts on getting first-time buyers to return quickly, not on heavy discounting."
+            },
+            4: {
+                question: "Should I encourage customers to buy more items per transaction?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Basket analysis requires: (1) Compare revenue by basket size, (2) Analyze quantity vs transaction value correlation, (3) Check impact on customer behavior"
+                    },
+                    {
+                        title: "📊 Basket Size Impact Analysis",
+                        content: "Analyzing relationship between items per transaction and revenue..."
+                    }
+                ],
+                dataResult: {
+                    title: "Basket Size Performance:",
+                    items: [
+                        "1 item: Average transaction RM 68.40",
+                        "2 items: Average transaction RM 112.80 (+65% revenue)",
+                        "3 items: Average transaction RM 165.20 (+141% revenue)",
+                        "4+ items: Average transaction RM 218.60 (+220% revenue)",
+                        "Revenue driver ranking: Basket size is #2 factor after product selection, outweighs all other factors combined"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "🔍 Strategic Context - Revenue Drivers",
+                        content: "Retrieving findings on what truly drives revenue growth..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Core Revenue Insights:",
+                    items: [
+                        "\"Product selection and basket size are the primary revenue drivers, significantly outweighing the impact of discounts, campaigns, and timing\"",
+                        "\"Customers who bought more items spent more money—larger basket sizes quickly raise revenue\"",
+                        "\"The most effective way to grow revenue is to promote strong products and encourage customers to buy more items\"",
+                        "\"Campaigns work best when they highlight the right products rather than when they offer deeper price cuts\""
+                    ]
+                },
+                answer: "Yes—each additional item boosts transaction value by 65-80%, and 3+ item baskets generate 141-220% more revenue. Bundle complementary products and set free shipping thresholds (e.g., 3+ items) to increase basket sizes."
+            },
+            5: {
+                question: "Do I have bestseller products I should stock more of?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Product demand analysis requires: (1) Calculate sales distribution across products, (2) Identify concentration or uniformity, (3) Check seasonal/campaign effects"
+                    },
+                    {
+                        title: "📊 Product Demand Distribution Analysis",
+                        content: "Analyzing sales patterns across 2,000 products in catalog..."
+                    }
+                ],
+                dataResult: {
+                    title: "Product Performance Findings:",
+                    items: [
+                        "Sales distribution: 87% of products sell 1-2 units per day (very uniform)",
+                        "No dominant bestsellers: Top 10% products generate only 14% of revenue (vs typical 40-60%)",
+                        "Demand pattern: Stable and predictable—no extreme peaks or valleys",
+                        "Sales spikes: 92% of volume increases linked to campaigns, not individual product popularity",
+                        "Stock-out risk: Low (3.2% occurrence) due to uniform demand"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Strategic Context - Inventory Intelligence",
+                        content: "Retrieving insights on product strategy and inventory planning..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Product Strategy Insights:",
+                    items: [
+                        "\"Most products sell at almost the same pace, with daily sales between one and two units—no major bestsellers\"",
+                        "\"This creates a stable and predictable sales pattern across the entire range\"",
+                        "\"Growth will not come from relying on a few standout products—improvements depend on expanding or refining the product mix as a whole\"",
+                        "\"Sales movements are more likely influenced by promotions or campaigns rather than the time of year\""
+                    ]
+                },
+                answer: "No—demand is remarkably uniform across products (1-2 units/day each) with no dominant bestsellers. Maintain lean, balanced inventory and grow by expanding product variety through campaigns, not by betting on individual stars."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Business Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
