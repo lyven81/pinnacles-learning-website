@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Holiday Campaign Assistant | Predicting Holiday Peaks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Portfolio</h2>
+            </header>
+            <section class="intro">
+                <p>Data-driven insights to unlock business growth and innovation. Specializing in helping businesses make smarter, faster decisions.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/predicting-holiday-peaks.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/predicting-holiday-peaks.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/predicting-holiday-peaks.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>Phone: +6014-9207099</li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Holiday Campaign Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">When should I start my holiday campaign?</button>
+                    <button class="question-btn" onclick="showResponse(2)">Which weeks should get the highest budget allocation?</button>
+                    <button class="question-btn" onclick="showResponse(3)">When should I wind down my campaign spending?</button>
+                    <button class="question-btn" onclick="showResponse(4)">How predictable is the holiday engagement pattern?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Should I invest in early November campaigns?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "When should I start my holiday campaign?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Analyze when holiday streams start rising, (2) Identify momentum building period, (3) Provide launch timing recommendation"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Streaming Trends (CSV)",
+                        content: "Analyzing weekly streaming patterns from 2017-2025..."
+                    }
+                ],
+                dataResult: {
+                    title: "Momentum Analysis:",
+                    items: [
+                        "Weeks 1-44: Streams near zero (holiday songs inactive)",
+                        "Week 46 (mid-November): First noticeable uptick in streams",
+                        "Week 47-48: Momentum building rapidly (3x-5x increase)",
+                        "Example: Mariah Carey's streams jump from 3.8M (Week 46) to 11.6M (Week 48)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Analysis Insights",
+                        content: "Retrieving campaign timing recommendations..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Guidance:",
+                    items: [
+                        "\"Interest starts to rise in mid-November\"",
+                        "\"These songs begin gaining momentum in mid-to-late November, when listeners start shifting into the holiday mood\"",
+                        "\"Campaigns should start ramping up as momentum begins\""
+                    ]
+                },
+                answer: "Start your campaign in mid-November (around Week 46) when listeners begin shifting into holiday mode. This gives you 2-3 weeks to build momentum before the peak weeks hit in late December."
+            },
+            2: {
+                question: "Which weeks should get the highest budget allocation?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Identify peak streaming weeks, (2) Compare performance across weeks, (3) Recommend budget concentration period"
+                    },
+                    {
+                        title: "🔍 Peak Performance Analysis",
+                        content: "Analyzing weekly stream counts to identify maximum engagement..."
+                    }
+                ],
+                dataResult: {
+                    title: "Peak Week Performance:",
+                    items: [
+                        "Week 50 (mid-December): High engagement starts",
+                        "Week 51 (late December): Peak intensifies",
+                        "Week 52 (Christmas week): Absolute maximum streams",
+                        "Example: Mariah Carey's streams reach 27.6M (Week 52, 2017) to 39.6M (Week 52, 2018)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Budget Allocation Strategy",
+                        content: "Cross-referencing with campaign planning insights..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Budget Recommendations:",
+                    items: [
+                        "\"Peak visibility happens in the two to three weeks leading up to Christmas\"",
+                        "\"Peak spending should happen in the weeks closest to Christmas\"",
+                        "\"The strongest performance happens in weeks 50–52, so this is where brands should place most of their budget\"",
+                        "\"Ahmad restructured spending to concentrate 60% of budget during peak weeks 50-52\""
+                    ]
+                },
+                answer: "Concentrate 60% of your budget on Weeks 50-52 (the two weeks before Christmas through Christmas week) when engagement peaks. This is when listeners are most active and responsive to holiday content."
+            },
+            3: {
+                question: "When should I wind down my campaign spending?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Investigation requires: (1) Analyze post-holiday streaming patterns, (2) Identify engagement drop-off timing, (3) Recommend wind-down schedule"
+                    },
+                    {
+                        title: "🔍 Post-Holiday Trend Analysis",
+                        content: "Examining engagement patterns after New Year's..."
+                    }
+                ],
+                dataResult: {
+                    title: "Post-Holiday Drop-off:",
+                    items: [
+                        "Week 52 (Christmas): Peak streams (27-39M for top tracks)",
+                        "Week 1-2 (Early January): Engagement drops sharply",
+                        "Pattern: \"After New Year's, streams drop quickly, often returning to almost zero\"",
+                        "Drop rate: Near-immediate decline to off-season levels"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📊 Wind-down Recommendations",
+                        content: "Retrieving campaign exit strategy insights..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Exit Strategy Guidance:",
+                    items: [
+                        "\"After New Year's, engagement drops sharply back to near zero\"",
+                        "\"Right after New Year's, streams drop quickly\"",
+                        "\"Activity should wind down quickly in early January when attention drops quickly\"",
+                        "\"Ahmad eliminated early January spending based on actual audience behavior patterns\""
+                    ]
+                },
+                answer: "Wind down immediately after New Year's. Holiday engagement drops sharply in the first week of January, returning to near-zero. Stop spending by Week 1 to avoid wasting budget when audiences have already moved on."
+            },
+            4: {
+                question: "How predictable is the holiday engagement pattern?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Reliability assessment requires: (1) Compare year-over-year patterns, (2) Analyze consistency across artists, (3) Evaluate forecasting confidence"
+                    },
+                    {
+                        title: "📊 Pattern Consistency Analysis",
+                        content: "Analyzing 8 years of data (2017-2025) for repeatability..."
+                    }
+                ],
+                dataResult: {
+                    title: "Pattern Reliability:",
+                    items: [
+                        "All tracks follow identical seasonal curve: low Jan-Oct, rise mid-Nov, peak weeks 50-52, sharp drop post-New Year",
+                        "Pattern holds across all artists (Mariah Carey, Wham!, Michael Bublé, etc.)",
+                        "Year-over-year consistency: 2017, 2018, 2019 all show same timing",
+                        "Peak weeks never deviate from Weeks 50-52 window"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "🔍 Predictability Assessment",
+                        content: "Retrieving forecasting confidence insights..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Forecasting Confidence:",
+                    items: [
+                        "\"The seasonal pattern was 100% predictable\"",
+                        "\"Overall, the seasonal pattern is extremely predictable\"",
+                        "\"This gives advertisers confidence to schedule promotions early\"",
+                        "\"These insights create a simple, reliable guide for planning seasonal campaigns\""
+                    ]
+                },
+                answer: "The pattern is 100% predictable. Eight years of data show identical timing every year: mid-November start, Weeks 50-52 peak, sharp January drop. This lets you confidently plan campaigns months in advance."
+            },
+            5: {
+                question: "Should I invest in early November campaigns?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "ROI assessment requires: (1) Analyze early November streaming activity, (2) Compare with peak period, (3) Calculate opportunity cost"
+                    },
+                    {
+                        title: "🔍 Early November Performance",
+                        content: "Querying Week 44-45 streaming data..."
+                    }
+                ],
+                dataResult: {
+                    title: "Early November Engagement:",
+                    items: [
+                        "Weeks 44-45 (early November): Streams effectively zero or minimal",
+                        "Week 46 (mid-November): First meaningful activity begins",
+                        "Performance gap: Early Nov is 90%+ below mid-November levels",
+                        "Example: Mariah Carey goes from near-zero to 3.8M streams at Week 46"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Budget Efficiency Analysis",
+                        content: "Calculating opportunity cost of early spending..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Recommendation:",
+                    items: [
+                        "\"Interest remained minimal from January through October\"",
+                        "\"Interest only starts to rise in mid-November\"",
+                        "\"Ahmad eliminated early January spending based on actual audience behavior\"",
+                        "\"Launch campaigns as momentum emerges in mid-November\""
+                    ]
+                },
+                answer: "No. Early November shows near-zero engagement. Wait until mid-November (Week 46) when momentum actually starts building. Spending before then wastes budget on audiences who aren't paying attention yet."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Holiday Campaign Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
