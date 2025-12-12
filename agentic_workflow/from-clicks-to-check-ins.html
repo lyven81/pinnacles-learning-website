@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Booking Assistant | From Clicks to Check-Ins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/from-clicks-to-check-ins.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/from-clicks-to-check-ins.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/from-clicks-to-check-ins.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Booking Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Should I invest more budget in mobile or desktop campaigns?</button>
+                    <button class="question-btn" onclick="showResponse(2)">Which customer groups have the highest booking rates?</button>
+                    <button class="question-btn" onclick="showResponse(3)">Why are package deals underperforming standalone bookings?</button>
+                    <button class="question-btn" onclick="showResponse(4)">Where are customers dropping off in the booking funnel?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Which campaigns give me the best return on investment?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Should I invest more budget in mobile or desktop campaigns?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Compare conversion rates by device, (2) Calculate cost-per-booking for mobile vs desktop, (3) Analyze ROI and budget efficiency"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Device Performance Analysis",
+                        content: "Querying booking data by device type from 103,500 searches..."
+                    }
+                ],
+                dataResult: {
+                    title: "Device Performance Metrics:",
+                    items: [
+                        "Desktop conversion rate: 8.3% (8,000 bookings from 96,000 searches)",
+                        "Mobile conversion rate: 6.0% (450 bookings from 7,500 searches)",
+                        "Performance gap: Desktop converts 38% better than mobile",
+                        "Cost-per-booking: Desktop campaigns 32% more efficient",
+                        "Mobile checkout abandonment: 67% drop-off at final payment step"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Strategic Insights",
+                        content: "Retrieving ROI analysis and budget recommendations from analyst report..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Budget Allocation Insights:",
+                    items: [
+                        "\"Desktop converted at 8.3% versus mobile at 6.0%—a 38% performance advantage\"",
+                        "\"Mobile abandonment occurred primarily during checkout, not during search\"",
+                        "\"After streamlining mobile checkout, David achieved 9.5% desktop and 7.2% mobile conversion\"",
+                        "\"28% reduction in cost-per-booking by optimizing device-specific experiences\"",
+                        "Recommendation: \"Maintain desktop dominance while fixing mobile friction, not abandoning mobile\""
+                    ]
+                },
+                answer: "Prioritize desktop (8.3% conversion vs 6.0% mobile) but don't abandon mobile—fix the checkout friction first, then gradually shift 20-30% budget to mobile as conversion improves. Desktop delivers 38% better ROI today, but mobile has huge upside once you remove payment friction."
+            },
+            2: {
+                question: "Which customer groups have the highest booking rates?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Segment bookings by group size and trip type, (2) Calculate conversion rates for each segment, (3) Identify high-converting personas"
+                    },
+                    {
+                        title: "📊 Customer Segmentation Analysis",
+                        content: "Analyzing 103,500 searches segmented by solo, couples, families, and group travelers..."
+                    }
+                ],
+                dataResult: {
+                    title: "Segment Conversion Rankings:",
+                    items: [
+                        "Solo travelers: 12% conversion rate (highest performer)",
+                        "Couples (2 adults): 7-8% conversion rate",
+                        "Non-family trips: 8.2% conversion rate",
+                        "Family trips (with children): 5-6% conversion rate",
+                        "Large groups (4+ adults): 4-5% conversion rate",
+                        "Performance gap: Solo travelers convert 140% better than families"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Strategic Context - Customer Insights",
+                        content: "Cross-referencing with campaign performance and booking behavior data..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Targeting Recommendations:",
+                    items: [
+                        "\"Solo travelers and couples showed 7-12% conversion; certain groups reached 14-15%\"",
+                        "\"Target high-intent personas—solo and couple travelers planning 2–8 weeks ahead\"",
+                        "\"Non-family trips (8.2%) perform better than family travel segments\"",
+                        "\"Campaigns targeting solo travelers generated 28% lower acquisition costs\"",
+                        "Strategic priority: \"Concentrate marketing resources on customer segments demonstrating strongest booking propensity\""
+                    ]
+                },
+                answer: "Solo travelers convert at 12% (your best segment), followed by couples at 7-8%—allocate 60-70% of your targeting budget to these two groups. They book 2-8 weeks ahead and have 140% higher conversion than families, making them your most profitable acquisition targets."
+            },
+            3: {
+                question: "Why are package deals underperforming standalone bookings?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Investigation requires: (1) Compare package vs standalone conversion rates, (2) Analyze checkout complexity and drop-off patterns, (3) Identify specific friction points"
+                    },
+                    {
+                        title: "🔍 Booking Type Performance Analysis",
+                        content: "Querying conversion metrics for package deals vs standalone hotel bookings..."
+                    }
+                ],
+                dataResult: {
+                    title: "Package vs Standalone Performance:",
+                    items: [
+                        "Standalone bookings: 9.3% conversion rate",
+                        "Package deals (hotel + flight/car): 4.1% conversion rate",
+                        "Performance gap: Standalone converts 127% better than packages",
+                        "Package checkout: Average 4.2 form fields vs 2.1 for standalone",
+                        "Package abandonment: 73% drop-off during multi-component selection",
+                        "Complexity impact: Each additional package component reduces conversion by 12%"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Root Cause Analysis - UX Friction",
+                        content: "Searching analyst report for package booking complexity insights..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Key Findings:",
+                    items: [
+                        "\"Package deals (4.1%) underperformed standalone bookings (9.3%)\"",
+                        "\"Package bookings and mobile friction were 'the biggest conversion killers'\"",
+                        "\"Booking type is one of the strongest statistical influencers of conversion\"",
+                        "\"Simplify package booking processes to match standalone booking simplicity\"",
+                        "User feedback: \"Too many steps, confusing pricing, unclear what's included in package\""
+                    ]
+                },
+                answer: "Package deals convert at only 4.1% vs 9.3% for standalone (127% gap) because customers face 4.2 form fields vs 2.1 and get confused by multi-component selection. Simplify your package checkout to 2-3 steps maximum and show clear all-in pricing upfront to match standalone performance."
+            },
+            4: {
+                question: "Where are customers dropping off in the booking funnel?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Funnel analysis requires: (1) Map customer journey stages, (2) Calculate drop-off rates at each step, (3) Identify biggest leak points by device"
+                    },
+                    {
+                        title: "📊 Booking Funnel Analysis",
+                        content: "Analyzing conversion funnel from search → view → checkout → booking across 103,500 sessions..."
+                    }
+                ],
+                dataResult: {
+                    title: "Funnel Drop-Off Analysis:",
+                    items: [
+                        "Search stage: 103,500 total searches (baseline)",
+                        "Property view: 87,000 views (16% drop-off from search)",
+                        "Checkout initiated: 24,000 sessions (72% drop-off from view)",
+                        "Booking completed: 8,000 bookings (67% drop-off from checkout)",
+                        "Desktop funnel: Search → View (85%) → Checkout (28%) → Booking (33%)",
+                        "Mobile funnel: Search → View (82%) → Checkout (18%) → Booking (22%)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "🔍 Critical Leak Point Identification",
+                        content: "Deep-diving into device-specific abandonment patterns..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Biggest Funnel Leaks:",
+                    items: [
+                        "\"The biggest leak occurs between search and booking—90,000 desktop searches yield only 8,000 bookings\"",
+                        "\"Mobile friction represents the primary barrier—mobile showing even steeper losses\"",
+                        "\"Mobile abandonment occurred primarily during checkout at the final payment step (67% drop)\"",
+                        "Desktop checkout completion: 33% vs Mobile checkout completion: 22% (50% worse)",
+                        "Primary issue: \"Payment form complexity and mobile loading times during final booking step\""
+                    ]
+                },
+                answer: "Your biggest leak is at mobile checkout—67% of customers who start booking on mobile abandon at the payment step, compared to 33% on desktop. Fix mobile payment forms (reduce fields, add autofill, improve loading speed) to recover thousands of lost bookings monthly."
+            },
+            5: {
+                question: "Which campaigns give me the best return on investment?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "ROI analysis requires: (1) Calculate cost-per-booking by campaign type, (2) Compare device and segment targeting performance, (3) Identify highest-converting campaign strategies"
+                    },
+                    {
+                        title: "📊 Campaign ROI Analysis",
+                        content: "Analyzing campaign performance across device types, customer segments, and booking types..."
+                    }
+                ],
+                dataResult: {
+                    title: "Campaign Performance Rankings:",
+                    items: [
+                        "Desktop + Solo Traveler campaigns: $42 cost-per-booking (best ROI)",
+                        "Desktop + Couples campaigns: $58 cost-per-booking",
+                        "Mobile + Standalone campaigns: $73 cost-per-booking",
+                        "Package deal campaigns: $124 cost-per-booking (worst ROI)",
+                        "Mobile + Family campaigns: $186 cost-per-booking",
+                        "Top performer delivers 343% better ROI than worst performer"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Strategic ROI Insights",
+                        content: "Retrieving campaign optimization recommendations from analysis..."
+                    }
+                ],
+                dataResult2: {
+                    title: "ROI Optimization Strategy:",
+                    items: [
+                        "\"After implementing segment-targeted campaigns, David achieved 28% reduction in cost-per-booking\"",
+                        "\"Desktop campaigns 32% more efficient than mobile in current state\"",
+                        "\"Solo travelers generated 28% lower acquisition costs than other segments\"",
+                        "\"Focus budget on high-converting personas—solo and couple travelers booking 2-8 weeks ahead\"",
+                        "\"Optimization outpaced raw traffic acquisition—better to fix conversion than just buy more clicks\""
+                    ]
+                },
+                answer: "Desktop campaigns targeting solo travelers deliver $42 per booking (your best ROI), while mobile family campaigns cost $186 per booking (343% worse). Shift 60% of budget to desktop solo/couple campaigns and cut underperforming package and family campaigns to reduce overall acquisition costs by 25-30%."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Booking Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
