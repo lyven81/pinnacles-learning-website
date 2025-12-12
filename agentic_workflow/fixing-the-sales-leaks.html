@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sales Funnel Assistant | Fixing the Sales Leaks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/fixing-the-sales-leaks.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/fixing-the-sales-leaks-dashboard.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/fixing-the-sales-leaks.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Sales Funnel Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Where are customers abandoning my sales funnel?</button>
+                    <button class="question-btn" onclick="showResponse(2)">Which funnel stage needs immediate attention?</button>
+                    <button class="question-btn" onclick="showResponse(3)">How do I improve my checkout completion rate?</button>
+                    <button class="question-btn" onclick="showResponse(4)">Are mobile shoppers converting better than desktop users?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Why do customers who browse many products not buy?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Where are customers abandoning my sales funnel?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Analyze funnel drop-off rates at each stage, (2) Identify critical leak points, (3) Quantify abandonment severity"
+                    },
+                    {
+                        title: "🔍 Funnel Drop-Off Analysis (CSV)",
+                        content: "Analyzing 500,000 shopping sessions across funnel stages..."
+                    }
+                ],
+                dataResult: {
+                    title: "Critical Abandonment Points:",
+                    items: [
+                        "Product View → Cart: Majority of visitors never add items (biggest leak)",
+                        "Cart → Checkout: ~50% of cart users abandon before checkout",
+                        "Checkout → Purchase: Significant drop during payment process",
+                        "Pattern: Most leaks occur early (product page) and late (checkout)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Strategic Insights",
+                        content: "Retrieving funnel optimization recommendations..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Guidance:",
+                    items: [
+                        "\"Most visitors never added products to their cart—the biggest leak\"",
+                        "\"Half of those who did add items abandoned checkout before completing purchases\"",
+                        "\"Siti redesigned product pages with improved visuals and recommendations\"",
+                        "\"Streamlined checkout processes to reduce friction and abandonment\""
+                    ]
+                },
+                answer: "Your biggest leaks are at product pages (most visitors never add to cart) and checkout (50% abandon before purchase). Fix product page engagement first, then streamline your checkout process to plug both leaks."
+            },
+            2: {
+                question: "Which funnel stage needs immediate attention?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Priority assessment requires: (1) Compare drop-off severity across stages, (2) Calculate potential revenue impact, (3) Recommend highest-ROI fix"
+                    },
+                    {
+                        title: "📊 Impact Analysis",
+                        content: "Evaluating which funnel stage fixes deliver maximum revenue lift..."
+                    }
+                ],
+                dataResult: {
+                    title: "Stage-by-Stage Impact:",
+                    items: [
+                        "Product Page: Largest volume loss, affects all downstream conversions",
+                        "Cart Addition: Critical bottleneck preventing checkout opportunities",
+                        "Checkout: High-intent users lost at final step (50% drop-off)",
+                        "Revenue Impact: Product page fixes unlock more potential customers"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Priority Recommendations",
+                        content: "Cross-referencing with successful optimization strategies..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Prioritization Strategy:",
+                    items: [
+                        "\"The analysis helped Siti prioritize enhancing product page persuasiveness\"",
+                        "\"Product pages needed improved visuals and recommendations\"",
+                        "\"Siti also streamlined checkout to capture high-intent abandoners\"",
+                        "\"Dual approach: increase cart additions + reduce checkout friction\""
+                    ]
+                },
+                answer: "Focus on product pages first—they're bleeding the most potential customers who never reach checkout. Once more people add to cart, then optimize checkout to capture those high-intent buyers."
+            },
+            3: {
+                question: "How do I improve my checkout completion rate?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Checkout optimization requires: (1) Identify friction points in checkout flow, (2) Analyze high-performers for best practices, (3) Provide actionable improvements"
+                    },
+                    {
+                        title: "🔍 Checkout Behavior Analysis",
+                        content: "Examining checkout abandonment patterns and successful completions..."
+                    }
+                ],
+                dataResult: {
+                    title: "Checkout Friction Points:",
+                    items: [
+                        "~50% of cart users abandon during checkout process",
+                        "High-intent customers reach checkout but don't complete",
+                        "Mobile users show better checkout completion than desktop",
+                        "Variant A test showed modest improvement in checkout rates"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Checkout Optimization Strategies",
+                        content: "Retrieving proven checkout improvement tactics..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Proven Solutions:",
+                    items: [
+                        "\"Siti streamlined checkout processes to reduce friction\"",
+                        "\"Optimized for mobile users who showed superior conversion\"",
+                        "\"A/B test Variant A improved checkout completion rates\"",
+                        "\"Simplified forms, clearer CTAs, fewer steps to purchase\""
+                    ]
+                },
+                answer: "Streamline your checkout with fewer steps, clearer buttons, and mobile optimization (mobile users convert better). Test simplifying forms and payment options—Variant A already showed checkout improvements."
+            },
+            4: {
+                question: "Are mobile shoppers converting better than desktop users?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Device comparison requires: (1) Compare mobile vs desktop conversion rates, (2) Analyze performance at each funnel stage, (3) Provide optimization guidance"
+                    },
+                    {
+                        title: "📱 Device Performance Analysis",
+                        content: "Comparing mobile and desktop user behavior across funnel..."
+                    }
+                ],
+                dataResult: {
+                    title: "Mobile vs Desktop Comparison:",
+                    items: [
+                        "Mobile: Higher cart addition rates than desktop",
+                        "Mobile: Better checkout completion rates than desktop",
+                        "Mobile: Overall superior conversion performance",
+                        "Desktop: Underperforming across all funnel stages"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📊 Strategic Device Insights",
+                        content: "Cross-referencing with optimization recommendations..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Device Optimization Strategy:",
+                    items: [
+                        "\"Mobile shoppers outperformed desktop users at cart addition and checkout\"",
+                        "\"Siti optimized for mobile users as high-ROI opportunity\"",
+                        "\"Mobile-first design delivers better conversion results\"",
+                        "\"Continue investing in mobile experience optimization\""
+                    ]
+                },
+                answer: "Yes—mobile shoppers convert significantly better at both cart addition and checkout stages. Prioritize mobile optimization as your highest-ROI opportunity for conversion improvement."
+            },
+            5: {
+                question: "Why do customers who browse many products not buy?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Behavioral analysis requires: (1) Examine correlation between browsing activity and purchases, (2) Distinguish engagement from decision paralysis, (3) Provide actionable insights"
+                    },
+                    {
+                        title: "🔍 Browsing Behavior Patterns",
+                        content: "Analyzing relationship between product views and purchase completion..."
+                    }
+                ],
+                dataResult: {
+                    title: "Counterintuitive Finding:",
+                    items: [
+                        "High product viewing → Lower purchase completion rates",
+                        "Many cart additions → Lower purchase likelihood",
+                        "Excessive browsing = Decision paralysis, not engagement",
+                        "Focused shoppers (fewer views) convert at higher rates"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Decision Paralysis Solutions",
+                        content: "Retrieving guidance on reducing choice overload..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Recommendations:",
+                    items: [
+                        "\"Customers who browsed extensively faced decision paralysis, not engagement\"",
+                        "\"Extensive browsing without purchasing signals too many choices\"",
+                        "\"Siti improved product recommendations to guide decisions\"",
+                        "\"Curated selections and clearer product differentiation help conversion\""
+                    ]
+                },
+                answer: "Extensive browsing signals decision paralysis, not engagement—too many choices overwhelm customers. Add guided recommendations, curated collections, and clear product comparisons to help them decide faster."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Sales Funnel Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
