@@ -6,11 +6,10 @@
 
   <title>Payment Terms & Conditions | Pau Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <meta name="description" content="SME analytics consulting in Malaysia—dashboards for inventory forecasting, churn prediction, marketing ROI, and pricing optimization." />
+  <meta name="description" content="Payment terms and conditions for Pau Analytics data analytics services - refund policy, subscription terms, and service agreements." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
 {
@@ -35,29 +34,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-3XSLR3FV22');
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Track CTA button clicks
-    document.querySelectorAll('.cta-button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        gtag('event', 'cta_click', {
-          event_category: 'engagement',
-          event_label: btn.textContent.trim()
-        });
-      });
-    });
-
-    // Track Contact form submissions
-    const contactForm = document.querySelector('form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', () => {
-        gtag('event', 'contact_form_submit', {
-          event_category: 'lead',
-          event_label: 'Contact Form'
-        });
-      });
-    }
-  });
 </script>
 
 <!-- Favicons -->
@@ -94,19 +70,6 @@
       flex-direction: column;
     }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-
     .navbar .brand {
       font-size: 1.2rem;
       font-weight: 600;
@@ -126,32 +89,93 @@
 
     .content-wrapper {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      padding: 3rem 2rem;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
+      margin: 0 auto;
       background: white;
-      padding: 2rem;
+      padding: 3rem;
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid #e0ddd3;
     }
 
-    .section {
+    h1 {
+      text-align: center;
+      color: #403B36;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .last-updated {
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
       margin-bottom: 2rem;
     }
 
-    .section h2 {
-      margin-bottom: 0.5rem;
-      color: #403B36;
+    .section {
+      margin-bottom: 2.5rem;
     }
 
-    .section p, .section ul {
-      margin: 0.5rem 0;
+    .section h2 {
+      margin-bottom: 1rem;
+      color: #403B36;
+      font-size: 1.3rem;
+      border-bottom: 2px solid #CBA135;
+      padding-bottom: 0.5rem;
+    }
+
+    .section p {
+      margin: 0.75rem 0;
       color: #555;
+      line-height: 1.7;
+    }
+
+    .section ul {
+      margin: 1rem 0 1rem 1.5rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .section a {
+      color: #CBA135;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .section a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight-box {
+      background: #fff9e7;
+      border-left: 4px solid #CBA135;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .contact-box {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      border: 1px solid #e0ddd3;
+    }
+
+    .contact-box p {
+      margin: 0.5rem 0;
+    }
+
+    .spacer {
+      flex: 1;
     }
 
     footer {
@@ -170,6 +194,25 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      .container {
+        padding: 2rem 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -178,57 +221,197 @@
     <div class="brand">Pau Analytics</div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="dashboard.html">Dashboards</a>
+      <a href="data-analytics.html">Data Analytics</a>
       <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 
   <div class="content-wrapper">
     <div class="container">
-      <h1 style="text-align:center;">Payment Terms & Conditions</h1>
+      <h1>Payment Terms & Conditions</h1>
+      <p class="last-updated">Last Updated: December 13, 2025</p>
 
       <section class="section">
-        <h2>1. Accepted Payment Methods</h2>
-        <p>We accept payment via online bank transfer, credit card, and PayPal. A confirmation receipt will be sent to your email once payment is successfully processed.</p>
-      </section>
-
-      <section class="section">
-        <h2>2. Pricing & Packages</h2>
-        <p>Our service packages are transparently listed on the <a href="pricing.html">Pricing Page</a>. All prices are stated in Malaysian Ringgit (MYR) and include applicable service tax unless stated otherwise.</p>
-      </section>
-
-      <section class="section">
-        <h2>3. Refund & Cancellation Policy</h2>
+        <h2>1. Service Packages & Pricing</h2>
+        <p>Pau Analytics offers three service packages as detailed on our <a href="pricing.html">Pricing Page</a>:</p>
         <ul>
-          <li>Once a project or consultation has begun, payments are non-refundable.</li>
-          <li>For monthly subscriptions, cancellations must be made before the renewal date to avoid future charges. Current cycle fees are non-refundable.</li>
-          <li>If project delays are caused by client inaction or communication gaps, payment terms and timelines remain unchanged.</li>
+          <li><strong>One-Off Project:</strong> RM3,500 (one-time payment)</li>
+          <li><strong>Monthly Standard:</strong> RM699/month or RM7,188 for 12 months prepaid (RM599/month effective rate)</li>
+          <li><strong>Monthly Premium:</strong> RM999/month or RM10,656 for 12 months prepaid (RM888/month effective rate)</li>
+        </ul>
+        <p>All prices are stated in Malaysian Ringgit (MYR). Prices are subject to change with 30 days' notice to existing subscribers.</p>
+      </section>
+
+      <section class="section">
+        <h2>2. Payment Methods</h2>
+        <p>We currently accept payment via:</p>
+        <ul>
+          <li><strong>Online Bank Transfer (FPX):</strong> Direct transfer to our business account (preferred method)</li>
+          <li><strong>Manual Bank Transfer:</strong> Transfer with payment proof submission</li>
+        </ul>
+        <p>Payment instructions will be provided via email within 1 hour of checkout form submission. A confirmation receipt will be sent once payment is verified.</p>
+      </section>
+
+      <section class="section">
+        <h2>3. Subscription Terms</h2>
+        <p><strong>Monthly Subscriptions:</strong></p>
+        <ul>
+          <li>Billed monthly on the same date you signed up</li>
+          <li>Auto-renewal unless cancelled 7 days before renewal date</li>
+          <li>Cancellation takes effect at the end of the current billing cycle</li>
+          <li>No refunds for partial months</li>
+        </ul>
+
+        <p><strong>12-Month Prepaid Plans:</strong></p>
+        <ul>
+          <li>Full payment required upfront</li>
+          <li>Service commitment: 12 consecutive months from activation date</li>
+          <li>Discounted rate locked in for the entire period</li>
+          <li>No early termination - full 12-month term applies</li>
+        </ul>
+
+        <p><strong>One-Off Projects:</strong></p>
+        <ul>
+          <li>Full payment required before project commencement</li>
+          <li>Delivery within 2-3 weeks from payment confirmation and data receipt</li>
+          <li>One round of revisions included</li>
         </ul>
       </section>
 
       <section class="section">
-        <h2>4. Timeline & Deliverables</h2>
-        <p>Once payment is received, our team will contact you within 24 hours to confirm your goals and schedule. Dashboards and reports follow an agreed delivery timeline to ensure consistent output.</p>
+        <h2>4. Refund & Cancellation Policy</h2>
+
+        <div class="highlight-box">
+          <strong>General Refund Policy:</strong> Once a project has commenced or subscription services have started, payments are non-refundable.
+        </div>
+
+        <p><strong>One-Off Projects:</strong></p>
+        <ul>
+          <li>Full refund available if project is cancelled <strong>before</strong> we begin work (within 48 hours of payment)</li>
+          <li>No refund once data analysis or dashboard development has started</li>
+          <li>If we cannot deliver due to technical limitations, full refund will be provided</li>
+        </ul>
+
+        <p><strong>Monthly Subscriptions:</strong></p>
+        <ul>
+          <li>Cancel anytime with 7 days' notice before next billing date</li>
+          <li>Current month's payment is non-refundable</li>
+          <li>Access continues until end of paid period</li>
+          <li>Reactivation available within 60 days at the same rate</li>
+        </ul>
+
+        <p><strong>12-Month Prepaid Plans:</strong></p>
+        <ul>
+          <li><strong>No refunds</strong> - commitment is for the full 12-month period</li>
+          <li>Service pause available for up to 30 days (with advance notice) for legitimate business reasons</li>
+          <li>Paused time extends the service end date accordingly</li>
+        </ul>
+
+        <p><strong>Delayed Projects Due to Client:</strong></p>
+        <ul>
+          <li>If project delays are caused by client inaction (e.g., data not provided, feedback not given), payment terms remain unchanged</li>
+          <li>Projects inactive for 60+ days will be considered closed with no refund</li>
+        </ul>
       </section>
 
       <section class="section">
-        <h2>5. Data Confidentiality</h2>
-        <p>Your business and membership data are handled with strict confidentiality. We use your data solely to generate insights and recommendations. We do not sell or share your information with third parties without written consent. Please refer to our <a href="#">Privacy Policy</a> for details.</p>
+        <h2>5. Service Delivery Timeline</h2>
+        <p><strong>After Payment Confirmation:</strong></p>
+        <ul>
+          <li>Our team will contact you within <strong>24 hours</strong> via email</li>
+          <li>Onboarding call scheduled within 3 business days</li>
+          <li>Data collection templates and requirements shared</li>
+        </ul>
+
+        <p><strong>Delivery Timelines:</strong></p>
+        <ul>
+          <li><strong>One-Off Projects:</strong> 2-3 weeks from data receipt</li>
+          <li><strong>Monthly Subscriptions:</strong> Initial dashboard setup in 2-3 weeks, then monthly reports on agreed schedule</li>
+          <li><strong>12-Month Plans:</strong> Same as monthly, with guaranteed quarterly strategy reviews</li>
+        </ul>
+
+        <p>Timelines may be extended due to data quality issues, client delays, or scope changes agreed upon in writing.</p>
       </section>
 
       <section class="section">
-        <h2>6. Need Help?</h2>
-        <p>If you have questions about our services, invoices, or payment instructions, don’t hesitate to reach out:</p>
-        <p><strong>Email:</strong> <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-        <p><strong>WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-9207099</a></p>
+        <h2>6. Data Confidentiality & Privacy</h2>
+        <p>Your business data is handled with strict confidentiality and security measures:</p>
+        <ul>
+          <li>Data used <strong>solely</strong> for generating your analytics insights and recommendations</li>
+          <li>We do <strong>not</strong> sell, share, or disclose your data to third parties without written consent</li>
+          <li>Data stored securely on password-protected cloud storage (Google Drive/BigQuery)</li>
+          <li>Data retention: Active clients (ongoing), Inactive clients (12 months then deleted)</li>
+          <li>You retain full ownership of your raw data</li>
+        </ul>
+        <p>For complete details, please refer to our <a href="privacy-policy.html">Privacy Policy</a>.</p>
       </section>
+
+      <section class="section">
+        <h2>7. Service Level Agreement (SLA)</h2>
+        <p><strong>Monthly Standard & Premium Subscribers:</strong></p>
+        <ul>
+          <li><strong>Email Support Response Time:</strong> 48 hours (Standard), 24 hours (Premium)</li>
+          <li><strong>Dashboard Updates:</strong> Weekly data refresh</li>
+          <li><strong>Monthly Reports:</strong> Delivered within first 5 business days of each month</li>
+          <li><strong>Strategy Calls:</strong> 30 minutes (Standard), 60 minutes (Premium) per month</li>
+          <li><strong>AI Assistant Availability:</strong> 24/7 (Premium only)</li>
+        </ul>
+
+        <p><strong>Service Credits:</strong> If we miss SLA commitments by more than 48 hours, you're entitled to 10% service credit for that month (does not apply to 12-month prepaid plans).</p>
+      </section>
+
+      <section class="section">
+        <h2>8. Modification of Terms</h2>
+        <p>We reserve the right to modify these terms and conditions at any time. Changes will be:</p>
+        <ul>
+          <li>Posted on this page with "Last Updated" date</li>
+          <li>Notified to active subscribers via email at least 30 days in advance</li>
+          <li>Effective for new customers immediately upon posting</li>
+        </ul>
+        <p>Continued use of services after changes indicates acceptance of modified terms.</p>
+      </section>
+
+      <section class="section">
+        <h2>9. Limitation of Liability</h2>
+        <p>Pau Analytics provides data analytics services based on client-provided data. We:</p>
+        <ul>
+          <li>Make every effort to ensure accuracy but do not guarantee specific business outcomes</li>
+          <li>Are not liable for business decisions made based on our recommendations</li>
+          <li>Are not responsible for data accuracy issues arising from client-provided data</li>
+          <li>Liability limited to the amount paid for services in the past 12 months</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>10. Questions or Disputes?</h2>
+        <p>If you have questions about these terms, your invoice, payment, or service agreement, please contact us:</p>
+
+        <div class="contact-box">
+          <p><strong>📧 Email:</strong> <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+          <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/60149207099" target="_blank">+6014-920 7099</a></p>
+          <p><strong>⏰ Business Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (GMT+8)</p>
+          <p><strong>📍 Location:</strong> Malaysia</p>
+        </div>
+
+        <p style="margin-top: 1rem;">We aim to respond to all inquiries within 24 business hours and resolve disputes amicably through direct communication.</p>
+      </section>
+
+      <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e0ddd3;">
+        <p style="color: #777;">By proceeding with payment, you acknowledge that you have read, understood, and agree to be bound by these Payment Terms & Conditions.</p>
+        <p style="margin-top: 1rem;">
+          <a href="pricing.html" style="color: #CBA135; font-weight: 600;">← Back to Pricing</a> |
+          <a href="payment.html" style="color: #CBA135; font-weight: 600;">Proceed to Checkout →</a>
+        </p>
+      </div>
     </div>
   </div>
 
+  <div class="spacer"></div>
+
   <footer>
-    <p>© 2025 Pau Analytics</p>
+    <p>© 2025 Pau Analytics | <a href="privacy-policy.html">Privacy Policy</a> | <a href="payment-term-condition.html">Payment Terms</a></p>
   </footer>
 </body>
 </html>
