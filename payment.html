@@ -842,8 +842,54 @@
       document.getElementById('cart-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+    // Get URL parameters
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Auto-add package from URL parameter
+    function autoAddFromUrl() {
+      const packageId = getUrlParameter('package');
+      if (packageId && packages[packageId]) {
+        // Add package to cart
+        const pkg = packages[packageId];
+        cart.push({
+          id: packageId,
+          name: pkg.name,
+          price: pkg.price,
+          priceDisplay: pkg.priceDisplay,
+          billing: pkg.billing
+        });
+        updateCart();
+
+        // Scroll to cart to show it was added
+        setTimeout(() => {
+          scrollToCart();
+        }, 500);
+
+        // Highlight the corresponding "Add to Cart" button
+        highlightAddedPackage(packageId);
+      }
+    }
+
+    // Highlight which package was auto-added
+    function highlightAddedPackage(packageId) {
+      // Find all buttons and check which one matches this package
+      const buttons = document.querySelectorAll('.add-to-cart-btn');
+      buttons.forEach(btn => {
+        const onclickAttr = btn.getAttribute('onclick');
+        if (onclickAttr && onclickAttr.includes(`'${packageId}'`)) {
+          btn.textContent = '✓ In Cart';
+          btn.style.backgroundColor = '#27ae60';
+          btn.disabled = true;
+        }
+      });
+    }
+
     // Initialize
     updateCart();
+    autoAddFromUrl();
   </script>
 </body>
 </html>
