@@ -5,7 +5,7 @@
 
   <title>Data Analytics Pricing | Pau Analytics</title>
   <link rel="canonical" href="https://www.pauanalytics.com/pricing.html" />
-  <meta name="description" content="Affordable data analytics packages for Malaysian SMEs. Choose monthly analytics (RM1,000) or one-time project (RM3,500) for dashboards, forecasting, churn insights, and ROI tracking." />
+  <meta name="description" content="Affordable data analytics packages for Malaysian SMEs. Choose one-time solution (RM3,500), monthly analytics (RM699), or premium with AI assistant (RM999) for dashboards, forecasting, and business insights." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -79,7 +79,7 @@
       border-bottom: 1px solid #e0ddd3;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
-    
+
     html, body {
       height: 100%;
       margin: 0;
@@ -134,7 +134,7 @@
     header p {
       font-size: 1.1rem;
       color: #555;
-      max-width: 600px;
+      max-width: 700px;
       margin: 1rem auto 2rem;
     }
 
@@ -156,49 +156,132 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
+      margin-bottom: 3rem;
     }
 
     .pricing-card {
       background: #FFFFFF;
-      border: 1px solid #e0ddd3;
+      border: 2px solid #e0ddd3;
       border-radius: 12px;
       padding: 2rem;
-      width: 320px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      width: 340px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       text-align: left;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .pricing-card.featured {
+      border: 3px solid #CBA135;
+      box-shadow: 0 6px 16px rgba(203, 161, 53, 0.2);
+    }
+
+    .pricing-card.featured::before {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #CBA135;
+      color: white;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .pricing-card h3 {
       color: #403B36;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
     .pricing-card .price {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: bold;
       color: #CBA135;
-      margin: 0.5rem 0;
+      margin: 1rem 0 0.5rem;
     }
 
     .pricing-card .sub-price {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 1.5rem;
+      min-height: 22px;
+    }
+
+    .pricing-card .package-label {
+      display: inline-block;
+      background: #f0f0f0;
       color: #555;
-      margin-bottom: 1rem;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
     }
 
     .pricing-card ul {
-      padding-left: 1.2rem;
-      line-height: 1.6;
+      padding-left: 0;
+      list-style: none;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-card ul li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    .pricing-card ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #CBA135;
+      font-weight: bold;
+    }
+
+    .pricing-card ul li strong {
+      color: #403B36;
+    }
+
+    .pricing-card .perfect-for {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 3px solid #CBA135;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-card .perfect-for strong {
+      color: #403B36;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .pricing-card .perfect-for p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #666;
     }
 
     .cta-button {
-      display: inline-block;
-      margin-top: 2rem;
+      display: block;
+      width: 100%;
+      text-align: center;
       background-color: #CBA135;
       color: white;
       text-decoration: none;
-      padding: 12px 25px;
+      padding: 14px 25px;
       border-radius: 6px;
       font-weight: 600;
       font-size: 1.05rem;
@@ -209,8 +292,45 @@
       background-color: #b08e2e;
     }
 
+    .cta-button.secondary {
+      background-color: #403B36;
+    }
+
+    .cta-button.secondary:hover {
+      background-color: #2d2924;
+    }
+
     .service-section {
       margin-bottom: 3rem;
+    }
+
+    .consultation-box {
+      text-align: center;
+      margin: 3rem auto;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, #f8f9fa 0%, #fff9e7 100%);
+      border-radius: 12px;
+      border: 2px solid #e0ddd3;
+      max-width: 700px;
+    }
+
+    .consultation-box h3 {
+      color: #403B36;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .consultation-box p {
+      color: #555;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .consultation-box .cta-button {
+      display: inline-block;
+      width: auto;
+      font-size: 1.2rem;
+      padding: 15px 35px;
     }
 
     .spacer {
@@ -252,9 +372,21 @@
         width: 100%;
       }
 
+      .pricing-grid {
+        gap: 2.5rem;
+      }
+
+      .consultation-box {
+        padding: 1.5rem;
+      }
+
+      .consultation-box h3 {
+        font-size: 1.5rem;
+      }
+
       .cta-button {
         font-size: 1rem;
-        padding: 10px 20px;
+        padding: 12px 20px;
       }
     }
   </style>
@@ -266,57 +398,127 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="data-analytics.html">Data Analytics</a>
-<a href="pricing.html">Pricing</a>
+      <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 
-  <div class="container">
+  <header>
     <h1>Simple Pricing for Real Solutions</h1>
-    <p style="font-size: 1.1rem; color: #555; margin-bottom: 3rem;">Affordable data analytics packages designed specifically for Malaysian SMEs</p>
+    <p>Choose the analytics package that fits your business needs. Start with a one-time project or commit to ongoing insights with monthly subscriptions.</p>
+  </header>
 
-    <!-- Analytics Packages Section -->
-    <div class="service-section">
-      <div class="pricing-grid">
-        
-        <!-- Analytics Monthly -->
-        <div class="pricing-card">
-          <h3>Analytics Monthly</h3>
-          <p class="price">RM1,000 / month</p>
-          <p class="sub-price">Best value: RM10,000 for 12 months</p>
-          <ul>
-            <li><strong>Smart Dashboards</strong> - Inventory, churn, sales insights</li>
-            <li><strong>Monthly Reports</strong> - Key metrics + action recommendations</li>
-            <li><strong>Strategy Calls</strong> - 30 minutes monthly</li>
-            <li><strong>Ongoing Support</strong> - Email support (48hr response)</li>
-            <li><strong>Perfect for:</strong> Growing businesses with regular data needs</li>
-          </ul>
-          <a href="https://wa.me/60149207099" class="cta-button">Start Monthly Plan</a>
+  <div class="container">
+    <!-- Pricing Cards -->
+    <div class="pricing-grid">
+
+      <!-- One-Time Solution -->
+      <div class="pricing-card">
+        <div class="package-label">Try Before You Subscribe</div>
+        <h3>One-Time Solution</h3>
+        <p class="price">RM3,500</p>
+        <p class="sub-price">One-time payment, delivered in 2-3 weeks</p>
+
+        <ul>
+          <li><strong>Analyst Report:</strong> Full business assessment with clear insights</li>
+          <li><strong>Dashboard:</strong> Interactive visual dashboard for ongoing tracking</li>
+          <li><strong>Data Integration:</strong> Up to 3 data sources connected</li>
+          <li><strong>Strategy Call:</strong> 60-minute briefing on findings</li>
+          <li><strong>Email Support:</strong> 14 days post-delivery support</li>
+        </ul>
+
+        <div class="perfect-for">
+          <strong>Perfect for:</strong>
+          <p>Testing analytics before committing, solving a single business problem, or one-time strategic decisions</p>
         </div>
 
-        <!-- Analytics Project -->
-        <div class="pricing-card">
-          <h3>Analytics Project</h3>
-          <p class="price">RM3,500</p>
-          <p class="sub-price">One-time solution</p>
-          <ul>
-            <li><strong>Focused Solution</strong> - One specific business problem</li>
-            <li><strong>Custom Dashboard</strong> - Retention, inventory, or ROI</li>
-            <li><strong>Data Integration</strong> - Up to 3 data sources</li>
-            <li><strong>Full Report</strong> - Written insights + briefing call</li>
-            <li><strong>Perfect for:</strong> Testing analytics before scaling up</li>
-          </ul>
-          <a href="https://wa.me/60149207099" class="cta-button">Start Project</a>
-        </div>
-
+        <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20One-Time%20Solution%20package" class="cta-button">Get Started</a>
       </div>
+
+      <!-- Monthly Standard (Featured) -->
+      <div class="pricing-card featured">
+        <div class="package-label">Best Value for Growing Businesses</div>
+        <h3>Monthly Standard</h3>
+        <p class="price">RM699<span style="font-size: 1rem; font-weight: normal;">/month</span></p>
+        <p class="sub-price">Save 15%: RM7,100 for 12 months (RM592/month)</p>
+
+        <ul>
+          <li><strong>Analyst Report:</strong> Monthly business insights and trends</li>
+          <li><strong>Dashboard Updates:</strong> Real-time metrics updated weekly</li>
+          <li><strong>Action Recommendations:</strong> Clear next steps every month</li>
+          <li><strong>Strategy Call:</strong> 30-minute monthly check-in</li>
+          <li><strong>Email Support:</strong> 48-hour response time</li>
+          <li><strong>Data Monitoring:</strong> Continuous tracking of key metrics</li>
+        </ul>
+
+        <div class="perfect-for">
+          <strong>Perfect for:</strong>
+          <p>E-commerce businesses with regular inventory, sales forecasting, and customer insights needs</p>
+        </div>
+
+        <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20Monthly%20Standard%20package" class="cta-button">Start Monthly Plan</a>
+      </div>
+
+      <!-- Monthly Premium -->
+      <div class="pricing-card">
+        <div class="package-label">Complete Business Intelligence</div>
+        <h3>Monthly Premium</h3>
+        <p class="price">RM999<span style="font-size: 1rem; font-weight: normal;">/month</span></p>
+        <p class="sub-price">Save 15%: RM10,190 for 12 months (RM849/month)</p>
+
+        <ul>
+          <li><strong>Everything in Standard</strong> (reports, dashboards, calls, support)</li>
+          <li><strong>AI Assistant:</strong> 24/7 smart business advisor answering key questions</li>
+          <li><strong>Proactive Alerts:</strong> AI detects issues before they become problems</li>
+          <li><strong>Custom Scenarios:</strong> "What-if" analysis for planning decisions</li>
+          <li><strong>Priority Support:</strong> 24-hour response time</li>
+          <li><strong>Extended Strategy Call:</strong> 60 minutes monthly</li>
+        </ul>
+
+        <div class="perfect-for">
+          <strong>Perfect for:</strong>
+          <p>Businesses needing ongoing guidance, real-time decision support, and proactive issue detection</p>
+        </div>
+
+        <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20Monthly%20Premium%20package" class="cta-button">Upgrade to Premium</a>
+      </div>
+
     </div>
 
-    <div style="text-align: center; margin: 3rem 0; padding: 2rem; background: #f8f9fa; border-radius: 10px;">
-      <h3 style="color: #403B36;">Not sure which package fits your needs?</h3>
-      <p style="color: #555; margin-bottom: 1.5rem;">Let's have a quick chat about your business challenges and find the right solution.</p>
-      <a class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;" href="https://wa.me/60149207099">Book Free Consultation</a>
+    <!-- Special Offer Box -->
+    <div style="background: #fff9e7; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #CBA135; max-width: 800px; margin: 2rem auto; text-align: left;">
+      <strong style="color: #403B36; font-size: 1.1rem;">🎁 Special Offer:</strong>
+      <p style="margin: 0.5rem 0 0; color: #555;">Start with the One-Time Solution and upgrade to Monthly Standard within 30 days to get <strong>50% off your first 3 months</strong> (save RM1,050).</p>
+    </div>
+
+    <!-- Consultation Box -->
+    <div class="consultation-box">
+      <h3>Not sure which package fits your needs?</h3>
+      <p>Let's have a quick chat about your business challenges and find the right solution together.</p>
+      <a class="cta-button" href="https://wa.me/60149207099?text=I'd%20like%20to%20schedule%20a%20free%20consultation">Book Free Consultation</a>
+    </div>
+
+    <!-- What You Get Section -->
+    <div style="margin-top: 4rem; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto;">
+      <h2 style="text-align: center; margin-bottom: 2rem;">What's Included in Every Package</h2>
+
+      <div style="display: grid; gap: 1.5rem;">
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd3;">
+          <h4 style="color: #403B36; margin-top: 0;">📊 Analyst Report (Car Inspection Report)</h4>
+          <p style="color: #555; margin-bottom: 0;">Clear assessment of what's working and what needs attention. Identifies performance issues and helps you make informed decisions.</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd3;">
+          <h4 style="color: #403B36; margin-top: 0;">📈 Dashboard (Car Dashboard Readings)</h4>
+          <p style="color: #555; margin-bottom: 0;">Real-time business metrics at a glance. Monitor sales, inventory, customer trends without reading lengthy reports.</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd3;">
+          <h4 style="color: #403B36; margin-top: 0;">🤖 AI Assistant (Smart Driving Assistant) - Premium Only</h4>
+          <p style="color: #555; margin-bottom: 0;">24/7 intelligent advisor that monitors your business continuously, detects issues early, and guides you to better decisions.</p>
+        </div>
+      </div>
     </div>
   </div>
 
