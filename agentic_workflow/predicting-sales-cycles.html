@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sales Cycle Assistant | Predicting Sales Cycles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Portfolio</h2>
+            </header>
+            <section class="intro">
+                <p>Data-driven insights to unlock business growth and innovation. Specializing in helping businesses make smarter, faster decisions.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/predicting-sales-cycles.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/predicting-sales-cycles.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/predicting-sales-cycles.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>Phone: +6014-9207099</li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Sales Cycle Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Should I run a promotion this week, or wait for a better timing?</button>
+                    <button class="question-btn" onclick="showResponse(2)">What's my cash flow forecast for the next 4 weeks?</button>
+                    <button class="question-btn" onclick="showResponse(3)">Am I entering a Slow season? What should I do differently to minimize revenue drop?</button>
+                    <button class="question-btn" onclick="showResponse(4)">How does this month's performance compare to the same period last year?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Based on current trends, what should my revenue target be for next month?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Should I run a promotion this week, or wait for a better timing?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Analysis requires: (1) Check current week's seasonal phase, (2) Compare promotion impact across phases, (3) Calculate ROI for different timing scenarios"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Current Phase Analysis",
+                        content: "Analyzing current week's seasonal classification..."
+                    }
+                ],
+                dataResult: {
+                    title: "Current Week Status:",
+                    items: [
+                        "Current phase: Moderate week (baseline ~RM55k)",
+                        "Next Peak week: 3 weeks away (expected ~RM63k)",
+                        "Promotion uplift in Moderate: ~RM3k per week",
+                        "Promotion uplift in Peak: ~RM5k per week (66% higher ROI)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📊 Strategic Timing Analysis",
+                        content: "Calculating optimal promotion timing based on seasonal patterns..."
+                    }
+                ],
+                answer: "Wait 3 weeks for the Peak season when promotions deliver 66% higher returns. Running it now during Moderate weeks wastes your marketing budget on lower-response periods."
+            },
+            2: {
+                question: "What's my cash flow forecast for the next 4 weeks?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Forecast requires: (1) Identify seasonal phases for next 4 weeks, (2) Apply revenue model predictions, (3) Calculate week-by-week cash projections"
+                    },
+                    {
+                        title: "📊 4-Week Seasonal Projection",
+                        content: "Mapping upcoming weeks to seasonal patterns..."
+                    }
+                ],
+                dataResult: {
+                    title: "Next 4 Weeks Forecast:",
+                    items: [
+                        "Week 1: Moderate phase – RM54k expected",
+                        "Week 2: Moderate phase – RM55k expected",
+                        "Week 3: Peak phase – RM63k expected (+RM8k boost)",
+                        "Week 4: Slow phase – RM47k expected (-RM7k drop)",
+                        "Total 4-week revenue: ~RM219k"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💰 Cash Planning Recommendations",
+                        content: "Aligning supplier payments and inventory purchases with cash peaks..."
+                    }
+                ],
+                answer: "Expect RM219k over 4 weeks with a RM63k peak in Week 3 and RM47k low in Week 4. Schedule major supplier payments after Week 3's peak to maintain healthy cash flow."
+            },
+            3: {
+                question: "Am I entering a Slow season? What should I do differently to minimize revenue drop?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Investigation requires: (1) Check upcoming seasonal pattern, (2) Quantify expected revenue drop, (3) Retrieve mitigation strategies from analysis"
+                    },
+                    {
+                        title: "🔍 Slow Season Detection",
+                        content: "Analyzing next 2-3 weeks' seasonal classification..."
+                    }
+                ],
+                dataResult: {
+                    title: "Slow Season Alert:",
+                    items: [
+                        "Status: Entering Slow season in 1 week",
+                        "Expected drop: ~RM7,914 below Moderate baseline",
+                        "Projected revenue: RM47k (vs RM55k normal)",
+                        "Duration: 2-3 weeks of Slow phase ahead",
+                        "Historical pattern: Revenue recovers after 3 weeks"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Mitigation Strategy",
+                        content: "Retrieving tactical recommendations for Slow season management..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Action Plan:",
+                    items: [
+                        "Reduce inventory orders by 30% to prevent excess stock",
+                        "Run targeted low-cost promotions to New Customer segment (proven RM3k uplift)",
+                        "Shift major marketing spend to upcoming Peak weeks",
+                        "Focus on cash preservation – delay non-essential purchases"
+                    ]
+                },
+                answer: "You're entering Slow season next week with RM47k expected revenue (RM8k below normal). Cut inventory 30%, run low-cost promotions for New Customers, and save your big marketing budget for Peak weeks."
+            },
+            4: {
+                question: "How does this month's performance compare to the same period last year?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Year-over-year analysis requires: (1) Query current month revenue, (2) Query same month last year, (3) Adjust for seasonal effects to isolate true growth"
+                    },
+                    {
+                        title: "📊 YoY Revenue Comparison",
+                        content: "Comparing current month vs. same period last year..."
+                    }
+                ],
+                dataResult: {
+                    title: "Performance Comparison:",
+                    items: [
+                        "This month (December 2024): RM228k total revenue",
+                        "Last year (December 2023): RM214k total revenue",
+                        "Absolute growth: +RM14k (+6.5%)",
+                        "Seasonal phase mix: Similar (2 Peak, 1 Moderate, 1 Slow both years)",
+                        "True growth after seasonal adjustment: +5.8%"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "💡 Growth Context",
+                        content: "Analyzing whether growth is real business expansion or just seasonal luck..."
+                    }
+                ],
+                answer: "You're up 6.5% vs last December (RM228k vs RM214k), and it's real growth, not just seasonal timing. Your business expanded 5.8% after adjusting for Peak/Slow week distribution."
+            },
+            5: {
+                question: "Based on current trends, what should my revenue target be for next month?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Target setting requires: (1) Forecast next month's seasonal phase distribution, (2) Calculate baseline revenue, (3) Adjust for growth trend"
+                    },
+                    {
+                        title: "📊 Next Month Seasonal Breakdown",
+                        content: "Analyzing expected Peak/Moderate/Slow week distribution..."
+                    }
+                ],
+                dataResult: {
+                    title: "Next Month Forecast:",
+                    items: [
+                        "Expected phase mix: 1 Peak week, 3 Moderate weeks, 0 Slow weeks",
+                        "Baseline calculation: (1 × RM63k) + (3 × RM55k) = RM228k",
+                        "Historical growth trend: +5.8% year-over-year",
+                        "Adjusted target with growth: RM241k",
+                        "Stretch target with promotions: RM250k (+RM9k from strategic campaigns)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "🎯 Target Recommendation",
+                        content: "Setting realistic yet ambitious revenue goals based on seasonal model..."
+                    }
+                ],
+                answer: "Set your baseline target at RM241k (adjusted for 1 Peak and 3 Moderate weeks plus growth trend). With well-timed promotions during the Peak week, stretch to RM250k."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Sales Cycle Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
