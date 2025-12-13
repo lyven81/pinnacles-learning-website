@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Analytics & AI Solutions for SMEs | Pau Analytics</title>
+  <title>Data Analytics for Malaysian SMEs | Pau Analytics</title>
   <link rel="canonical" href="https://www.pauanalytics.com/landing-page.html" />
-  <meta name="description" content="Turn your business data into direction. Pau Analytics helps Malaysian SMEs with data analytics consulting and AI solutions for smarter business decisions." />
+  <meta name="description" content="Simple data analytics for Malaysian e-commerce businesses. Get clear insights on inventory, sales forecasting, and customer retention. Packages from RM3,500." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
@@ -18,18 +18,6 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-3XSLR3FV22');
-
-    document.addEventListener('DOMContentLoaded', function () {
-      // Track CTA button clicks
-      document.querySelectorAll('.cta-button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          gtag('event', 'cta_click', {
-            event_category: 'engagement',
-            event_label: btn.textContent.trim()
-          });
-        });
-      });
-    });
   </script>
 
   <!-- Favicons -->
@@ -41,647 +29,427 @@
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
+    body {
       font-family: 'Poppins', sans-serif;
       background-color: #FCF9F2;
       color: #333;
       line-height: 1.6;
-      font-size: 16px;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Mobile-first responsive navbar */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      background-color: #FCF9F2;
-      padding: 0.8rem 1rem;
-      border-bottom: 1px solid #e0ddd3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-
-    .navbar-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .navbar .brand {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #403B36;
-      text-decoration: none;
-    }
-
-    .navbar nav {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .navbar nav a {
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 0.5rem;
-      white-space: nowrap;
-    }
-
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
-
-    /* Mobile menu toggle */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 0.25rem;
-    }
-
-    .menu-toggle span {
-      width: 20px;
-      height: 2px;
-      background-color: #403B36;
-      margin: 2px 0;
-      transition: 0.3s;
-    }
-
-    /* Mobile responsive header */
-    header {
-      text-align: center;
-      padding: 2.5rem 1rem 2rem;
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #28a745, #20c997);
-      color: white;
-      padding: 8px 20px;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      animation: bounce 2s infinite;
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      color: #403B36;
-      margin: 0 0 1rem 0;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-
-    .hero-subtext {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 100%;
-      margin: 0 auto 2rem;
-      padding: 0 1rem;
-      line-height: 1.6;
-    }
-
-    .value-props {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .value-prop {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(203, 161, 53, 0.1);
-      padding: 12px 20px;
-      border-radius: 25px;
-      border: 2px solid #CBA135;
-      font-weight: 600;
-      color: #403B36;
-    }
-
-    .value-prop .icon {
-      font-size: 1.2rem;
-    }
-
-    .trust-indicators {
-      margin-top: 1.5rem;
-      color: #28a745;
-      font-weight: 600;
-    }
-
-    .cta-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: #CBA135;
-      color: white;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: background-color 0.3s ease;
-      text-align: center;
-      min-width: 200px;
-    }
-
-    .cta-button:hover {
-      background-color: #b08e2e;
-    }
-
-    .cta-button.primary {
-      background-color: #403B36;
-      font-size: 1rem;
-      padding: 15px 25px;
-    }
-
-    .cta-button.primary:hover {
-      background-color: #2d2824;
-    }
-
-    .cta-button.secondary {
-      background-color: transparent;
-      border: 2px solid #CBA135;
-      color: #CBA135;
-    }
-
-    .cta-button.secondary:hover {
-      background-color: #CBA135;
-      color: white;
-    }
-
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-5px); }
-      60% { transform: translateY(-3px); }
-    }
-
-    /* Urgency Section */
-    .urgency-section {
-      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-      margin: 0;
-      padding: 2rem 1rem;
-    }
-
-    .urgency-banner {
-      text-align: center;
-      color: white;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .urgency-banner h2 {
-      color: white;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .urgency-banner p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .countdown-timer {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .timer-item {
-      background: rgba(255,255,255,0.2);
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      min-width: 80px;
-    }
-
-    .timer-item span {
-      display: block;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
-    }
-
-    .timer-item small {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.8rem;
-    }
-
-    /* Enhanced Success Stories */
-    .story-card.featured {
-      border: 3px solid #28a745;
-      position: relative;
-    }
-
-    .story-card.featured::before {
-      content: "⭐ FEATURED SUCCESS";
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      background: #28a745;
-      color: white;
-      padding: 5px 15px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      border-radius: 15px;
-    }
-
-    .story-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .company-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .industry-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #CBA135;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .result-badge {
-      background: #28a745;
-      color: white;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-
-    .metrics {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1rem;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .metrics span {
-      background: #f8f9fa;
-      padding: 8px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #403B36;
-    }
-
-    /* Social Proof Numbers */
-    .social-proof-numbers {
-      display: flex;
-      justify-content: space-around;
-      margin: 3rem 0;
-      padding: 2rem;
-      background: linear-gradient(135deg, #403B36, #2d2824);
-      border-radius: 15px;
-      color: white;
-    }
-
-    .proof-stat {
-      text-align: center;
-    }
-
-    .proof-stat strong {
-      display: block;
-      font-size: 2rem;
-      color: #CBA135;
-      font-weight: 700;
-    }
-
-    .proof-stat span {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.8);
     }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1.5rem 1rem;
+      padding: 0 1rem;
     }
 
-    .section {
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #403B36 0%, #2d2824 100%);
+      color: white;
+      padding: 4rem 1rem 5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      padding: 15px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+    }
+
+    .hero-cta:hover {
+      background-color: #b08e2e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(203, 161, 53, 0.4);
+    }
+
+    /* Car Analogy Section */
+    .analogy-section {
+      background: white;
+      padding: 3rem 1rem;
+      margin: -3rem 0 3rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .analogy-section h2 {
+      text-align: center;
+      color: #403B36;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .analogy-subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 1rem;
       margin-bottom: 3rem;
     }
 
-    .section h2 {
-      color: #403B36;
-      font-size: 1.5rem;
+    .analogy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .analogy-item {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 10px;
+      border-left: 4px solid #CBA135;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .analogy-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .analogy-icon {
+      font-size: 3rem;
       margin-bottom: 1rem;
-      text-align: center;
-      line-height: 1.3;
     }
 
-    .section p {
-      text-align: center;
-      font-size: 1rem;
+    .analogy-item h3 {
+      color: #403B36;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .analogy-item .comparison {
+      color: #CBA135;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .analogy-item p {
       color: #555;
+      font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 1.5rem;
     }
 
-    /* Mobile-optimized service grid */
-    .services-grid {
-      display: flex;
-      flex-direction: column;
+    .analogy-note {
+      text-align: center;
+      color: #777;
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e0ddd3;
+    }
+
+    /* Problems Section */
+    .problems-section {
+      padding: 4rem 1rem;
+      background: #fff9e7;
+    }
+
+    .problems-section h2 {
+      text-align: center;
+      color: #403B36;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
-      margin: 1.5rem 0;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .service-section {
+    .problem-card {
       background: white;
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-left: 4px solid #CBA135;
+      border-left: 3px solid #CBA135;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .service-section h3 {
+    .problem-card h3 {
       color: #403B36;
-      margin-bottom: 0.75rem;
-      font-size: 1.2rem;
-      line-height: 1.3;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
     }
 
-    .service-section > p {
-      text-align: left;
+    .problem-card p {
+      color: #666;
       font-size: 0.9rem;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      padding: 4rem 1rem;
+      background: white;
+    }
+
+    .pricing-section h2 {
+      text-align: center;
+      color: #403B36;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
 
-    .service-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 1rem 0;
+    .pricing-subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
     }
 
-    .service-card {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 8px;
-      border-left: 3px solid #CBA135;
-    }
-
-    .service-card h4 {
-      color: #403B36;
-      margin: 0 0 0.5rem 0;
-      font-size: 1rem;
-      line-height: 1.3;
-    }
-
-    .service-card p {
-      margin: 0;
-      font-size: 0.85rem;
-      color: #666;
-      text-align: left;
-      line-height: 1.4;
-    }
-
-    .service-section .cta-button {
-      margin-top: 1rem;
-      min-width: auto;
-      width: 100%;
-    }
-
-    /* Mobile-optimized pricing grid */
     .pricing-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin: 1.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .pricing-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border: 1px solid #e0ddd3;
+      background: #f8f9fa;
+      border: 2px solid #e0ddd3;
+      border-radius: 12px;
+      padding: 2rem;
       text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      border-color: #CBA135;
+    }
+
+    .pricing-card.featured {
+      border: 3px solid #CBA135;
+      background: linear-gradient(135deg, #fffef9 0%, #ffffff 100%);
+    }
+
+    .pricing-card.featured::before {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #CBA135;
+      color: white;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .pricing-card h3 {
       color: #403B36;
-      margin-bottom: 0.75rem;
-      font-size: 1.1rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
 
-    .price {
-      font-size: 1.3rem;
-      font-weight: bold;
+    .pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 700;
       color: #CBA135;
-      margin: 0.75rem 0;
+      margin: 1rem 0;
+    }
+
+    .pricing-card .price-note {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 1.5rem;
     }
 
     .pricing-card ul {
+      list-style: none;
       text-align: left;
-      padding-left: 1rem;
-      margin: 1rem 0;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .pricing-card .cta-button {
-      width: 100%;
-      margin-top: 1rem;
-      min-width: auto;
-    }
-
-    /* Mobile-optimized success stories */
-    .success-stories {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
       margin: 1.5rem 0;
     }
 
-    .story-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-left: 4px solid #CBA135;
-    }
-
-    .story-card .quote {
-      font-style: italic;
+    .pricing-card ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
       color: #555;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .story-card .author {
-      font-weight: 600;
-      color: #403B36;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    .story-card .result {
-      background: #e8f5e8;
-      padding: 0.75rem;
-      border-radius: 6px;
-      color: #1b5e20;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    /* Mobile-optimized contact form */
-    .contact-form {
-      max-width: 100%;
-      margin: 1.5rem auto;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e0ddd3;
-    }
-
-    .contact-form h3 {
-      color: #403B36;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-size: 1.1rem;
-    }
-
-    .contact-form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #403B36;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    .contact-form input,
-    .contact-form textarea,
-    .contact-form select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: 'Poppins', sans-serif;
-      box-sizing: border-box;
-      background: #fdfcf7;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus,
-    .contact-form select:focus {
-      border-color: #CBA135;
-      outline: none;
-      background: #fffef9;
-    }
-
-    .contact-form .cta-button {
-      width: 100%;
-      text-align: center;
-      border: none;
-      cursor: pointer;
-      margin: 0;
-      min-width: auto;
-    }
-
-    .contact-info {
-      text-align: center;
-      margin-bottom: 1.5rem;
       font-size: 0.95rem;
     }
 
-    .contact-info p {
-      margin: 0.5rem 0;
-    }
-
-    .contact-info a {
+    .pricing-card ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
       color: #CBA135;
-      text-decoration: none;
+      font-weight: bold;
     }
 
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    /* Floating WhatsApp button - mobile optimized */
-    .floating-whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 15px;
-      background: #25D366;
+    .pricing-card .cta-btn {
+      display: block;
+      width: 100%;
+      background-color: #CBA135;
       color: white;
-      padding: 12px;
-      border-radius: 50%;
-      font-size: 18px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      padding: 14px 20px;
+      border-radius: 8px;
       text-decoration: none;
-      z-index: 1000;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+    }
+
+    .pricing-card .cta-btn:hover {
+      background-color: #b08e2e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+    }
+
+    .pricing-card.featured .cta-btn {
+      background-color: #403B36;
+    }
+
+    .pricing-card.featured .cta-btn:hover {
+      background-color: #2d2824;
+    }
+
+    /* How It Works Section */
+    .how-section {
+      padding: 4rem 1rem;
+      background: #f8f9fa;
+    }
+
+    .how-section h2 {
+      text-align: center;
+      color: #403B36;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .step-number {
+      display: inline-block;
       width: 50px;
       height: 50px;
+      background: #CBA135;
+      color: white;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .step-card h3 {
+      color: #403B36;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* CTA Section */
+    .final-cta {
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, #403B36 0%, #2d2824 100%);
+      text-align: center;
+      color: white;
+    }
+
+    .final-cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .final-cta .cta-buttons {
       display: flex;
-      align-items: center;
+      gap: 1rem;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .floating-whatsapp:hover {
-      background: #128C7E;
+    .final-cta .cta-btn {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      padding: 15px 35px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
     }
 
+    .final-cta .cta-btn:hover {
+      background-color: #b08e2e;
+      transform: translateY(-2px);
+    }
+
+    .final-cta .cta-btn.secondary {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .final-cta .cta-btn.secondary:hover {
+      background-color: white;
+      color: #403B36;
+    }
+
+    /* Footer */
     footer {
-      background-color: #403B36;
+      background-color: #222;
       color: white;
       text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.85rem;
-      margin-top: auto;
-      line-height: 1.5;
-    }
-
-    footer p {
-      margin: 0.5rem 0;
+      padding: 2rem 1rem;
     }
 
     footer a {
@@ -693,372 +461,247 @@
       text-decoration: underline;
     }
 
-    /* Desktop responsive styles */
-    @media (min-width: 769px) {
-      .navbar {
-        padding: 1rem 2rem;
-      }
+    /* Floating WhatsApp */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
 
-      .navbar .brand {
-        font-size: 1.2rem;
-      }
+    .floating-whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.1);
+    }
 
-      .navbar nav a {
-        font-size: 1rem;
-        padding: 0;
-        margin-left: 1.5rem;
-      }
-
-      header {
-        padding: 4rem 1rem 3rem;
-      }
-
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
       header h1 {
-        font-size: 2.5rem;
-      }
-
-      header p {
-        font-size: 1.2rem;
-        max-width: 600px;
-        padding: 0;
-      }
-
-      .cta-buttons {
-        flex-direction: row;
-        justify-content: center;
-        gap: 1rem;
-      }
-
-      .cta-button {
-        min-width: auto;
-      }
-
-      .container {
-        padding: 2rem;
-      }
-
-      .section h2 {
         font-size: 2rem;
       }
 
-      .services-grid {
-        flex-direction: row;
-        gap: 2rem;
+      header p {
+        font-size: 1rem;
       }
 
-      .service-section {
-        flex: 1;
-        padding: 2rem;
+      .analogy-section h2,
+      .problems-section h2,
+      .pricing-section h2,
+      .how-section h2,
+      .final-cta h2 {
+        font-size: 1.5rem;
       }
 
-      .service-section h3 {
-        font-size: 1.4rem;
+      .analogy-grid,
+      .problems-grid,
+      .pricing-grid,
+      .steps-grid {
+        grid-template-columns: 1fr;
       }
 
-      .service-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
+      .pricing-card .price {
+        font-size: 2rem;
       }
 
-      .service-section .cta-button {
-        width: auto;
-        padding: 12px 25px;
-      }
-
-      .pricing-grid {
-        flex-direction: row;
-        gap: 2rem;
-      }
-
-      .pricing-card {
-        flex: 1;
-        padding: 2rem;
-      }
-
-      .pricing-card .cta-button {
-        width: auto;
-        padding: 12px 25px;
-      }
-
-      .success-stories {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-      }
-
-      .contact-form {
-        max-width: 600px;
-        padding: 2rem;
-      }
-
-      .floating-whatsapp {
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        font-size: 20px;
-      }
-    }
-
-    /* Large screen optimizations */
-    @media (min-width: 1200px) {
-      .service-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* Mobile navigation menu */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
-
-      .navbar nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: #FCF9F2;
+      .final-cta .cta-buttons {
         flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        align-items: stretch;
       }
 
-      .navbar nav.active {
-        display: flex;
-      }
-
-      .navbar nav a {
-        padding: 0.75rem;
-        text-align: center;
-        border-bottom: 1px solid #e0ddd3;
-        margin: 0;
-      }
-
-      .navbar nav a:last-child {
-        border-bottom: none;
+      .final-cta .cta-btn {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <div class="navbar-container">
-      <a href="index.html" class="brand">Pau Analytics</a>
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <nav id="navbar-menu">
-        <a href="index.html">Home</a>
-        <a href="data-analytics.html">Data Analytics</a>
-<a href="pricing.html">Pricing</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </div>
-
   <header>
-    <h1>Business Data Made Simple</h1>
-    <p class="hero-subtext">We help businesses turn their data into clear business insights.</p>
-
-    <div class="cta-buttons">
-      <a href="#contact" class="cta-button primary">Let's Have a Chat</a>
-      <a href="#how-we-help" class="cta-button secondary">See How We Help</a>
+    <div class="container">
+      <h1>Drive Your Business with Confidence</h1>
+      <p>Data analytics for Malaysian SMEs. Know what's working, fix what's not, and make smarter decisions every day.</p>
+      <a href="#pricing" class="hero-cta">See Our Packages</a>
     </div>
-
   </header>
 
   <div class="container">
-    <!-- How We Help -->
-    <section id="how-we-help" class="section">
-      <h2>How We Can Help Your Business</h2>
-      <div class="services-grid">
-        <div class="service-section">
-          <h3>📊 Making Sense of Your Data</h3>
-          <p>Let's help you see what's happening in your business.</p>
+    <!-- Car Analogy Section -->
+    <section class="analogy-section">
+      <h2>Think of Your Business Like a Car</h2>
+      <p class="analogy-subtitle">We help you "drive" your business with clear visibility and confidence</p>
 
-          <div class="service-list">
-            <div class="service-card">
-              <h4>"Which customers should I focus on?"</h4>
-              <p>We'll help you identify your most valuable customers and understand what keeps them coming back.</p>
-            </div>
-            <div class="service-card">
-              <h4>"What should I stock more of?"</h4>
-              <p>Let's look at your sales patterns and help you make smarter inventory decisions.</p>
-            </div>
-            <div class="service-card">
-              <h4>"Is my marketing working?"</h4>
-              <p>We'll help you see which marketing efforts are bringing in customers and which aren't worth the cost.</p>
-            </div>
-            <div class="service-card">
-              <h4>"What's driving my sales up or down?"</h4>
-              <p>Together, we'll identify the factors that really impact your business performance.</p>
-            </div>
-          </div>
-
-          <a href="#contact" class="cta-button">Let's Discuss Your Data</a>
+      <div class="analogy-grid">
+        <div class="analogy-item">
+          <div class="analogy-icon">📊</div>
+          <h3>Analyst Report</h3>
+          <p class="comparison">= Car Inspection Report</p>
+          <p>A clear assessment of what's working well and what needs attention. We identify performance issues and opportunities you might have missed.</p>
         </div>
 
-        <div class="service-section">
-          <h3>🤖 Simple AI Tools That Actually Help</h3>
-          <p>Practical tools that save you time and make your life easier.</p>
+        <div class="analogy-item">
+          <div class="analogy-icon">📈</div>
+          <h3>Dashboard</h3>
+          <p class="comparison">= Car Dashboard Readings</p>
+          <p>Real-time view of your business metrics. See sales, inventory, and customer trends at a glance—just like checking your speed and fuel level.</p>
+        </div>
 
-          <div class="service-list">
-            <div class="service-card">
-              <h4>"I spend too much time on paperwork"</h4>
-              <p>We can build simple tools to automatically process invoices, reports, and other documents.</p>
-            </div>
-            <div class="service-card">
-              <h4>"Customers ask the same questions repeatedly"</h4>
-              <p>A basic chatbot can handle common questions, freeing you up for more important conversations.</p>
-            </div>
-            <div class="service-card">
-              <h4>"I need help with repetitive tasks"</h4>
-              <p>Let's identify your most time-consuming routines and see what we can automate.</p>
-            </div>
-            <div class="service-card">
-              <h4>"I need something specific for my business"</h4>
-              <p>Tell us your unique challenge, and we'll build a simple tool that fits your exact needs.</p>
-            </div>
-          </div>
-
-          <a href="#contact" class="cta-button">Tell Us About Your Challenge</a>
+        <div class="analogy-item">
+          <div class="analogy-icon">🤖</div>
+          <h3>AI Assistant</h3>
+          <p class="comparison">= Smart Driving Assistant</p>
+          <p>Continuous monitoring that warns you before problems happen and guides you to better decisions. Available as an optional upgrade.</p>
         </div>
       </div>
-    </section>
 
-    <!-- Why Choose Us -->
-    <section class="section friendly-section">
-      <div class="friendly-banner">
-        <h2>☕ Why Work With Us?</h2>
-        <p>We understand your business first, then build simple solutions you can use.</p>
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing" class="section">
-      <h2>Simple Pricing for Real Solutions</h2>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Analytics Monthly</h3>
-          <div class="price">RM1,000 / month</div>
-          <p>Ongoing insights with monthly reports and dashboard updates</p>
-          <ul>
-            <li>Smart dashboards</li>
-            <li>Monthly strategy calls</li>
-            <li>Email support</li>
-          </ul>
-          <a href="pricing.html" class="cta-button">Get Started</a>
-        </div>
-
-        <div class="pricing-card">
-          <h3>Analytics Project</h3>
-          <div class="price">RM3,500</div>
-          <p>One-time solution for specific business challenges</p>
-          <ul>
-            <li>Custom dashboard</li>
-            <li>Data integration</li>
-            <li>Full insights report</li>
-          </ul>
-          <a href="pricing.html" class="cta-button">Start Project</a>
-        </div>
-
-        <div class="pricing-card">
-          <h3>AI Solutions</h3>
-          <div class="price">From RM1,688</div>
-          <p>Custom AI tools built for your business needs</p>
-          <ul>
-            <li>Document processing</li>
-            <li>Smart chatbots</li>
-            <li>Computer vision</li>
-          </ul>
-          <a href="pricing.html" class="cta-button">Discuss AI Project</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <h2>Ready to Get Started?</h2>
-      <p>Let's discuss how we can help your business make smarter decisions.</p>
-
-      <div class="contact-info">
-        <p><strong>📧 Email:</strong> <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
-        <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/60149207099">+60 14-920 7099</a></p>
-      </div>
-
-      <form action="https://formsubmit.co/admin@pauanalytics.com" method="POST" class="contact-form">
-        <h3>Send Us a Message</h3>
-
-        <input type="hidden" name="_subject" value="New Inquiry from Landing Page - Pau Analytics">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="box">
-
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-
-        <label for="business">Business Type</label>
-        <input type="text" id="business" name="business" placeholder="e.g. Retail Store, Restaurant, E-commerce" required>
-
-        <label for="service">What interests you most?</label>
-        <select id="service" name="service" required>
-          <option value="">Select a service</option>
-          <option value="data-analytics">Data Analytics Consulting</option>
-          <option value="ai-solutions">AI Solutions Development</option>
-          <option value="both">Both Analytics and AI</option>
-          <option value="not-sure">Not sure - need consultation</option>
-        </select>
-
-        <label for="challenge">Business Challenge</label>
-        <textarea id="challenge" name="challenge" rows="4" placeholder="What specific problem are you trying to solve? (e.g., 'We don't know what to stock', 'We're losing customers quietly', 'We want new ways to engage customers')" required></textarea>
-
-        <button type="submit" class="cta-button">Send Message</button>
-      </form>
+      <p class="analogy-note">Analyst Report + Dashboard are included in every package. AI Assistant is available in our Premium plan.</p>
     </section>
   </div>
 
+  <!-- Problems We Solve -->
+  <section class="problems-section">
+    <div class="container">
+      <h2>Common Business Challenges We Help Solve</h2>
+      <div class="problems-grid">
+        <div class="problem-card">
+          <h3>📦 Inventory Planning</h3>
+          <p>Know when to stock up and what products move fastest</p>
+        </div>
+        <div class="problem-card">
+          <h3>📉 Customer Churn</h3>
+          <p>Identify why customers leave and how to keep them</p>
+        </div>
+        <div class="problem-card">
+          <h3>💰 Marketing ROI</h3>
+          <p>See which campaigns work and which waste your budget</p>
+        </div>
+        <div class="problem-card">
+          <h3>📊 Sales Forecasting</h3>
+          <p>Predict seasonal patterns and plan ahead with confidence</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing-section">
+    <div class="container">
+      <h2>Choose Your Package</h2>
+      <p class="pricing-subtitle">Simple pricing. No hidden fees. Cancel anytime.</p>
+
+      <div class="pricing-grid">
+        <!-- Monthly Standard -->
+        <div class="pricing-card featured">
+          <h3>Monthly Standard</h3>
+          <div class="price">RM699<span style="font-size: 1rem; font-weight: normal;">/mo</span></div>
+          <p class="price-note">12-month: RM599/mo (RM7,188 total)</p>
+          <ul>
+            <li>Monthly analyst report</li>
+            <li>Weekly dashboard updates</li>
+            <li>30-min strategy call monthly</li>
+            <li>48-hour email support</li>
+            <li>Data monitoring</li>
+          </ul>
+          <a href="payment.html?package=standard-12month" class="cta-btn">Get Started</a>
+        </div>
+
+        <!-- Monthly Premium -->
+        <div class="pricing-card">
+          <h3>Monthly Premium</h3>
+          <div class="price">RM999<span style="font-size: 1rem; font-weight: normal;">/mo</span></div>
+          <p class="price-note">12-month: RM888/mo (RM10,656 total)</p>
+          <ul>
+            <li>Everything in Standard</li>
+            <li>24/7 AI Assistant</li>
+            <li>Proactive alerts</li>
+            <li>Custom scenarios (What-if)</li>
+            <li>60-min strategy call monthly</li>
+            <li>24-hour email support</li>
+          </ul>
+          <a href="payment.html?package=premium-12month" class="cta-btn">Upgrade to Premium</a>
+        </div>
+
+        <!-- One-Off Project -->
+        <div class="pricing-card">
+          <h3>One-Off Project</h3>
+          <div class="price">RM3,500</div>
+          <p class="price-note">One-time payment</p>
+          <ul>
+            <li>Full analyst report</li>
+            <li>Interactive dashboard</li>
+            <li>60-min strategy call</li>
+            <li>Delivered in 2-3 weeks</li>
+            <li>14-day email support</li>
+          </ul>
+          <a href="payment.html?package=oneoff" class="cta-btn">Start Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Choose Package</h3>
+          <p>Select the package that fits your business needs and budget</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Share Your Data</h3>
+          <p>We'll guide you on what data we need (sales, inventory, customers)</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Get Insights</h3>
+          <p>Receive your dashboard and analyst report within 2-3 weeks</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Make Better Decisions</h3>
+          <p>Use clear, actionable recommendations to grow your business</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready to Make Data-Driven Decisions?</h2>
+      <p>Join Malaysian SMEs who are using data to grow smarter, not harder.</p>
+      <div class="cta-buttons">
+        <a href="payment.html" class="cta-btn">Choose Your Package</a>
+        <a href="https://wa.me/60149207099?text=I'd%20like%20to%20learn%20more%20about%20Pau%20Analytics" class="cta-btn secondary">Chat with Us on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
+    <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a> | 💬 <a href="https://wa.me/60149207099">+60 14-920 7099</a></p>
     <p>
-      <a href="about.html">About Us</a> &nbsp;|&nbsp;
+      <a href="about.html">About</a> |
+      <a href="pricing.html">Pricing</a> |
       <a href="privacy-policy.html">Privacy Policy</a>
     </p>
     <p>© 2025 Pau Analytics</p>
   </footer>
 
-  <a href="https://wa.me/60149207099" target="_blank" class="floating-whatsapp">💬</a>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('navbar-menu');
-      menu.classList.toggle('active');
-    }
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const navbar = document.querySelector('.navbar');
-      const menu = document.getElementById('navbar-menu');
-
-      if (!navbar.contains(event.target)) {
-        menu.classList.remove('active');
-      }
-    });
-
-    // Close menu when window is resized to desktop
-    window.addEventListener('resize', function() {
-      const menu = document.getElementById('navbar-menu');
-      if (window.innerWidth > 768) {
-        menu.classList.remove('active');
-      }
-    });
-  </script>
+  <a href="https://wa.me/60149207099?text=Hi%20Pau%20Analytics,%20I'm%20interested%20in%20your%20services" target="_blank" class="floating-whatsapp">💬</a>
 
 </body>
 </html>
