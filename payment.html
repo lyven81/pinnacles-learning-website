@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Pau Analytics | Payment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <meta name="description" content="SME analytics consulting in Malaysia—dashboards for inventory forecasting, churn prediction, marketing ROI, and pricing optimization." />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <title>Checkout | Pau Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Complete your purchase for data analytics services - dashboards, forecasting, and AI-powered insights for Malaysian SMEs." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
 {
@@ -38,7 +37,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     // Track CTA button clicks
-    document.querySelectorAll('.cta-button').forEach(btn => {
+    document.querySelectorAll('.cta-button, .add-to-cart-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         gtag('event', 'cta_click', {
           event_category: 'engagement',
@@ -51,9 +50,9 @@
     const contactForm = document.querySelector('form');
     if (contactForm) {
       contactForm.addEventListener('submit', () => {
-        gtag('event', 'contact_form_submit', {
-          event_category: 'lead',
-          event_label: 'Contact Form'
+        gtag('event', 'checkout_submit', {
+          event_category: 'conversion',
+          event_label: 'Checkout Form'
         });
       });
     }
@@ -67,7 +66,7 @@
   <meta name="theme-color" content="#FCF9F2">
 
   <style>
-     /* Sticky top navbar */
+    /* Sticky top navbar */
     .navbar {
       position: sticky;
       top: 0;
@@ -94,15 +93,6 @@
       flex-direction: column;
     }
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e0ddd3;
-    }
-
     .navbar .brand {
       font-size: 1.2rem;
       font-weight: 600;
@@ -120,139 +110,382 @@
       color: #CBA135;
     }
 
+    .cart-icon {
+      position: relative;
+      margin-left: 1.5rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #CBA135;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
     header {
       text-align: center;
-      padding: 4rem 1rem 3rem;
+      padding: 3rem 1rem 2rem;
       background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
     }
 
     header h1 {
       font-size: 2.5rem;
       color: #403B36;
-      margin-top: 0.5rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
     }
 
     header p {
       font-size: 1.1rem;
       color: #555;
-      max-width: 600px;
-      margin: 1rem auto 2rem;
+      margin: 0;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
+    .checkout-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem 3rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    /* Package Selection Section */
+    .packages-section h2 {
+      color: #403B36;
+      margin-bottom: 1.5rem;
+    }
+
+    .packages-grid {
+      display: grid;
+      gap: 1.5rem;
     }
 
     .package-card {
-      background: #fff;
-      border: 1px solid #e0ddd3;
+      background: white;
+      border: 2px solid #e0ddd3;
       border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
     }
 
-    .package-card h4 {
-      color: #403B36;
+    .package-card:hover {
+      border-color: #CBA135;
+      box-shadow: 0 4px 12px rgba(203, 161, 53, 0.15);
+    }
+
+    .package-card.featured {
+      border: 3px solid #CBA135;
+      background: linear-gradient(135deg, #fffef9 0%, #ffffff 100%);
+    }
+
+    .package-info {
+      flex: 1;
+    }
+
+    .package-badge {
+      display: inline-block;
+      background: #CBA135;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
       margin-bottom: 0.5rem;
     }
 
-    .package-card p {
+    .package-card h3 {
+      color: #403B36;
+      margin: 0.5rem 0;
+      font-size: 1.3rem;
+    }
+
+    .package-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #CBA135;
       margin: 0.5rem 0;
     }
 
-    .package-card button,
-    .submit-button {
+    .package-discount {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 0.5rem;
+    }
+
+    .package-description {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    .package-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-left: 1rem;
+    }
+
+    .add-to-cart-btn {
       background-color: #CBA135;
       color: white;
       border: none;
-      padding: 12px 25px;
-      font-weight: 600;
+      padding: 12px 24px;
       border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 1.05rem;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
-    .package-card button:hover,
-    .submit-button:hover {
+    .add-to-cart-btn:hover {
       background-color: #b08e2e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
     }
 
-    .form-section {
-      margin-top: 3rem;
+    .add-to-cart-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
     }
 
-    .form-section h2 {
+    /* Cart Section */
+    .cart-section {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+
+    .cart-box {
+      background: white;
+      border: 2px solid #e0ddd3;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .cart-box h2 {
+      color: #403B36;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cart-empty {
       text-align: center;
+      padding: 2rem 1rem;
+      color: #999;
+      font-size: 0.95rem;
+    }
+
+    .cart-item {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1rem 0;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      color: #403B36;
+      margin: 0;
+    }
+
+    .cart-item-price {
+      color: #CBA135;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .cart-item-details {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0.3rem 0;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #e74c3c;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0.3rem 0;
+      text-decoration: underline;
+    }
+
+    .remove-btn:hover {
+      color: #c0392b;
+    }
+
+    .cart-summary {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid #e0ddd3;
+    }
+
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0ddd3;
+      font-weight: 700;
+      font-size: 1.3rem;
       color: #403B36;
     }
 
-    .form-section p {
-      text-align: center;
+    .proceed-btn {
+      width: 100%;
+      background-color: #CBA135;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
     }
 
-    .contact-form {
-      max-width: 600px;
-      margin: 2rem auto;
-      text-align: left;
-      background: #fff;
-      padding: 2rem;
+    .proceed-btn:hover {
+      background-color: #b08e2e;
+    }
+
+    .proceed-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* Checkout Form */
+    .checkout-form-section {
+      grid-column: 1 / -1;
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .checkout-form-section.active {
+      display: block;
+    }
+
+    .checkout-form-box {
+      background: white;
+      border: 2px solid #e0ddd3;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e0ddd3;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .contact-form label {
+    .checkout-form-box h2 {
+      color: #403B36;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
       display: block;
       margin-bottom: 0.5rem;
       color: #403B36;
       font-weight: 500;
     }
 
-    .contact-form input,
-    .contact-form textarea {
+    .form-group input,
+    .form-group textarea {
       width: 100%;
       padding: 12px;
-      margin-bottom: 1.5rem;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 1rem;
       font-family: 'Poppins', sans-serif;
       box-sizing: border-box;
       background: #fdfcf7;
     }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
+    .form-group input:focus,
+    .form-group textarea:focus {
       border-color: #CBA135;
       outline: none;
       background: #fffef9;
     }
 
-    .submit-button {
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 0.3rem;
+      width: auto;
+    }
+
+    .checkbox-group label {
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .submit-btn {
       width: 100%;
-      margin-top: 1rem;
+      background-color: #CBA135;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .faq-section {
-      margin-top: 4rem;
-    }
-
-    .faq-section h2 {
-      color: #403B36;
-      text-align: center;
-    }
-
-    .faq-section h3 {
-      color: #403B36;
-      margin-top: 2rem;
-    }
-
-    .faq-section p {
-      color: #555;
+    .submit-btn:hover {
+      background-color: #b08e2e;
     }
 
     .spacer {
@@ -276,6 +509,33 @@
       text-decoration: underline;
     }
 
+    /* Mobile Responsive */
+    @media (max-width: 968px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-section {
+        position: relative;
+        top: 0;
+        order: -1;
+      }
+
+      .package-card {
+        flex-direction: column;
+      }
+
+      .package-actions {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+      }
+
+      .add-to-cart-btn {
+        width: 100%;
+      }
+    }
+
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -284,10 +544,21 @@
 
       .navbar nav {
         margin-top: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .navbar nav a {
+        margin-left: 0;
+        margin-right: 1rem;
       }
 
       header h1 {
         font-size: 2rem;
+      }
+
+      .package-price {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -302,66 +573,137 @@
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
+      <div class="cart-icon" onclick="scrollToCart()">
+        🛒
+        <span class="cart-count" id="cart-count" style="display: none;">0</span>
+      </div>
     </nav>
   </div>
 
-    <div class="container">
-    <section class="section">
-      <div class="package-card" id="package-card">
-        <h4 id="package-title">One-Off Project</h4>
-        <p id="package-price">RM3,500</p>
-        <p id="package-description">
-          Analyst report + interactive dashboard + 60-min strategy call. Delivered in 2-3 weeks. Perfect for single-use analysis projects.
-        </p>
-        <button onclick="selectPackage()">Select This Package</button>
-      </div>
+  <header>
+    <h1>Checkout</h1>
+    <p>Select your analytics package and complete your purchase</p>
+  </header>
 
-      <div style="text-align:center; margin-top: 15px;">
-        <button onclick="prevPackage()">← Prev</button>
-        <button onclick="nextPackage()">Next →</button>
-      </div>
-    </section>
+  <div class="checkout-container">
+    <!-- Packages Section -->
+    <div class="packages-section">
+      <h2>Select Your Package</h2>
 
-    <section id="form" class="form-section">
-      <h1>Tell Us Where to Begin</h2>
-      <p id="selected-package-display" style="font-weight: bold; color: #CBA135;"></p>
-
-      <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST" class="contact-form">
-        <input type="hidden" id="package" name="package" required />
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-
-        <label for="phone">Phone Number (optional)</label>
-        <input type="text" id="phone" name="phone" placeholder="Phone Number" />
-
-        <label for="message">What are you hoping to achieve with data?</label>
-        <textarea id="message" name="message" rows="4" placeholder="e.g., churn prediction, inventory planning, ROI tracking"></textarea>
-
-        <div class="checkbox">
-          <input type="checkbox" name="terms" required />
-          <label>I agree to the <a href="payment-term-condition.html">terms and conditions</a>.</label>
+      <div class="packages-grid">
+        <!-- One-Off Project -->
+        <div class="package-card">
+          <div class="package-info">
+            <h3>One-Off Project</h3>
+            <div class="package-price">RM3,500</div>
+            <div class="package-discount">One-time payment</div>
+            <p class="package-description">Analyst report + interactive dashboard + 60-min strategy call. Delivered in 2-3 weeks. Perfect for single-use analysis projects.</p>
+          </div>
+          <div class="package-actions">
+            <button class="add-to-cart-btn" onclick="addToCart('oneoff')">Add to Cart</button>
+          </div>
         </div>
 
-        <button type="submit" class="submit-button">Proceed to Payment</button>
-      </form>
-    </section>
+        <!-- Monthly Standard -->
+        <div class="package-card featured">
+          <div class="package-info">
+            <span class="package-badge">MOST POPULAR</span>
+            <h3>Monthly Standard</h3>
+            <div class="package-price">RM699/month</div>
+            <div class="package-discount">12-month plan: RM599/month (Total: RM7,188)</div>
+            <p class="package-description">Monthly insights report + weekly dashboard updates + 30-min strategy call + 48-hour email support.</p>
+          </div>
+          <div class="package-actions">
+            <button class="add-to-cart-btn" onclick="addToCart('standard-monthly')">Monthly Plan</button>
+            <button class="add-to-cart-btn" onclick="addToCart('standard-12month')">12-Month Plan</button>
+          </div>
+        </div>
 
-    <section class="faq-section">
-      <h2>Frequently Asked Questions</h2>
+        <!-- Monthly Premium -->
+        <div class="package-card">
+          <div class="package-info">
+            <h3>Monthly Premium</h3>
+            <div class="package-price">RM999/month</div>
+            <div class="package-discount">12-month plan: RM888/month (Total: RM10,656)</div>
+            <p class="package-description">Everything in Standard + 24/7 AI Assistant + proactive alerts + custom scenarios + 60-min strategy call + 24-hour email support.</p>
+          </div>
+          <div class="package-actions">
+            <button class="add-to-cart-btn" onclick="addToCart('premium-monthly')">Monthly Plan</button>
+            <button class="add-to-cart-btn" onclick="addToCart('premium-12month')">12-Month Plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <h3>What happens after I pay?</h3>
-      <p>You’ll receive a confirmation email, and our team will contact you within 24 hours to plan your session or kickstart your project.</p>
+    <!-- Cart Section -->
+    <div class="cart-section" id="cart-section">
+      <div class="cart-box">
+        <h2>🛒 Your Cart</h2>
 
-      <h3>Will I get an invoice?</h3>
-      <p>Yes, you’ll receive a digital invoice automatically once payment is complete.</p>
+        <div id="cart-empty" class="cart-empty">
+          Your cart is empty.<br>Select a package to get started.
+        </div>
 
-      <h3>Are refunds available?</h3>
-      <p>We don’t offer refunds after consultation or project work has started, but we guarantee a clear and committed delivery process.</p>
-    </section>
+        <div id="cart-items" style="display: none;">
+          <!-- Cart items will be inserted here -->
+        </div>
+
+        <div id="cart-summary" class="cart-summary" style="display: none;">
+          <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total">RM0</span>
+          </div>
+          <button class="proceed-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Form Section -->
+    <div class="checkout-form-section" id="checkout-form-section">
+      <div class="checkout-form-box">
+        <h2>Complete Your Purchase</h2>
+
+        <form action="https://formsubmit.co/director@pinnacleslearning.com" method="POST" id="checkout-form">
+          <input type="hidden" id="package-input" name="package" required />
+          <input type="hidden" id="total-input" name="total" required />
+
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+60 12-345 6789" />
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company Name (Optional)</label>
+            <input type="text" id="company" name="company" placeholder="Your Company" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">What are you hoping to achieve with data analytics?</label>
+            <textarea id="message" name="message" placeholder="e.g., churn prediction, inventory planning, ROI tracking, sales forecasting..."></textarea>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">I agree to the <a href="payment-term-condition.html" target="_blank">terms and conditions</a> *</label>
+          </div>
+
+          <button type="submit" class="submit-btn">Complete Purchase</button>
+        </form>
+      </div>
+    </div>
   </div>
+
+  <div class="spacer"></div>
 
   <footer>
     <p>📧 <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></p>
@@ -373,51 +715,135 @@
   </footer>
 
   <script>
-    const packages = [
-      {
-        title: "One-Off Project",
-        price: "RM3,500",
-        description: "Analyst report + interactive dashboard + 60-min strategy call. Delivered in 2-3 weeks. Perfect for single-use analysis projects."
+    const packages = {
+      'oneoff': {
+        name: 'One-Off Project',
+        price: 3500,
+        priceDisplay: 'RM3,500',
+        billing: 'One-time payment'
       },
-      {
-        title: "Monthly Standard",
-        price: "RM699/month",
-        description: "Monthly insights report + weekly dashboard updates + 30-min strategy call + 48-hour email support. 12-month plan: RM599/month (Total: RM7,188)."
+      'standard-monthly': {
+        name: 'Monthly Standard',
+        price: 699,
+        priceDisplay: 'RM699/month',
+        billing: 'Monthly subscription'
       },
-      {
-        title: "Monthly Premium",
-        price: "RM999/month",
-        description: "Everything in Standard + 24/7 AI Assistant + proactive alerts + custom scenarios + 60-min strategy call + 24-hour email support. 12-month plan: RM888/month (Total: RM10,656)."
+      'standard-12month': {
+        name: 'Monthly Standard (12-Month Plan)',
+        price: 7188,
+        priceDisplay: 'RM7,188',
+        billing: '12-month prepaid (RM599/month)'
+      },
+      'premium-monthly': {
+        name: 'Monthly Premium',
+        price: 999,
+        priceDisplay: 'RM999/month',
+        billing: 'Monthly subscription'
+      },
+      'premium-12month': {
+        name: 'Monthly Premium (12-Month Plan)',
+        price: 10656,
+        priceDisplay: 'RM10,656',
+        billing: '12-month prepaid (RM888/month)'
       }
-    ];
+    };
 
-    let currentIndex = 0;
+    let cart = [];
 
-    function showPackage(index) {
-      document.getElementById("package-title").textContent = packages[index].title;
-      document.getElementById("package-price").textContent = packages[index].price;
-      document.getElementById("package-description").textContent = packages[index].description;
+    function addToCart(packageId) {
+      // Clear existing cart (only allow one package at a time)
+      cart = [];
+
+      const pkg = packages[packageId];
+      cart.push({
+        id: packageId,
+        name: pkg.name,
+        price: pkg.price,
+        priceDisplay: pkg.priceDisplay,
+        billing: pkg.billing
+      });
+
+      updateCart();
+
+      // Show success feedback
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = '✓ Added';
+      btn.style.backgroundColor = '#27ae60';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.backgroundColor = '';
+      }, 1500);
     }
 
-    function nextPackage() {
-      currentIndex = (currentIndex + 1) % packages.length;
-      showPackage(currentIndex);
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
     }
 
-    function prevPackage() {
-      currentIndex = (currentIndex - 1 + packages.length) % packages.length;
-      showPackage(currentIndex);
+    function updateCart() {
+      const cartEmpty = document.getElementById('cart-empty');
+      const cartItems = document.getElementById('cart-items');
+      const cartSummary = document.getElementById('cart-summary');
+      const cartCount = document.getElementById('cart-count');
+
+      if (cart.length === 0) {
+        cartEmpty.style.display = 'block';
+        cartItems.style.display = 'none';
+        cartSummary.style.display = 'none';
+        cartCount.style.display = 'none';
+      } else {
+        cartEmpty.style.display = 'none';
+        cartItems.style.display = 'block';
+        cartSummary.style.display = 'block';
+        cartCount.style.display = 'flex';
+        cartCount.textContent = cart.length;
+
+        // Render cart items
+        let itemsHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          total += item.price;
+          itemsHTML += `
+            <div class="cart-item">
+              <div class="cart-item-header">
+                <h4 class="cart-item-title">${item.name}</h4>
+                <div class="cart-item-price">${item.priceDisplay}</div>
+              </div>
+              <div class="cart-item-details">${item.billing}</div>
+              <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+            </div>
+          `;
+        });
+
+        cartItems.innerHTML = itemsHTML;
+        document.getElementById('cart-total').textContent = `RM${total.toLocaleString()}`;
+      }
     }
 
-    function selectPackage() {
-      const selected = packages[currentIndex];
-      document.getElementById("selected-package-display").textContent =
-        "Selected: " + selected.title + " (" + selected.price + ")";
-      document.getElementById("package").value = selected.title + " - " + selected.price;
-      document.getElementById("form").scrollIntoView({ behavior: "smooth" });
+    function proceedToCheckout() {
+      if (cart.length === 0) return;
+
+      // Populate hidden form fields
+      const packageDetails = cart.map(item => `${item.name} - ${item.priceDisplay}`).join(', ');
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      document.getElementById('package-input').value = packageDetails;
+      document.getElementById('total-input').value = `RM${total.toLocaleString()}`;
+
+      // Show checkout form and scroll to it
+      const formSection = document.getElementById('checkout-form-section');
+      formSection.classList.add('active');
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    showPackage(currentIndex);
+    function scrollToCart() {
+      document.getElementById('cart-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Initialize
+    updateCart();
   </script>
 </body>
 </html>
