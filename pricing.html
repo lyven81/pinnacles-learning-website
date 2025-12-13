@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
 {
@@ -139,171 +139,192 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 2rem 1rem;
-      text-align: center;
+      padding: 2rem 1rem 4rem;
     }
 
-    h2 {
-      color: #403B36;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+    /* Pricing Table */
+    .pricing-table-wrapper {
+      overflow-x: auto;
+      margin: 2rem 0;
     }
 
-    .pricing-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .pricing-card {
-      background: #FFFFFF;
-      border: 2px solid #e0ddd3;
+    .pricing-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: white;
       border-radius: 12px;
-      padding: 2rem;
-      width: 340px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      text-align: left;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-table thead tr {
+      background: #f8f9fa;
+    }
+
+    .pricing-table th {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid #e0ddd3;
+      border-bottom: 2px solid #e0ddd3;
       position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    .pricing-table th:last-child {
+      border-right: none;
     }
 
-    .pricing-card.featured {
-      border: 3px solid #CBA135;
-      box-shadow: 0 6px 16px rgba(203, 161, 53, 0.2);
+    .pricing-table th:first-child {
+      width: 30%;
+      text-align: left;
+      background: white;
     }
 
-    .pricing-card.featured::before {
+    .pricing-table th.featured {
+      background: linear-gradient(135deg, #fff9e7 0%, #f8f9fa 100%);
+      border-left: 3px solid #CBA135;
+      border-right: 3px solid #CBA135;
+    }
+
+    .pricing-table th.featured::before {
       content: "MOST POPULAR";
       position: absolute;
-      top: -12px;
+      top: 0.5rem;
       left: 50%;
       transform: translateX(-50%);
       background: #CBA135;
       color: white;
-      padding: 4px 16px;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.5px;
     }
 
-    .pricing-card h3 {
-      color: #403B36;
+    .package-name {
       font-size: 1.5rem;
+      font-weight: 700;
+      color: #403B36;
+      margin-top: 0.5rem;
       margin-bottom: 0.5rem;
-      font-weight: 600;
     }
 
-    .pricing-card .price {
+    .package-price {
       font-size: 2rem;
-      font-weight: bold;
+      font-weight: 700;
       color: #CBA135;
-      margin: 1rem 0 0.5rem;
+      margin: 0.5rem 0;
     }
 
-    .pricing-card .sub-price {
-      font-size: 0.95rem;
-      color: #777;
-      margin-bottom: 1.5rem;
-      min-height: 22px;
-    }
-
-    .pricing-card .package-label {
-      display: inline-block;
-      background: #f0f0f0;
-      color: #555;
-      padding: 4px 12px;
-      border-radius: 15px;
+    .package-subprice {
       font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
+      color: #777;
+      margin-bottom: 1rem;
+      min-height: 20px;
     }
 
-    .pricing-card ul {
-      padding-left: 0;
-      list-style: none;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .pricing-card ul li {
-      padding-left: 1.5rem;
-      position: relative;
-      margin-bottom: 0.5rem;
-      color: #555;
-    }
-
-    .pricing-card ul li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #CBA135;
-      font-weight: bold;
-    }
-
-    .pricing-card ul li strong {
-      color: #403B36;
-    }
-
-    .pricing-card .perfect-for {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 8px;
-      border-left: 3px solid #CBA135;
-      margin-bottom: 1.5rem;
-    }
-
-    .pricing-card .perfect-for strong {
-      color: #403B36;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .pricing-card .perfect-for p {
-      margin: 0;
+    .package-description {
       font-size: 0.9rem;
       color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-table tbody tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .pricing-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-table td {
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid #f0f0f0;
+      vertical-align: middle;
+    }
+
+    .pricing-table td:last-child {
+      border-right: none;
+    }
+
+    .pricing-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #403B36;
+      background: #fafafa;
+    }
+
+    .pricing-table .featured-col {
+      background: #fffef9;
+      border-left: 3px solid #CBA135;
+      border-right: 3px solid #CBA135;
+    }
+
+    .check-mark {
+      color: #4CAF50;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .cross-mark {
+      color: #ccc;
+      font-size: 1.2rem;
+    }
+
+    .feature-value {
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .cta-row td {
+      padding: 2rem 1.5rem 1.5rem;
     }
 
     .cta-button {
-      display: block;
-      width: 100%;
+      display: inline-block;
+      width: 90%;
       text-align: center;
       background-color: #CBA135;
       color: white;
       text-decoration: none;
-      padding: 14px 25px;
+      padding: 14px 20px;
       border-radius: 6px;
       font-weight: 600;
       font-size: 1.05rem;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .cta-button:hover {
       background-color: #b08e2e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
     }
 
-    .cta-button.secondary {
-      background-color: #403B36;
+    /* Special Offer Box */
+    .special-offer {
+      background: #fff9e7;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+      max-width: 900px;
+      margin: 3rem auto;
+      text-align: left;
     }
 
-    .cta-button.secondary:hover {
-      background-color: #2d2924;
+    .special-offer strong {
+      color: #403B36;
+      font-size: 1.1rem;
     }
 
-    .service-section {
-      margin-bottom: 3rem;
+    .special-offer p {
+      margin: 0.5rem 0 0;
+      color: #555;
     }
 
+    /* Consultation Box */
     .consultation-box {
       text-align: center;
       margin: 3rem auto;
@@ -327,10 +348,48 @@
     }
 
     .consultation-box .cta-button {
-      display: inline-block;
-      width: auto;
       font-size: 1.2rem;
       padding: 15px 35px;
+      width: auto;
+    }
+
+    /* What's Included Section */
+    .whats-included {
+      margin-top: 4rem;
+      text-align: left;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .whats-included h2 {
+      text-align: center;
+      color: #403B36;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .whats-included-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .included-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e0ddd3;
+    }
+
+    .included-item h4 {
+      color: #403B36;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .included-item p {
+      color: #555;
+      margin-bottom: 0;
     }
 
     .spacer {
@@ -354,6 +413,7 @@
       text-decoration: underline;
     }
 
+    /* Mobile Responsive */
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -368,25 +428,100 @@
         font-size: 2rem;
       }
 
-      .pricing-card {
+      header p {
+        font-size: 1rem;
+      }
+
+      .container {
+        padding: 1rem 0.5rem 3rem;
+      }
+
+      .pricing-table-wrapper {
+        margin: 1rem -0.5rem;
+        padding: 0 0.5rem;
+      }
+
+      .pricing-table th,
+      .pricing-table td {
+        padding: 1rem 0.75rem;
+        font-size: 0.9rem;
+      }
+
+      .pricing-table th:first-child,
+      .pricing-table td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 10;
+        background: white;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+        min-width: 120px;
+      }
+
+      .pricing-table th:first-child {
+        background: #f8f9fa;
+      }
+
+      .pricing-table td:first-child {
+        background: #fafafa;
+      }
+
+      .package-name {
+        font-size: 1.2rem;
+      }
+
+      .package-price {
+        font-size: 1.5rem;
+      }
+
+      .package-subprice {
+        font-size: 0.75rem;
+      }
+
+      .package-description {
+        font-size: 0.8rem;
+      }
+
+      .cta-button {
+        font-size: 0.9rem;
+        padding: 10px 15px;
         width: 100%;
       }
 
-      .pricing-grid {
-        gap: 2.5rem;
+      .special-offer {
+        padding: 1rem;
+        margin: 2rem 0.5rem;
       }
 
       .consultation-box {
         padding: 1.5rem;
+        margin: 2rem 0.5rem;
       }
 
       .consultation-box h3 {
         font-size: 1.5rem;
       }
 
-      .cta-button {
+      .whats-included {
+        margin-top: 3rem;
+        padding: 0 0.5rem;
+      }
+
+      .whats-included h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .package-name {
         font-size: 1rem;
-        padding: 12px 20px;
+      }
+
+      .package-price {
+        font-size: 1.3rem;
+      }
+
+      .check-mark {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -406,90 +541,154 @@
 
   <header>
     <h1>Simple Pricing for Real Solutions</h1>
-    <p>Choose the analytics package that fits your business needs. Start with a one-time project or commit to ongoing insights with monthly subscriptions.</p>
+    <p>Choose the analytics package that fits your business needs. Compare features side-by-side to find the perfect match.</p>
   </header>
 
   <div class="container">
-    <!-- Pricing Cards -->
-    <div class="pricing-grid">
+    <!-- Pricing Comparison Table -->
+    <div class="pricing-table-wrapper">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="featured">
+              <div class="package-name">Monthly Standard</div>
+              <div class="package-price">RM699<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
+              <div class="package-subprice">Save 15%: RM7,100/year<br>(RM592/month)</div>
+              <div class="package-description">Best value for growing businesses</div>
+            </th>
+            <th>
+              <div class="package-name">Monthly Premium</div>
+              <div class="package-price">RM999<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
+              <div class="package-subprice">Save 15%: RM10,190/year<br>(RM849/month)</div>
+              <div class="package-description">Complete business intelligence</div>
+            </th>
+            <th>
+              <div class="package-name">One-Off Project</div>
+              <div class="package-price">RM3,500</div>
+              <div class="package-subprice">One-time payment</div>
+              <div class="package-description">Test analytics before committing</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Analyst Report -->
+          <tr>
+            <td>Analyst Report</td>
+            <td class="featured-col"><span class="feature-value">Monthly insights & trends</span></td>
+            <td><span class="feature-value">Monthly insights & trends</span></td>
+            <td><span class="feature-value">One-time assessment</span></td>
+          </tr>
 
-      <!-- One-Time Solution -->
-      <div class="pricing-card">
-        <div class="package-label">Try Before You Subscribe</div>
-        <h3>One-Time Solution</h3>
-        <p class="price">RM3,500</p>
-        <p class="sub-price">One-time payment, delivered in 2-3 weeks</p>
+          <!-- Dashboard -->
+          <tr>
+            <td>Dashboard</td>
+            <td class="featured-col"><span class="feature-value">Updated weekly</span></td>
+            <td><span class="feature-value">Updated weekly</span></td>
+            <td><span class="feature-value">One-time setup</span></td>
+          </tr>
 
-        <ul>
-          <li><strong>Analyst Report:</strong> Full business assessment with clear insights</li>
-          <li><strong>Dashboard:</strong> Interactive visual dashboard for ongoing tracking</li>
-          <li><strong>Data Integration:</strong> Up to 3 data sources connected</li>
-          <li><strong>Strategy Call:</strong> 60-minute briefing on findings</li>
-          <li><strong>Email Support:</strong> 14 days post-delivery support</li>
-        </ul>
+          <!-- Action Recommendations -->
+          <tr>
+            <td>Action Recommendations</td>
+            <td class="featured-col"><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="feature-value">In final report</span></td>
+          </tr>
 
-        <div class="perfect-for">
-          <strong>Perfect for:</strong>
-          <p>Testing analytics before committing, solving a single business problem, or one-time strategic decisions</p>
-        </div>
+          <!-- Data Integration -->
+          <tr>
+            <td>Data Integration</td>
+            <td class="featured-col"><span class="feature-value">Up to 5 sources</span></td>
+            <td><span class="feature-value">Up to 5 sources</span></td>
+            <td><span class="feature-value">Up to 3 sources</span></td>
+          </tr>
 
-        <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20One-Time%20Solution%20package" class="cta-button">Get Started</a>
-      </div>
+          <!-- Strategy Call -->
+          <tr>
+            <td>Strategy Call</td>
+            <td class="featured-col"><span class="feature-value">30 mins monthly</span></td>
+            <td><span class="feature-value">60 mins monthly</span></td>
+            <td><span class="feature-value">60 mins (one-time)</span></td>
+          </tr>
 
-      <!-- Monthly Standard (Featured) -->
-      <div class="pricing-card featured">
-        <div class="package-label">Best Value for Growing Businesses</div>
-        <h3>Monthly Standard</h3>
-        <p class="price">RM699<span style="font-size: 1rem; font-weight: normal;">/month</span></p>
-        <p class="sub-price">Save 15%: RM7,100 for 12 months (RM592/month)</p>
+          <!-- Data Monitoring -->
+          <tr>
+            <td>Continuous Data Monitoring</td>
+            <td class="featured-col"><span class="check-mark">✓</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="cross-mark">—</span></td>
+          </tr>
 
-        <ul>
-          <li><strong>Analyst Report:</strong> Monthly business insights and trends</li>
-          <li><strong>Dashboard Updates:</strong> Real-time metrics updated weekly</li>
-          <li><strong>Action Recommendations:</strong> Clear next steps every month</li>
-          <li><strong>Strategy Call:</strong> 30-minute monthly check-in</li>
-          <li><strong>Email Support:</strong> 48-hour response time</li>
-          <li><strong>Data Monitoring:</strong> Continuous tracking of key metrics</li>
-        </ul>
+          <!-- AI Assistant -->
+          <tr>
+            <td>AI Assistant (24/7)</td>
+            <td class="featured-col"><span class="cross-mark">—</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="cross-mark">—</span></td>
+          </tr>
 
-        <div class="perfect-for">
-          <strong>Perfect for:</strong>
-          <p>E-commerce businesses with regular inventory, sales forecasting, and customer insights needs</p>
-        </div>
+          <!-- Proactive Alerts -->
+          <tr>
+            <td>Proactive Alerts</td>
+            <td class="featured-col"><span class="cross-mark">—</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="cross-mark">—</span></td>
+          </tr>
 
-        <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20Monthly%20Standard%20package" class="cta-button">Start Monthly Plan</a>
-      </div>
+          <!-- What-If Analysis -->
+          <tr>
+            <td>Custom Scenarios (What-If)</td>
+            <td class="featured-col"><span class="cross-mark">—</span></td>
+            <td><span class="check-mark">✓</span></td>
+            <td><span class="cross-mark">—</span></td>
+          </tr>
 
-      <!-- Monthly Premium -->
-      <div class="pricing-card">
-        <div class="package-label">Complete Business Intelligence</div>
-        <h3>Monthly Premium</h3>
-        <p class="price">RM999<span style="font-size: 1rem; font-weight: normal;">/month</span></p>
-        <p class="sub-price">Save 15%: RM10,190 for 12 months (RM849/month)</p>
+          <!-- Email Support -->
+          <tr>
+            <td>Email Support</td>
+            <td class="featured-col"><span class="feature-value">48-hour response</span></td>
+            <td><span class="feature-value">24-hour response</span></td>
+            <td><span class="feature-value">14 days post-delivery</span></td>
+          </tr>
 
-        <ul>
-          <li><strong>Everything in Standard</strong> (reports, dashboards, calls, support)</li>
-          <li><strong>AI Assistant:</strong> 24/7 smart business advisor answering key questions</li>
-          <li><strong>Proactive Alerts:</strong> AI detects issues before they become problems</li>
-          <li><strong>Custom Scenarios:</strong> "What-if" analysis for planning decisions</li>
-          <li><strong>Priority Support:</strong> 24-hour response time</li>
-          <li><strong>Extended Strategy Call:</strong> 60 minutes monthly</li>
-        </ul>
+          <!-- Delivery Time -->
+          <tr>
+            <td>Delivery Time</td>
+            <td class="featured-col"><span class="feature-value">2-3 weeks setup</span></td>
+            <td><span class="feature-value">2-3 weeks setup</span></td>
+            <td><span class="feature-value">2-3 weeks</span></td>
+          </tr>
 
-        <div class="perfect-for">
-          <strong>Perfect for:</strong>
-          <p>Businesses needing ongoing guidance, real-time decision support, and proactive issue detection</p>
-        </div>
+          <!-- Perfect For -->
+          <tr>
+            <td><strong>Perfect For</strong></td>
+            <td class="featured-col"><span class="feature-value">E-commerce with regular inventory & sales forecasting needs</span></td>
+            <td><span class="feature-value">Businesses needing ongoing guidance & real-time decision support</span></td>
+            <td><span class="feature-value">Testing analytics or solving a single business problem</span></td>
+          </tr>
 
-        <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20Monthly%20Premium%20package" class="cta-button">Upgrade to Premium</a>
-      </div>
-
+          <!-- CTA Row -->
+          <tr class="cta-row">
+            <td></td>
+            <td class="featured-col">
+              <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20Monthly%20Standard%20package" class="cta-button">Start Monthly Plan</a>
+            </td>
+            <td>
+              <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20Monthly%20Premium%20package" class="cta-button">Upgrade to Premium</a>
+            </td>
+            <td>
+              <a href="https://wa.me/60149207099?text=I'm%20interested%20in%20the%20One-Off%20Project%20package" class="cta-button">Get Started</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- Special Offer Box -->
-    <div style="background: #fff9e7; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #CBA135; max-width: 800px; margin: 2rem auto; text-align: left;">
-      <strong style="color: #403B36; font-size: 1.1rem;">🎁 Special Offer:</strong>
-      <p style="margin: 0.5rem 0 0; color: #555;">Start with the One-Time Solution and upgrade to Monthly Standard within 30 days to get <strong>50% off your first 3 months</strong> (save RM1,050).</p>
+    <div class="special-offer">
+      <strong>🎁 Special Offer:</strong>
+      <p>Start with the One-Off Project and upgrade to Monthly Standard within 30 days to get <strong>50% off your first 3 months</strong> (save RM1,050).</p>
     </div>
 
     <!-- Consultation Box -->
@@ -500,23 +699,23 @@
     </div>
 
     <!-- What You Get Section -->
-    <div style="margin-top: 4rem; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto;">
-      <h2 style="text-align: center; margin-bottom: 2rem;">What's Included in Every Package</h2>
+    <div class="whats-included">
+      <h2>What's Included in Every Package</h2>
 
-      <div style="display: grid; gap: 1.5rem;">
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd3;">
-          <h4 style="color: #403B36; margin-top: 0;">📊 Analyst Report (Car Inspection Report)</h4>
-          <p style="color: #555; margin-bottom: 0;">Clear assessment of what's working and what needs attention. Identifies performance issues and helps you make informed decisions.</p>
+      <div class="whats-included-grid">
+        <div class="included-item">
+          <h4>📊 Analyst Report (Car Inspection Report)</h4>
+          <p>Clear assessment of what's working and what needs attention. Identifies performance issues and helps you make informed decisions.</p>
         </div>
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd3;">
-          <h4 style="color: #403B36; margin-top: 0;">📈 Dashboard (Car Dashboard Readings)</h4>
-          <p style="color: #555; margin-bottom: 0;">Real-time business metrics at a glance. Monitor sales, inventory, customer trends without reading lengthy reports.</p>
+        <div class="included-item">
+          <h4>📈 Dashboard (Car Dashboard Readings)</h4>
+          <p>Real-time business metrics at a glance. Monitor sales, inventory, customer trends without reading lengthy reports.</p>
         </div>
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0ddd3;">
-          <h4 style="color: #403B36; margin-top: 0;">🤖 AI Assistant (Smart Driving Assistant) - Premium Only</h4>
-          <p style="color: #555; margin-bottom: 0;">24/7 intelligent advisor that monitors your business continuously, detects issues early, and guides you to better decisions.</p>
+        <div class="included-item">
+          <h4>🤖 AI Assistant (Smart Driving Assistant) - Premium Only</h4>
+          <p>24/7 intelligent advisor that monitors your business continuously, detects issues early, and guides you to better decisions.</p>
         </div>
       </div>
     </div>
