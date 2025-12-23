@@ -6,7 +6,7 @@
 
   <title>Checkout | Pau Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <meta name="description" content="Complete your purchase for data analytics services - dashboards, forecasting, and AI-powered insights for Malaysian SMEs." />
+  <meta name="description" content="Complete your purchase for data analytics services. Monthly Insight (RM750), Monthly Standard (RM1,500), Monthly Premium (RM2,250), or Project In-sight (RM3,500). Bank transfer available." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -732,7 +732,7 @@
 
   <header>
     <h1>Checkout</h1>
-    <p>Select your analytics package and complete your purchase</p>
+    <p>Select your analytics package and complete your purchase<br><span style="color: #CBA135; font-weight: 600;">🎉 2026 New Year Offer — Save up to 50%</span></p>
   </header>
 
   <div class="checkout-container">
@@ -741,16 +741,17 @@
       <h2>Select Your Package</h2>
 
       <div class="packages-grid">
-        <!-- One-Off Project -->
+        <!-- Monthly Insight -->
         <div class="package-card">
           <div class="package-info">
-            <h3>One-Off Project</h3>
-            <div class="package-price">RM3,500</div>
-            <div class="package-discount">One-time payment</div>
-            <p class="package-description">Analyst report + interactive dashboard + 60-min strategy call. Delivered in 2-3 weeks. Perfect for single-use analysis projects.</p>
+            <h3>Monthly Insight</h3>
+            <div class="package-price">RM750/month</div>
+            <div class="package-discount" style="text-decoration: line-through; color: #999;">Normal: RM1,500/month</div>
+            <p class="package-description">📋 Monthly analyst report — Clear assessment of what's working and what needs attention. Includes 30-min monthly strategy call.</p>
           </div>
           <div class="package-actions">
-            <button class="add-to-cart-btn" onclick="addToCart('oneoff')">Add to Cart</button>
+            <button class="add-to-cart-btn" onclick="addToCart('insight-monthly')">Monthly Plan</button>
+            <button class="add-to-cart-btn" onclick="addToCart('insight-12month')">12-Month Plan (RM8,000)</button>
           </div>
         </div>
 
@@ -759,13 +760,13 @@
           <div class="package-info">
             <span class="package-badge">MOST POPULAR</span>
             <h3>Monthly Standard</h3>
-            <div class="package-price">RM699/month</div>
-            <div class="package-discount">12-month plan: RM599/month (Total: RM7,188)</div>
-            <p class="package-description">Monthly insights report + weekly dashboard updates + 30-min strategy call + 48-hour email support.</p>
+            <div class="package-price">RM1,500/month</div>
+            <div class="package-discount" style="text-decoration: line-through; color: #999;">Normal: RM3,000/month</div>
+            <p class="package-description">📋 Analyst report + 📊 Interactive dashboard — Real-time monitoring with monthly insights. Includes 30-min monthly strategy call.</p>
           </div>
           <div class="package-actions">
             <button class="add-to-cart-btn" onclick="addToCart('standard-monthly')">Monthly Plan</button>
-            <button class="add-to-cart-btn" onclick="addToCart('standard-12month')">12-Month Plan</button>
+            <button class="add-to-cart-btn" onclick="addToCart('standard-12month')">12-Month Plan (RM15,000)</button>
           </div>
         </div>
 
@@ -773,13 +774,27 @@
         <div class="package-card">
           <div class="package-info">
             <h3>Monthly Premium</h3>
-            <div class="package-price">RM999/month</div>
-            <div class="package-discount">12-month plan: RM888/month (Total: RM10,656)</div>
-            <p class="package-description">Everything in Standard + 24/7 AI Assistant + proactive alerts + custom scenarios + 60-min strategy call + 24-hour email support.</p>
+            <div class="package-price">RM2,250/month</div>
+            <div class="package-discount" style="text-decoration: line-through; color: #999;">Normal: RM4,500/month</div>
+            <p class="package-description">📋 Report + 📊 Dashboard + 🤖 AI Assistant — Continuous monitoring with early alerts. Includes 60-min monthly strategy call.</p>
           </div>
           <div class="package-actions">
             <button class="add-to-cart-btn" onclick="addToCart('premium-monthly')">Monthly Plan</button>
-            <button class="add-to-cart-btn" onclick="addToCart('premium-12month')">12-Month Plan</button>
+            <button class="add-to-cart-btn" onclick="addToCart('premium-12month')">12-Month Plan (RM25,000)</button>
+          </div>
+        </div>
+
+        <!-- Project In-sight -->
+        <div class="package-card" style="border: 2px solid #CBA135;">
+          <div class="package-info">
+            <span class="package-badge" style="background: #403B36;">ONE-OFF PROJECT</span>
+            <h3>Project In-sight</h3>
+            <div class="package-price">RM3,500</div>
+            <div class="package-discount">One-time payment</div>
+            <p class="package-description">📋 Analyst report + 📊 Dashboard — Perfect for one-time analysis needs. Includes 30-min strategy call. Delivered in 2-3 weeks.</p>
+          </div>
+          <div class="package-actions">
+            <button class="add-to-cart-btn" onclick="addToCart('project-insight')">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -903,35 +918,47 @@
 
   <script>
     const packages = {
-      'oneoff': {
-        name: 'One-Off Project',
-        price: 3500,
-        priceDisplay: 'RM3,500',
-        billing: 'One-time payment'
+      'insight-monthly': {
+        name: 'Monthly Insight',
+        price: 750,
+        priceDisplay: 'RM750/month',
+        billing: 'Monthly subscription (Promo price, normal RM1,500)'
+      },
+      'insight-12month': {
+        name: 'Monthly Insight (12-Month Prepaid)',
+        price: 8000,
+        priceDisplay: 'RM8,000',
+        billing: '12-month prepaid (Save RM1,000)'
       },
       'standard-monthly': {
         name: 'Monthly Standard',
-        price: 699,
-        priceDisplay: 'RM699/month',
-        billing: 'Monthly subscription'
+        price: 1500,
+        priceDisplay: 'RM1,500/month',
+        billing: 'Monthly subscription (Promo price, normal RM3,000)'
       },
       'standard-12month': {
-        name: 'Monthly Standard (12-Month Plan)',
-        price: 7188,
-        priceDisplay: 'RM7,188',
-        billing: '12-month prepaid (RM599/month)'
+        name: 'Monthly Standard (12-Month Prepaid)',
+        price: 15000,
+        priceDisplay: 'RM15,000',
+        billing: '12-month prepaid (Save RM3,000)'
       },
       'premium-monthly': {
         name: 'Monthly Premium',
-        price: 999,
-        priceDisplay: 'RM999/month',
-        billing: 'Monthly subscription'
+        price: 2250,
+        priceDisplay: 'RM2,250/month',
+        billing: 'Monthly subscription (Promo price, normal RM4,500)'
       },
       'premium-12month': {
-        name: 'Monthly Premium (12-Month Plan)',
-        price: 10656,
-        priceDisplay: 'RM10,656',
-        billing: '12-month prepaid (RM888/month)'
+        name: 'Monthly Premium (12-Month Prepaid)',
+        price: 25000,
+        priceDisplay: 'RM25,000',
+        billing: '12-month prepaid (Save RM2,000)'
+      },
+      'project-insight': {
+        name: 'Project In-sight',
+        price: 3500,
+        priceDisplay: 'RM3,500',
+        billing: 'One-time payment'
       }
     };
 
