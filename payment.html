@@ -701,6 +701,16 @@
       color: #999;
       font-size: 0.85rem;
     }
+    .qr-code-image {
+      max-width: 250px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      border: 2px solid #e0ddd3;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
 
     .payment-note {
       margin-top: 1rem;
@@ -846,10 +856,11 @@
             </div>
 
             <div class="qr-code-section">
-              <h4>📱 Scan to Pay</h4>
-              <div class="qr-placeholder">
-                QR Code<br>Coming Soon
-              </div>
+              <h4>📱 Scan to Pay (DuitNow QR)</h4>
+              <img src="https://raw.githubusercontent.com/lyven81/pinnacles-learning-website/main/QR_CODE_DN_1754381906130.png"
+                   alt="DuitNow QR Code - Pinnacles Analytics Solution"
+                   class="qr-code-image">
+              <p style="font-size: 0.85rem; color: #666; margin-top: 0.8rem;">Scan with your banking app</p>
             </div>
 
             <div class="payment-note">
