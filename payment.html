@@ -561,6 +561,156 @@
         font-size: 1.5rem;
       }
     }
+
+    /* Payment Methods Section */
+    .payment-methods {
+      margin-top: 1rem;
+      border-top: 1px solid #e0ddd3;
+      padding-top: 1rem;
+    }
+
+    .payment-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 12px;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #403B36;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .payment-toggle:hover {
+      background: #f8f9fa;
+    }
+
+    .payment-toggle-icon {
+      transition: transform 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .payment-toggle-icon.expanded {
+      transform: rotate(180deg);
+    }
+
+    .payment-details {
+      display: none;
+      padding: 1rem 0;
+      animation: slideDown 0.3s ease;
+    }
+
+    .payment-details.active {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bank-info {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid #CBA135;
+      margin-bottom: 1rem;
+    }
+
+    .bank-info h4 {
+      color: #403B36;
+      margin: 0 0 0.8rem 0;
+      font-size: 1rem;
+    }
+
+    .bank-detail {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .bank-detail-label {
+      color: #666;
+      font-weight: 500;
+    }
+
+    .bank-detail-value {
+      color: #403B36;
+      font-weight: 600;
+      font-family: monospace;
+    }
+
+    .copy-btn {
+      width: 100%;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    .copy-btn:hover {
+      background: #e0e0e0;
+      border-color: #CBA135;
+    }
+
+    .copy-btn:active {
+      background: #CBA135;
+      color: white;
+    }
+
+    .qr-code-section {
+      text-align: center;
+      padding: 1rem;
+      background: white;
+      border: 2px dashed #e0ddd3;
+      border-radius: 8px;
+    }
+
+    .qr-code-section h4 {
+      color: #403B36;
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+    }
+
+    .qr-placeholder {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      background: #f8f9fa;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    .payment-note {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: #fff9e7;
+      border-left: 3px solid #CBA135;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #666;
+    }
   </style>
 </head>
 <body>
@@ -655,6 +805,43 @@
           </div>
           <button class="proceed-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
+
+        <div class="payment-methods" id="payment-methods" style="display: none;">
+          <button class="payment-toggle" onclick="togglePaymentDetails()">
+            <span>💳 Payment Methods</span>
+            <span class="payment-toggle-icon" id="payment-toggle-icon">▼</span>
+          </button>
+
+          <div class="payment-details" id="payment-details">
+            <div class="bank-info">
+              <h4>🏦 Bank Transfer Details</h4>
+              <div class="bank-detail">
+                <span class="bank-detail-label">Bank:</span>
+                <span class="bank-detail-value">Hong Leong Bank</span>
+              </div>
+              <div class="bank-detail">
+                <span class="bank-detail-label">Account Holder:</span>
+                <span class="bank-detail-value">Pinnacles Analytics Solution</span>
+              </div>
+              <div class="bank-detail">
+                <span class="bank-detail-label">Account Number:</span>
+                <span class="bank-detail-value" id="account-number">395-00-35319-3</span>
+              </div>
+              <button class="copy-btn" onclick="copyAccountNumber()">📋 Copy Account Number</button>
+            </div>
+
+            <div class="qr-code-section">
+              <h4>📱 Scan to Pay</h4>
+              <div class="qr-placeholder">
+                QR Code<br>Coming Soon
+              </div>
+            </div>
+
+            <div class="payment-note">
+              <strong>Note:</strong> After payment, please send your receipt to <a href="mailto:admin@pauanalytics.com" style="color: #CBA135;">admin@pauanalytics.com</a> for verification.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -748,6 +935,45 @@
       }
     };
 
+
+    function togglePaymentDetails() {
+      const details = document.getElementById('payment-details');
+      const icon = document.getElementById('payment-toggle-icon');
+
+      if (details.classList.contains('active')) {
+        details.classList.remove('active');
+        icon.classList.remove('expanded');
+      } else {
+        details.classList.add('active');
+        icon.classList.add('expanded');
+      }
+    }
+
+    function copyAccountNumber() {
+      const accountNumber = '39500353193'; // Without dashes for easy copying
+
+      // Create temporary input to copy
+      const tempInput = document.createElement('input');
+      tempInput.value = accountNumber;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      // Show feedback
+      const btn = event.target;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '✓ Copied!';
+      btn.style.background = '#27ae60';
+      btn.style.color = 'white';
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 2000);
+    }
+
+
     let cart = [];
 
     function addToCart(packageId) {
@@ -787,17 +1013,21 @@
       const cartSummary = document.getElementById('cart-summary');
       const cartCount = document.getElementById('cart-count');
 
+      const paymentMethods = document.getElementById('payment-methods');
+
       if (cart.length === 0) {
         cartEmpty.style.display = 'block';
         cartItems.style.display = 'none';
         cartSummary.style.display = 'none';
         cartCount.style.display = 'none';
+        if (paymentMethods) paymentMethods.style.display = 'none';
       } else {
         cartEmpty.style.display = 'none';
         cartItems.style.display = 'block';
         cartSummary.style.display = 'block';
         cartCount.style.display = 'flex';
         cartCount.textContent = cart.length;
+        if (paymentMethods) paymentMethods.style.display = 'block';
 
         // Render cart items
         let itemsHTML = '';
