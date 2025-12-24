@@ -176,6 +176,139 @@
             margin-bottom: 2em;
         }
 
+        /* Deliverables List */
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+            margin: 2em 0;
+        }
+
+        .deliverables-list li {
+            margin-bottom: 1.5em;
+            padding-left: 3em;
+            position: relative;
+        }
+
+        .deliverables-list .icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.8em;
+        }
+
+        .deliverables-list .title {
+            font-weight: 700;
+            color: #403B36;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 0.3em;
+        }
+
+        .deliverables-list .description {
+            color: #555;
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 0.3em;
+        }
+
+        .deliverables-list .example {
+            color: #666;
+            font-size: 0.95em;
+            font-style: italic;
+        }
+
+        /* Expertise Grid */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5em;
+            margin: 2em 0;
+        }
+
+        .expertise-item {
+            padding: 1.2em;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #CBA135;
+        }
+
+        .expertise-item .title {
+            font-weight: 700;
+            color: #403B36;
+            font-size: 1.05em;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        .expertise-item .description {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Problem List */
+        .problem-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+
+        .problem-list li {
+            padding-left: 1.5em;
+            position: relative;
+            margin-bottom: 0.8em;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .problem-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #CBA135;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Benefits List */
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+
+        .benefits-list li {
+            padding-left: 1.5em;
+            position: relative;
+            margin-bottom: 0.8em;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .expertise-grid {
+                grid-template-columns: 1fr;
+                gap: 1em;
+            }
+
+            .deliverables-list li {
+                padding-left: 2.5em;
+            }
+
+            .deliverables-list .icon {
+                font-size: 1.5em;
+            }
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -255,27 +388,104 @@
                 <header>
                     <h1>About Pau Analytics</h1>
                 </header>
+
+                <!-- Mission Statement -->
                 <section class="about-section">
                     <p>We help Malaysian SMEs turn data into clear direction. Our mission is to make analytics practical and genuinely useful—so your decisions aren't guesses, but confident steps forward. We take what you already have and turn it into insights you can act on immediately.</p>
                 </section>
+
+                <!-- What We Deliver -->
                 <section class="about-section">
-                    <p>We deliver three core solutions, ready in 2-3 weeks. <strong>Analyst Reports</strong> assess your business health and uncover opportunities—identifying which customers will churn, which products drive profit, and where you're losing money. <strong>Dashboards</strong> display real-time sales, inventory levels, and customer trends at a glance—so you always know where your business stands. <strong>AI Assistant (24/7)</strong> monitors operations continuously and alerts you before problems happen—like detecting early churn signals or campaign performance drops.</p>
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">What We Deliver</h2>
+                    <ul class="deliverables-list">
+                        <li>
+                            <span class="icon">📋</span>
+                            <span class="title">Analyst Reports</span>
+                            <span class="description">Assess your business health and uncover opportunities—identifying which customers will churn, which products drive profit, and where you're losing money.</span>
+                            <span class="example">Example: "Your top 20% customers generate 65% of revenue, but 15% show early churn signals."</span>
+                        </li>
+                        <li>
+                            <span class="icon">📊</span>
+                            <span class="title">Dashboards</span>
+                            <span class="description">Display real-time sales, inventory levels, and customer trends at a glance—so you always know where your business stands.</span>
+                            <span class="example">Example: Monitor daily revenue, stock levels, and campaign performance on one screen.</span>
+                        </li>
+                        <li>
+                            <span class="icon">🤖</span>
+                            <span class="title">AI Assistant (24/7)</span>
+                            <span class="description">Monitors operations continuously and alerts you before problems happen—like detecting early churn signals or campaign performance drops.</span>
+                            <span class="example">Example: "Alert: Campaign CTR dropped 30% this week—investigate audience targeting."</span>
+                        </li>
+                    </ul>
                 </section>
+
+                <!-- Our Expertise -->
                 <section class="about-section">
-                    <p>Our analytics expertise covers six key areas that solve real business problems. <strong>Predictive Modeling</strong> identifies which customers will leave, which employees will quit, and which products will drive revenue. <strong>Segmentation Analysis</strong> finds your high-value customers, profitable product categories, and best-performing marketing channels.</p>
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">Our Expertise</h2>
+                    <div class="expertise-grid">
+                        <div class="expertise-item">
+                            <span class="title">Predictive Modeling</span>
+                            <span class="description">Identifies which customers will leave, which employees will quit, and which products will drive revenue.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Segmentation Analysis</span>
+                            <span class="description">Finds your high-value customers, profitable product categories, and best-performing marketing channels.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Optimization Analysis</span>
+                            <span class="description">Improves campaign ROI, reduces cart abandonment, and maximizes profit margins.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Time Series Analysis</span>
+                            <span class="description">Forecasts seasonal demand, predicts sales cycles, and plans inventory confidently.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Regression Analysis</span>
+                            <span class="description">Reveals what drives customer spending, product returns, and business growth.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Statistical Testing</span>
+                            <span class="description">Proves which marketing strategies work, which payment methods customers prefer, and which factors improve satisfaction.</span>
+                        </div>
+                    </div>
                 </section>
+
+                <!-- Problems We Solve -->
                 <section class="about-section">
-                    <p><strong>Optimization Analysis</strong> improves campaign ROI, reduces cart abandonment, and maximizes profit margins. <strong>Time Series Analysis</strong> forecasts seasonal demand, predicts sales cycles, and plans inventory confidently. <strong>Regression Analysis</strong> reveals what drives customer spending, product returns, and business growth. <strong>Statistical Testing</strong> proves which marketing strategies work, which payment methods customers prefer, and which factors improve satisfaction.</p>
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">Problems We Solve</h2>
+                    <ul class="problem-list">
+                        <li>Keeping customers loyal</li>
+                        <li>Planning inventory smarter</li>
+                        <li>Understanding which campaigns work</li>
+                        <li>Optimizing pricing</li>
+                        <li>Managing operations efficiently</li>
+                        <li>Running marketing with confidence</li>
+                        <li>Making strategic decisions</li>
+                    </ul>
+                    <p style="margin-top: 1em;">Every analysis is built from your perspective. No confusing jargon, no overwhelming complexity.</p>
                 </section>
-                <section class="about-section">
-                    <p>We focus on solving problems that matter to you—keeping customers loyal, planning inventory smarter, understanding which campaigns work, and optimizing pricing. Every analysis is built from your perspective, whether you're managing operations, running marketing, or making strategic decisions. No confusing jargon, no overwhelming complexity.</p>
-                </section>
+
+                <!-- Our Approach -->
                 <section class="about-section">
                     <p>Our reports and dashboards are designed to be practical and easy to understand. The goal isn't impressive tech talk or numbers on a screen—it's clarity that helps you act with confidence. You'll see measurable results, not complicated methodologies.</p>
                 </section>
+
                 <section class="about-section">
                     <p>This is about using what you already have—your business data—to make better decisions and grow smartly. We work together to serve your customers better and drive real business growth. It's partnership, not just service delivery.</p>
                 </section>
+
+                <!-- Key Benefits -->
+                <section class="about-section">
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">Key Benefits</h2>
+                    <ul class="benefits-list">
+                        <li>2-3 weeks delivery time</li>
+                        <li>No confusing jargon—plain language reports</li>
+                        <li>Measurable results you can act on</li>
+                        <li>Partnership approach, not just service delivery</li>
+                    </ul>
+                </section>
+
+                <!-- Final CTA -->
                 <section class="about-section">
                     <p>We're here to be your trusted partner in turning data into direction. Whether you're just starting with analytics or looking to get more value from existing data, we'll help you every step of the way. Let's make your data work for you.</p>
                 </section>
