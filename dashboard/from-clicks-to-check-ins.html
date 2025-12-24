@@ -328,6 +328,27 @@
                 </div>
             </div>
 
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Searches by Channel</div>
+                    <div class="chart-wrapper">
+                        <canvas id="channelPieChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Bookings vs Searches by Device</div>
+                    <div class="chart-wrapper">
+                        <canvas id="deviceStackedChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">Top 5 Channels by Conversion Rate</div>
+                <div class="chart-wrapper">
+                    <canvas id="topChannelsChart"></canvas>
+                </div>
+            </div>
         </div>
 
         <!-- Page 2: Channel Performance -->
@@ -518,6 +539,9 @@
 
             // Page 1: Overview
             updateOverviewKPIs();
+            createChannelPieChart();
+            createDeviceStackedChart();
+            createTopChannelsChart();
 
             // Page 2: Channel Performance
             populateChannelTable();
@@ -547,6 +571,175 @@
             document.getElementById('totalBookings').textContent = totalBookings.toLocaleString();
             document.getElementById('conversionRate').textContent = conversionRate + '%';
             document.getElementById('avgLeadTime').textContent = avgLeadTime + ' days';
+        }
+
+        function createChannelPieChart() {
+            const channelCounts = {};
+            dashboardData.forEach(d => {
+                const channel = 'Channel ' + (d.channel || 0);
+                channelCounts[channel] = (channelCounts[channel] || 0) + 1;
+            });
+
+            const topChannels = Object.entries(channelCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8);
+
+            const ctx = document.getElementById('channelPieChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: topChannels.map(c => c[0]),
+                    datasets: [{
+                        data: topChannels.map(c => c[1]),
+                        backgroundColor: colors.extended,
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                padding: 10,
+                                font: {
+                                    family: 'Poppins',
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                    return context.label + ': ' + percentage + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createDeviceStackedChart() {
+            const deviceStats = {
+                'Desktop': { searches: 0, bookings: 0 },
+                'Mobile': { searches: 0, bookings: 0 }
+            };
+
+            dashboardData.forEach(d => {
+                const device = d.is_mobile === 1 ? 'Mobile' : 'Desktop';
+                deviceStats[device].searches++;
+                if (d.is_booking === 1) {
+                    deviceStats[device].bookings++;
+                }
+            });
+
+            const ctx = document.getElementById('deviceStackedChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Desktop', 'Mobile'],
+                    datasets: [
+                        {
+                            label: 'Searches',
+                            data: [deviceStats['Desktop'].searches, deviceStats['Mobile'].searches],
+                            backgroundColor: colors.primary[0],
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Bookings',
+                            data: [deviceStats['Desktop'].bookings, deviceStats['Mobile'].bookings],
+                            backgroundColor: colors.primary[2],
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    family: 'Poppins',
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Count'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createTopChannelsChart() {
+            const channelStats = {};
+            dashboardData.forEach(d => {
+                const channel = 'Channel ' + (d.channel || 0);
+                if (!channelStats[channel]) {
+                    channelStats[channel] = { searches: 0, bookings: 0 };
+                }
+                channelStats[channel].searches++;
+                if (d.is_booking === 1) {
+                    channelStats[channel].bookings++;
+                }
+            });
+
+            const channelRates = Object.entries(channelStats)
+                .map(([channel, stats]) => ({
+                    channel,
+                    rate: (stats.bookings / stats.searches * 100).toFixed(2)
+                }))
+                .sort((a, b) => b.rate - a.rate)
+                .slice(0, 5);
+
+            const ctx = document.getElementById('topChannelsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: channelRates.map(c => c.channel),
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: channelRates.map(c => c.rate),
+                        backgroundColor: colors.primary,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         // Page 2 Functions
