@@ -153,122 +153,109 @@
     .pricing-table {
       width: 100%;
       border-collapse: separate;
-      border-spacing: 0;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-spacing: 0 12px;
+      background: transparent;
     }
 
     .pricing-table thead tr {
-      background: #f8f9fa;
+      background: #403B36;
     }
 
     .pricing-table th {
-      padding: 2rem 1.5rem;
-      text-align: center;
-      border-right: 1px solid #e0ddd3;
-      border-bottom: 2px solid #e0ddd3;
-      position: relative;
-    }
-
-    .pricing-table th:last-child {
-      border-right: none;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      background: #403B36;
     }
 
     .pricing-table th:first-child {
-      width: 30%;
-      text-align: left;
-      background: white;
+      border-radius: 8px 0 0 8px;
     }
 
+    .pricing-table th:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+
+    .pricing-table tbody tr {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .pricing-table tbody tr:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(203, 161, 53, 0.25);
+      background: linear-gradient(135deg, #fffef9 0%, #ffffff 100%);
+    }
+
+    .pricing-table td {
+      padding: 1.5rem 1.5rem;
+      vertical-align: middle;
+      border: none;
+    }
+
+    .pricing-table td:first-child {
+      border-radius: 8px 0 0 8px;
+    }
+
+    .pricing-table td:last-child {
+      border-radius: 0 8px 8px 0;
+      text-align: center;
+    }
 
     .package-name {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: #403B36;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin: 0;
+    }
+
+    .package-badge {
+      display: inline-block;
+      background: #CBA135;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
     }
 
     .package-price {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: #CBA135;
-      margin: 0.5rem 0;
+      margin: 0;
     }
 
     .package-subprice {
       font-size: 0.85rem;
-      color: #777;
-      margin-bottom: 1rem;
-      min-height: 20px;
+      color: #999;
+      text-decoration: line-through;
+      margin-top: 0.3rem;
     }
 
     .package-description {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1rem;
-    }
-
-    .pricing-table tbody tr {
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .pricing-table tbody tr:last-child {
-      border-bottom: none;
-    }
-
-    .pricing-table td {
-      padding: 1.25rem 1.5rem;
-      text-align: center;
-      border-right: 1px solid #f0f0f0;
-      vertical-align: middle;
-    }
-
-    .pricing-table td:last-child {
-      border-right: none;
-    }
-
-    .pricing-table td:first-child {
-      text-align: left;
-      font-weight: 600;
-      color: #403B36;
-      background: #fafafa;
-    }
-
-
-    .check-mark {
-      color: #4CAF50;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .cross-mark {
-      color: #ccc;
-      font-size: 1.2rem;
-    }
-
-    .feature-value {
-      color: #555;
       font-size: 0.95rem;
-    }
-
-    .cta-row td {
-      padding: 2rem 1.5rem 1.5rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
     }
 
     .cta-button {
       display: inline-block;
-      width: 90%;
+      min-width: 140px;
       text-align: center;
       background-color: #CBA135;
       color: white;
       text-decoration: none;
-      padding: 14px 20px;
+      padding: 12px 24px;
       border-radius: 6px;
       font-weight: 600;
-      font-size: 1.05rem;
+      font-size: 1rem;
       transition: all 0.3s ease;
     }
 
@@ -416,49 +403,56 @@
         padding: 0 0.5rem;
       }
 
-      .pricing-table th,
+      .pricing-table {
+        border-spacing: 0 8px;
+      }
+
+      .pricing-table thead {
+        display: none;
+      }
+
+      .pricing-table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
       .pricing-table td {
-        padding: 1rem 0.75rem;
-        font-size: 0.9rem;
+        padding: 0.5rem 0;
+        border-radius: 0 !important;
+        text-align: left !important;
       }
 
-      .pricing-table th:first-child,
-      .pricing-table td:first-child {
-        position: sticky;
-        left: 0;
-        z-index: 10;
-        background: white;
-        box-shadow: 2px 0 4px rgba(0,0,0,0.05);
-        min-width: 120px;
-      }
-
-      .pricing-table th:first-child {
-        background: #f8f9fa;
-      }
-
-      .pricing-table td:first-child {
-        background: #fafafa;
+      .pricing-table td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #403B36;
+        display: block;
+        margin-bottom: 0.3rem;
+        font-size: 0.85rem;
       }
 
       .package-name {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       .package-price {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
       }
 
       .package-subprice {
-        font-size: 0.75rem;
-      }
-
-      .package-description {
         font-size: 0.8rem;
       }
 
-      .cta-button {
+      .package-description {
         font-size: 0.9rem;
-        padding: 10px 15px;
+      }
+
+      .cta-button {
+        font-size: 0.95rem;
+        padding: 12px 20px;
         width: 100%;
       }
 
@@ -475,28 +469,19 @@
       .consultation-box h3 {
         font-size: 1.5rem;
       }
-
-      .whats-included {
-        margin-top: 3rem;
-        padding: 0 0.5rem;
-      }
-
-      .whats-included h2 {
-        font-size: 1.5rem;
-      }
     }
 
     @media (max-width: 480px) {
       .package-name {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
 
       .package-price {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
       }
 
-      .check-mark {
-        font-size: 1.2rem;
+      .package-description {
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -516,7 +501,7 @@
 
   <header>
     <h1>Simple Pricing for Real Solutions</h1>
-    <p>Choose the analytics package that fits your business needs. Compare features side-by-side to find the perfect match.</p>
+    <p>Choose the analytics package that fits your business needs. Explore all plans below to find the perfect match.</p>
   </header>
 
   <div class="container">
@@ -525,90 +510,137 @@
       <table class="pricing-table">
         <thead>
           <tr>
-            <th></th>
-            <th>
-              <div class="package-name">Monthly Insight</div>
-              <div class="package-price">RM750<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
-              <div class="package-subprice" style="text-decoration: line-through; color: #999;">Normal: RM1,500/month</div>
-              <div class="package-description">Best value for growing businesses</div>
-            </th>
-            <th>
-              <div class="package-name">Monthly Standard</div>
-              <div class="package-price">RM1,500<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
-              <div class="package-subprice" style="text-decoration: line-through; color: #999;">Normal: RM3,000/month</div>
-              <div class="package-description">Most popular choice</div>
-            </th>
-            <th>
-              <div class="package-name">Monthly Premium</div>
-              <div class="package-price">RM2,250<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
-              <div class="package-subprice" style="text-decoration: line-through; color: #999;">Normal: RM4,500/month</div>
-              <div class="package-description">Complete AI-powered solution</div>
-            </th>
-            <th>
-              <div class="package-name">Project<br>Insight</div>
-              <div class="package-price">RM3,500</div>
-              <div class="package-subprice">One-time payment</div>
-              <div class="package-description">For single-use analysis</div>
-            </th>
+            <th>Package</th>
+            <th>Pricing</th>
+            <th>Description</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Analyst Report -->
+          <!-- Monthly Insight - Monthly Plan -->
           <tr>
-            <td>Analyst Report</td>
-            <td><span class="check-mark">✓</span></td>
-            <td><span class="check-mark">✓</span></td>
-            <td><span class="check-mark">✓</span></td>
-            <td><span class="check-mark">✓</span></td>
+            <td>
+              <div class="package-name">Monthly Insight</div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;">📋 Analyst Report</div>
+            </td>
+            <td>
+              <div class="package-price">RM750<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
+              <div class="package-subprice">Normal: RM1,500/month</div>
+            </td>
+            <td>
+              <div class="package-description">Regular performance check-ups and clear guidance. Delivered monthly in 2-3 weeks setup.</div>
+            </td>
+            <td>
+              <a href="https://www.pauanalytics.com/payment.html?package=insight-monthly" class="cta-button">Get Started</a>
+            </td>
           </tr>
 
-          <!-- Dashboard -->
+          <!-- Monthly Insight - 12-Month Plan -->
           <tr>
-            <td>Dashboard</td>
-            <td><span class="cross-mark">—</span></td>
-            <td><span class="check-mark">✓</span></td>
-            <td><span class="check-mark">✓</span></td>
-            <td><span class="check-mark">✓</span></td>
-          </tr>
-
-          <!-- AI Assistant -->
-          <tr>
-            <td>AI Assistant (24/7)</td>
-            <td><span class="cross-mark">—</span></td>
-            <td><span class="cross-mark">—</span></td>
-            <td><span class="check-mark">✓</span></td>
-            <td><span class="cross-mark">—</span></td>
-          </tr>
-
-          <!-- Delivery Time -->
-          <tr>
-            <td>Delivery Time</td>
-            <td><span class="feature-value">2-3 weeks setup</span></td>
-            <td><span class="feature-value">2-3 weeks setup</span></td>
-            <td><span class="feature-value">2-3 weeks setup</span></td>
-            <td><span class="feature-value">2-3 weeks</span></td>
-          </tr>
-
-          <!-- Perfect For -->
-          <tr>
-            <td><strong>Perfect For</strong></td>
-            <td><span class="feature-value">Businesses wanting regular performance check-ups and clear guidance</span></td>
-            <td><span class="feature-value">Businesses needing both insights and real-time monitoring to track progress</span></td>
-            <td><span class="feature-value">Businesses wanting proactive alerts and AI guidance to prevent issues early</span></td>
-            <td><span class="feature-value">One-time analysis for specific business questions or decision-making needs</span></td>
-          </tr>
-
-          <!-- CTA Row -->
-          <tr class="cta-row">
-            <td></td>
+            <td>
+              <div class="package-badge">SAVE RM1,000</div>
+              <div class="package-name">Monthly Insight (12-Month)</div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;">📋 Analyst Report</div>
+            </td>
+            <td>
+              <div class="package-price">RM8,000</div>
+              <div class="package-subprice">RM750 × 12 = RM9,000</div>
+            </td>
+            <td>
+              <div class="package-description">Best value for growing businesses. 12-month prepaid plan with RM1,000 savings.</div>
+            </td>
             <td>
               <a href="https://www.pauanalytics.com/payment.html?package=insight-12month" class="cta-button">Get Started</a>
+            </td>
+          </tr>
+
+          <!-- Monthly Standard - Monthly Plan -->
+          <tr>
+            <td>
+              <div class="package-name">Monthly Standard</div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;">📋 Report + 📊 Dashboard</div>
+            </td>
+            <td>
+              <div class="package-price">RM1,500<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
+              <div class="package-subprice">Normal: RM3,000/month</div>
+            </td>
+            <td>
+              <div class="package-description">Insights and real-time monitoring to track progress. Most popular choice.</div>
+            </td>
+            <td>
+              <a href="https://www.pauanalytics.com/payment.html?package=standard-monthly" class="cta-button">Get Started</a>
+            </td>
+          </tr>
+
+          <!-- Monthly Standard - 12-Month Plan -->
+          <tr>
+            <td>
+              <div class="package-badge">SAVE RM3,000</div>
+              <div class="package-name">Monthly Standard (12-Month)</div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;">📋 Report + 📊 Dashboard</div>
+            </td>
+            <td>
+              <div class="package-price">RM15,000</div>
+              <div class="package-subprice">RM1,500 × 12 = RM18,000</div>
+            </td>
+            <td>
+              <div class="package-description">Most popular choice. 12-month prepaid plan with RM3,000 savings.</div>
             </td>
             <td>
               <a href="https://www.pauanalytics.com/payment.html?package=standard-12month" class="cta-button">Get Started</a>
             </td>
+          </tr>
+
+          <!-- Monthly Premium - Monthly Plan -->
+          <tr>
+            <td>
+              <div class="package-name">Monthly Premium</div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;">📋 Report + 📊 Dashboard + 🤖 AI Assistant</div>
+            </td>
+            <td>
+              <div class="package-price">RM2,250<span style="font-size: 1rem; font-weight: normal;">/month</span></div>
+              <div class="package-subprice">Normal: RM4,500/month</div>
+            </td>
+            <td>
+              <div class="package-description">Proactive alerts and AI guidance to prevent issues early. Complete AI-powered solution.</div>
+            </td>
+            <td>
+              <a href="https://www.pauanalytics.com/payment.html?package=premium-monthly" class="cta-button">Get Started</a>
+            </td>
+          </tr>
+
+          <!-- Monthly Premium - 12-Month Plan -->
+          <tr>
+            <td>
+              <div class="package-badge">SAVE RM2,000</div>
+              <div class="package-name">Monthly Premium (12-Month)</div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;">📋 Report + 📊 Dashboard + 🤖 AI Assistant</div>
+            </td>
+            <td>
+              <div class="package-price">RM25,000</div>
+              <div class="package-subprice">RM2,250 × 12 = RM27,000</div>
+            </td>
+            <td>
+              <div class="package-description">Complete AI-powered solution. 12-month prepaid plan with RM2,000 savings.</div>
+            </td>
             <td>
               <a href="https://www.pauanalytics.com/payment.html?package=premium-12month" class="cta-button">Get Started</a>
+            </td>
+          </tr>
+
+          <!-- Project Insight -->
+          <tr>
+            <td>
+              <div class="package-badge" style="background: #403B36;">ONE-OFF PROJECT</div>
+              <div class="package-name">Project Insight</div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;">📋 Report + 📊 Dashboard</div>
+            </td>
+            <td>
+              <div class="package-price">RM3,500</div>
+              <div class="package-subprice">One-time payment</div>
+            </td>
+            <td>
+              <div class="package-description">Perfect for one-time analysis needs. Delivered in 2-3 weeks.</div>
             </td>
             <td>
               <a href="https://www.pauanalytics.com/payment.html?package=project-insight" class="cta-button">Get Started</a>
