@@ -6,7 +6,7 @@
 
   <title>Checkout | Pau Analytics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <meta name="description" content="Complete your purchase for data analytics services. Monthly Insight (RM750), Monthly Standard (RM1,500), Monthly Premium (RM2,250), or Project In-sight (RM3,500). Bank transfer available." />
+  <meta name="description" content="Complete your purchase for data analytics services. Monthly Insight (RM750), Monthly Standard (RM1,500), Monthly Premium (12-month: RM15,000), or Project Insight (RM3,500). Bank transfer available." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -788,16 +788,15 @@
             <p class="package-description">📋 Report + 📊 Dashboard + 🤖 AI Assistant — Continuous monitoring with early alerts and proactive guidance.</p>
           </div>
           <div class="package-actions">
-            <button class="add-to-cart-btn" onclick="addToCart('premium-monthly')">Monthly Plan</button>
-            <button class="add-to-cart-btn" onclick="addToCart('premium-12month')">12-Month Plan (RM25,000)</button>
+            <button class="add-to-cart-btn" onclick="addToCart('premium-12month')">12-Month Plan (RM15,000)</button>
           </div>
         </div>
 
-        <!-- Project In-sight -->
+        <!-- Project Insight -->
         <div class="package-card" style="border: 2px solid #CBA135;">
           <div class="package-info">
             <span class="package-badge" style="background: #403B36;">ONE-OFF PROJECT</span>
-            <h3>Project In-sight</h3>
+            <h3>Project Insight</h3>
             <div class="package-price">RM3,500</div>
             <div class="package-discount">One-time payment</div>
             <p class="package-description">📋 Analyst report + 📊 Dashboard — Perfect for one-time analysis needs. Delivered in 2-3 weeks.</p>
@@ -960,12 +959,12 @@
       },
       'premium-12month': {
         name: 'Monthly Premium (12-Month Prepaid)',
-        price: 25000,
-        priceDisplay: 'RM25,000',
-        billing: '12-month prepaid (Save RM2,000)'
+        price: 15000,
+        priceDisplay: 'RM15,000',
+        billing: '12-month prepaid'
       },
       'project-insight': {
-        name: 'Project In-sight',
+        name: 'Project Insight',
         price: 3500,
         priceDisplay: 'RM3,500',
         billing: 'One-time payment'
