@@ -226,9 +226,9 @@
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1300px;
       margin: 0 auto;
     }
 
@@ -486,8 +486,53 @@
       transform: scale(1.1);
     }
 
+    /* Navbar Styling */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FCF9F2;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0ddd3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #403B36;
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #CBA135;
+    }
+
     /* Mobile Responsive */
     @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        margin-top: 0.5rem;
+      }
+
+      .navbar nav a {
+        margin-left: 0;
+        margin-right: 1rem;
+      }
+
       header h1 {
         font-size: 2rem;
       }
@@ -528,6 +573,17 @@
 </head>
 <body>
 
+  <div class="navbar">
+    <div class="brand">Pau Analytics</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="data-analytics.html">Data Analytics</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
   <header>
     <div class="container">
       <h1>Drive Your Business with Confidence</h1>
@@ -539,33 +595,38 @@
   <div class="container">
     <!-- Car Analogy Section -->
     <section class="analogy-section">
-      <h2>Think of Your Business Like a Car</h2>
-      <p class="analogy-subtitle">We help you "drive" your business with clear visibility and confidence</p>
+      <h2>What's Included in Every Package</h2>
+      <p class="analogy-subtitle">Think of your business like a car – we help you drive with confidence</p>
 
       <div class="analogy-grid">
         <div class="analogy-item">
           <div class="analogy-icon">📊</div>
-          <h3>Analyst Report</h3>
-          <p class="comparison">= Car Inspection Report</p>
-          <p>A clear assessment of what's working well and what needs attention. We identify performance issues and opportunities you might have missed.</p>
+          <h3>Monthly Insight = Analyst Report</h3>
+          <p class="comparison">Like a Car Inspection Report</p>
+          <p>Gives a clear assessment of what's working well and what needs attention. Identifies performance issues and potential risks under the surface. Helps the "driver" understand the true condition before making decisions.</p>
         </div>
 
         <div class="analogy-item">
           <div class="analogy-icon">📈</div>
-          <h3>Dashboard</h3>
-          <p class="comparison">= Car Dashboard Readings</p>
-          <p>Real-time view of your business metrics. See sales, inventory, and customer trends at a glance—just like checking your speed and fuel level.</p>
+          <h3>Monthly Standard = Analyst Report + Dashboard</h3>
+          <p class="comparison">Like Car Dashboard Readings</p>
+          <p>Shows real-time indicators like speed, fuel, warnings, and engine health. Lets the driver monitor performance at a glance while driving. Highlights important changes without needing to read the full report.</p>
+        </div>
+
+        <div class="analogy-item">
+          <div class="analogy-icon">💬</div>
+          <h3>Narrative Story</h3>
+          <p class="comparison">Like Driving Experience Explained Simply</p>
+          <p>Translates technical findings into everyday, relatable explanations. Helps the driver understand how the car will feel in real situations. Makes insights easier to act on without jargon or complexity.</p>
         </div>
 
         <div class="analogy-item">
           <div class="analogy-icon">🤖</div>
-          <h3>AI Assistant</h3>
-          <p class="comparison">= Smart Driving Assistant</p>
-          <p>Continuous monitoring that warns you before problems happen and guides you to better decisions. Available as an optional upgrade.</p>
+          <h3>Monthly Premium = Analyst Report + Dashboard + AI Assistant</h3>
+          <p class="comparison">Like a Smart Driving Assistant</p>
+          <p>Continuously monitors the car's condition after it leaves the workshop. Detects and fixes minor issues early, preventing costly repairs later. Guides the driver to operate the car more smoothly, safely, and efficiently.</p>
         </div>
       </div>
-
-      <p class="analogy-note">Analyst Report + Dashboard are included in every package. AI Assistant is available in our Premium plan.</p>
     </section>
   </div>
 
@@ -601,50 +662,89 @@
       <p class="pricing-subtitle">Simple pricing. No hidden fees. Cancel anytime.</p>
 
       <div class="pricing-grid">
+        <!-- Monthly Insight -->
+        <div class="pricing-card">
+          <h3>Monthly Insight</h3>
+          <div class="price">RM750<span style="font-size: 1rem; font-weight: normal;">/mo</span></div>
+          <p class="price-note">Normal: RM1,500/month</p>
+          <ul>
+            <li>Monthly analyst report</li>
+            <li>Action recommendations</li>
+            <li>Performance check-ups</li>
+            <li>Clear guidance</li>
+            <li>Delivered in 2-3 weeks</li>
+          </ul>
+          <a href="https://www.pauanalytics.com/payment.html?package=insight-12month" class="cta-btn">Get Started</a>
+        </div>
+
         <!-- Monthly Standard -->
-        <div class="pricing-card featured">
+        <div class="pricing-card">
           <h3>Monthly Standard</h3>
-          <div class="price">RM699<span style="font-size: 1rem; font-weight: normal;">/mo</span></div>
-          <p class="price-note">12-month: RM599/mo (RM7,188 total)</p>
+          <div class="price">RM1,500<span style="font-size: 1rem; font-weight: normal;">/mo</span></div>
+          <p class="price-note">Normal: RM3,000/month</p>
           <ul>
             <li>Monthly analyst report</li>
             <li>Weekly dashboard updates</li>
-            <li>30-min strategy call monthly</li>
-            <li>48-hour email support</li>
-            <li>Data monitoring</li>
+            <li>Real-time monitoring</li>
+            <li>Track progress</li>
+            <li>Delivered in 2-3 weeks</li>
           </ul>
-          <a href="payment.html?package=standard-12month" class="cta-btn">Get Started</a>
+          <a href="https://www.pauanalytics.com/payment.html?package=standard-12month" class="cta-btn">Get Started</a>
         </div>
 
         <!-- Monthly Premium -->
-        <div class="pricing-card">
+        <div class="pricing-card featured">
           <h3>Monthly Premium</h3>
-          <div class="price">RM999<span style="font-size: 1rem; font-weight: normal;">/mo</span></div>
-          <p class="price-note">12-month: RM888/mo (RM10,656 total)</p>
+          <div class="price">RM2,250<span style="font-size: 1rem; font-weight: normal;">/mo</span></div>
+          <p class="price-note">Normal: RM4,500/month</p>
           <ul>
             <li>Everything in Standard</li>
             <li>24/7 AI Assistant</li>
             <li>Proactive alerts</li>
-            <li>Custom scenarios (What-if)</li>
-            <li>60-min strategy call monthly</li>
-            <li>24-hour email support</li>
+            <li>AI guidance</li>
+            <li>Delivered in 2-3 weeks</li>
           </ul>
-          <a href="payment.html?package=premium-12month" class="cta-btn">Upgrade to Premium</a>
+          <a href="https://www.pauanalytics.com/payment.html?package=premium-12month" class="cta-btn">Get Started</a>
         </div>
 
-        <!-- One-Off Project -->
+        <!-- Project In-sight -->
         <div class="pricing-card">
-          <h3>One-Off Project</h3>
+          <h3>Project In-sight</h3>
           <div class="price">RM3,500</div>
           <p class="price-note">One-time payment</p>
           <ul>
             <li>Full analyst report</li>
             <li>Interactive dashboard</li>
-            <li>60-min strategy call</li>
+            <li>One-time analysis</li>
             <li>Delivered in 2-3 weeks</li>
             <li>14-day email support</li>
           </ul>
-          <a href="payment.html?package=oneoff" class="cta-btn">Start Project</a>
+          <a href="https://www.pauanalytics.com/payment.html?package=project-insight" class="cta-btn">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Annual Savings Boxes -->
+      <div style="max-width: 1300px; margin: 3rem auto 0; padding: 2rem; background: #fff9e7; border-radius: 12px; border-left: 4px solid #CBA135;">
+        <strong style="color: #403B36; font-size: 1.1rem; display: block; margin-bottom: 1rem;">🎁 Special Offer: Save More with Annual Plans</strong>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #CBA135; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+            <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Monthly Insight</h4>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #CBA135;">RM8,000</div>
+            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">RM9,000 (RM750 × 12)</div>
+            <div style="color: #2ECC71; font-weight: 600; margin-top: 0.5rem;">Save RM1,000</div>
+          </div>
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #CBA135; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+            <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Monthly Standard</h4>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #CBA135;">RM15,000</div>
+            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">RM18,000 (RM1,500 × 12)</div>
+            <div style="color: #2ECC71; font-weight: 600; margin-top: 0.5rem;">Save RM3,000</div>
+          </div>
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #CBA135; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+            <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Monthly Premium</h4>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #CBA135;">RM25,000</div>
+            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">RM27,000 (RM2,250 × 12)</div>
+            <div style="color: #2ECC71; font-weight: 600; margin-top: 0.5rem;">Save RM2,000</div>
+          </div>
         </div>
       </div>
     </div>
@@ -685,7 +785,7 @@
       <h2>Ready to Make Data-Driven Decisions?</h2>
       <p>Join Malaysian SMEs who are using data to grow smarter, not harder.</p>
       <div class="cta-buttons">
-        <a href="payment.html" class="cta-btn">Choose Your Package</a>
+        <a href="pricing.html" class="cta-btn">Choose Your Package</a>
         <a href="https://wa.me/60149207099?text=I'd%20like%20to%20learn%20more%20about%20Pau%20Analytics" class="cta-btn secondary">Chat with Us on WhatsApp</a>
       </div>
     </div>
