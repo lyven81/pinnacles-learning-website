@@ -28,13 +28,20 @@
             min-height: 100vh;
         }
 
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
         /* Header */
         .header {
             background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            color: #FCF9F2;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
         .header h1 {
@@ -45,56 +52,44 @@
 
         .header p {
             font-size: 1.1rem;
-            color: #E5DED0;
-            margin-bottom: 25px;
+            opacity: 0.9;
         }
 
-        .header-buttons {
+        /* CTA Buttons */
+        .cta-buttons {
             display: flex;
             gap: 15px;
-            justify-content: center;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
 
-        .btn {
+        .cta-button {
             padding: 12px 30px;
-            border: none;
             border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
             display: inline-block;
         }
 
-        .btn-primary {
-            background: #CBA135;
-            color: white;
+        .cta-primary {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
+            color: #403B36;
         }
 
-        .btn-primary:hover {
-            background: #B8952F;
+        .cta-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.4);
+            box-shadow: 0 6px 20px rgba(203, 161, 53, 0.4);
         }
 
-        .btn-secondary {
+        .cta-secondary {
             background: transparent;
-            color: white;
             border: 2px solid #CBA135;
+            color: #FCF9F2;
         }
 
-        .btn-secondary:hover {
-            background: #CBA135;
-            transform: translateY(-2px);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 30px 20px;
+        .cta-secondary:hover {
+            background: rgba(203, 161, 53, 0.1);
         }
 
         /* Page Navigation */
@@ -103,43 +98,43 @@
             gap: 10px;
             margin-bottom: 30px;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .page-btn {
-            padding: 12px 25px;
+        .page-nav button {
+            padding: 12px 24px;
+            border: none;
             background: white;
-            border: 2px solid #E5DED0;
-            border-radius: 8px;
-            font-weight: 600;
             color: #403B36;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .page-btn:hover {
-            border-color: #CBA135;
-            color: #CBA135;
-        }
-
-        .page-btn.active {
-            background: #CBA135;
+        .page-nav button.active {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
             color: white;
-            border-color: #CBA135;
+            box-shadow: 0 4px 15px rgba(203, 161, 53, 0.3);
         }
 
-        /* Dashboard Pages */
+        .page-nav button:hover:not(.active) {
+            background: #F5F1E8;
+        }
+
+        /* Dashboard Page */
         .dashboard-page {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
 
         .dashboard-page.active {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -155,13 +150,13 @@
             background: white;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
         }
 
         .kpi-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(203, 161, 53, 0.15);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
         }
 
         .kpi-label {
@@ -172,21 +167,25 @@
         }
 
         .kpi-value {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #403B36;
             margin-bottom: 5px;
         }
 
-        .kpi-subtitle {
+        .kpi-subtext {
             font-size: 0.85rem;
-            color: #7A7570;
+            color: #2ECC71;
+        }
+
+        .kpi-subtext.negative {
+            color: #E74C3C;
         }
 
         /* Chart Grid */
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
             gap: 25px;
             margin-bottom: 30px;
         }
@@ -195,29 +194,34 @@
             background: white;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .chart-container.full-width {
+            grid-column: 1 / -1;
         }
 
         .chart-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #403B36;
             margin-bottom: 20px;
+            color: #403B36;
+            border-bottom: 3px solid #CBA135;
+            padding-bottom: 10px;
         }
 
-        .chart-wrapper {
-            position: relative;
-            height: 350px;
+        canvas {
+            max-height: 400px;
         }
 
         /* Table */
         .table-container {
             background: white;
-            padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            overflow-x: auto;
-            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         table {
@@ -226,39 +230,32 @@
         }
 
         th {
-            background: #F8F6F2;
+            background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
+            color: #CBA135;
             padding: 15px;
             text-align: left;
             font-weight: 600;
-            color: #403B36;
-            border-bottom: 2px solid #E5DED0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         td {
             padding: 12px 15px;
-            border-bottom: 1px solid #F0EDE8;
+            border-bottom: 1px solid #E5DED0;
         }
 
         tr:hover {
-            background: #FDFCFA;
+            background: #FCF9F2;
         }
 
         /* Footer */
         .footer {
-            background: #403B36;
-            color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-        }
-
-        .footer a {
-            color: #CBA135;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
+            padding: 30px;
+            color: #7A7570;
+            font-size: 0.9rem;
+            margin-top: 40px;
         }
 
         /* Loading */
@@ -269,7 +266,6 @@
             color: #7A7570;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -279,31 +275,29 @@
                 grid-template-columns: 1fr;
             }
 
-            .kpi-value {
-                font-size: 2rem;
+            .kpi-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <h1>From Clicks to Check-Ins</h1>
-        <p>Hotel Search to Booking Conversion Analysis</p>
-        <div class="header-buttons">
-            <a href="https://www.pauanalytics.com/case-study/from-clicks-to-check-ins.html" class="btn btn-primary">View Full Case Study</a>
-            <a href="https://www.pauanalytics.com/data-analytics.html" class="btn btn-secondary">More Case Studies</a>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>From Clicks to Check-Ins</h1>
+            <p>Hotel Search to Booking Conversion Analysis</p>
+            <div class="cta-buttons">
+                <a href="https://www.pauanalytics.com/case-study/from-clicks-to-check-ins.html" class="cta-button cta-primary">View Full Case Study</a>
+                <a href="https://www.pauanalytics.com/data-analytics.html" class="cta-button cta-secondary">More Case Studies</a>
+            </div>
         </div>
-    </div>
-
-    <!-- Container -->
-    <div class="container">
         <!-- Page Navigation -->
         <div class="page-nav">
-            <button class="page-btn active" onclick="showPage(1)">Overview</button>
-            <button class="page-btn" onclick="showPage(2)">Channel Performance</button>
-            <button class="page-btn" onclick="showPage(3)">Trends</button>
-            <button class="page-btn" onclick="showPage(4)">Destination Analysis</button>
+            <button class="active" onclick="showPage(1)">Overview</button>
+            <button onclick="showPage(2)">Channel Performance</button>
+            <button onclick="showPage(3)">Trends</button>
+            <button onclick="showPage(4)">Destination Analysis</button>
         </div>
 
         <!-- Loading -->
@@ -464,11 +458,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2025 Pau Analytics | <a href="https://www.pauanalytics.com">www.pauanalytics.com</a></p>
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+        </div>
     </div>
 
     <script>
@@ -497,7 +491,7 @@
             });
 
             // Remove active class from all buttons
-            document.querySelectorAll('.page-btn').forEach(btn => {
+            document.querySelectorAll('.page-nav button').forEach(btn => {
                 btn.classList.remove('active');
             });
 
@@ -505,7 +499,7 @@
             document.getElementById('page' + pageNum).classList.add('active');
 
             // Add active class to clicked button
-            document.querySelectorAll('.page-btn')[pageNum - 1].classList.add('active');
+            document.querySelectorAll('.page-nav button')[pageNum - 1].classList.add('active');
         }
 
         // Load CSV data
