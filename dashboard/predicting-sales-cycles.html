@@ -429,12 +429,14 @@
         Papa.parse('https://raw.githubusercontent.com/lyven81/pinnacles-learning-website/main/dashboard/data/predicting-sales-cycles.csv', {
             download: true,
             header: true,
+            dynamicTyping: true,
             complete: function(results) {
-                rawData = results.data.filter(row => row.Order_ID && row.Order_ID.trim() !== '');
+                rawData = results.data.filter(row => row.order_id && row.order_id.trim() !== '');
                 initializeDashboard();
             },
             error: function(error) {
                 console.error('Error loading CSV:', error);
+                alert('Error loading data. Please try again later.');
             }
         });
 
@@ -464,10 +466,10 @@
         // Page 1: Revenue Overview
         function updatePage1() {
             // Calculate KPIs
-            const totalRevenue = rawData.reduce((sum, row) => sum + parseFloat(row.Revenue || 0), 0);
+            const totalRevenue = rawData.reduce((sum, row) => sum + parseFloat(row.total_amount || 0), 0);
             const totalOrders = rawData.length;
             const avgOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
-            const returnedOrders = rawData.filter(row => row.Return_Status === 'Returned').length;
+            const returnedOrders = rawData.filter(row => row.returned === 'Returned').length;
             const returnRate = totalOrders > 0 ? (returnedOrders / totalOrders) * 100 : 0;
 
             // Update KPI cards
@@ -479,8 +481,8 @@
             // Revenue by Category (Pie Chart)
             const categoryRevenue = {};
             rawData.forEach(row => {
-                const category = row.Product_Category || 'Unknown';
-                categoryRevenue[category] = (categoryRevenue[category] || 0) + parseFloat(row.Revenue || 0);
+                const category = row.category || 'Unknown';
+                categoryRevenue[category] = (categoryRevenue[category] || 0) + parseFloat(row.total_amount || 0);
             });
 
             createPieChart('revenueCategoryChart', categoryRevenue, 'Revenue by Category');
@@ -488,8 +490,8 @@
             // Revenue by Region (Bar Chart)
             const regionRevenue = {};
             rawData.forEach(row => {
-                const region = row.Region || 'Unknown';
-                regionRevenue[region] = (regionRevenue[region] || 0) + parseFloat(row.Revenue || 0);
+                const region = row.region || 'Unknown';
+                regionRevenue[region] = (regionRevenue[region] || 0) + parseFloat(row.total_amount || 0);
             });
 
             createBarChart('revenueRegionChart', regionRevenue, 'Revenue by Region');
@@ -497,8 +499,8 @@
             // Top 5 Products by Revenue (Horizontal Bar Chart)
             const productRevenue = {};
             rawData.forEach(row => {
-                const product = row.Product_Name || 'Unknown';
-                productRevenue[product] = (productRevenue[product] || 0) + parseFloat(row.Revenue || 0);
+                const product = row.product_id || 'Unknown';
+                productRevenue[product] = (productRevenue[product] || 0) + parseFloat(row.total_amount || 0);
             });
 
             const topProducts = Object.entries(productRevenue)
@@ -513,7 +515,7 @@
             // Category Performance Table
             const categoryData = {};
             rawData.forEach(row => {
-                const category = row.Product_Category || 'Unknown';
+                const category = row.category || 'Unknown';
                 if (!categoryData[category]) {
                     categoryData[category] = {
                         revenue: 0,
@@ -522,10 +524,10 @@
                         returns: 0
                     };
                 }
-                categoryData[category].revenue += parseFloat(row.Revenue || 0);
+                categoryData[category].revenue += parseFloat(row.total_amount || 0);
                 categoryData[category].orders += 1;
-                categoryData[category].totalMargin += parseFloat(row.Profit_Margin || 0);
-                if (row.Return_Status === 'Returned') {
+                categoryData[category].totalMargin += parseFloat(row.profit_margin || 0);
+                if (row.returned === 'Returned') {
                     categoryData[category].returns += 1;
                 }
             });
@@ -560,7 +562,7 @@
             // Payment Method Distribution (Pie Chart)
             const paymentCount = {};
             rawData.forEach(row => {
-                const payment = row.Payment_Method || 'Unknown';
+                const payment = row.payment_method || 'Unknown';
                 paymentCount[payment] = (paymentCount[payment] || 0) + 1;
             });
 
@@ -569,8 +571,8 @@
             // Revenue by Payment Method
             const paymentRevenue = {};
             rawData.forEach(row => {
-                const payment = row.Payment_Method || 'Unknown';
-                paymentRevenue[payment] = (paymentRevenue[payment] || 0) + parseFloat(row.Revenue || 0);
+                const payment = row.payment_method || 'Unknown';
+                paymentRevenue[payment] = (paymentRevenue[payment] || 0) + parseFloat(row.total_amount || 0);
             });
 
             createBarChart('revenuePaymentChart', paymentRevenue, 'Revenue by Payment Method');
@@ -581,10 +583,10 @@
             // Revenue Over Time (Line Chart)
             const monthlyRevenue = {};
             rawData.forEach(row => {
-                if (row.Order_Date) {
-                    const date = new Date(row.Order_Date);
+                if (row.order_date) {
+                    const date = new Date(row.order_date);
                     const monthKey = date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0');
-                    monthlyRevenue[monthKey] = (monthlyRevenue[monthKey] || 0) + parseFloat(row.Revenue || 0);
+                    monthlyRevenue[monthKey] = (monthlyRevenue[monthKey] || 0) + parseFloat(row.total_amount || 0);
                 }
             });
 
@@ -596,8 +598,8 @@
             // Orders Trend
             const monthlyOrders = {};
             rawData.forEach(row => {
-                if (row.Order_Date) {
-                    const date = new Date(row.Order_Date);
+                if (row.order_date) {
+                    const date = new Date(row.order_date);
                     const monthKey = date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0');
                     monthlyOrders[monthKey] = (monthlyOrders[monthKey] || 0) + 1;
                 }
@@ -619,10 +621,10 @@
             // Monthly Orders by Category (Stacked Bar Chart)
             const categoryMonthlyOrders = {};
             rawData.forEach(row => {
-                if (row.Order_Date) {
-                    const date = new Date(row.Order_Date);
+                if (row.order_date) {
+                    const date = new Date(row.order_date);
                     const monthKey = date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0');
-                    const category = row.Product_Category || 'Unknown';
+                    const category = row.category || 'Unknown';
 
                     if (!categoryMonthlyOrders[category]) {
                         categoryMonthlyOrders[category] = {};
@@ -637,13 +639,13 @@
         // Page 4: Customer Insights
         function updatePage4() {
             // Calculate customer KPIs
-            const uniqueCustomers = new Set(rawData.map(row => row.Customer_ID)).size;
-            const totalAge = rawData.reduce((sum, row) => sum + (parseFloat(row.Customer_Age) || 0), 0);
+            const uniqueCustomers = new Set(rawData.map(row => row.customer_id)).size;
+            const totalAge = rawData.reduce((sum, row) => sum + (parseFloat(row.customer_age) || 0), 0);
             const avgAge = rawData.length > 0 ? totalAge / rawData.length : 0;
 
             const genderCount = {};
             rawData.forEach(row => {
-                const gender = row.Gender || 'Unknown';
+                const gender = row.customer_gender || 'Unknown';
                 genderCount[gender] = (genderCount[gender] || 0) + 1;
             });
             const dominantGender = Object.entries(genderCount).sort((a, b) => b[1] - a[1])[0];
@@ -652,7 +654,7 @@
             // Calculate repeat customer rate
             const customerOrderCount = {};
             rawData.forEach(row => {
-                const customerId = row.Customer_ID;
+                const customerId = row.customer_id;
                 customerOrderCount[customerId] = (customerOrderCount[customerId] || 0) + 1;
             });
             const repeatCustomers = Object.values(customerOrderCount).filter(count => count > 1).length;
@@ -676,8 +678,8 @@
             };
 
             rawData.forEach(row => {
-                const age = parseFloat(row.Customer_Age);
-                const revenue = parseFloat(row.Revenue || 0);
+                const age = parseFloat(row.customer_age);
+                const revenue = parseFloat(row.total_amount || 0);
 
                 if (age < 18) ageGroups['Under 18'] += revenue;
                 else if (age <= 25) ageGroups['18-25'] += revenue;
@@ -693,8 +695,8 @@
             // Revenue by Gender (Pie Chart)
             const genderRevenue = {};
             rawData.forEach(row => {
-                const gender = row.Gender || 'Unknown';
-                genderRevenue[gender] = (genderRevenue[gender] || 0) + parseFloat(row.Revenue || 0);
+                const gender = row.customer_gender || 'Unknown';
+                genderRevenue[gender] = (genderRevenue[gender] || 0) + parseFloat(row.total_amount || 0);
             });
 
             createPieChart('revenueGenderChart', genderRevenue, 'Revenue by Gender');
@@ -702,8 +704,8 @@
             // Top 10 Customers by Revenue
             const customerRevenue = {};
             rawData.forEach(row => {
-                const customerId = row.Customer_ID || 'Unknown';
-                customerRevenue[customerId] = (customerRevenue[customerId] || 0) + parseFloat(row.Revenue || 0);
+                const customerId = row.customer_id || 'Unknown';
+                customerRevenue[customerId] = (customerRevenue[customerId] || 0) + parseFloat(row.total_amount || 0);
             });
 
             const topCustomers = Object.entries(customerRevenue)
