@@ -553,7 +553,7 @@
       .problems-grid,
       .pricing-grid,
       .steps-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
       }
 
       .pricing-card .price {
@@ -595,36 +595,25 @@
   <div class="container">
     <!-- Car Analogy Section -->
     <section class="analogy-section">
-      <h2>What's Included in Every Package</h2>
-      <p class="analogy-subtitle">Think of your business like a car – we help you drive with confidence</p>
+      <h2>What you will get</h2>
 
-      <div class="analogy-grid">
+      <div class="analogy-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 1100px; margin: 0 auto;">
         <div class="analogy-item">
           <div class="analogy-icon">📊</div>
-          <h3>Monthly Insight = Analyst Report</h3>
-          <p class="comparison">Like a Car Inspection Report</p>
-          <p>Gives a clear assessment of what's working well and what needs attention. Identifies performance issues and potential risks under the surface. Helps the "driver" understand the true condition before making decisions.</p>
+          <h3>Analyst Report</h3>
+          <p>Like taking your car for a service check, we inspect your business to find what's working and what needs fixing. You get a clear report showing exactly where to focus your attention.</p>
         </div>
 
         <div class="analogy-item">
           <div class="analogy-icon">📈</div>
-          <h3>Monthly Standard = Analyst Report + Dashboard</h3>
-          <p class="comparison">Like Car Dashboard Readings</p>
-          <p>Shows real-time indicators like speed, fuel, warnings, and engine health. Lets the driver monitor performance at a glance while driving. Highlights important changes without needing to read the full report.</p>
-        </div>
-
-        <div class="analogy-item">
-          <div class="analogy-icon">💬</div>
-          <h3>Narrative Story</h3>
-          <p class="comparison">Like Driving Experience Explained Simply</p>
-          <p>Translates technical findings into everyday, relatable explanations. Helps the driver understand how the car will feel in real situations. Makes insights easier to act on without jargon or complexity.</p>
+          <h3>Dashboard</h3>
+          <p>Just like your car's dashboard shows speed and fuel in real-time, we give you a live view of your sales, inventory, and customers. You can see what's happening without reading lengthy reports.</p>
         </div>
 
         <div class="analogy-item">
           <div class="analogy-icon">🤖</div>
-          <h3>Monthly Premium = Analyst Report + Dashboard + AI Assistant</h3>
-          <p class="comparison">Like a Smart Driving Assistant</p>
-          <p>Continuously monitors the car's condition after it leaves the workshop. Detects and fixes minor issues early, preventing costly repairs later. Guides the driver to operate the car more smoothly, safely, and efficiently.</p>
+          <h3>AI Assistant</h3>
+          <p>Think of this as a smart assistant that watches your car 24/7 and warns you before problems happen. It monitors your business constantly and tells you what to fix before small issues become big problems.</p>
         </div>
       </div>
     </section>
@@ -634,7 +623,7 @@
   <section class="problems-section">
     <div class="container">
       <h2>Common Business Challenges We Help Solve</h2>
-      <div class="problems-grid">
+      <div class="problems-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 800px;">
         <div class="problem-card">
           <h3>📦 Inventory Planning</h3>
           <p>Know when to stock up and what products move fastest</p>
