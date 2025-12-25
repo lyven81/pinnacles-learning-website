@@ -13,8 +13,8 @@
 const DIFY_CONFIG = {
     // TODO: Replace with your actual Dify.AI chatbot URL after setup
     enabled: false, // Set to true when Dify.AI is configured
-    apiUrl: 'YOUR_DIFY_API_URL_HERE',
-    apiKey: 'YOUR_DIFY_API_KEY_HERE',
+    apiUrl: 'https://api.dify.ai/v1',
+    apiKey: 'app-djPWQ9KsNb18La3HlYaLvjFs',
     conversationId: null
 };
 
