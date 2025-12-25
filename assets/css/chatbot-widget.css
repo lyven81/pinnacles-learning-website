@@ -70,13 +70,18 @@
 .pau-chatbot-window {
     display: none;
     flex-direction: column;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
     width: 400px;
     height: 600px;
+    max-height: calc(100vh - 120px);
     background: white;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     animation: slideUp 0.3s ease;
+    z-index: 9998;
 }
 
 .pau-chatbot-window.active {
@@ -123,8 +128,12 @@
 
 .pau-chatbot-header-text h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .pau-chatbot-header-text p {
@@ -134,23 +143,27 @@
 }
 
 .pau-chatbot-close {
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
     padding: 0;
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
-    transition: background 0.2s;
+    border-radius: 6px;
+    transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .pau-chatbot-close:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
 }
 
 /* Chat Messages Area */
@@ -349,6 +362,7 @@
     .pau-chatbot-window {
         width: 100vw;
         height: 100vh;
+        max-height: 100vh;
         border-radius: 0;
         bottom: 0;
         right: 0;
@@ -362,6 +376,16 @@
     .pau-chatbot-button {
         width: 56px;
         height: 56px;
+    }
+
+    .pau-chatbot-header-text h3 {
+        font-size: 14px;
+    }
+
+    .pau-chatbot-close {
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
     }
 }
 

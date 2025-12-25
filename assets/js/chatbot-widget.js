@@ -122,13 +122,12 @@ class PauChatbot {
                     <!-- Header -->
                     <div class="pau-chatbot-header">
                         <div class="pau-chatbot-header-info">
-                            <div class="pau-chatbot-avatar">📊</div>
+                            <div class="pau-chatbot-avatar">👋</div>
                             <div class="pau-chatbot-header-text">
-                                <h3>Jason</h3>
-                                <p>Data Insights Consultant</p>
+                                <h3>Jason - Your helpful assistant</h3>
                             </div>
                         </div>
-                        <button class="pau-chatbot-close" id="pau-chatbot-close">×</button>
+                        <button class="pau-chatbot-close" id="pau-chatbot-close" title="Close chat">×</button>
                     </div>
 
                     <!-- Messages Area -->
