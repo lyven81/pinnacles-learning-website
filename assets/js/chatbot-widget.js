@@ -15,7 +15,7 @@ const DIFY_CONFIG = {
     enabled: true,
 
     // Dify API endpoint (Chat App API) - FULL URL including /chat-messages
-    apiUrl: 'https://api.dify.ai/v1/chat-messages',
+    apiUrl: 'https://api.dify.ai/v1',
 
     // API Key from Dify dashboard → API Access
     apiKey: 'app-djPWQ9KsNb18La3HlYaLvjFs',
