@@ -11,10 +11,15 @@
 
 // ===== CONFIGURATION =====
 const DIFY_CONFIG = {
-    // TODO: Replace with your actual Dify.AI chatbot URL after setup
-    enabled: true, // Set to true when Dify.AI is configured
-    apiUrl: 'https://api.dify.ai/v1/',
+    // Dify.AI connection enabled - chatbot will use real AI instead of demo responses
+    enabled: true,
+
+    // Dify API endpoint (Chat App API) - FULL URL including /chat-messages
+    apiUrl: 'https://api.dify.ai/v1/chat-messages',
+
+    // API Key from Dify dashboard → API Access
     apiKey: 'app-djPWQ9KsNb18La3HlYaLvjFs',
+
     conversationId: null
 };
 
