@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a Bicycle Shop Manager Found the Products That Were Actually Making Money | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/finding-profit-drivers" />
+    <meta name="description" content="A bicycle shop retail manager discovered that high-margin accessories were quietly diluting profit — and used data analytics to focus on the products and pricing decisions that actually drove results." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: relative;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding: 15px;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+            <!-- More Case Studies Button -->
+            <section class="home-link-section">
+                <a href="../data-analytics.html" class="home-link-btn">More Case Studies</a>
+            </section>
+        </aside>
+        <main class="right-column">
+            <section class="case-study-content">
+                <h1>How a Bicycle Shop Manager Found the Products That Were Actually Making Money</h1>
+
+                <p>A retail manager overseeing a bicycle shop chain was struggling to understand why overall revenue was growing but profit wasn't keeping pace. The shop carried a wide range of products — premium bikes, accessories, and clothing — but without a clear picture of which items were actually driving profit, budget and shelf space were being spread too thin. The manager brought in Pau Analytics to get clear answers.</p>
+
+                <p>Across more than 60,000 transactions, the analysis revealed a significant imbalance. Accessories carried high profit margins — above 60% in some cases — but because their unit prices were low, they contributed very little to overall profit in absolute terms. Meanwhile, a small group of high-value bike models was responsible for the bulk of profitability. Without knowing this, the manager risked continuing to stock and promote products that looked healthy on paper but were quietly diluting returns.</p>
+
+                <p>Pau Analytics reviewed the full transaction history across all product categories and regions. Each product was assessed not just by its margin percentage, but by how much absolute profit it actually delivered. This separated genuine profit drivers from products that created operational complexity without meaningful contribution.</p>
+
+                <p>Pau Analytics advised the manager to make three focused changes. First, apply a targeted 3% price increase on the Mountain-200 bike range, which was identified as price-resilient and immediately actionable. Second, reduce or phase out low-value, slow-moving products that added stock complexity without meaningful returns. Third, stop carrying the same broad product assortment across all locations — concentrate wider ranges only where demand was strong, and tighten the selection everywhere else.</p>
+
+                <p>The analysis showed that profit improvement did not require adding more products, increasing order volume, or speeding up delivery. It came down to pricing discipline and product focus. By acting on the Mountain-200 price adjustment alone, the manager could see an immediate improvement in profit — without taking on additional inventory risk. As the analysis put it: profit improves through focus, not expansion.</p>
+
+                <p>The manager now uses a live dashboard to track product profitability and regional performance in real time. When margins on a product category begin to slip, it is visible early — allowing the team to act before the issue compounds. An AI assistant supports the manager in reviewing performance trends and deciding where to focus pricing and stock decisions next.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
