@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Profit Assistant | Finding Profit Drivers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>Data-driven insights to unlock business growth and innovation. Specializing in helping businesses make smarter, faster decisions.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/finding-profit-drivers.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/finding-profit-drivers.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/finding-profit-drivers.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>Phone: +6014-9207099</li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>AI Profit Assistant</h1>
+                <p>Your smart assistant for understanding profit drivers and making better product decisions.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Which products are my top profit drivers?</button>
+                    <button class="question-btn" onclick="showResponse(2)">How is each region performing in profit?</button>
+                    <button class="question-btn" onclick="showResponse(3)">Which low-value products should I consider removing?</button>
+                    <button class="question-btn" onclick="showResponse(4)">Which product segments need different management strategies?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Why is the US market outperforming other regions?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Which products are my top profit drivers?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Breaking down query: (1) Analyze profit by product category, (2) Identify top contributors, (3) Cross-reference with margin analysis"
+                    },
+                    {
+                        title: "Data Retrieval - Structured Data (Sales Records)",
+                        content: "Querying 60,000 transactions for profit contribution by product..."
+                    }
+                ],
+                dataResult: {
+                    title: "Query Results:",
+                    items: [
+                        "Bikes: Largest profit contributor (high price × steady demand)",
+                        "Top models: Road, Mountain, Touring bikes",
+                        "Accessories: High margins (60%+) but low profit per sale",
+                        "Clothing: Smallest profit contribution"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Context Search - Analysis Report",
+                        content: "Searching insights for profit driver patterns..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Insights Found:",
+                    items: [
+                        "\"Profit comes from price multiplied by volume, not margin alone\"",
+                        "\"Scale matters more than margin for total profit contribution\""
+                    ]
+                },
+                answer: "High-value bikes like Road, Mountain, and Touring models drive most of your profit because they combine high prices with steady demand. Accessories have great margins but contribute less overall since each sale is small."
+            },
+            2: {
+                question: "How is each region performing in profit?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Task requires: (1) Query profit by region, (2) Rank performance, (3) Identify patterns"
+                    },
+                    {
+                        title: "Data Analysis - Regional Performance",
+                        content: "Analyzing profit across US, Canada, UK, France, Germany, Australia..."
+                    }
+                ],
+                dataResult: {
+                    title: "Regional Profit Rankings:",
+                    items: [
+                        "United States: #1 - Highest revenue and profit",
+                        "Canada: #2 - Strong performance at smaller scale",
+                        "United Kingdom: #3 - Solid mid-tier performer",
+                        "France, Germany, Australia: Lower profit contribution"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Pattern Recognition",
+                        content: "Identifying regional success factors..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Key Findings:",
+                    items: [
+                        "\"US supports a wide range of products including long-tail items\"",
+                        "\"Other regions show demand concentrated in fewer products\""
+                    ]
+                },
+                answer: "The US leads by a wide margin in both revenue and profit, while Canada and UK perform well at smaller scale. France, Germany, and Australia contribute less and need tighter product focus."
+            },
+            3: {
+                question: "Which low-value products should I consider removing?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Investigation requires: (1) Identify low-profit products, (2) Assess complexity cost, (3) Flag removal candidates"
+                    },
+                    {
+                        title: "Product Segmentation Analysis",
+                        content: "Clustering products by profit contribution and sales volume..."
+                    }
+                ],
+                dataResult: {
+                    title: "Low-Value Product Characteristics:",
+                    items: [
+                        "Sell occasionally but contribute little profit",
+                        "Add inventory complexity and tie up cash",
+                        "Often in the long-tail of accessories and clothing",
+                        "No strategic reason to keep most of them"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Strategic Assessment",
+                        content: "Evaluating removal impact..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Recommendation Criteria:",
+                    items: [
+                        "\"Low-value, long-tail products add complexity without improving profit\"",
+                        "\"Should be reviewed unless there is a clear strategic reason to keep them\""
+                    ]
+                },
+                answer: "Products that sell rarely and generate minimal profit should be cut, especially slow-moving accessories and clothing that tie up cash. Review your long-tail items and keep only those with a clear strategic purpose."
+            },
+            4: {
+                question: "Which product segments need different management strategies?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Segment analysis requires: (1) Identify distinct product groups, (2) Define role of each, (3) Match strategy to contribution"
+                    },
+                    {
+                        title: "Cluster Analysis",
+                        content: "Grouping products by value pattern and business role..."
+                    }
+                ],
+                dataResult: {
+                    title: "Product Segments Identified:",
+                    items: [
+                        "High-value products: Small group, generates most profit",
+                        "Volume drivers: Maintain sales momentum, thinner margins",
+                        "Stable performers: Consistent but not profit leaders",
+                        "Long-tail products: Occasional sales, minimal contribution"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Strategy Mapping",
+                        content: "Matching management approach to each segment..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Recommended Strategies:",
+                    items: [
+                        "High-value: Protect availability and pricing carefully",
+                        "Volume drivers: Control tightly to prevent margin erosion",
+                        "Long-tail: Review and reduce unless strategically needed"
+                    ]
+                },
+                answer: "High-value bikes need priority stocking and careful pricing since mistakes hurt most. Volume products need tight margin control, while long-tail items should be reduced to cut complexity."
+            },
+            5: {
+                question: "Why is the US market outperforming other regions?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Root cause analysis: (1) Compare demand patterns, (2) Analyze product mix fit, (3) Identify success factors"
+                    },
+                    {
+                        title: "Regional Demand Analysis",
+                        content: "Comparing US vs other regions on key metrics..."
+                    }
+                ],
+                dataResult: {
+                    title: "US Market Characteristics:",
+                    items: [
+                        "Supports wide product range including long-tail items",
+                        "Strong demand across all bike categories",
+                        "Effective monetization of full assortment",
+                        "Higher volume enables better profit per SKU"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Comparative Analysis",
+                        content: "Identifying what other regions lack..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Key Differences:",
+                    items: [
+                        "\"Other regions show demand concentrated in fewer products\"",
+                        "\"Outside the US, carrying too many SKUs increases complexity without improving profit\"",
+                        "\"Regional differences reflect product fit more than staff effort\""
+                    ]
+                },
+                answer: "The US wins because customer demand supports a wide product range, making even niche items profitable. Other regions have narrower demand, so carrying too many products adds cost without adding profit."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">AI Profit Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
