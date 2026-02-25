@@ -6,153 +6,23 @@
   <title>Case Studies | Pau Analytics</title>
   <link rel="canonical" href="https://www.pauanalytics.com/data-analytics" />
   <meta name="description" content="See how Malaysian SMEs used data analytics to cut waste, keep customers, and grow revenue. Real case studies with dashboards and AI assistants." />
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    .hero-section {
-      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
+    /* ── Base ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .hero-section h1 {
-      color: #403B36;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-section p {
-      font-size: 1.2rem;
-      color: #555;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-    }
-
-    .solutions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem auto;
-      max-width: 1200px;
-      padding: 0 2rem;
-    }
-
-    .solution-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-left: 4px solid #CBA135;
-    }
-
-    .solution-card h3 {
-      color: #403B36;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .problem {
-      background-color: #fff3e0;
-      padding: 1rem;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      border-left: 3px solid #ff9800;
-    }
-
-    .problem h4 {
-      color: #e65100;
-      margin: 0 0 0.5rem 0;
-      font-size: 1rem;
-    }
-
-    .solution {
-      margin-bottom: 1rem;
-    }
-
-    .solution h4 {
-      color: #2e7d32;
-      margin: 0 0 0.5rem 0;
-      font-size: 1rem;
-    }
-
-    .result {
-      background-color: #e8f5e8;
-      padding: 1rem;
-      border-radius: 6px;
-      border-left: 3px solid #4caf50;
-    }
-
-    .result h4 {
-      color: #1b5e20;
-      margin: 0 0 0.5rem 0;
-      font-size: 1rem;
-    }
-
-    .case-study-link {
-      margin-top: 1rem;
-      display: inline-block;
-      color: #CBA135;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    .case-study-link:hover {
-      text-decoration: underline;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    body {
+      font-family: 'Poppins', sans-serif;
       background-color: #FCF9F2;
-      padding: 1rem 2rem;
-      border-bottom: none;
-      box-shadow: none;
-    }
-    
-    .navbar .brand {
-      font-size: 1.2rem;
-      font-weight: 600;
       color: #403B36;
     }
 
-    .navbar nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #403B36;
-      font-weight: 500;
-    }
-
-    .navbar nav a:hover {
-      color: #CBA135;
-    }
-
-    footer {
-      background-color: #403B36;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
-
-    footer a {
-      color: #CBA135;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Sticky Header Container */
+    /* ── Navbar ── */
     .sticky-header {
       position: sticky;
       top: 0;
@@ -161,20 +31,35 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
-    /* Search Section Styles */
-    .search-section {
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background-color: #FCF9F2;
       padding: 1rem 2rem;
+    }
+
+    .navbar .brand { font-size: 1.2rem; font-weight: 600; color: #403B36; }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #403B36;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover { color: #CBA135; }
+
+    /* ── Search ── */
+    .search-section {
+      background-color: #FCF9F2;
+      padding: 0.75rem 2rem;
       border-top: 1px solid #e0ddd3;
       display: flex;
       justify-content: flex-end;
     }
 
-    .search-container {
-      position: relative;
-      max-width: 300px;
-      width: 100%;
-    }
+    .search-container { position: relative; max-width: 300px; width: 100%; }
 
     .search-input {
       padding: 8px 40px 8px 12px;
@@ -182,16 +67,12 @@
       border-radius: 25px;
       font-size: 0.9rem;
       width: 100%;
-      transition: all 0.3s ease;
       background: white;
       font-family: 'Poppins', sans-serif;
+      transition: border-color 0.3s;
     }
 
-    .search-input:focus {
-      outline: none;
-      border-color: #CBA135;
-      box-shadow: 0 0 5px rgba(203, 161, 53, 0.3);
-    }
+    .search-input:focus { outline: none; border-color: #CBA135; }
 
     .search-icon {
       position: absolute;
@@ -210,7 +91,7 @@
       background: white;
       border: 1px solid #e0ddd3;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       max-height: 400px;
       overflow-y: auto;
       z-index: 1100;
@@ -222,43 +103,16 @@
       padding: 15px;
       border-bottom: 1px solid #f0f0f0;
       cursor: pointer;
-      transition: background-color 0.2s ease;
     }
 
-    .search-result-item:hover {
-      background-color: #FCF9F2;
-    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background-color: #FCF9F2; }
 
-    .search-result-item:last-child {
-      border-bottom: none;
-    }
+    .search-result-title { font-weight: 600; color: #CBA135; margin-bottom: 4px; font-size: 0.95rem; }
+    .search-result-description { color: #666; font-size: 0.85rem; margin-bottom: 6px; }
+    .search-result-category { font-size: 0.75rem; color: #888; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
 
-    .search-result-title {
-      font-weight: 600;
-      color: #CBA135;
-      margin-bottom: 5px;
-      font-size: 0.95rem;
-    }
-
-    .search-result-description {
-      color: #666;
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-      line-height: 1.4;
-    }
-
-    .search-result-category {
-      font-size: 0.75rem;
-      color: #888;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .search-result-buttons {
-      display: flex;
-      gap: 8px;
-    }
+    .search-result-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
 
     .search-result-btn {
       padding: 4px 12px;
@@ -268,98 +122,241 @@
       text-decoration: none;
       border-radius: 15px;
       font-size: 0.75rem;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
 
-    .search-result-btn:hover {
-      background: #CBA135;
-      color: white;
-      border-color: #CBA135;
-    }
+    .search-result-btn:hover { background: #CBA135; color: white; border-color: #CBA135; }
 
-    .no-results {
-      padding: 20px;
-      text-align: center;
-      color: #666;
-      font-style: italic;
-    }
+    .no-results { padding: 20px; text-align: center; color: #666; font-style: italic; }
 
     .search-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.1);
+      inset: 0;
+      background: rgba(0,0,0,0.1);
       z-index: 1098;
       display: none;
     }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    /* ── Hero ── */
+    .hero-section {
+      background: linear-gradient(to bottom right, #FCF9F2, #fff9e7);
+      padding: 3.5rem 2rem 2.5rem;
+      text-align: center;
+    }
 
-      .navbar nav {
-        margin-top: 0.5rem;
-      }
+    .hero-section h1 { color: #403B36; font-size: 2.4rem; margin-bottom: 0.75rem; }
+    .hero-section p { font-size: 1.1rem; color: #555; max-width: 560px; margin: 0 auto 1.5rem; }
 
-      .hero-section h1 {
-        font-size: 2rem;
-      }
+    .cta-button {
+      display: inline-block;
+      background-color: #CBA135;
+      color: white;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
 
-      .solutions-grid {
-        grid-template-columns: 1fr;
-        padding: 0 1rem;
-      }
+    .cta-button:hover { background-color: #b08e2e; }
 
-      .case-studies-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-      }
+    /* ── Filter Pills ── */
+    .filter-section {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding: 0 2rem;
+    }
 
-      .sticky-header {
-        position: sticky;
-        top: 0;
-      }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
 
-      .search-section {
-        padding: 1rem;
-      }
+    .filter-pill {
+      padding: 0.45rem 1.1rem;
+      border: 2px solid #e0ddd3;
+      border-radius: 25px;
+      background: white;
+      color: #403B36;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
 
-      .search-container {
-        max-width: 100%;
-      }
+    .filter-pill:hover { border-color: #CBA135; color: #CBA135; }
 
-      .search-result-buttons {
-        flex-direction: column;
-        gap: 5px;
-      }
+    .filter-pill.active {
+      background-color: #CBA135;
+      border-color: #CBA135;
+      color: white;
+    }
 
-      .search-result-btn {
-        text-align: center;
-        padding: 8px 12px;
-      }
+    .results-count {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Cards Grid ── */
+    .cards-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ── Individual Card ── */
+    .case-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      border-left: 4px solid #CBA135;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease;
+    }
+
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .case-card.hidden {
+      display: none;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #CBA135;
+      background-color: #fff9e7;
+      border: 1px solid #e8d898;
+      border-radius: 20px;
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 0.9rem;
+      width: fit-content;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #403B36;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .card-description {
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+      flex-grow: 1;
+    }
+
+    .card-analyst {
+      font-size: 0.75rem;
+      color: #CBA135;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid #f0ede6;
+    }
+
+    .card-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #403B36;
+      transition: color 0.2s;
+    }
+
+    .card-link:hover { color: #CBA135; }
+
+    .card-link.primary { color: #CBA135; }
+    .card-link.primary:hover { color: #b08e2e; }
+
+    .card-link-sep {
+      color: #ddd;
+      font-size: 0.82rem;
+    }
+
+    /* ── Closing Banner ── */
+    .closing-banner {
+      background: linear-gradient(135deg, #403B36 0%, #5a5349 100%);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 1rem;
+    }
+
+    .closing-banner h2 { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .closing-banner p { font-size: 1.05rem; margin-bottom: 1.75rem; opacity: 0.92; }
+
+    /* ── Footer ── */
+    footer {
+      background-color: #403B36;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    footer a { color: #CBA135; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .navbar nav { margin-top: 0.5rem; }
+      .hero-section h1 { font-size: 1.8rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .filter-section, .cards-section { padding: 0 1rem; }
+      .filter-section { margin-top: 1.5rem; }
+      .search-section { padding: 0.75rem 1rem; }
+      .search-container { max-width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Header Container -->
+  <!-- Sticky Header -->
   <div class="sticky-header">
     <div class="navbar">
       <div class="brand">Pau Analytics</div>
       <nav>
         <a href="index.html">Home</a>
         <a href="data-analytics.html">Case Studies</a>
-<a href="pricing.html">Pricing</a>
+        <a href="pricing.html">Pricing</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
-
-    <!-- Search Section -->
     <div class="search-section">
       <div class="search-container">
         <input type="text" class="search-input" placeholder="Search case studies..." id="searchInput">
@@ -370,320 +367,377 @@
   </div>
   <div class="search-overlay" id="searchOverlay"></div>
 
+  <!-- Hero -->
   <div class="hero-section">
     <h1>Case Studies</h1>
     <p>See how Malaysian SMEs used analytics to cut waste, keep customers, and grow revenue.</p>
     <a href="https://wa.me/60149207099?text=I'd%20like%20to%20book%20a%20free%20consultation" class="cta-button">Book a Free Consultation</a>
   </div>
 
-  <div style="margin: 2rem auto; max-width: 1200px; padding: 0 2rem;">
-    <div class="case-studies-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; align-items: start;">
+  <!-- Filter Pills -->
+  <div class="filter-section">
+    <div class="filter-pills">
+      <button class="filter-pill active" data-filter="all" onclick="filterCards('all')">All</button>
+      <button class="filter-pill" data-filter="Customer Retention" onclick="filterCards('Customer Retention')">Customer Retention</button>
+      <button class="filter-pill" data-filter="Customer Experience" onclick="filterCards('Customer Experience')">Customer Experience</button>
+      <button class="filter-pill" data-filter="Inventory & Forecasting" onclick="filterCards('Inventory & Forecasting')">Inventory & Forecasting</button>
+      <button class="filter-pill" data-filter="Spending & Behaviour" onclick="filterCards('Spending & Behaviour')">Spending & Behaviour</button>
+      <button class="filter-pill" data-filter="Marketing & Campaigns" onclick="filterCards('Marketing & Campaigns')">Marketing & Campaigns</button>
+      <button class="filter-pill" data-filter="Revenue & Products" onclick="filterCards('Revenue & Products')">Revenue & Products</button>
+    </div>
+    <p class="results-count" id="resultsCount">26 case studies</p>
+  </div>
 
-      <!-- Row 1 -->
-      <div>
-        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Customer Retention</h3>
+  <!-- Cards Grid -->
+  <div class="cards-section">
+    <div class="cards-grid" id="cardsGrid">
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Who Is Most at Risk of Leaving the Bank</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A bank identified early warning signs in customer behaviour — and acted before losing high-value accounts.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/who-is-most-at-risk-of-leaving-the-bank.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/who-is-most-at-risk-of-leaving-the-bank.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Predicting Gym Member Drop-Off</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A gym operator spotted which members were losing motivation — and stepped in before they cancelled.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/predicting-gym-member-dropout.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/predicting-gym-member-dropout.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="agentic_workflow/predicting-gym-member-dropout.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Who's Likely to Quit</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business predicted which employees were about to resign — and fixed retention before it was too late.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/who-is-likely-to-quit.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/who-is-likely-to-quit.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
+      <!-- Customer Retention -->
+      <div class="case-card" data-category="Customer Retention">
+        <span class="card-badge">Customer Retention</span>
+        <h3 class="card-title">Who Is Most at Risk of Leaving the Bank</h3>
+        <p class="card-description">A bank identified early warning signs in customer behaviour — and acted before losing high-value accounts.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/who-is-most-at-risk-of-leaving-the-bank.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/who-is-most-at-risk-of-leaving-the-bank.html" class="card-link">Dashboard</a>
         </div>
       </div>
 
-      <div>
-        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Customer Experience</h3>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Beyond the Price Tag</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A phone retailer discovered what truly drove customer satisfaction — it wasn't just the price.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/beyond-the-price-tag.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/beyond-the-price-tag-dashboard.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Did You Sleep Well Last Night?</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A hotel identified which service factors contributed to better guest sleep — and improved their ratings.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/did-you-sleep-well-last-night.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/did-you-sleep-well-last-night.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Connected or Disconnected?</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A study explored whether social media engagement strengthened or weakened customer relationships.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/connected-or-disconnected.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/connected-or-disconnected.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Evaluating Store Customer Experience</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A regional manager identified which stores were falling behind — and used data to fix the gaps before they cost customers.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/evaluating-customer-experience.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/evaluating-customer-experience.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="agentic_workflow/evaluating-customer-experience.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
+      <div class="case-card" data-category="Customer Retention">
+        <span class="card-badge">Customer Retention</span>
+        <h3 class="card-title">Predicting Gym Member Drop-Off</h3>
+        <p class="card-description">A gym operator spotted which members were losing motivation — and stepped in before they cancelled.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/predicting-gym-member-dropout.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/predicting-gym-member-dropout.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="agentic_workflow/predicting-gym-member-dropout.html" class="card-link">AI Assistant</a>
         </div>
       </div>
 
-      <!-- Row 2 -->
-      <div>
-        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Inventory & Forecasting</h3>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Fruit Sales Forecast - October 2024</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A fresh produce seller used seasonal data to forecast demand — reducing waste and avoiding stockouts.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/fruit-sales-forecast-october-2024.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/fruit-sales-forecast-october-2024.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Predicting Sales Cycles</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business turned seasonal patterns into smarter inventory and staffing decisions.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/predicting-sales-cycles.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/predicting-sales-cycles.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="agentic_workflow/predicting-sales-cycles.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Grow Smarter, Not Bigger</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business owner tested whether hiring more people actually increased revenue — the answer changed their growth plan.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/grow-smarter-not-bigger.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/grow-smarter-not-bigger.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">When Good Cars Lose Value</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A dealer analysed which car features held value best — and used the data to guide purchasing and pricing.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/when-good-cars-lose-value.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/when-good-cars-lose-value.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
+      <div class="case-card" data-category="Customer Retention">
+        <span class="card-badge">Customer Retention</span>
+        <h3 class="card-title">Who's Likely to Quit</h3>
+        <p class="card-description">A business predicted which employees were about to resign — and fixed retention before it was too late.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/who-is-likely-to-quit.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/who-is-likely-to-quit.html" class="card-link">Dashboard</a>
         </div>
       </div>
 
-      <div>
-        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Spending & Behaviour</h3>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Cash or Credit Card</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A retailer compared spending between cash and credit card customers — and adjusted their payment strategy.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/cash-or-credit-card.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/cash-or-credit-card.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Do Dollars Drive Decisions?</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business explored how income levels shaped customer buying decisions — and tailored offers to match.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/do-dollars-drive-decisions.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/do-dollars-drive-decisions.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Not All Shoppers Are Equal</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A store uncovered what spending patterns revealed about different customer types — and targeted each group differently.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/not-all-shoppers-are-equal.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/not-all-shoppers-are-equal.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Nasi Lemak vs Kopi-O Preference Analysis</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A study revealed how cultural preferences shaped customer choices — useful for product positioning in Malaysia.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/nasi-lemak-vs-kopi-o-preference.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/nasi-lemak-vs-kopi-o-preference.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
+      <!-- Customer Experience -->
+      <div class="case-card" data-category="Customer Experience">
+        <span class="card-badge">Customer Experience</span>
+        <h3 class="card-title">Beyond the Price Tag</h3>
+        <p class="card-description">A phone retailer discovered what truly drove customer satisfaction — it wasn't just the price.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/beyond-the-price-tag.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/beyond-the-price-tag-dashboard.html" class="card-link">Dashboard</a>
         </div>
       </div>
 
-      <!-- Row 3 -->
-      <div>
-        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Marketing & Campaigns</h3>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Finding Which Campaigns Work</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A marketing manager cut campaign waste by shifting budget to the two channels that actually converted.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/finding-which-campaign-work.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/finding-which-campaign-work.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="agentic_workflow/finding_which_campaign_work.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Fixing the Sales Leaks</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">An e-commerce business found where shoppers were dropping off — and fixed the leaks in their funnel.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/fixing-the-sales-leaks.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/fixing-the-sales-leaks.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="agentic_workflow/fixing-the-sales-leaks.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Where Are Your High-Value Customers?</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business discovered which marketing channels attracted their most loyal, high-spending customers.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="https://www.pauanalytics.com/case-study/high-value-customers.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="https://www.pauanalytics.com/dashboard/high-value-customers-dashboard.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="https://www.pauanalytics.com/agentic_workflow/high-value-customers.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">From Clicks to Check-Ins</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A hotel turned search traffic into confirmed bookings by understanding what visitors actually wanted.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/from-clicks-to-check-ins.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/from-clicks-to-check-ins.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="https://www.pauanalytics.com/agentic_workflow/from-clicks-to-check-ins.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Predicting Holiday Peaks</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business timed their campaigns around holiday peaks — and stopped wasting budget in slow periods.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/predicting-holiday-peaks.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/predicting-holiday-peaks.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="agentic_workflow/predicting-holiday-peaks.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
+      <div class="case-card" data-category="Customer Experience">
+        <span class="card-badge">Customer Experience</span>
+        <h3 class="card-title">Did You Sleep Well Last Night?</h3>
+        <p class="card-description">A hotel identified which service factors contributed to better guest sleep — and improved their ratings.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/did-you-sleep-well-last-night.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/did-you-sleep-well-last-night.html" class="card-link">Dashboard</a>
         </div>
       </div>
 
-      <div>
-        <h3 style="color: #403B36; border-bottom: 2px solid #CBA135; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Revenue & Products</h3>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Where Revenue Comes From</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business pinpointed which products, campaigns, and customers actually drove revenue growth.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="https://www.pauanalytics.com/case-study/where-revenue-comes-from.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
+      <div class="case-card" data-category="Customer Experience">
+        <span class="card-badge">Customer Experience</span>
+        <h3 class="card-title">Connected or Disconnected?</h3>
+        <p class="card-description">A study explored whether social media engagement strengthened or weakened customer relationships.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/connected-or-disconnected.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/connected-or-disconnected.html" class="card-link">Dashboard</a>
         </div>
+      </div>
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">What Really Drives Store Revenue?</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A store owner identified which product categories contributed most to revenue — and adjusted shelf space accordingly.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/what-really-drives-store-revenue.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/what-really-drives-store-revenue.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
+      <div class="case-card" data-category="Customer Experience">
+        <span class="card-badge">Customer Experience</span>
+        <h3 class="card-title">Evaluating Store Customer Experience</h3>
+        <p class="card-description">A regional manager identified which stores were falling behind — and used data to fix the gaps before they cost customers.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/evaluating-customer-experience.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/evaluating-customer-experience.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="agentic_workflow/evaluating-customer-experience.html" class="card-link">AI Assistant</a>
         </div>
+      </div>
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">From Cash Cows to Hidden Gems</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business identified which products drove profits today and which had untapped potential for tomorrow.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/from-cash-cows-to-hidden-gems.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/from-cash-cows-to-hidden-gems.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
+      <!-- Inventory & Forecasting -->
+      <div class="case-card" data-category="Inventory & Forecasting">
+        <span class="card-badge">Inventory & Forecasting</span>
+        <h3 class="card-title">Fruit Sales Forecast — October 2024</h3>
+        <p class="card-description">A fresh produce seller used seasonal data to forecast demand — reducing waste and avoiding stockouts.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/fruit-sales-forecast-october-2024.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/fruit-sales-forecast-october-2024.html" class="card-link">Dashboard</a>
         </div>
+      </div>
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Cash Cows, Discounts, and Delays</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A business found which product categories drove profit and which were quietly draining it.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/cash-cows-discounts-delays.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/cash-cows-discounts-delays.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
+      <div class="case-card" data-category="Inventory & Forecasting">
+        <span class="card-badge">Inventory & Forecasting</span>
+        <h3 class="card-title">Predicting Sales Cycles</h3>
+        <p class="card-description">A business turned seasonal patterns into smarter inventory and staffing decisions.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/predicting-sales-cycles.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/predicting-sales-cycles.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="agentic_workflow/predicting-sales-cycles.html" class="card-link">AI Assistant</a>
         </div>
+      </div>
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">What Causes Product Returns</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A retailer identified the pricing factors behind product returns — and adjusted strategy to reduce them.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/what-causes-product-returns.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/what-causes-product-returns.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-          </div>
+      <div class="case-card" data-category="Inventory & Forecasting">
+        <span class="card-badge">Inventory & Forecasting</span>
+        <h3 class="card-title">Grow Smarter, Not Bigger</h3>
+        <p class="card-description">A business owner tested whether hiring more people actually increased revenue — the answer changed their growth plan.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/grow-smarter-not-bigger.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/grow-smarter-not-bigger.html" class="card-link">Dashboard</a>
         </div>
+      </div>
 
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <h4 style="color: #403B36; margin: 0 0 0.5rem 0;">Finding Profit Drivers</h4>
-          <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">A bicycle shop manager discovered which products were actually making money — and used data to focus on the right pricing and stock decisions.</p>
-          <p style="margin: 0.3rem 0 0; font-size: 0.75rem; color: #CBA135; font-weight: 500;">Analysed by Pau Analytics</p>
-          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-            <a href="case-study/finding-profit-drivers.html" style="color: #CBA135; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Read More →</a>
-            <a href="dashboard/finding-profit-drivers.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">Dashboard →</a>
-            <a href="agentic_workflow/finding-profit-drivers.html" style="color: #403B36; font-size: 0.9rem; text-decoration: none; font-weight: 500;">AI Assistant →</a>
-          </div>
+      <div class="case-card" data-category="Inventory & Forecasting">
+        <span class="card-badge">Inventory & Forecasting</span>
+        <h3 class="card-title">When Good Cars Lose Value</h3>
+        <p class="card-description">A dealer analysed which car features held value best — and used the data to guide purchasing and pricing.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/when-good-cars-lose-value.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/when-good-cars-lose-value.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Spending & Behaviour -->
+      <div class="case-card" data-category="Spending & Behaviour">
+        <span class="card-badge">Spending & Behaviour</span>
+        <h3 class="card-title">Cash or Credit Card</h3>
+        <p class="card-description">A retailer compared spending between cash and credit card customers — and adjusted their payment strategy.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/cash-or-credit-card.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/cash-or-credit-card.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Spending & Behaviour">
+        <span class="card-badge">Spending & Behaviour</span>
+        <h3 class="card-title">Do Dollars Drive Decisions?</h3>
+        <p class="card-description">A business explored how income levels shaped customer buying decisions — and tailored offers to match.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/do-dollars-drive-decisions.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/do-dollars-drive-decisions.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Spending & Behaviour">
+        <span class="card-badge">Spending & Behaviour</span>
+        <h3 class="card-title">Not All Shoppers Are Equal</h3>
+        <p class="card-description">A store uncovered what spending patterns revealed about different customer types — and targeted each group differently.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/not-all-shoppers-are-equal.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/not-all-shoppers-are-equal.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Spending & Behaviour">
+        <span class="card-badge">Spending & Behaviour</span>
+        <h3 class="card-title">Nasi Lemak vs Kopi-O Preference Analysis</h3>
+        <p class="card-description">A study revealed how cultural preferences shaped customer choices — useful for product positioning in Malaysia.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/nasi-lemak-vs-kopi-o-preference.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/nasi-lemak-vs-kopi-o-preference.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Marketing & Campaigns -->
+      <div class="case-card" data-category="Marketing & Campaigns">
+        <span class="card-badge">Marketing & Campaigns</span>
+        <h3 class="card-title">Finding Which Campaigns Work</h3>
+        <p class="card-description">A marketing manager cut campaign waste by shifting budget to the two channels that actually converted.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/finding-which-campaign-work.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/finding-which-campaign-work.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="agentic_workflow/finding_which_campaign_work.html" class="card-link">AI Assistant</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Marketing & Campaigns">
+        <span class="card-badge">Marketing & Campaigns</span>
+        <h3 class="card-title">Fixing the Sales Leaks</h3>
+        <p class="card-description">An e-commerce business found where shoppers were dropping off — and fixed the leaks in their funnel.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/fixing-the-sales-leaks.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/fixing-the-sales-leaks.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="agentic_workflow/fixing-the-sales-leaks.html" class="card-link">AI Assistant</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Marketing & Campaigns">
+        <span class="card-badge">Marketing & Campaigns</span>
+        <h3 class="card-title">Where Are Your High-Value Customers?</h3>
+        <p class="card-description">A business discovered which marketing channels attracted their most loyal, high-spending customers.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="https://www.pauanalytics.com/case-study/high-value-customers.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="https://www.pauanalytics.com/dashboard/high-value-customers-dashboard.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="https://www.pauanalytics.com/agentic_workflow/high-value-customers.html" class="card-link">AI Assistant</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Marketing & Campaigns">
+        <span class="card-badge">Marketing & Campaigns</span>
+        <h3 class="card-title">From Clicks to Check-Ins</h3>
+        <p class="card-description">A hotel turned search traffic into confirmed bookings by understanding what visitors actually wanted.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/from-clicks-to-check-ins.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/from-clicks-to-check-ins.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="https://www.pauanalytics.com/agentic_workflow/from-clicks-to-check-ins.html" class="card-link">AI Assistant</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Marketing & Campaigns">
+        <span class="card-badge">Marketing & Campaigns</span>
+        <h3 class="card-title">Predicting Holiday Peaks</h3>
+        <p class="card-description">A business timed their campaigns around holiday peaks — and stopped wasting budget in slow periods.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/predicting-holiday-peaks.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/predicting-holiday-peaks.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="agentic_workflow/predicting-holiday-peaks.html" class="card-link">AI Assistant</a>
+        </div>
+      </div>
+
+      <!-- Revenue & Products -->
+      <div class="case-card" data-category="Revenue & Products">
+        <span class="card-badge">Revenue & Products</span>
+        <h3 class="card-title">Where Revenue Comes From</h3>
+        <p class="card-description">A business pinpointed which products, campaigns, and customers actually drove revenue growth.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="https://www.pauanalytics.com/case-study/where-revenue-comes-from.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" class="card-link">AI Assistant</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Revenue & Products">
+        <span class="card-badge">Revenue & Products</span>
+        <h3 class="card-title">What Really Drives Store Revenue?</h3>
+        <p class="card-description">A store owner identified which product categories contributed most to revenue — and adjusted shelf space accordingly.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/what-really-drives-store-revenue.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/what-really-drives-store-revenue.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Revenue & Products">
+        <span class="card-badge">Revenue & Products</span>
+        <h3 class="card-title">From Cash Cows to Hidden Gems</h3>
+        <p class="card-description">A business identified which products drove profits today and which had untapped potential for tomorrow.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/from-cash-cows-to-hidden-gems.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/from-cash-cows-to-hidden-gems.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Revenue & Products">
+        <span class="card-badge">Revenue & Products</span>
+        <h3 class="card-title">Cash Cows, Discounts, and Delays</h3>
+        <p class="card-description">A business found which product categories drove profit and which were quietly draining it.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/cash-cows-discounts-delays.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/cash-cows-discounts-delays.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Revenue & Products">
+        <span class="card-badge">Revenue & Products</span>
+        <h3 class="card-title">What Causes Product Returns</h3>
+        <p class="card-description">A retailer identified the pricing factors behind product returns — and adjusted strategy to reduce them.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/what-causes-product-returns.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/what-causes-product-returns.html" class="card-link">Dashboard</a>
+        </div>
+      </div>
+
+      <div class="case-card" data-category="Revenue & Products">
+        <span class="card-badge">Revenue & Products</span>
+        <h3 class="card-title">Finding Profit Drivers</h3>
+        <p class="card-description">A bicycle shop manager discovered which products were actually making money — and used data to focus on the right pricing and stock decisions.</p>
+        <p class="card-analyst">Analysed by Pau Analytics</p>
+        <div class="card-links">
+          <a href="case-study/finding-profit-drivers.html" class="card-link primary">Read More →</a>
+          <span class="card-link-sep">|</span>
+          <a href="dashboard/finding-profit-drivers.html" class="card-link">Dashboard</a>
+          <span class="card-link-sep">|</span>
+          <a href="agentic_workflow/finding-profit-drivers.html" class="card-link">AI Assistant</a>
         </div>
       </div>
 
     </div>
-
   </div>
 
-  <div style="text-align: center; margin: 3rem 0;">
-    <h2 style="color: #403B36;">Every Case Study Started With One Question From a Business Owner</h2>
-    <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Tell us your challenge. We'll show you a relevant case study and recommend a plan.</p>
-    <a href="https://wa.me/60149207099?text=I'd%20like%20to%20book%20a%20free%20consultation" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">Book a Free Consultation</a>
+  <!-- Closing Banner -->
+  <div class="closing-banner">
+    <h2>Every Case Study Started With One Question From a Business Owner</h2>
+    <p>Tell us your challenge. We'll show you a relevant case study and recommend a plan.</p>
+    <a href="https://wa.me/60149207099?text=I'd%20like%20to%20book%20a%20free%20consultation" class="cta-button" style="font-size: 1.1rem; padding: 14px 32px;">Book a Free Consultation</a>
   </div>
 
   <footer>
@@ -691,41 +745,57 @@
   </footer>
 
   <script>
-    // Auto-extract case studies from the page
-    function extractCaseStudies() {
-      const caseStudies = [];
-      const caseStudyCards = document.querySelectorAll('.case-studies-grid > div > div[style*="background: white"]');
-
-      caseStudyCards.forEach(card => {
-        const titleElement = card.querySelector('h4');
-        const descriptionElement = card.querySelector('p');
-        const links = card.querySelectorAll('a');
-
-        if (titleElement && descriptionElement && links.length >= 2) {
-          // Get category from the nearest h3 heading
-          let categoryElement = card.previousElementSibling;
-          while (categoryElement && categoryElement.tagName !== 'H3') {
-            categoryElement = categoryElement.previousElementSibling;
-          }
-
-          caseStudies.push({
-            title: titleElement.textContent.trim(),
-            description: descriptionElement.textContent.trim(),
-            category: categoryElement ? categoryElement.textContent.trim() : '',
-            caseStudyUrl: links[0].href,
-            dashboardUrl: links[1].href
-          });
-        }
+    // ── Filter pills ──
+    function filterCards(category) {
+      document.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.classList.toggle('active', pill.dataset.filter === category);
       });
 
-      return caseStudies;
+      const cards = document.querySelectorAll('.case-card');
+      let count = 0;
+      cards.forEach(card => {
+        const match = category === 'all' || card.dataset.category === category;
+        card.classList.toggle('hidden', !match);
+        if (match) count++;
+      });
+
+      document.getElementById('resultsCount').textContent =
+        count + (count === 1 ? ' case study' : ' case studies');
     }
 
-    // Initialize search functionality
+    // ── Search ──
+    const caseStudies = [
+      { title: "Who Is Most at Risk of Leaving the Bank", description: "A bank identified early warning signs in customer behaviour.", category: "Customer Retention", caseStudyUrl: "case-study/who-is-most-at-risk-of-leaving-the-bank.html", dashboardUrl: "dashboard/who-is-most-at-risk-of-leaving-the-bank.html" },
+      { title: "Predicting Gym Member Drop-Off", description: "A gym operator spotted which members were losing motivation.", category: "Customer Retention", caseStudyUrl: "case-study/predicting-gym-member-dropout.html", dashboardUrl: "dashboard/predicting-gym-member-dropout.html", agenticUrl: "agentic_workflow/predicting-gym-member-dropout.html" },
+      { title: "Who's Likely to Quit", description: "A business predicted which employees were about to resign.", category: "Customer Retention", caseStudyUrl: "case-study/who-is-likely-to-quit.html", dashboardUrl: "dashboard/who-is-likely-to-quit.html" },
+      { title: "Beyond the Price Tag", description: "A phone retailer discovered what truly drove customer satisfaction.", category: "Customer Experience", caseStudyUrl: "case-study/beyond-the-price-tag.html", dashboardUrl: "dashboard/beyond-the-price-tag-dashboard.html" },
+      { title: "Did You Sleep Well Last Night?", description: "A hotel identified which service factors contributed to better guest sleep.", category: "Customer Experience", caseStudyUrl: "case-study/did-you-sleep-well-last-night.html", dashboardUrl: "dashboard/did-you-sleep-well-last-night.html" },
+      { title: "Connected or Disconnected?", description: "A study explored whether social media engagement strengthened customer relationships.", category: "Customer Experience", caseStudyUrl: "case-study/connected-or-disconnected.html", dashboardUrl: "dashboard/connected-or-disconnected.html" },
+      { title: "Evaluating Store Customer Experience", description: "A regional manager identified which stores were falling behind.", category: "Customer Experience", caseStudyUrl: "case-study/evaluating-customer-experience.html", dashboardUrl: "dashboard/evaluating-customer-experience.html", agenticUrl: "agentic_workflow/evaluating-customer-experience.html" },
+      { title: "Fruit Sales Forecast — October 2024", description: "A fresh produce seller used seasonal data to forecast demand.", category: "Inventory & Forecasting", caseStudyUrl: "case-study/fruit-sales-forecast-october-2024.html", dashboardUrl: "dashboard/fruit-sales-forecast-october-2024.html" },
+      { title: "Predicting Sales Cycles", description: "A business turned seasonal patterns into smarter inventory decisions.", category: "Inventory & Forecasting", caseStudyUrl: "case-study/predicting-sales-cycles.html", dashboardUrl: "dashboard/predicting-sales-cycles.html", agenticUrl: "agentic_workflow/predicting-sales-cycles.html" },
+      { title: "Grow Smarter, Not Bigger", description: "A business owner tested whether hiring more people actually increased revenue.", category: "Inventory & Forecasting", caseStudyUrl: "case-study/grow-smarter-not-bigger.html", dashboardUrl: "dashboard/grow-smarter-not-bigger.html" },
+      { title: "When Good Cars Lose Value", description: "A dealer analysed which car features held value best.", category: "Inventory & Forecasting", caseStudyUrl: "case-study/when-good-cars-lose-value.html", dashboardUrl: "dashboard/when-good-cars-lose-value.html" },
+      { title: "Cash or Credit Card", description: "A retailer compared spending between cash and credit card customers.", category: "Spending & Behaviour", caseStudyUrl: "case-study/cash-or-credit-card.html", dashboardUrl: "dashboard/cash-or-credit-card.html" },
+      { title: "Do Dollars Drive Decisions?", description: "A business explored how income levels shaped customer buying decisions.", category: "Spending & Behaviour", caseStudyUrl: "case-study/do-dollars-drive-decisions.html", dashboardUrl: "dashboard/do-dollars-drive-decisions.html" },
+      { title: "Not All Shoppers Are Equal", description: "A store uncovered what spending patterns revealed about different customer types.", category: "Spending & Behaviour", caseStudyUrl: "case-study/not-all-shoppers-are-equal.html", dashboardUrl: "dashboard/not-all-shoppers-are-equal.html" },
+      { title: "Nasi Lemak vs Kopi-O Preference Analysis", description: "A study revealed how cultural preferences shaped customer choices.", category: "Spending & Behaviour", caseStudyUrl: "case-study/nasi-lemak-vs-kopi-o-preference.html", dashboardUrl: "dashboard/nasi-lemak-vs-kopi-o-preference.html" },
+      { title: "Finding Which Campaigns Work", description: "A marketing manager cut campaign waste by shifting budget to channels that converted.", category: "Marketing & Campaigns", caseStudyUrl: "case-study/finding-which-campaign-work.html", dashboardUrl: "dashboard/finding-which-campaign-work.html", agenticUrl: "agentic_workflow/finding_which_campaign_work.html" },
+      { title: "Fixing the Sales Leaks", description: "An e-commerce business found where shoppers were dropping off.", category: "Marketing & Campaigns", caseStudyUrl: "case-study/fixing-the-sales-leaks.html", dashboardUrl: "dashboard/fixing-the-sales-leaks.html", agenticUrl: "agentic_workflow/fixing-the-sales-leaks.html" },
+      { title: "Where Are Your High-Value Customers?", description: "A business discovered which channels attracted their most loyal customers.", category: "Marketing & Campaigns", caseStudyUrl: "https://www.pauanalytics.com/case-study/high-value-customers.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/high-value-customers-dashboard.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/high-value-customers.html" },
+      { title: "From Clicks to Check-Ins", description: "A hotel turned search traffic into confirmed bookings.", category: "Marketing & Campaigns", caseStudyUrl: "case-study/from-clicks-to-check-ins.html", dashboardUrl: "dashboard/from-clicks-to-check-ins.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/from-clicks-to-check-ins.html" },
+      { title: "Predicting Holiday Peaks", description: "A business timed campaigns around holiday peaks to stop wasting budget.", category: "Marketing & Campaigns", caseStudyUrl: "case-study/predicting-holiday-peaks.html", dashboardUrl: "dashboard/predicting-holiday-peaks.html", agenticUrl: "agentic_workflow/predicting-holiday-peaks.html" },
+      { title: "Where Revenue Comes From", description: "A business pinpointed which products and customers drove revenue growth.", category: "Revenue & Products", caseStudyUrl: "https://www.pauanalytics.com/case-study/where-revenue-comes-from.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" },
+      { title: "What Really Drives Store Revenue?", description: "A store owner identified which product categories contributed most to revenue.", category: "Revenue & Products", caseStudyUrl: "case-study/what-really-drives-store-revenue.html", dashboardUrl: "dashboard/what-really-drives-store-revenue.html" },
+      { title: "From Cash Cows to Hidden Gems", description: "A business identified which products drove profits and which had untapped potential.", category: "Revenue & Products", caseStudyUrl: "case-study/from-cash-cows-to-hidden-gems.html", dashboardUrl: "dashboard/from-cash-cows-to-hidden-gems.html" },
+      { title: "Cash Cows, Discounts, and Delays", description: "A business found which product categories drove profit and which were draining it.", category: "Revenue & Products", caseStudyUrl: "case-study/cash-cows-discounts-delays.html", dashboardUrl: "dashboard/cash-cows-discounts-delays.html" },
+      { title: "What Causes Product Returns", description: "A retailer identified the pricing factors behind product returns.", category: "Revenue & Products", caseStudyUrl: "case-study/what-causes-product-returns.html", dashboardUrl: "dashboard/what-causes-product-returns.html" },
+      { title: "Finding Profit Drivers", description: "A bicycle shop manager discovered which products were actually making money.", category: "Revenue & Products", caseStudyUrl: "case-study/finding-profit-drivers.html", dashboardUrl: "dashboard/finding-profit-drivers.html", agenticUrl: "agentic_workflow/finding-profit-drivers.html" }
+    ];
+
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     const searchOverlay = document.getElementById('searchOverlay');
-    const caseStudies = extractCaseStudies();
 
     function performSearch(query) {
       if (query.length < 2) {
@@ -733,50 +803,38 @@
         searchOverlay.style.display = 'none';
         return;
       }
-
-      const filteredResults = caseStudies.filter(study =>
-        study.title.toLowerCase().includes(query.toLowerCase()) ||
-        study.description.toLowerCase().includes(query.toLowerCase()) ||
-        study.category.toLowerCase().includes(query.toLowerCase())
+      const q = query.toLowerCase();
+      const filtered = caseStudies.filter(s =>
+        s.title.toLowerCase().includes(q) ||
+        s.description.toLowerCase().includes(q) ||
+        s.category.toLowerCase().includes(q)
       );
-
-      displayResults(filteredResults);
-    }
-
-    function displayResults(results) {
-      if (results.length === 0) {
+      if (filtered.length === 0) {
         searchResults.innerHTML = '<div class="no-results">No case studies found. Try different keywords.</div>';
       } else {
-        searchResults.innerHTML = results.map(study => `
+        searchResults.innerHTML = filtered.map(s => `
           <div class="search-result-item">
-            <div class="search-result-category">${study.category}</div>
-            <div class="search-result-title">${study.title}</div>
-            <div class="search-result-description">${study.description}</div>
+            <div class="search-result-category">${s.category}</div>
+            <div class="search-result-title">${s.title}</div>
+            <div class="search-result-description">${s.description}</div>
             <div class="search-result-buttons">
-              <a href="${study.caseStudyUrl}" class="search-result-btn">Read More</a>
-              <a href="${study.dashboardUrl}" class="search-result-btn">Dashboard</a>
+              <a href="${s.caseStudyUrl}" class="search-result-btn">Read More</a>
+              <a href="${s.dashboardUrl}" class="search-result-btn">Dashboard</a>
+              ${s.agenticUrl ? `<a href="${s.agenticUrl}" class="search-result-btn">AI Assistant</a>` : ''}
             </div>
-          </div>
-        `).join('');
+          </div>`).join('');
       }
-
       searchResults.style.display = 'block';
       searchOverlay.style.display = 'block';
     }
 
-    // Event listeners
-    searchInput.addEventListener('input', (e) => {
-      performSearch(e.target.value);
-    });
-
+    searchInput.addEventListener('input', e => performSearch(e.target.value));
     searchOverlay.addEventListener('click', () => {
       searchResults.style.display = 'none';
       searchOverlay.style.display = 'none';
       searchInput.value = '';
     });
-
-    // Close search on Escape key
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         searchResults.style.display = 'none';
         searchOverlay.style.display = 'none';
@@ -788,10 +846,7 @@
   <!-- Pau Analytics AI Chatbot Widget -->
   <link rel="stylesheet" href="assets/css/chatbot-widget.css">
   <script src="assets/js/chatbot-config.js"></script>
-  <script>
-    // Set page-specific configuration
-    window.pauChatbotConfig.page = 'dataAnalytics';
-  </script>
+  <script>window.pauChatbotConfig.page = 'dataAnalytics';</script>
   <script src="assets/js/chatbot-widget.js"></script>
   <!-- End Chatbot Widget -->
 
