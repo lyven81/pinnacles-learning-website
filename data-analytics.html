@@ -170,9 +170,15 @@
 
     .filter-pills {
       display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .filter-row {
+      display: flex;
       flex-wrap: wrap;
       gap: 0.6rem;
-      margin-bottom: 0.75rem;
     }
 
     .filter-pill {
@@ -377,13 +383,17 @@
   <!-- Filter Pills -->
   <div class="filter-section">
     <div class="filter-pills">
-      <button class="filter-pill active" data-filter="all" onclick="filterCards('all')">All</button>
-      <button class="filter-pill" data-filter="Customer Retention" onclick="filterCards('Customer Retention')">Customer Retention</button>
-      <button class="filter-pill" data-filter="Customer Experience" onclick="filterCards('Customer Experience')">Customer Experience</button>
-      <button class="filter-pill" data-filter="Inventory & Forecasting" onclick="filterCards('Inventory & Forecasting')">Inventory & Forecasting</button>
-      <button class="filter-pill" data-filter="Spending & Behaviour" onclick="filterCards('Spending & Behaviour')">Spending & Behaviour</button>
-      <button class="filter-pill" data-filter="Marketing & Campaigns" onclick="filterCards('Marketing & Campaigns')">Marketing & Campaigns</button>
-      <button class="filter-pill" data-filter="Revenue & Products" onclick="filterCards('Revenue & Products')">Revenue & Products</button>
+      <div class="filter-row">
+        <button class="filter-pill active" data-filter="all" onclick="filterCards('all')">All</button>
+        <button class="filter-pill" data-filter="Customer Retention" onclick="filterCards('Customer Retention')">Customer Retention</button>
+        <button class="filter-pill" data-filter="Customer Experience" onclick="filterCards('Customer Experience')">Customer Experience</button>
+        <button class="filter-pill" data-filter="Inventory & Forecasting" onclick="filterCards('Inventory & Forecasting')">Inventory & Forecasting</button>
+      </div>
+      <div class="filter-row">
+        <button class="filter-pill" data-filter="Spending & Behaviour" onclick="filterCards('Spending & Behaviour')">Spending & Behaviour</button>
+        <button class="filter-pill" data-filter="Marketing & Campaigns" onclick="filterCards('Marketing & Campaigns')">Marketing & Campaigns</button>
+        <button class="filter-pill" data-filter="Revenue & Products" onclick="filterCards('Revenue & Products')">Revenue & Products</button>
+      </div>
     </div>
     <p class="results-count" id="resultsCount">26 case studies</p>
   </div>
