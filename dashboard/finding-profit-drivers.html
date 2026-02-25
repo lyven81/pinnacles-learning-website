@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Profit Drivers - Bicycle Shop KPI Dashboard | Pau Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #403B36;
+            --secondary-color: #CBA135;
+            --background-color: #FCF9F2;
+            --text-color: #2C2C2C;
+            --card-background: #FFFFFF;
+            --shadow: 0 4px 20px rgba(64, 59, 54, 0.1);
+            --gradient: linear-gradient(135deg, #403B36 0%, #5A524B 100%);
+            --gold-gradient: linear-gradient(135deg, #CBA135 0%, #E8C55A 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
+            color: #FCF9F2;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
+            color: #403B36;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(203, 161, 53, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #CBA135;
+            color: #FCF9F2;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .page-btn.active {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .page-btn:hover:not(.active) {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(64, 59, 54, 0.15);
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .kpi-sub {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 30px auto;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: var(--gradient);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        tr:hover {
+            background-color: rgba(203, 161, 53, 0.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .metric-positive {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .metric-negative {
+            color: #C62828;
+            font-weight: 600;
+        }
+
+        .metric-warning {
+            color: #F57C00;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            .kpi-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .page-nav {
+                flex-direction: column;
+            }
+            .kpi-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Finding Profit Drivers</h1>
+            <p>Bicycle Shop KPI Dashboard - Monitor Revenue, Profit, and Product Performance Across Regions</p>
+            <div class="cta-buttons">
+                <a href="https://www.pauanalytics.com/index.html" class="cta-button cta-primary">Home</a>
+                <a href="https://www.pauanalytics.com/case-study/finding-profit-drivers.html" class="cta-button cta-primary">View Full Case Study</a>
+                <a href="https://www.pauanalytics.com/data-analytics.html" class="cta-button cta-secondary">More Case Studies</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="page-nav">
+            <button class="page-btn active" onclick="showPage(1)">Overview</button>
+            <button class="page-btn" onclick="showPage(2)">Products</button>
+            <button class="page-btn" onclick="showPage(3)">Customers</button>
+            <button class="page-btn" onclick="showPage(4)">Profit</button>
+        </div>
+
+        <!-- Page 1: Overview -->
+        <div id="page1" class="page active">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Revenue</div>
+                    <div class="kpi-value" id="totalRevenue">-</div>
+                    <div class="kpi-sub">All time sales</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Profit</div>
+                    <div class="kpi-value" id="totalProfit">-</div>
+                    <div class="kpi-sub">Net earnings</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Profit Margin</div>
+                    <div class="kpi-value" id="profitMargin">-</div>
+                    <div class="kpi-sub">Revenue to profit ratio</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Orders</div>
+                    <div class="kpi-value" id="totalOrders">-</div>
+                    <div class="kpi-sub">Units sold</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <h3 class="chart-title">Year-to-Date Performance</h3>
+                    <div class="chart-container">
+                        <canvas id="ytdChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Revenue vs Profit Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="revProfitTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Average Order Value Over Time</h3>
+                    <div class="chart-container">
+                        <canvas id="aovChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Products -->
+        <div id="page2" class="page">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3 class="chart-title">Revenue Mix by Product Category</h3>
+                    <div class="chart-container">
+                        <canvas id="categoryPieChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Top Profit Contributors (by Model)</h3>
+                    <div class="chart-container">
+                        <canvas id="topProfitChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card full-width">
+                    <h3 class="chart-title">Sales vs Profit Reality (Products)</h3>
+                    <div class="chart-container">
+                        <canvas id="productScatterChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Profit by Subcategory</h3>
+                    <div class="chart-container">
+                        <canvas id="subcategoryProfitChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width">
+                <h3 class="chart-title">Product Performance Table</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Category</th>
+                            <th>Revenue</th>
+                            <th>Profit</th>
+                            <th>Margin %</th>
+                            <th>Orders</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Page 3: Customers -->
+        <div id="page3" class="page">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3 class="chart-title">Revenue by Country</h3>
+                    <div class="chart-container">
+                        <canvas id="countryRevenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Profit by Country</h3>
+                    <div class="chart-container">
+                        <canvas id="countryProfitChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card full-width">
+                    <h3 class="chart-title">Busy vs Profitable Locations</h3>
+                    <div class="chart-container">
+                        <canvas id="locationScatterChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Top 10 Cities by Profit</h3>
+                    <div class="chart-container">
+                        <canvas id="topCitiesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width">
+                <h3 class="chart-title">Location Performance Table</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Revenue</th>
+                            <th>Profit</th>
+                            <th>Margin %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="locationTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Page 4: Profit -->
+        <div id="page4" class="page">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Net Profit</div>
+                    <div class="kpi-value" id="netProfit">-</div>
+                    <div class="kpi-sub">Bottom line</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Profit per Order</div>
+                    <div class="kpi-value" id="avgProfitOrder">-</div>
+                    <div class="kpi-sub">Per transaction</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Low Margin Items</div>
+                    <div class="kpi-value" id="lowMarginCount">-</div>
+                    <div class="kpi-sub">Need attention</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">High Margin Items</div>
+                    <div class="kpi-value" id="highMarginCount">-</div>
+                    <div class="kpi-sub">Strong performers</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3 class="chart-title">Profit Sources by Category</h3>
+                    <div class="chart-container">
+                        <canvas id="profitSourceChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card full-width">
+                    <h3 class="chart-title">Profit Concentration (Pareto)</h3>
+                    <div class="chart-container">
+                        <canvas id="paretoChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Underlying Profit Trend (Monthly)</h3>
+                    <div class="chart-container">
+                        <canvas id="profitTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width">
+                <h3 class="chart-title">Profit Leaks - Low Margin Products</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Revenue</th>
+                            <th>Profit</th>
+                            <th>Margin %</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="profitLeaksTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">Loading data...</div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Pau Analytics</p>
+    </div>
+
+    <script>
+        // Data loaded from CSV
+        let salesData = [];
+        let charts = {};
+
+        // Load CSV data
+        async function loadData() {
+            const csvUrl = 'https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/dashboards/data/finding-profit-drivers/cleaned-150.csv';
+            try {
+                const response = await new Promise((resolve, reject) => {
+                    Papa.parse(csvUrl, {
+                        download: true,
+                        header: true,
+                        dynamicTyping: true,
+                        complete: (results) => resolve(results.data.filter(row => row.OrderNo)),
+                        error: (error) => reject(error)
+                    });
+                });
+                salesData = response;
+                updateDashboard();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = 'Error loading data. Please check console.';
+            }
+        }
+
+        function updateDashboard() {
+            updateOverviewKPIs();
+            updateOverviewCharts();
+            updateProductsPage();
+            updateCustomersPage();
+            updateProfitPage();
+        }
+
+        // Page 1: Overview
+        function updateOverviewKPIs() {
+            const totalRevenue = salesData.reduce((sum, d) => sum + (d.Revenue || 0), 0);
+            const totalProfit = salesData.reduce((sum, d) => sum + (d.Profit || 0), 0);
+            const totalOrders = salesData.reduce((sum, d) => sum + (d.OrderQuantity || 0), 0);
+            const profitMargin = totalRevenue > 0 ? (totalProfit / totalRevenue * 100) : 0;
+
+            document.getElementById('totalRevenue').textContent = '$' + totalRevenue.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('totalProfit').textContent = '$' + totalProfit.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('profitMargin').textContent = profitMargin.toFixed(1) + '%';
+            document.getElementById('totalOrders').textContent = totalOrders.toLocaleString();
+        }
+
+        function updateOverviewCharts() {
+            // Group by YearMonth
+            const monthlyData = {};
+            salesData.forEach(d => {
+                const ym = d.YearMonth;
+                if (!monthlyData[ym]) {
+                    monthlyData[ym] = { revenue: 0, profit: 0, orders: 0 };
+                }
+                monthlyData[ym].revenue += d.Revenue || 0;
+                monthlyData[ym].profit += d.Profit || 0;
+                monthlyData[ym].orders += d.OrderQuantity || 0;
+            });
+
+            const sortedMonths = Object.keys(monthlyData).sort();
+
+            // YTD Chart
+            let cumulativeRevenue = 0;
+            let cumulativeProfit = 0;
+            const ytdRevenue = sortedMonths.map(m => {
+                cumulativeRevenue += monthlyData[m].revenue;
+                return cumulativeRevenue;
+            });
+            const ytdProfit = sortedMonths.map(m => {
+                cumulativeProfit += monthlyData[m].profit;
+                return cumulativeProfit;
+            });
+
+            updateChart('ytdChart', {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [
+                        {
+                            label: 'Revenue YTD',
+                            data: ytdRevenue,
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Profit YTD',
+                            data: ytdProfit,
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    }
+                }
+            });
+
+            // Revenue vs Profit Trend
+            updateChart('revProfitTrendChart', {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: sortedMonths.map(m => monthlyData[m].revenue),
+                            borderColor: '#667eea',
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Profit',
+                            data: sortedMonths.map(m => monthlyData[m].profit),
+                            borderColor: '#28a745',
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Revenue' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Profit' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+
+            // AOV Chart
+            const aovData = sortedMonths.map(m => monthlyData[m].orders > 0 ? monthlyData[m].revenue / monthlyData[m].orders : 0);
+            updateChart('aovChart', {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: 'Average Order Value',
+                        data: aovData,
+                        borderColor: '#CBA135',
+                        backgroundColor: 'rgba(203, 161, 53, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Page 2: Products
+        function updateProductsPage() {
+            // Category revenue pie
+            const categoryData = {};
+            salesData.forEach(d => {
+                const cat = d.ProductCategory;
+                if (!categoryData[cat]) categoryData[cat] = { revenue: 0, profit: 0 };
+                categoryData[cat].revenue += d.Revenue || 0;
+                categoryData[cat].profit += d.Profit || 0;
+            });
+
+            updateChart('categoryPieChart', {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(categoryData),
+                    datasets: [{
+                        data: Object.values(categoryData).map(c => c.revenue),
+                        backgroundColor: ['#667eea', '#28a745', '#ffc107', '#dc3545']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // Top profit by model
+            const modelData = {};
+            salesData.forEach(d => {
+                const model = d.Model;
+                if (!modelData[model]) {
+                    modelData[model] = { revenue: 0, profit: 0, orders: 0, category: d.ProductCategory };
+                }
+                modelData[model].revenue += d.Revenue || 0;
+                modelData[model].profit += d.Profit || 0;
+                modelData[model].orders += d.OrderQuantity || 0;
+            });
+
+            const topModels = Object.entries(modelData)
+                .sort((a, b) => b[1].profit - a[1].profit)
+                .slice(0, 10);
+
+            updateChart('topProfitChart', {
+                type: 'bar',
+                data: {
+                    labels: topModels.map(m => m[0]),
+                    datasets: [{
+                        label: 'Profit',
+                        data: topModels.map(m => m[1].profit),
+                        backgroundColor: '#28a745'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Product scatter
+            const scatterData = Object.entries(modelData).map(([model, data]) => ({
+                x: data.revenue,
+                y: data.profit,
+                label: model
+            }));
+
+            updateChart('productScatterChart', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Products',
+                        data: scatterData,
+                        backgroundColor: scatterData.map(d => d.y / d.x < 0.3 ? '#dc3545' : '#28a745'),
+                        pointRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Revenue' } },
+                        y: { title: { display: true, text: 'Profit' } }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => scatterData[ctx.dataIndex].label + ': $' + ctx.parsed.x.toFixed(0) + ' / $' + ctx.parsed.y.toFixed(0)
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Subcategory profit
+            const subCatData = {};
+            salesData.forEach(d => {
+                const subcat = d.ProductSubcategory;
+                if (!subCatData[subcat]) subCatData[subcat] = 0;
+                subCatData[subcat] += d.Profit || 0;
+            });
+
+            const sortedSubcat = Object.entries(subCatData).sort((a, b) => b[1] - a[1]);
+
+            updateChart('subcategoryProfitChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedSubcat.map(s => s[0]),
+                    datasets: [{
+                        label: 'Profit',
+                        data: sortedSubcat.map(s => s[1]),
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Product table
+            const tableBody = document.querySelector('#productTable');
+            tableBody.innerHTML = '';
+            topModels.slice(0, 15).forEach(([model, data]) => {
+                const margin = data.revenue > 0 ? (data.profit / data.revenue * 100) : 0;
+                const marginClass = margin > 40 ? 'metric-positive' : margin < 25 ? 'metric-negative' : 'metric-warning';
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${model}</strong></td>
+                    <td>${data.category}</td>
+                    <td>$${data.revenue.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>$${data.profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td><span class="${marginClass}">${margin.toFixed(1)}%</span></td>
+                    <td>${data.orders}</td>
+                `;
+            });
+        }
+
+        // Page 3: Customers
+        function updateCustomersPage() {
+            // Country data
+            const countryData = {};
+            salesData.forEach(d => {
+                const country = d.CustomerCountry;
+                if (!countryData[country]) countryData[country] = { revenue: 0, profit: 0 };
+                countryData[country].revenue += d.Revenue || 0;
+                countryData[country].profit += d.Profit || 0;
+            });
+
+            const sortedCountries = Object.entries(countryData).sort((a, b) => b[1].revenue - a[1].revenue);
+
+            updateChart('countryRevenueChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedCountries.map(c => c[0]),
+                    datasets: [{
+                        label: 'Revenue',
+                        data: sortedCountries.map(c => c[1].revenue),
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            updateChart('countryProfitChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedCountries.map(c => c[0]),
+                    datasets: [{
+                        label: 'Profit',
+                        data: sortedCountries.map(c => c[1].profit),
+                        backgroundColor: '#28a745'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // City data
+            const cityData = {};
+            salesData.forEach(d => {
+                const city = d.CustomerCity;
+                if (!cityData[city]) {
+                    cityData[city] = { revenue: 0, profit: 0, state: d.CustomerState, country: d.CustomerCountry };
+                }
+                cityData[city].revenue += d.Revenue || 0;
+                cityData[city].profit += d.Profit || 0;
+            });
+
+            // Location scatter
+            const locationScatter = Object.entries(cityData).map(([city, data]) => ({
+                x: data.revenue,
+                y: data.profit,
+                label: city
+            }));
+
+            updateChart('locationScatterChart', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Cities',
+                        data: locationScatter,
+                        backgroundColor: locationScatter.map(d => d.y / d.x < 0.35 ? '#ffc107' : '#28a745'),
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Revenue' } },
+                        y: { title: { display: true, text: 'Profit' } }
+                    }
+                }
+            });
+
+            // Top cities
+            const topCities = Object.entries(cityData).sort((a, b) => b[1].profit - a[1].profit).slice(0, 10);
+
+            updateChart('topCitiesChart', {
+                type: 'bar',
+                data: {
+                    labels: topCities.map(c => c[0]),
+                    datasets: [{
+                        label: 'Profit',
+                        data: topCities.map(c => c[1].profit),
+                        backgroundColor: '#CBA135'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Location table
+            const locationTable = document.querySelector('#locationTable');
+            locationTable.innerHTML = '';
+            topCities.slice(0, 15).forEach(([city, data]) => {
+                const margin = data.revenue > 0 ? (data.profit / data.revenue * 100) : 0;
+                const row = locationTable.insertRow();
+                row.innerHTML = `
+                    <td>${data.country}</td>
+                    <td>${data.state}</td>
+                    <td><strong>${city}</strong></td>
+                    <td>$${data.revenue.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>$${data.profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>${margin.toFixed(1)}%</td>
+                `;
+            });
+        }
+
+        // Page 4: Profit
+        function updateProfitPage() {
+            const totalProfit = salesData.reduce((sum, d) => sum + (d.Profit || 0), 0);
+            const totalOrders = salesData.length;
+            const avgProfitOrder = totalOrders > 0 ? totalProfit / totalOrders : 0;
+
+            // Count low margin items (margin < 30%)
+            const lowMarginItems = salesData.filter(d => d.ProfitMargin && d.ProfitMargin < 0.30).length;
+            const highMarginItems = salesData.filter(d => d.ProfitMargin && d.ProfitMargin >= 0.50).length;
+
+            document.getElementById('netProfit').textContent = '$' + totalProfit.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('avgProfitOrder').textContent = '$' + avgProfitOrder.toFixed(0);
+            document.getElementById('lowMarginCount').textContent = lowMarginItems;
+            document.getElementById('highMarginCount').textContent = highMarginItems;
+
+            // Profit sources by category
+            const categoryProfit = {};
+            salesData.forEach(d => {
+                const cat = d.ProductCategory;
+                if (!categoryProfit[cat]) categoryProfit[cat] = 0;
+                categoryProfit[cat] += d.Profit || 0;
+            });
+
+            const sortedCatProfit = Object.entries(categoryProfit).sort((a, b) => b[1] - a[1]);
+
+            updateChart('profitSourceChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedCatProfit.map(c => c[0]),
+                    datasets: [{
+                        label: 'Profit',
+                        data: sortedCatProfit.map(c => c[1]),
+                        backgroundColor: ['#667eea', '#28a745', '#ffc107']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Pareto chart (cumulative profit by model)
+            const modelProfit = {};
+            salesData.forEach(d => {
+                const model = d.Model;
+                if (!modelProfit[model]) modelProfit[model] = 0;
+                modelProfit[model] += d.Profit || 0;
+            });
+
+            const sortedModels = Object.entries(modelProfit).sort((a, b) => b[1] - a[1]);
+            let cumulative = 0;
+            const cumulativePercent = sortedModels.map(([model, profit]) => {
+                cumulative += profit;
+                return (cumulative / totalProfit * 100);
+            });
+
+            updateChart('paretoChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedModels.slice(0, 15).map(m => m[0]),
+                    datasets: [
+                        {
+                            label: 'Profit',
+                            data: sortedModels.slice(0, 15).map(m => m[1]),
+                            backgroundColor: '#667eea',
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Cumulative %',
+                            data: cumulativePercent.slice(0, 15),
+                            type: 'line',
+                            borderColor: '#dc3545',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            position: 'left',
+                            title: { display: true, text: 'Profit' }
+                        },
+                        y1: {
+                            position: 'right',
+                            min: 0,
+                            max: 100,
+                            title: { display: true, text: 'Cumulative %' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+
+            // Profit trend
+            const monthlyProfit = {};
+            salesData.forEach(d => {
+                const ym = d.YearMonth;
+                if (!monthlyProfit[ym]) monthlyProfit[ym] = 0;
+                monthlyProfit[ym] += d.Profit || 0;
+            });
+
+            const sortedMonths = Object.keys(monthlyProfit).sort();
+
+            updateChart('profitTrendChart', {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: 'Monthly Profit',
+                        data: sortedMonths.map(m => monthlyProfit[m]),
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // Profit leaks table (low margin products)
+            const productMargins = {};
+            salesData.forEach(d => {
+                const product = d.Product;
+                if (!productMargins[product]) {
+                    productMargins[product] = { revenue: 0, profit: 0, category: d.ProductCategory };
+                }
+                productMargins[product].revenue += d.Revenue || 0;
+                productMargins[product].profit += d.Profit || 0;
+            });
+
+            const lowMarginProducts = Object.entries(productMargins)
+                .map(([product, data]) => ({
+                    product,
+                    ...data,
+                    margin: data.revenue > 0 ? data.profit / data.revenue : 0
+                }))
+                .filter(p => p.margin < 0.30)
+                .sort((a, b) => a.margin - b.margin)
+                .slice(0, 10);
+
+            const leaksTable = document.querySelector('#profitLeaksTable');
+            leaksTable.innerHTML = '';
+            lowMarginProducts.forEach(p => {
+                const status = p.margin < 0.25 ? 'Needs Review' : 'Monitor';
+                const statusClass = p.margin < 0.25 ? 'metric-negative' : 'metric-warning';
+                const row = leaksTable.insertRow();
+                row.innerHTML = `
+                    <td><strong>${p.product}</strong></td>
+                    <td>${p.category}</td>
+                    <td>$${p.revenue.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>$${p.profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td><span class="${statusClass}">${(p.margin * 100).toFixed(1)}%</span></td>
+                    <td><span class="${statusClass}">${status}</span></td>
+                `;
+            });
+        }
+
+        function updateChart(id, config) {
+            if (charts[id]) {
+                charts[id].destroy();
+            }
+            const ctx = document.getElementById(id);
+            if (ctx) {
+                charts[id] = new Chart(ctx, config);
+            }
+        }
+
+        function showPage(pageNum) {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`page${i}`).classList.remove('active');
+            }
+            document.getElementById(`page${pageNum}`).classList.add('active');
+            const buttons = document.querySelectorAll('.page-btn');
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === pageNum - 1);
+            });
+        }
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
