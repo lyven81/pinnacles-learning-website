@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Journey Dashboard - Mystery Shopping Performance | Pau Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #403B36;
+            --secondary-color: #CBA135;
+            --background-color: #FCF9F2;
+            --text-color: #2C2C2C;
+            --card-background: #FFFFFF;
+            --shadow: 0 4px 20px rgba(64, 59, 54, 0.1);
+            --gradient: linear-gradient(135deg, #403B36 0%, #5A524B 100%);
+            --gold-gradient: linear-gradient(135deg, #CBA135 0%, #E8C55A 100%);
+            --green: #4CAF50;
+            --amber: #FFC107;
+            --red: #E57373;
+            --blue: #2196F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
+            color: #FCF9F2;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
+            color: #403B36;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(203, 161, 53, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #CBA135;
+            color: #FCF9F2;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .page-btn.active {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .page-btn:hover:not(.active) {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(64, 59, 54, 0.15);
+        }
+
+        .kpi-card.green { border-top-color: var(--green); }
+        .kpi-card.amber { border-top-color: var(--amber); }
+        .kpi-card.red { border-top-color: var(--red); }
+        .kpi-card.blue { border-top-color: var(--blue); }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .kpi-value.green { color: var(--green); }
+        .kpi-value.amber { color: #B8860B; }
+        .kpi-value.red { color: #C62828; }
+        .kpi-value.blue { color: var(--blue); }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 30px auto;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: var(--gradient);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        tr:hover {
+            background-color: rgba(203, 161, 53, 0.1);
+        }
+
+        .metric-positive {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .metric-negative {
+            color: #C62828;
+            font-weight: 600;
+        }
+
+        .metric-warning {
+            color: #F57C00;
+            font-weight: 600;
+        }
+
+        /* Insights Section */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+        }
+
+        .insight-card {
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .insight-card.strength {
+            background-color: #E8F5E9;
+            border-color: var(--green);
+        }
+
+        .insight-card.issue {
+            background-color: #FFEBEE;
+            border-color: var(--red);
+        }
+
+        .insight-card h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .insight-card.strength h4 { color: #2E7D32; }
+        .insight-card.issue h4 { color: #C62828; }
+
+        .insight-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Donut wrapper */
+        .donut-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .donut-item {
+            text-align: center;
+        }
+
+        .donut-item canvas {
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        .donut-label {
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .page-nav {
+                flex-direction: column;
+            }
+
+            .donut-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Customer Journey Dashboard</h1>
+            <p>Mystery Shopping Performance Analysis - Monitor Store Experience Quality Across the Customer Journey</p>
+            <div class="cta-buttons">
+                <a href="https://www.pauanalytics.com/" class="cta-button cta-secondary">Home</a>
+                <a href="https://www.pauanalytics.com/case-study/evaluating-customer-experience.html" class="cta-button cta-secondary">View Full Case Study</a>
+                <a href="https://www.pauanalytics.com/data-analytics.html" class="cta-button cta-secondary">More Case Studies</a>
+            </div>
+        </div>
+
+        <div class="page-nav">
+            <button class="page-btn active" onclick="showPage(1)">Performance Overview</button>
+            <button class="page-btn" onclick="showPage(2)">Customer Journey</button>
+            <button class="page-btn" onclick="showPage(3)">Promotions & Compliance</button>
+            <button class="page-btn" onclick="showPage(4)">Store Analysis</button>
+        </div>
+
+        <!-- Page 1: Performance Overview -->
+        <div id="page1" class="page active">
+            <div class="kpi-grid">
+                <div class="kpi-card green">
+                    <div class="kpi-label">Overall Score</div>
+                    <div class="kpi-value green" id="overallScore">78%</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-label">Promo Execution</div>
+                    <div class="kpi-value amber" id="promoExecution">83%</div>
+                </div>
+                <div class="kpi-card blue">
+                    <div class="kpi-label">Upgrade Quality</div>
+                    <div class="kpi-value blue" id="upgradeQuality">64%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Compliance Rate</div>
+                    <div class="kpi-value" id="complianceRate">69%</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Customer Journey Scores</div>
+                    <div class="chart-container">
+                        <canvas id="journeyChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Performance by Booking Channel</div>
+                    <div class="chart-container">
+                        <canvas id="channelChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card strength">
+                    <h4>Strengths</h4>
+                    <p>Friendly staff interactions, easy booking process, and strong first impressions drive positive customer experiences.</p>
+                </div>
+                <div class="insight-card issue">
+                    <h4>Areas for Improvement</h4>
+                    <p>Promotions not consistently mentioned, lifestyle questioning missing, and medical aid benefits under-explained.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Customer Journey -->
+        <div id="page2" class="page">
+            <div class="kpi-grid">
+                <div class="kpi-card green">
+                    <div class="kpi-label">First Impressions</div>
+                    <div class="kpi-value green">92%</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-label">Booking Experience</div>
+                    <div class="kpi-value green">92%</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-label">Eye Test Quality</div>
+                    <div class="kpi-value green">88%</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-label">Purchase & Exit</div>
+                    <div class="kpi-value amber">63%</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-title">Detailed Journey Stage Analysis</div>
+                    <div class="chart-container" style="height: 400px;">
+                        <canvas id="detailedJourneyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Weekend vs Weekday Performance</div>
+                    <div class="chart-container">
+                        <canvas id="weekendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Time Period Performance</div>
+                    <div class="chart-container">
+                        <canvas id="timePeriodChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Promotions & Compliance -->
+        <div id="page3" class="page">
+            <div class="kpi-grid">
+                <div class="kpi-card green">
+                    <div class="kpi-label">Promo Mentioned</div>
+                    <div class="kpi-value green">69%</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-label">Upgrade Offered</div>
+                    <div class="kpi-value amber">31%</div>
+                </div>
+                <div class="kpi-card blue">
+                    <div class="kpi-label">Promo Explained Clearly</div>
+                    <div class="kpi-value blue">63%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Brand Match Discussed</div>
+                    <div class="kpi-value">36%</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Promotions & Upgrades</div>
+                    <div class="donut-wrapper">
+                        <div class="donut-item">
+                            <canvas id="promoMentionedChart"></canvas>
+                            <div class="donut-label">Promo Mentioned</div>
+                        </div>
+                        <div class="donut-item">
+                            <canvas id="promoExplainedChart"></canvas>
+                            <div class="donut-label">Promo Explained</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Compliance Checklist</div>
+                    <div class="chart-container">
+                        <canvas id="complianceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width" style="margin-top: 20px;">
+                <div class="chart-title">Compliance Details</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Compliance Item</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>POS Visible</td>
+                            <td>80.62%</td>
+                            <td><span class="metric-positive">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>Handover Completed</td>
+                            <td>76.74%</td>
+                            <td><span class="metric-positive">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>Promo Bag Given</td>
+                            <td>11.63%</td>
+                            <td><span class="metric-negative">Needs Attention</span></td>
+                        </tr>
+                        <tr>
+                            <td>Medical Aid Checked</td>
+                            <td>6.98%</td>
+                            <td><span class="metric-negative">Critical</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Page 4: Store Analysis -->
+        <div id="page4" class="page">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Stores Evaluated</div>
+                    <div class="kpi-value">43</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-label">Top Performers (>85%)</div>
+                    <div class="kpi-value green">12</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-label">Needs Improvement (60-85%)</div>
+                    <div class="kpi-value amber">26</div>
+                </div>
+                <div class="kpi-card red">
+                    <div class="kpi-label">Critical (<60%)</div>
+                    <div class="kpi-value red">5</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Score Distribution</div>
+                    <div class="chart-container">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Performance by Location</div>
+                    <div class="chart-container">
+                        <canvas id="locationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width" style="margin-top: 20px;">
+                <div class="chart-title">Top & Bottom Performing Stores</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Store Location</th>
+                            <th>Overall Score</th>
+                            <th>Promo Execution</th>
+                            <th>Compliance</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Pavilion</strong></td>
+                            <td><span class="metric-positive">100%</span></td>
+                            <td>150%</td>
+                            <td>100%</td>
+                            <td><span class="metric-positive">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>La Lucia Mall</strong></td>
+                            <td><span class="metric-positive">100%</span></td>
+                            <td>150%</td>
+                            <td>100%</td>
+                            <td><span class="metric-positive">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fourways Mall</strong></td>
+                            <td><span class="metric-positive">100%</span></td>
+                            <td>150%</td>
+                            <td>100%</td>
+                            <td><span class="metric-positive">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kimberley</strong></td>
+                            <td><span class="metric-warning">66.67%</span></td>
+                            <td>87.5%</td>
+                            <td>48.89%</td>
+                            <td><span class="metric-warning">Needs Coaching</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pine Crest Centre</strong></td>
+                            <td><span class="metric-negative">43.33%</span></td>
+                            <td>6.25%</td>
+                            <td>77.78%</td>
+                            <td><span class="metric-negative">Critical</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart instances storage
+        let charts = {};
+
+        // Data
+        const journeyData = {
+            stages: ['First Impressions', 'Booking', 'Eye Test', 'Promotions', 'Purchase & Exit'],
+            scores: [92, 92, 88, 83, 63]
+        };
+
+        const channelData = {
+            channels: ['Telephonic Booking', 'Online Booking', 'Walk In'],
+            scores: [85, 78, 72]
+        };
+
+        const complianceData = {
+            items: ['POS Visible', 'Handover Completed', 'Promo Bag Given', 'Medical Aid Checked'],
+            scores: [80.62, 76.74, 11.63, 6.98]
+        };
+
+        const locationData = {
+            locations: ['Pavilion', 'Sea Point', 'Secunda Mall', 'Polofields', 'Bayside', 'Rynfield Square', 'Canal Walk'],
+            scores: [100, 91.7, 91.7, 91.7, 83.3, 83.3, 75]
+        };
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+        });
+
+        function initializeCharts() {
+            // Page 1: Journey Chart
+            updateChart('journeyChart', {
+                type: 'bar',
+                data: {
+                    labels: journeyData.stages,
+                    datasets: [{
+                        label: 'Score (%)',
+                        data: journeyData.scores,
+                        backgroundColor: journeyData.scores.map(score =>
+                            score >= 85 ? '#4CAF50' : score >= 70 ? '#81C784' : score >= 60 ? '#FFC107' : '#E57373'
+                        ),
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => context.parsed.x + '%'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: '#E0E0E0' }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Channel Chart
+            updateChart('channelChart', {
+                type: 'bar',
+                data: {
+                    labels: channelData.channels,
+                    datasets: [{
+                        label: 'Avg Score (%)',
+                        data: channelData.scores,
+                        backgroundColor: ['#CBA135', '#403B36', '#81C784']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Page 2: Detailed Journey Chart
+            updateChart('detailedJourneyChart', {
+                type: 'bar',
+                data: {
+                    labels: ['Store Exterior', 'Staff Appearance', 'Greeting', 'Eye Test', 'Promo Mention', 'Promo Clarity', 'Purchase Confidence', 'Handover'],
+                    datasets: [{
+                        label: 'Score (%)',
+                        data: [95, 92, 88, 88, 69, 63, 70, 77],
+                        backgroundColor: [
+                            '#4CAF50', '#4CAF50', '#81C784', '#81C784',
+                            '#FFC107', '#FFC107', '#FFC107', '#81C784'
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Weekend Chart
+            updateChart('weekendChart', {
+                type: 'doughnut',
+                data: {
+                    labels: ['Weekday', 'Weekend'],
+                    datasets: [{
+                        data: [76, 82],
+                        backgroundColor: ['#403B36', '#CBA135']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Time Period Chart
+            updateChart('timePeriodChart', {
+                type: 'bar',
+                data: {
+                    labels: ['Morning', 'Afternoon', 'Night'],
+                    datasets: [{
+                        label: 'Avg Score (%)',
+                        data: [78, 80, 65],
+                        backgroundColor: ['#81C784', '#4CAF50', '#FFC107']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Page 3: Promo Mentioned Donut
+            updateChart('promoMentionedChart', {
+                type: 'doughnut',
+                data: {
+                    labels: ['Mentioned', 'Not Mentioned'],
+                    datasets: [{
+                        data: [69.77, 30.23],
+                        backgroundColor: ['#4CAF50', '#E0E0E0']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            // Promo Explained Donut
+            updateChart('promoExplainedChart', {
+                type: 'doughnut',
+                data: {
+                    labels: ['Explained', 'Not Explained'],
+                    datasets: [{
+                        data: [63.25, 36.75],
+                        backgroundColor: ['#2196F3', '#E0E0E0']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            // Compliance Chart
+            updateChart('complianceChart', {
+                type: 'bar',
+                data: {
+                    labels: complianceData.items,
+                    datasets: [{
+                        label: 'Score (%)',
+                        data: complianceData.scores,
+                        backgroundColor: complianceData.scores.map(score =>
+                            score >= 70 ? '#4CAF50' : score >= 50 ? '#FFC107' : '#E57373'
+                        ),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Page 4: Distribution Chart
+            updateChart('distributionChart', {
+                type: 'pie',
+                data: {
+                    labels: ['Excellent (>85%)', 'Good (70-85%)', 'Needs Improvement (60-70%)', 'Critical (<60%)'],
+                    datasets: [{
+                        data: [12, 18, 8, 5],
+                        backgroundColor: ['#4CAF50', '#81C784', '#FFC107', '#E57373']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Location Chart
+            updateChart('locationChart', {
+                type: 'bar',
+                data: {
+                    labels: locationData.locations,
+                    datasets: [{
+                        label: 'Score (%)',
+                        data: locationData.scores,
+                        backgroundColor: locationData.scores.map(score =>
+                            score >= 85 ? '#4CAF50' : score >= 70 ? '#81C784' : '#FFC107'
+                        ),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChart(id, config) {
+            if (charts[id]) {
+                charts[id].destroy();
+            }
+            const ctx = document.getElementById(id);
+            if (ctx) {
+                charts[id] = new Chart(ctx, config);
+            }
+        }
+
+        function showPage(pageNum) {
+            // Update page visibility
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`page${i}`).classList.remove('active');
+            }
+            document.getElementById(`page${pageNum}`).classList.add('active');
+
+            // Update button states
+            const buttons = document.querySelectorAll('.page-btn');
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === pageNum - 1);
+            });
+        }
+    </script>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Pau Analytics</p>
+    </div>
+</body>
+</html>
