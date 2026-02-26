@@ -328,6 +328,9 @@
     .footer-bottom { text-align: center; font-size: 0.76rem; color: rgba(255,255,255,0.4); padding-top: 1.5rem; }
     .footer-bottom a { color: #CBA135; text-decoration: none; }
 
+    /* Mobile-only line break */
+    .mobile-nl { display: none; }
+
     /* FLOATING WHATSAPP */
     .floating-wa {
       position: fixed; bottom: 20px; right: 20px; z-index: 1000;
@@ -380,6 +383,12 @@
       /* CTAs */
       .cta-buttons { flex-direction: column; align-items: stretch; }
       .btn-primary-white, .btn-outline-white { text-align: center; justify-content: center; }
+
+      /* Mobile-only line breaks */
+      br.mobile-nl { display: block; }
+
+      /* Shrink final CTA heading to fit on one line */
+      .final-cta h2 { font-size: 1.3rem; }
     }
 
     @media (max-width: 480px) {
@@ -474,13 +483,13 @@
     <div class="section-header center">
       <span class="section-label">我们做什么</span>
       <h2 class="section-title">我们为您的生意做一次全面体检</h2>
-      <p class="section-sub">把我们当成您生意的"维修技师"，帮您把车开得更稳。</p>
+      <p class="section-sub">把我们当成您生意的"维修技师"，<br class="mobile-nl">帮您把车开得更稳。</p>
     </div>
     <div class="help-grid">
       <div class="help-card">
         <div class="help-icon">📋</div>
         <span class="help-tag">生意健康报告</span>
-        <h3>清楚知道什么在运作，什么出了问题</h3>
+        <h3>清楚知道什么在运作，<br class="mobile-nl">什么出了问题</h3>
         <div class="analogy">"就像汽车检验报告——告诉您哪里状态良好，哪里需要关注，以及什么问题要先处理，免得越来越严重。"</div>
         <ul class="help-features">
           <li>收入来源分析</li>
@@ -595,7 +604,7 @@
       </div>
       <div class="about-content">
         <span class="section-label">关于我们</span>
-        <h2 class="section-title">我们让数据分析变实用，不只是听起来厉害。</h2>
+        <h2 class="section-title">我们让数据分析变实用，<br class="mobile-nl">不只是听起来厉害。</h2>
         <p class="mission">"让数据分析真正有用——让您的每一个决策，不再是猜测，而是踏实的一步。"</p>
         <p class="desc">Pau Analytics 专注于帮助马来西亚中小企业把数据变成方向。我们提供实用的分析解决方案，推动真正的业务增长——不是那种放在文件夹里的报告。</p>
         <ul class="cred-list">
@@ -755,7 +764,7 @@
 <section class="final-cta">
   <div class="container">
     <h2>您只需要一张清晰的生意地图。</h2>
-    <p>让我们用简单、直接、清楚的语言告诉您，您的生意数据背后真正在说什么。</p>
+    <p>让我们用简单、直接、清楚的语言告诉您，<br class="mobile-nl">您的生意数据背后真正在说什么。</p>
     <div class="cta-buttons">
       <a href="#" onclick="document.querySelector('.hero-form').scrollIntoView({behavior:'smooth'}); return false;" class="btn-primary-white">立即领取免费生意检查</a>
       <a href="https://wa.me/60149207099" target="_blank" class="btn-outline-white">💬 想先聊聊？WhatsApp 我们</a>
