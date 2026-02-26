@@ -341,16 +341,53 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero h1 { font-size: 1.9rem; }
+      body { overflow-x: hidden; }
+
+      /* Navbar */
+      .navbar { padding: 0.8rem 1rem; }
+      .navbar .brand { font-size: 1.1rem; }
+      .navbar .wa-btn { padding: 8px 14px; font-size: 0.8rem; }
+
+      /* Hero */
+      .hero { padding: 3rem 1rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero-sub { font-size: 0.93rem; }
+
+      /* Sections */
+      .pain-section, .help-section, .how-section,
+      .cases-section, .about-section, .pricing-section,
+      .faq-section { padding: 3rem 1rem; }
+      .final-cta { padding: 3rem 1rem; }
+
+      /* Force all grids to single column on mobile */
+      .pain-grid { grid-template-columns: 1fr; }
+      .help-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .annual-grid { grid-template-columns: 1fr; }
+
+      /* Typography */
+      .section-title { font-size: 1.5rem; }
+      .final-cta h2 { font-size: 1.6rem; }
+
+      /* Layout collapses */
       .about-inner { grid-template-columns: 1fr; }
+      .about-visual { padding: 2rem; }
       .faq-inner { grid-template-columns: 1fr; }
-      .section-title { font-size: 1.6rem; }
-      .final-cta h2 { font-size: 1.7rem; }
+      .footer-top { flex-direction: column; }
+
+      /* CTAs */
       .cta-buttons { flex-direction: column; align-items: stretch; }
       .btn-primary-white, .btn-outline-white { text-align: center; justify-content: center; }
-      .footer-top { flex-direction: column; }
-      .annual-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .how-steps { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.6rem; }
+      .section-title { font-size: 1.35rem; }
+      .pricing-card .price { font-size: 1.8rem; }
     }
   </style>
 </head>
