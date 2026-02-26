@@ -329,6 +329,9 @@
     .footer-bottom { text-align: center; font-size: 0.76rem; color: rgba(255,255,255,0.4); padding-top: 1.5rem; }
     .footer-bottom a { color: #CBA135; text-decoration: none; }
 
+    /* Mobile-only line break */
+    .mobile-nl { display: none; }
+
     /* FLOATING WHATSAPP */
     .floating-wa {
       position: fixed; bottom: 20px; right: 20px; z-index: 1000;
@@ -381,6 +384,21 @@
       /* CTAs */
       .cta-buttons { flex-direction: column; align-items: stretch; }
       .btn-primary-white, .btn-outline-white { text-align: center; justify-content: center; }
+
+      /* Mobile-only line breaks */
+      br.mobile-nl { display: block; }
+
+      /* Shrink "Simple. No Technical Skills Needed." to one line */
+      .how-section .section-title { font-size: 1.0rem; }
+
+      /* Shrink annual plan heading to one line */
+      .annual-box h4 { font-size: 0.85rem; }
+
+      /* Make phone number fully white */
+      .footer-phone { color: white; }
+
+      /* Allow <br> to work inside the outline CTA button */
+      .final-cta .btn-outline-white { display: block; }
     }
 
     @media (max-width: 480px) {
@@ -474,7 +492,7 @@
   <div class="container">
     <div class="section-header center">
       <span class="section-label">What We Do</span>
-      <h2 class="section-title">We Give Your Business a Full Check-Up</h2>
+      <h2 class="section-title">We Give Your Business <br class="mobile-nl">a Full Check-Up</h2>
       <p class="section-sub">Think of us as the mechanic for your business — here to help you drive it better.</p>
     </div>
     <div class="help-grid">
@@ -629,7 +647,7 @@
     <div class="section-header center">
       <span class="section-label">Pricing</span>
       <h2 class="section-title">Pick What Fits Your Business Right Now</h2>
-      <p class="section-sub">No long contracts. No technical jargon. No surprises.</p>
+      <p class="section-sub">No long contracts. No technical jargon. <br class="mobile-nl">No surprises.</p>
     </div>
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -705,7 +723,7 @@
         </div>
       </div>
     </div>
-    <p class="pricing-note">Not sure which plan fits? <a href="https://wa.me/60149207099" target="_blank">Book a free consultation →</a></p>
+    <p class="pricing-note">Not sure which plan fits? <br class="mobile-nl"><a href="https://wa.me/60149207099" target="_blank">Book a free consultation →</a></p>
   </div>
 </section>
 
@@ -755,11 +773,11 @@
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container">
-    <h2>You Just Need the Right Picture.</h2>
+    <h2>You Just Need <br class="mobile-nl">the Right Picture.</h2>
     <p>Let us tell you what your business data is really saying — simply, directly, and clearly.</p>
     <div class="cta-buttons">
       <a href="#" onclick="document.querySelector('.hero-form').scrollIntoView({behavior:'smooth'}); return false;" class="btn-primary-white">Claim My Free Business Review</a>
-      <a href="https://wa.me/60149207099" target="_blank" class="btn-outline-white">💬 Prefer to chat first? Message us</a>
+      <a href="https://wa.me/60149207099" target="_blank" class="btn-outline-white">💬 Prefer to chat first? <br class="mobile-nl">Message us</a>
     </div>
   </div>
 </section>
@@ -782,7 +800,7 @@
       <div class="footer-contact">
         <h5>Get in Touch</h5>
         <p>📧 admin@pauanalytics.com</p>
-        <p>💬 +60 14-920 7099</p>
+        <p class="footer-phone">💬 +60 14-920 7099</p>
         <p>⏱ We reply within 24 hours</p>
       </div>
     </div>
