@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pau Analytics — Turn Your Business Data Into Direction</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/english-landing-page.html" />
+  <meta name="description" content="We help Malaysian SME and e-commerce business owners understand their own numbers — without needing a data team. Plain language. Real results. First findings in 2–3 weeks." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3XSLR3FV22');
+  </script>
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#FCF9F2">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background-color: #FCF9F2; color: #333; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky; top: 0; z-index: 1100;
+      display: flex; justify-content: space-between; align-items: center;
+      background-color: #403B36; padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .navbar .brand { font-size: 1.3rem; font-weight: 700; color: #CBA135; text-decoration: none; }
+    .navbar .wa-btn {
+      background: #25D366; color: white; padding: 10px 20px;
+      border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;
+    }
+    .navbar .wa-btn:hover { background: #1fb855; transform: translateY(-2px); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #403B36 0%, #2d2824 100%);
+      padding: 5rem 1.5rem; color: white;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-label {
+      display: inline-block; color: #CBA135; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .hero h1 { font-size: 2.6rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; }
+    .hero h1 em { color: #CBA135; font-style: normal; }
+    .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.8rem; }
+    .hero-checks { list-style: none; margin-bottom: 0; }
+    .hero-checks li {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 0.6rem; font-size: 0.95rem; color: rgba(255,255,255,0.9);
+    }
+    .hero-checks li::before { content: "✓"; color: #CBA135; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    /* Lead Capture Form */
+    .hero-form {
+      background: white; border-radius: 12px; padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .offer-badge {
+      background: #CBA135; color: white; font-size: 0.7rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px; display: inline-block;
+      margin-bottom: 1rem; letter-spacing: 0.5px;
+    }
+    .hero-form h3 { font-size: 1.1rem; font-weight: 700; color: #403B36; margin-bottom: 0.4rem; }
+    .hero-form .form-desc { font-size: 0.82rem; color: #777; margin-bottom: 1.2rem; }
+    .form-group { margin-bottom: 0.9rem; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: #403B36; margin-bottom: 0.3rem; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 11px 14px; border: 1.5px solid #e0ddd3;
+      border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+      color: #333; background: #faf9f6; transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #CBA135; }
+    .form-submit {
+      width: 100%; background: #CBA135; color: white; padding: 13px;
+      border: none; border-radius: 8px; font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s;
+    }
+    .form-submit:hover { background: #b08e2e; transform: translateY(-2px); }
+    .form-note { text-align: center; font-size: 0.72rem; color: #999; margin-top: 0.8rem; }
+
+    /* SECTION BASE */
+    .section-label {
+      display: inline-block; color: #CBA135; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .section-title { font-size: 2rem; font-weight: 700; color: #403B36; margin-bottom: 0.8rem; }
+    .section-sub { font-size: 0.95rem; color: #666; }
+    .section-header { margin-bottom: 3rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { max-width: 600px; margin: 0 auto; }
+
+    /* PAIN POINTS */
+    .pain-section { padding: 5rem 1.5rem; background: #fff9e7; }
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .pain-card {
+      background: white; padding: 1.8rem; border-radius: 10px;
+      border-left: 4px solid #CBA135; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .pain-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .pain-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .pain-card p { color: #555; font-size: 0.95rem; font-style: italic; line-height: 1.7; }
+    .pain-closing {
+      text-align: center; margin-top: 2.5rem; font-size: 0.93rem; color: #666;
+      font-style: italic; max-width: 680px; margin-left: auto; margin-right: auto;
+    }
+
+    /* HOW WE HELP */
+    .help-section { padding: 5rem 1.5rem; background: white; }
+    .help-intro {
+      text-align: center; font-size: 0.95rem; color: #666; margin-top: -1.5rem;
+      margin-bottom: 3rem; max-width: 640px; margin-left: auto; margin-right: auto;
+    }
+    .help-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .help-card {
+      background: #f8f9fa; padding: 2rem; border-radius: 10px;
+      border-left: 4px solid #CBA135; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .help-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .help-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+    .help-tag {
+      font-size: 0.7rem; color: #CBA135; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block;
+    }
+    .help-card h3 { font-size: 1.1rem; font-weight: 700; color: #403B36; margin-bottom: 0.8rem; }
+    .help-card .analogy {
+      font-size: 0.87rem; color: #666; font-style: italic;
+      margin-bottom: 1.2rem; padding: 0.8rem 1rem;
+      background: #fff9e7; border-radius: 6px; line-height: 1.6;
+    }
+    .help-features { list-style: none; }
+    .help-features li {
+      font-size: 0.85rem; color: #555; padding: 5px 0 5px 1.2rem;
+      position: relative; border-bottom: 1px solid #f0ede6;
+    }
+    .help-features li:last-child { border-bottom: none; }
+    .help-features li::before { content: "→"; color: #CBA135; position: absolute; left: 0; font-weight: 700; }
+
+    /* HOW IT WORKS */
+    .how-section { padding: 5rem 1.5rem; background: #f8f9fa; }
+    .how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+    .step-card {
+      background: white; padding: 2rem; border-radius: 10px;
+      text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: all 0.3s ease;
+    }
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .step-num {
+      display: inline-block; width: 50px; height: 50px; background: #CBA135; color: white;
+      border-radius: 50%; font-size: 1.4rem; font-weight: 700; line-height: 50px; margin-bottom: 1rem;
+    }
+    .step-card h3 { font-size: 1rem; font-weight: 700; color: #403B36; margin-bottom: 0.5rem; }
+    .step-card p { font-size: 0.87rem; color: #666; }
+
+    /* CASE STUDIES */
+    .cases-section { padding: 5rem 1.5rem; background: white; }
+    .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .case-card {
+      background: #f8f9fa; border-radius: 10px; padding: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-top: 4px solid #CBA135;
+      transition: all 0.3s ease;
+    }
+    .case-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .case-tag {
+      font-size: 0.7rem; color: #CBA135; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.6rem;
+    }
+    .case-card h3 { font-size: 1rem; font-weight: 700; color: #403B36; margin-bottom: 0.6rem; }
+    .case-card p { font-size: 0.88rem; color: #666; line-height: 1.6; }
+    .cases-link { text-align: center; margin-top: 2.5rem; }
+    .cases-link a { color: #CBA135; font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+    .cases-link a:hover { text-decoration: underline; }
+
+    /* WHO WE ARE */
+    .about-section { padding: 5rem 1.5rem; background: #fff9e7; }
+    .about-inner { display: grid; grid-template-columns: 1fr 1.8fr; gap: 4rem; align-items: start; }
+    .about-visual {
+      background: linear-gradient(135deg, #403B36 0%, #5a5349 100%);
+      border-radius: 12px; padding: 3rem; text-align: center; color: white;
+    }
+    .about-visual .big-icon { font-size: 5rem; margin-bottom: 1rem; display: block; }
+    .about-visual p { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+    .about-content .mission {
+      font-size: 0.95rem; color: #CBA135; font-weight: 600; font-style: italic;
+      margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid #CBA135;
+    }
+    .about-content p.desc { color: #666; font-size: 0.93rem; margin-bottom: 1.4rem; }
+    .cred-list { list-style: none; margin-bottom: 1.8rem; }
+    .cred-list li { display: flex; gap: 10px; align-items: flex-start; padding: 5px 0; font-size: 0.9rem; color: #444; }
+    .cred-list li .ck { color: #CBA135; font-weight: 700; flex-shrink: 0; }
+    .guarantee-box {
+      background: white; border: 2px solid #CBA135; border-radius: 10px;
+      padding: 1.2rem 1.5rem; margin-bottom: 2rem;
+    }
+    .guarantee-box p { font-size: 0.88rem; color: #403B36; margin: 0; }
+    .guarantee-box strong { color: #CBA135; }
+    .testimonials { display: flex; flex-direction: column; gap: 1rem; }
+    .testimonial {
+      background: white; border-radius: 10px; padding: 1.2rem 1.5rem;
+      border-left: 4px solid #CBA135; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .testimonial p { font-size: 0.88rem; color: #555; font-style: italic; margin-bottom: 0.4rem; }
+    .testimonial span { font-size: 0.78rem; color: #CBA135; font-weight: 600; }
+
+    /* PRICING */
+    .pricing-section { padding: 5rem 1.5rem; background: white; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .pricing-card {
+      background: #f8f9fa; border: 2px solid #e0ddd3; border-radius: 12px; padding: 2rem;
+      transition: all 0.3s ease; position: relative; display: flex; flex-direction: column;
+    }
+    .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); border-color: #CBA135; }
+    .pricing-card.featured { border: 3px solid #CBA135; background: linear-gradient(135deg, #fffef9 0%, #ffffff 100%); }
+    .pricing-card.featured::before {
+      content: "MOST POPULAR"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #CBA135; color: white; padding: 4px 16px; border-radius: 20px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .pricing-card h3 { font-size: 1.15rem; font-weight: 700; color: #403B36; margin-bottom: 0.3rem; }
+    .pricing-card .best-for { font-size: 0.78rem; color: #888; margin-bottom: 1rem; }
+    .pricing-card .price { font-size: 2.2rem; font-weight: 700; color: #CBA135; }
+    .pricing-card .price span { font-size: 0.85rem; font-weight: 500; color: #888; }
+    .pricing-card .saving { font-size: 0.78rem; color: #2ECC71; font-weight: 600; margin: 0.3rem 0 1rem; }
+    .pricing-card ul { list-style: none; flex: 1; margin-bottom: 1.5rem; }
+    .pricing-card ul li {
+      padding: 6px 0 6px 1.4rem; position: relative; color: #555;
+      font-size: 0.87rem; border-bottom: 1px solid #f0ede6;
+    }
+    .pricing-card ul li:last-child { border-bottom: none; }
+    .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: #CBA135; font-weight: 700; }
+    .pricing-card .cta-btn {
+      display: block; text-align: center; background: #CBA135; color: white;
+      padding: 13px; border-radius: 8px; text-decoration: none; font-weight: 600;
+      font-size: 0.92rem; transition: all 0.3s ease; margin-top: auto;
+    }
+    .pricing-card .cta-btn:hover { background: #b08e2e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(203,161,53,0.3); }
+    .pricing-card.featured .cta-btn { background: #403B36; }
+    .pricing-card.featured .cta-btn:hover { background: #2d2824; }
+    .annual-box {
+      background: #fff9e7; border-radius: 12px; border-left: 4px solid #CBA135;
+      padding: 2rem; margin-top: 2rem;
+    }
+    .annual-box h4 { color: #403B36; font-size: 1rem; margin-bottom: 1.2rem; }
+    .annual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .annual-item {
+      background: white; padding: 1.2rem; border-radius: 10px;
+      border-left: 3px solid #CBA135; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .annual-item h5 { color: #403B36; font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .annual-item .annual-price { font-size: 1.4rem; font-weight: 700; color: #CBA135; }
+    .annual-item .annual-cross { color: #aaa; font-size: 0.78rem; text-decoration: line-through; }
+    .annual-item .annual-save { color: #2ECC71; font-size: 0.78rem; font-weight: 600; margin-top: 0.3rem; }
+    .pricing-note { text-align: center; font-size: 0.88rem; color: #777; margin-top: 2rem; }
+    .pricing-note a { color: #CBA135; font-weight: 600; text-decoration: none; }
+    .pricing-note a:hover { text-decoration: underline; }
+
+    /* FAQ */
+    .faq-section { padding: 5rem 1.5rem; background: #f8f9fa; }
+    .faq-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+    .faq-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .faq-item { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .faq-q {
+      padding: 1.1rem 1.3rem; font-weight: 600; font-size: 0.9rem; color: #403B36;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-q:hover { background: #faf8f4; }
+    .faq-toggle { color: #CBA135; font-size: 1.4rem; font-weight: 700; transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 0.88rem; color: #666; max-height: 0;
+      overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+      padding: 0 1.3rem;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 1.3rem 1.2rem; }
+
+    /* FINAL CTA */
+    .final-cta {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, #CBA135 0%, #a8892a 100%);
+      text-align: center; color: white;
+    }
+    .final-cta h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
+    .final-cta p { font-size: 1rem; opacity: 0.92; margin-bottom: 2.5rem; max-width: 580px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary-white {
+      background: white; color: #CBA135; padding: 14px 32px; border-radius: 8px;
+      font-weight: 700; font-size: 1rem; text-decoration: none; transition: all 0.3s;
+    }
+    .btn-primary-white:hover { background: #f0ede6; transform: translateY(-2px); }
+    .btn-outline-white {
+      background: transparent; color: white; padding: 14px 32px; border: 2px solid white;
+      border-radius: 8px; font-weight: 600; font-size: 1rem; text-decoration: none;
+      transition: all 0.3s; display: flex; align-items: center; gap: 8px;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: #222; color: rgba(255,255,255,0.75); padding: 3rem 1.5rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 2rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand .brand { font-size: 1.2rem; font-weight: 700; color: #CBA135; }
+    .footer-brand p { font-size: 0.82rem; margin-top: 0.4rem; max-width: 220px; }
+    .footer-links h5 { color: white; font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .footer-links a { display: block; color: rgba(255,255,255,0.65); font-size: 0.82rem; text-decoration: none; padding: 2px 0; transition: color 0.3s; }
+    .footer-links a:hover { color: #CBA135; }
+    .footer-contact h5 { color: white; font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .footer-contact p { font-size: 0.82rem; margin-bottom: 0.4rem; }
+    .footer-bottom { text-align: center; font-size: 0.76rem; color: rgba(255,255,255,0.4); padding-top: 1.5rem; }
+    .footer-bottom a { color: #CBA135; text-decoration: none; }
+
+    /* FLOATING WHATSAPP */
+    .floating-wa {
+      position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+      background: #25D366; color: white; width: 60px; height: 60px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s;
+    }
+    .floating-wa:hover { background: #128C7E; transform: scale(1.1); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero h1 { font-size: 1.9rem; }
+      .about-inner { grid-template-columns: 1fr; }
+      .faq-inner { grid-template-columns: 1fr; }
+      .section-title { font-size: 1.6rem; }
+      .final-cta h2 { font-size: 1.7rem; }
+      .cta-buttons { flex-direction: column; align-items: stretch; }
+      .btn-primary-white, .btn-outline-white { text-align: center; justify-content: center; }
+      .footer-top { flex-direction: column; }
+      .annual-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <a class="brand" href="https://www.pauanalytics.com">Pau Analytics</a>
+  <a class="wa-btn" href="https://wa.me/60149207099" target="_blank">💬 Chat with Us</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-label">For Malaysian SME &amp; E-commerce Business Owners</span>
+      <h1>Still Making Business Decisions Based on <em>Gut Feel?</em></h1>
+      <p class="hero-sub">We turn your existing business data into clear answers — so your next move is a confident step, not a guess.</p>
+      <ul class="hero-checks">
+        <li>No technical knowledge needed</li>
+        <li>Plain language — no jargon, no confusion</li>
+        <li>First findings delivered in 2–3 weeks</li>
+      </ul>
+    </div>
+    <div class="hero-form">
+      <div class="offer-badge">⏳ LIMITED — 10 SPOTS PER MONTH</div>
+      <h3>Claim Your Free 30-Min Business Review</h3>
+      <p class="form-desc">Tell us your biggest challenge. We'll show you what your data is really saying — at no cost.</p>
+      <form onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="f-name" placeholder="e.g. Ahmad Razif" required />
+        </div>
+        <div class="form-group">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="f-phone" placeholder="e.g. 012-345 6789" required />
+        </div>
+        <div class="form-group">
+          <label>Biggest Business Challenge</label>
+          <select id="f-challenge" required>
+            <option value="" disabled selected>Select your challenge</option>
+            <option value="I don't know which products are making me money">I don't know which products are making me money</option>
+            <option value="My promotions run but I can't tell if they work">My promotions run but I can't tell if they work</option>
+            <option value="Customers are leaving and I don't know why">Customers are leaving and I don't know why</option>
+            <option value="I can't plan my stock or inventory confidently">I can't plan my stock or inventory confidently</option>
+            <option value="I'm not sure — I just need more clarity">I'm not sure — I just need more clarity</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Claim My Free Business Review →</button>
+      </form>
+      <p class="form-note">We reply within 24 hours. Most owners hear back the same day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">Does This Sound Familiar?</span>
+      <h2 class="section-title">You're Working Hard. But Some Questions Keep You Up at Night.</h2>
+      <p class="section-sub">Most business owners we speak to feel the same way. They're working hard — but flying blind.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">📦</div>
+        <p>"I don't know which products are actually making me money — and which ones are quietly draining it."</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📢</div>
+        <p>"I ran promotions last month but have no idea if they brought in real profit — or just noise."</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🚪</div>
+        <p>"Customers are leaving and I can't pinpoint why — or figure out who to win back first."</p>
+      </div>
+    </div>
+    <p class="pain-closing">These aren't signs of a failing business. They're signs of a business that hasn't seen its own data clearly yet.</p>
+  </div>
+</section>
+
+<!-- HOW WE HELP -->
+<section class="help-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">We Give Your Business a Full Check-Up</h2>
+      <p class="section-sub">Think of us as the mechanic for your business. We inspect it, show you what's happening under the hood, and help you drive it better.</p>
+    </div>
+    <div class="help-grid">
+      <div class="help-card">
+        <div class="help-icon">📋</div>
+        <span class="help-tag">Business Health Report</span>
+        <h3>Know What's Working — and What Isn't</h3>
+        <div class="analogy">"Like a car inspection report — it tells you exactly what's in good shape, what needs attention, and what to fix first before it gets worse."</div>
+        <ul class="help-features">
+          <li>Revenue driver analysis</li>
+          <li>Customer churn signals</li>
+          <li>Campaign performance review</li>
+          <li>Pricing gap identification</li>
+          <li>All delivered in plain language</li>
+        </ul>
+      </div>
+      <div class="help-card">
+        <div class="help-icon">📊</div>
+        <span class="help-tag">Live Business Monitor</span>
+        <h3>See Your Business at a Glance</h3>
+        <div class="analogy">"Like the gauges on your car dashboard — updated regularly so you can see your sales, stock, and customers at a glance, without digging through spreadsheets."</div>
+        <ul class="help-features">
+          <li>Real-time sales visibility</li>
+          <li>Live inventory tracking</li>
+          <li>Customer behaviour trends</li>
+          <li>Early warning indicators</li>
+          <li>No spreadsheet skills needed</li>
+        </ul>
+      </div>
+      <div class="help-card">
+        <div class="help-icon">🤖</div>
+        <span class="help-tag">Smart Business Assistant</span>
+        <h3>Always On. Only Speaks When It Matters.</h3>
+        <div class="analogy">"Like a smart driving assistant — it monitors your business in the background and only speaks up when something needs your attention."</div>
+        <ul class="help-features">
+          <li>24/7 background monitoring</li>
+          <li>Proactive issue alerts</li>
+          <li>Early problem detection</li>
+          <li>Decision guidance on demand</li>
+          <li>No action needed unless flagged</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">The Process</span>
+      <h2 class="section-title">Simple. No Technical Skills Needed.</h2>
+      <p class="section-sub">We handle the complex part. You just make the decisions.</p>
+    </div>
+    <div class="how-steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Tell Us Your Challenge</h3>
+        <p>Fill in the form or WhatsApp us. We'll ask a few simple questions about your business.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Share Your Data</h3>
+        <p>We guide you on exactly what to send and how to send it safely. No preparation needed on your end.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Receive Your Findings</h3>
+        <p>Clear, plain-language report and/or dashboard delivered in 2–3 weeks. No technical reading required.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Make Your Next Move With Confidence</h3>
+        <p>Know what to act on, why it matters, and what to watch next — without guessing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">Real Results</span>
+      <h2 class="section-title">Every Case Study Started With One Question From a Business Owner</h2>
+      <p class="section-sub">Here are some of the questions we've helped answer.</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <span class="case-tag">Customer Experience</span>
+        <h3>Evaluating Store Customer Experience</h3>
+        <p>A retail business discovered their customer experience score was dragging repeat visits down — and brought it from 72.9% back above 80%.</p>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">Sales Funnel</span>
+        <h3>Fixing the Sales Leaks</h3>
+        <p>An e-commerce brand had 500,000+ shopping sessions. We found exactly where customers were dropping off — and fixed the leak.</p>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">Customer Retention</span>
+        <h3>Predicting Gym Member Dropout</h3>
+        <p>A gym identified which members were likely to quit before they cancelled — and acted early enough to keep them.</p>
+      </div>
+    </div>
+    <div class="cases-link">
+      <a href="https://www.pauanalytics.com/data-analytics.html">See all 26 case studies →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="about-section">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="about-visual">
+          <span class="big-icon">📊</span>
+          <p>Helping Malaysian businesses see clearly — in plain language that actually makes sense.</p>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">We Make Analytics Practical. Not Impressive-Sounding.</h2>
+        <p class="mission">"Make analytics genuinely useful — so your decisions aren't guesses, but confident steps forward."</p>
+        <p class="desc">Pau Analytics helps Malaysian SMEs turn data into direction. We specialise in practical analytics solutions that drive real business growth — not reports that sit in a folder.</p>
+        <ul class="cred-list">
+          <li><span class="ck">✓</span> 26 published case studies across 7 business categories</li>
+          <li><span class="ck">✓</span> Clients across retail, F&amp;B, e-commerce, hospitality, and fitness</li>
+          <li><span class="ck">✓</span> Plain-language delivery — no jargon, no dashboards you can't read</li>
+          <li><span class="ck">✓</span> Results delivered in 2–3 weeks from the day we receive your data</li>
+        </ul>
+        <div class="guarantee-box">
+          <p>🛡️ <strong>Our Guarantee:</strong> If your first report doesn't surface at least one thing worth acting on, we'll refund it. No questions asked.</p>
+        </div>
+        <div class="testimonials">
+          <div class="testimonial">
+            <p>"Before this, I had no idea which of my products was losing me money. Now I know exactly where to focus."</p>
+            <span>— Retail business owner, Kuala Lumpur</span>
+          </div>
+          <div class="testimonial">
+            <p>"I thought I needed a data team. Turns out I just needed the right questions answered."</p>
+            <span>— F&amp;B operator, Selangor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Pick What Fits Your Business Right Now</h2>
+      <p class="section-sub">No long contracts. No technical jargon. No surprises.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Monthly Check-Up</h3>
+        <p class="best-for">For first-time users who want clarity on one key area</p>
+        <div class="price">RM750 <span>/month</span></div>
+        <div class="saving">💰 Save RM1,000 with annual plan</div>
+        <ul>
+          <li>1 business question analysed per month</li>
+          <li>Business health report</li>
+          <li>Plain-language findings</li>
+          <li>2–3 week setup &amp; delivery</li>
+        </ul>
+        <a href="https://wa.me/60149207099?text=Hi%2C%20I'm%20interested%20in%20the%20Monthly%20Check-Up%20plan" class="cta-btn" target="_blank">Get Started</a>
+      </div>
+      <div class="pricing-card featured">
+        <h3>Growth Tracker</h3>
+        <p class="best-for">For businesses tracking sales, customers &amp; campaigns</p>
+        <div class="price">RM1,500 <span>/month</span></div>
+        <div class="saving">💰 Save RM3,000 with annual plan</div>
+        <ul>
+          <li>Up to 3 business questions per month</li>
+          <li>Business health report</li>
+          <li>Live business monitor (dashboard)</li>
+          <li>Weekly dashboard updates</li>
+        </ul>
+        <a href="https://wa.me/60149207099?text=Hi%2C%20I'm%20interested%20in%20the%20Growth%20Tracker%20plan" class="cta-btn" target="_blank">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Full Analytics Partner</h3>
+        <p class="best-for">For businesses that want full coverage &amp; proactive alerts</p>
+        <div class="price">RM2,250 <span>/month</span></div>
+        <div class="saving">💰 Save RM2,000 with annual plan</div>
+        <ul>
+          <li>Unlimited business questions</li>
+          <li>Report + live monitor</li>
+          <li>Smart business assistant (AI)</li>
+          <li>Priority response</li>
+        </ul>
+        <a href="https://wa.me/60149207099?text=Hi%2C%20I'm%20interested%20in%20the%20Full%20Analytics%20Partner%20plan" class="cta-btn" target="_blank">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Business Diagnostic</h3>
+        <p class="best-for">Not ready for monthly? Start with a one-off check</p>
+        <div class="price">RM3,500 <span>one-time</span></div>
+        <div class="saving" style="visibility:hidden">—</div>
+        <ul>
+          <li>Full business data assessment</li>
+          <li>Revenue, churn &amp; campaign review</li>
+          <li>Delivered in 2–3 weeks</li>
+          <li>Ideal first step before monthly plan</li>
+        </ul>
+        <a href="https://wa.me/60149207099?text=Hi%2C%20I'm%20interested%20in%20the%20Business%20Diagnostic" class="cta-btn" target="_blank">Get Started</a>
+      </div>
+    </div>
+    <div class="annual-box">
+      <h4>🎁 Save More With an Annual Plan</h4>
+      <div class="annual-grid">
+        <div class="annual-item">
+          <h5>Monthly Check-Up</h5>
+          <div class="annual-price">RM8,000</div>
+          <div class="annual-cross">RM9,000 (RM750 × 12)</div>
+          <div class="annual-save">Save RM1,000/year</div>
+        </div>
+        <div class="annual-item">
+          <h5>Growth Tracker</h5>
+          <div class="annual-price">RM15,000</div>
+          <div class="annual-cross">RM18,000 (RM1,500 × 12)</div>
+          <div class="annual-save">Save RM3,000/year</div>
+        </div>
+        <div class="annual-item">
+          <h5>Full Analytics Partner</h5>
+          <div class="annual-price">RM25,000</div>
+          <div class="annual-cross">RM27,000 (RM2,250 × 12)</div>
+          <div class="annual-save">Save RM2,000/year</div>
+        </div>
+      </div>
+    </div>
+    <p class="pricing-note">Not sure which plan fits? <a href="https://wa.me/60149207099" target="_blank">Book a free consultation →</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="faq-inner">
+      <div>
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Questions We Get All the Time</h2>
+        <p class="section-sub">If you're not sure this is right for your business, these answers should help.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Do I need to understand data or tech to use this?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">No. Everything we deliver is written in plain English. If you can read a WhatsApp message, you can read our reports.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Is my business data safe with you?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">Yes. We only ask for the data we need, we explain why we need it, and we never share it with anyone outside our team.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            How long before I get my first report?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">Typically 2–3 weeks from the day we receive your data. Most clients have their first findings before the month is out.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            What if I'm not happy with the results?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">If your first report doesn't surface at least one thing worth acting on, we'll refund it. No questions asked.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>You Don't Need a Data Team.<br>You Just Need the Right Picture.</h2>
+    <p>Let us show you what your business is really telling you — in plain language, within weeks.</p>
+    <div class="cta-buttons">
+      <a href="#" onclick="document.querySelector('.hero-form').scrollIntoView({behavior:'smooth'}); return false;" class="btn-primary-white">Claim My Free Business Review</a>
+      <a href="https://wa.me/60149207099" target="_blank" class="btn-outline-white">💬 Prefer to chat first? Message us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">Pau Analytics</div>
+        <p>Helping Malaysian Businesses See Clearly</p>
+      </div>
+      <div class="footer-links">
+        <h5>Pages</h5>
+        <a href="https://www.pauanalytics.com/data-analytics.html">Case Studies</a>
+        <a href="https://www.pauanalytics.com/pricing.html">Pricing</a>
+        <a href="https://www.pauanalytics.com/about.html">About</a>
+        <a href="https://www.pauanalytics.com/contact.html">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <h5>Get in Touch</h5>
+        <p>📧 admin@pauanalytics.com</p>
+        <p>💬 +60 14-920 7099</p>
+        <p>⏱ We reply within 24 hours</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Pau Analytics | Data-Driven Solutions for Malaysian SMEs | <a href="https://www.pauanalytics.com/privacy-policy.html">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/60149207099?text=Hi%20Pau%20Analytics%2C%20I'm%20interested%20in%20your%20services" target="_blank" class="floating-wa">💬</a>
+
+<script>
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const name = document.getElementById('f-name').value;
+  const phone = document.getElementById('f-phone').value;
+  const challenge = document.getElementById('f-challenge').value;
+  const msg = encodeURIComponent(
+    'Hi Pau Analytics! I\'d like to claim my free business review.\n\nName: ' + name +
+    '\nWhatsApp: ' + phone + '\nMy biggest challenge: ' + challenge +
+    '\n\nLooking forward to hearing from you!'
+  );
+  window.open('https://wa.me/60149207099?text=' + msg, '_blank');
+}
+</script>
+</body>
+</html>
