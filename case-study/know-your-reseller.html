@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Your Reseller | Pau Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <h1>Pau Analytics</h1>
+            <h2>Data Analytics Consulting</h2>
+            <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+
+            <div class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </div>
+
+            <div class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <a href="../dashboard/know-your-reseller.html" class="home-link-btn">Dashboard</a>
+
+            <h1>Know Your Reseller: Are Your Best Sellers Actually Your Best Partners?</h1>
+
+            <p>A Malaysian biscuits and cookies manufacturer sells through 635 independent resellers spread across 10 territories. For years, the company rewarded partners based on revenue — the more a reseller sold, the more support, discounts, and attention they received. But when the company began to question whether their highest-selling resellers were actually making them money, they brought in Pau Analytics to find out the truth.</p>
+
+            <p>The manufacturer had no way of knowing which resellers were profitable and which were quietly draining resources. Some top-selling partners turned out to have negative margins — meaning the company was losing money on every order they fulfilled. One reseller alone received the highest discount in the network yet returned a gross margin of negative $1,250. Over half of the top 15 discount recipients generated negative returns. Without a clearer picture, the company risked continuing to fund the wrong partners.</p>
+
+            <p>Pau Analytics studied 60,855 orders placed by 635 resellers over a 26-month period. Rather than looking at sales volume alone, the team examined how much gross margin each reseller actually contributed, how often they ordered, and how efficiently their discounts translated into returns. Every reseller was then grouped into one of four segments based on actual performance.</p>
+
+            <p>Pau Analytics advised the manufacturer to stop distributing resources equally and start concentrating support where it matters. The 175 Champions and Steady Partners — just 27% of the network — were identified as the partners worth investing in. For the remaining 330 Low-ROI resellers representing 52% of the network, the recommendation was to set minimum performance thresholds. The 130 At-Risk resellers, inactive for an average of 579 days, needed immediate re-engagement before they were lost entirely. Discounts were to be redirected away from underperforming partners and toward those with a proven track record of strong returns.</p>
+
+            <p>The analysis confirmed that 72% of the reseller network — 460 partners — contributed negligibly to the company's profit. Meanwhile, 65 Champions (10% of the network) were quietly carrying a disproportionate share of gross margin. Reseller 506, for example, contributed $182,884 in gross margin at an 18% margin rate. The manufacturer now had a clear, data-backed picture of where value was being created and where it was being eroded.</p>
+
+            <p>Today, the manufacturer monitors reseller performance through a live dashboard that tracks margin contribution, order activity, and discount efficiency across all segments. An AI assistant allows the team to ask questions about specific resellers or territories in plain language — flagging early warning signs and supporting faster, better-informed decisions without needing to dig through spreadsheets.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
