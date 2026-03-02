@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Reseller Assistant | Know Your Reseller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/know-your-reseller.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/know-your-reseller-dashboard.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/know-your-reseller.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>🤖 AI Reseller Assistant</h1>
+                <p>After your analysis is complete, imagine having these conversations available whenever you need them.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Which resellers are actually making money for us?</button>
+                    <button class="question-btn" onclick="showResponse(2)">Are we giving discounts to the right resellers?</button>
+                    <button class="question-btn" onclick="showResponse(3)">Which resellers give us the best return on discounts?</button>
+                    <button class="question-btn" onclick="showResponse(4)">Which at-risk resellers are worth saving?</button>
+                    <button class="question-btn" onclick="showResponse(5)">Which resellers should we cut first?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Which resellers are actually making money for us?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Breaking down the query: Need to (1) Rank all 635 resellers by gross margin, (2) Separate positive contributors from loss-makers, (3) Cross-reference with analysis insights on revenue vs margin discrepancy"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Structured Data (CSV)",
+                        content: "Querying reseller metrics sorted by gross margin descending and ascending..."
+                    }
+                ],
+                dataResult: {
+                    title: "Query Results:",
+                    items: [
+                        "Top earner: Reseller 506 — $182,884 gross margin at 18% margin rate",
+                        "2nd: Reseller 697 — $129,468 gross margin (also highest in total revenue)",
+                        "3rd: Reseller 546 — $106,678 gross margin",
+                        "4th: Reseller 146 — $106,596 gross margin",
+                        "Biggest drain: Reseller 599 — -$73,316 gross margin",
+                        "2nd drain: Reseller 193 — -$47,414 gross margin",
+                        "3rd drain: Reseller 154 — -$45,766 gross margin"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Unstructured Data (Analysis Report)",
+                        content: "Searching insights for revenue vs margin discrepancy context..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Insights Found:",
+                    items: [
+                        "\"Sales volume and gross margin do not move together\"",
+                        "\"Many high-revenue resellers generate negative gross margins — the manufacturer loses money on every transaction\"",
+                        "\"The manufacturer should anchor all reseller decisions to margin performance, not revenue figures\""
+                    ]
+                },
+                answer: "Resellers 506, 697, 546, and 146 are your top four margin contributors, ranging from $106,596 to $182,884. Meanwhile, Resellers 599, 193, and 154 are your biggest drains, together costing you over $166,000 — switch your focus from revenue to margin immediately."
+            },
+            2: {
+                question: "Are we giving discounts to the right resellers?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Compare discount allocation vs gross margin per reseller, (2) Identify the largest mismatch between discount received and margin returned, (3) Highlight best and worst discount investments"
+                    },
+                    {
+                        title: "🔍 Data Analysis - Structured Data",
+                        content: "Querying discount received and gross margin for all resellers, sorting by discount amount..."
+                    }
+                ],
+                dataResult: {
+                    title: "Discount vs Margin — Key Findings:",
+                    items: [
+                        "Worst investment: Reseller 278 received $26,781 in discount — returned -$1,250 in gross margin",
+                        "Resellers 328 and 166 combined: ~$18,500 in discount — returned over -$64,000 in gross margin",
+                        "More than half of the top 15 discount recipients returned negative gross margins",
+                        "Best return: Reseller 697 received $7,773 in discount — returned $129,468 in gross margin",
+                        "2nd best: Reseller 506 received $6,803 in discount — returned $182,884 in gross margin"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Unstructured Data (Analysis Report)",
+                        content: "Searching insights for discount reallocation strategy..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Guidance:",
+                    items: [
+                        "\"The manufacturer's discount budget is flowing in the wrong direction\"",
+                        "\"High-margin partners receive comparatively modest discounts and continue to outperform\"",
+                        "\"Reallocating even a portion of discount from loss-making resellers would immediately improve profitability\""
+                    ]
+                },
+                answer: "No — Reseller 278 received your largest discount ($26,781) yet returned a loss of -$1,250, while Reseller 697 got only $7,773 in discount and generated $129,468 in margin. Redirect your discount budget away from loss-makers and toward proven earners like Resellers 697 and 506 immediately."
+            },
+            3: {
+                question: "Which resellers give us the best return on discounts?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Calculate gross margin per dollar of discount for each reseller, (2) Rank top performers by return ratio, (3) Flag worst-performing discount recipients for comparison"
+                    },
+                    {
+                        title: "🔍 Data Analysis - Structured Data",
+                        content: "Computing margin-to-discount ratio for all resellers with positive gross margin..."
+                    }
+                ],
+                dataResult: {
+                    title: "Discount Return Ratio — Top Performers:",
+                    items: [
+                        "Reseller 506: $182,884 margin ÷ $6,803 discount = 26.9x return",
+                        "Reseller 697: $129,468 margin ÷ $7,773 discount = 16.7x return",
+                        "Worst ratio: Reseller 278 — $26,781 discount → -$1,250 margin (negative return)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Unstructured Data (Analysis Report)",
+                        content: "Retrieving efficiency benchmarks and discount strategy insights..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Insights Found:",
+                    items: [
+                        "\"Reseller 697 — the network's most balanced partner — shows what efficient discount investment looks like\"",
+                        "\"Reseller 650 received $9,802 in discount and generated $71,464 in gross margin — strongest return-on-discount in the group\"",
+                        "\"Redirect the discount budget toward this profile and away from high-discount, low-return partners immediately\""
+                    ]
+                },
+                answer: "Reseller 506 delivers the best return on discount at 26.9x — every $1 spent on discount generates $26.90 in gross margin — while Reseller 697 follows at 16.7x. These two should become your benchmark for who deserves discount support."
+            },
+            4: {
+                question: "Which at-risk resellers are worth saving?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Filter the At-Risk segment (130 resellers inactive for ~579 days on average), (2) Rank by historical gross margin to identify re-engagement candidates, (3) Flag loss-makers to skip"
+                    },
+                    {
+                        title: "🔍 Data Retrieval - Structured Data (CSV)",
+                        content: "Querying At-Risk resellers sorted by historical gross margin and days since last order..."
+                    }
+                ],
+                dataResult: {
+                    title: "At-Risk Resellers — Re-engagement Candidates:",
+                    items: [
+                        "Reseller 653: $23,804 gross margin — inactive 411 days",
+                        "Reseller 484: $17,637 gross margin — inactive 403 days",
+                        "Reseller 184: $17,085 gross margin — inactive 431 days",
+                        "Skip: Reseller 366 — left behind -$39,467 in margin losses",
+                        "Skip: Reseller 278 — left behind -$1,250 in losses and absorbed the highest discount in the network"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Unstructured Data (Analysis Report)",
+                        content: "Pulling re-engagement strategy insights from analyst report..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Guidance:",
+                    items: [
+                        "\"A small number of At-Risk resellers may have paused for addressable reasons\"",
+                        "\"For most, the relationship has already ended in practice and should be formally closed\"",
+                        "\"Run a targeted re-engagement exercise — focus only on those with a history of positive margin\""
+                    ]
+                },
+                answer: "Resellers 653, 484, and 184 are your best re-engagement targets — each generated over $17,000 in past margin and has been inactive for just over a year. Skip Resellers 366 and 278, who left behind losses, not profits."
+            },
+            5: {
+                question: "Which resellers should we cut first?",
+                workflow: [
+                    {
+                        title: "📋 Planning",
+                        content: "Task requires: (1) Identify all resellers with negative gross margin, (2) Rank by total loss size to prioritize exits, (3) Flag high-discount loss-makers for immediate action"
+                    },
+                    {
+                        title: "🔍 Data Analysis - Structured Data",
+                        content: "Querying resellers with negative gross margin, sorted by loss size descending..."
+                    }
+                ],
+                dataResult: {
+                    title: "Priority Cut List — By Margin Loss:",
+                    items: [
+                        "Cut first: Reseller 169 — -$41,450 gross margin",
+                        "Cut first: Reseller 366 — -$39,467 gross margin",
+                        "Cut first: Reseller 278 — -$1,250 margin + received $26,781 in discount (highest in network)",
+                        "Secondary: Reseller 163 — -$14,195 gross margin",
+                        "Secondary: Reseller 576 — -$11,088 gross margin"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "📄 Context Search - Unstructured Data (Analysis Report)",
+                        content: "Retrieving exit strategy and performance threshold guidance..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Strategic Guidance:",
+                    items: [
+                        "\"Setting a minimum performance threshold and applying it consistently over the next operating period\"",
+                        "\"Concentrate the distribution network on partners that actually drive the business forward\"",
+                        "\"The 330 Low-ROI resellers present a slower-moving but equally important challenge — still active, but not generating enough margin to justify the cost\""
+                    ]
+                },
+                answer: "Start by exiting Resellers 169 and 366 — together they account for over $80,000 in losses — then add Reseller 278, who received the most discount yet still returned a loss. Follow up by phasing out Resellers 163 and 576 to stop the smaller but ongoing margin drain."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">🤖 AI Reseller Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">✅ Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
