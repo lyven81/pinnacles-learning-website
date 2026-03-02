@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a Bicycle Retailer Found Its Best Customers | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/case-study/understanding-customer-value" />
+    <meta name="description" content="How a bicycle shop retailer with 18,400 customers discovered that a tiny group of high-value buyers generated $10.6 million in profit — and used that insight to protect the customers that mattered most." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* General Styles with Fixed Sidebar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column (Company Info and Contact) */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column (Main Content) */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .right-column .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: relative;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding: 15px;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+            <!-- Dashboard Link Button -->
+            <section class="home-link-section">
+                <a href="https://www.pauanalytics.com/dashboard/understanding-customer-value.html" class="home-link-btn">Dashboard</a>
+            </section>
+            <!-- AI Assistant Link Button -->
+            <section class="home-link-section">
+                <a href="https://www.pauanalytics.com/agentic_workflow/understanding-customer-value.html" class="home-link-btn" style="background-color: #CBA135; color: white; border-color: #CBA135;">AI Assistant</a>
+            </section>
+        </aside>
+
+        <main class="right-column">
+            <section class="case-study-content">
+                <h1>How a Bicycle Retailer Found Its Best Customers</h1>
+
+                <p>A bicycle shop retailer was running a busy operation with 18,400 customers and more than 60,000 sales transactions — but profit was not growing to match the activity. With no clear picture of which customers were actually driving the business, the retailer brought in Pau Analytics to find out.</p>
+
+                <p>The shop's profit was far more fragile than it appeared. Fewer than 2% of customers returned four or more times, while 63% bought only once. A small group of high-value customers was quietly carrying almost all the financial weight — generating approximately $10.6 million in profit — while the majority created activity without meaningful returns. Without knowing who these customers were, the shop risked losing them without even noticing.</p>
+
+                <p>Pau Analytics reviewed the full customer purchase history covering 18,400 customers and more than 60,000 sales. Rather than focusing on how often customers bought, the team measured how much profit each customer actually contributed over time, and grouped them into clear value tiers based on long-term financial contribution.</p>
+
+                <p>Pau Analytics advised the retailer to manage customers by value, not volume. High-value customers — those who bought infrequently but spent on complete bikes and premium upgrades — should be protected and retained through personalised service and follow-up, not discounts. Medium-value customers represent the best growth opportunity and should be encouraged toward upgrades and repeat purchases. Low-value frequent buyers should be served efficiently without disproportionate investment.</p>
+
+                <p>The analysis confirmed a stark imbalance. High-value customers generated about $10.6 million in total profit. Medium-value customers contributed $1.4 million. Low-value customers added just $0.12 million. The retailer now had a clear picture of where profit truly came from — and which customers needed protecting most.</p>
+
+                <p>The retailer now monitors customer value through a live dashboard that tracks profit contribution, purchase frequency, and lifetime value by segment. An AI assistant helps the team identify which customers deserve attention and where effort should be directed — making it easier to act on the data without digging through transaction records manually.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
