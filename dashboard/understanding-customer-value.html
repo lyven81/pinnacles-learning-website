@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Customer Value - Bicycle Shop Customer Dashboard | Pau Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #403B36;
+            --secondary-color: #CBA135;
+            --background-color: #FCF9F2;
+            --text-color: #2C2C2C;
+            --card-background: #FFFFFF;
+            --shadow: 0 4px 20px rgba(64, 59, 54, 0.1);
+            --gradient: linear-gradient(135deg, #403B36 0%, #5A524B 100%);
+            --gold-gradient: linear-gradient(135deg, #CBA135 0%, #E8C55A 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
+            color: #FCF9F2;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
+            color: #403B36;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(203, 161, 53, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #CBA135;
+            color: #FCF9F2;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .page-btn.active {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .page-btn:hover:not(.active) {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(64, 59, 54, 0.15);
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 30px auto;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: var(--gradient);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        tr:hover {
+            background-color: rgba(203, 161, 53, 0.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .metric-positive {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .metric-negative {
+            color: #C62828;
+            font-weight: 600;
+        }
+
+        .metric-warning {
+            color: #F57C00;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .page-nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Understanding Customer Value</h1>
+            <p>Bicycle Shop Customer Dashboard - Monitor Customer Behavior, Profit Distribution, and Product Performance</p>
+            <div class="cta-buttons">
+                <a href="https://lyven81.github.io/data-analyst-portfolio/index.html" class="cta-button cta-secondary">Home</a>
+                <a href="https://www.pauanalytics.com/case-study/understanding-customer-value.html" class="cta-button cta-secondary">View Full Case Study</a>
+                <a href="https://www.pauanalytics.com/data-analytics.html" class="cta-button cta-secondary">More Case Studies</a>
+            </div>
+        </div>
+
+        <div class="page-nav">
+            <button class="page-btn active" onclick="showPage(1)">Overview</button>
+            <button class="page-btn" onclick="showPage(2)">Customers</button>
+            <button class="page-btn" onclick="showPage(3)">Value</button>
+            <button class="page-btn" onclick="showPage(4)">Products</button>
+        </div>
+
+        <div id="loading" class="loading">Loading data...</div>
+
+        <!-- Page 1: Overview -->
+        <div id="page1" class="page active">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Customers</div>
+                    <div class="kpi-value" id="totalCustomers">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Orders</div>
+                    <div class="kpi-value" id="totalOrders">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Revenue</div>
+                    <div class="kpi-value" id="totalRevenue">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Profit</div>
+                    <div class="kpi-value" id="totalProfit">-</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-title">Revenue vs Profit Trend (Monthly)</div>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="revenueProfitTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Revenue by Customer Country</div>
+                    <div class="chart-container">
+                        <canvas id="revenueByCountryChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Average Profit per Order Over Time</div>
+                    <div class="chart-container">
+                        <canvas id="avgProfitPerOrderChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Customers -->
+        <div id="page2" class="page">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Customer Count by Country</div>
+                    <div class="chart-container">
+                        <canvas id="customerCountByCountryChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Revenue by Country</div>
+                    <div class="chart-container">
+                        <canvas id="revenueByCountryChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Profit by Country</div>
+                    <div class="chart-container">
+                        <canvas id="profitByCountryChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Orders per Customer Distribution</div>
+                    <div class="chart-container">
+                        <canvas id="ordersPerCustomerChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width" style="margin-top: 20px;">
+                <div class="chart-title">Cumulative Profit by Customers (Pareto)</div>
+                <div class="chart-container" style="height: 350px;">
+                    <canvas id="paretoChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Value -->
+        <div id="page3" class="page">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Average Profit per Customer</div>
+                    <div class="kpi-value" id="avgProfitPerCustomer">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Average Profit Margin</div>
+                    <div class="kpi-value" id="avgProfitMargin">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Average Order Value</div>
+                    <div class="kpi-value" id="avgOrderValue">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Orders per Customer</div>
+                    <div class="kpi-value" id="ordersPerCustomer">-</div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width">
+                <div class="chart-title">Top 20 Customers by Profit</div>
+                <div style="overflow-x: auto;">
+                    <table id="topCustomersTable">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Country</th>
+                                <th>Total Orders</th>
+                                <th>Total Revenue</th>
+                                <th>Total Profit</th>
+                                <th>Profit Margin</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="chart-grid" style="margin-top: 20px;">
+                <div class="chart-card">
+                    <div class="chart-title">Revenue vs Profit by Customer</div>
+                    <div class="chart-container">
+                        <canvas id="revenueProfitScatterChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Profit per Order Distribution</div>
+                    <div class="chart-container">
+                        <canvas id="profitPerOrderDistChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Products -->
+        <div id="page4" class="page">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Units Sold by Product Category</div>
+                    <div class="chart-container">
+                        <canvas id="unitsByCategoryChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Revenue by Product Category</div>
+                    <div class="chart-container">
+                        <canvas id="revenueByCategoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width" style="margin-top: 20px;">
+                <div class="chart-title">Top 15 Products by Profit</div>
+                <div style="overflow-x: auto;">
+                    <table id="topProductsTable">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Units Sold</th>
+                                <th>Total Revenue</th>
+                                <th>Total Profit</th>
+                                <th>Avg Profit Margin</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="chart-grid" style="margin-top: 20px;">
+                <div class="chart-card">
+                    <div class="chart-title">Units Sold vs Profit by Product</div>
+                    <div class="chart-container">
+                        <canvas id="unitsProfitScatterChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Category Mix by Country</div>
+                    <div class="chart-container">
+                        <canvas id="categoryMixByCountryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global data storage
+        let rawData = [];
+        let charts = {};
+
+        // Load dataset
+        async function loadData() {
+            const dataUrl = 'https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/dashboards/data/bicycle-shop-customer/cleaned-150.csv';
+
+            try {
+                rawData = await loadCSV(dataUrl);
+                updateDashboard();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = 'Error loading data. Please check console.';
+            }
+        }
+
+        function loadCSV(url) {
+            return new Promise((resolve, reject) => {
+                Papa.parse(url, {
+                    download: true,
+                    header: true,
+                    dynamicTyping: true,
+                    complete: (results) => resolve(results.data.filter(row => Object.values(row).some(v => v !== null && v !== ''))),
+                    error: (error) => reject(error)
+                });
+            });
+        }
+
+        function updateDashboard() {
+            updateKPIs();
+            updatePage1Charts();
+            updatePage2Charts();
+            updatePage3Charts();
+            updatePage4Charts();
+        }
+
+        function updateKPIs() {
+            // Calculate totals
+            const customers = new Set(rawData.map(r => r.CustomerName)).size;
+            const orders = new Set(rawData.map(r => r.OrderNo)).size;
+            const totalRevenue = rawData.reduce((sum, r) => sum + (r.Revenue || 0), 0);
+            const totalProfit = rawData.reduce((sum, r) => sum + (r.Profit || 0), 0);
+            const avgProfitMargin = rawData.reduce((sum, r) => sum + (r.ProfitMargin || 0), 0) / rawData.length * 100;
+
+            document.getElementById('totalCustomers').textContent = customers.toLocaleString();
+            document.getElementById('totalOrders').textContent = orders.toLocaleString();
+            document.getElementById('totalRevenue').textContent = '$' + totalRevenue.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('totalProfit').textContent = '$' + totalProfit.toLocaleString(undefined, {maximumFractionDigits: 0});
+
+            // Page 3 KPIs
+            document.getElementById('avgProfitPerCustomer').textContent = '$' + (totalProfit / customers).toFixed(0);
+            document.getElementById('avgProfitMargin').textContent = avgProfitMargin.toFixed(1) + '%';
+            document.getElementById('avgOrderValue').textContent = '$' + (totalRevenue / orders).toFixed(0);
+            document.getElementById('ordersPerCustomer').textContent = (orders / customers).toFixed(2);
+        }
+
+        function updatePage1Charts() {
+            // Revenue vs Profit Trend by Month
+            const monthlyData = {};
+            rawData.forEach(r => {
+                const month = r.YearMonth;
+                if (!monthlyData[month]) monthlyData[month] = { revenue: 0, profit: 0 };
+                monthlyData[month].revenue += r.Revenue || 0;
+                monthlyData[month].profit += r.Profit || 0;
+            });
+
+            const sortedMonths = Object.keys(monthlyData).sort();
+
+            updateChart('revenueProfitTrendChart', {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: sortedMonths.map(m => monthlyData[m].revenue),
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Profit',
+                            data: sortedMonths.map(m => monthlyData[m].profit),
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    }
+                }
+            });
+
+            // Revenue by Country
+            const countryRevenue = {};
+            rawData.forEach(r => {
+                const country = r.CustomerCountry || 'Unknown';
+                countryRevenue[country] = (countryRevenue[country] || 0) + (r.Revenue || 0);
+            });
+
+            const sortedCountries = Object.entries(countryRevenue).sort((a, b) => b[1] - a[1]);
+
+            updateChart('revenueByCountryChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedCountries.map(c => c[0]),
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: sortedCountries.map(c => c[1]),
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Avg Profit per Order Over Time
+            const monthlyOrders = {};
+            rawData.forEach(r => {
+                const month = r.YearMonth;
+                if (!monthlyOrders[month]) monthlyOrders[month] = { profit: 0, orders: new Set() };
+                monthlyOrders[month].profit += r.Profit || 0;
+                monthlyOrders[month].orders.add(r.OrderNo);
+            });
+
+            updateChart('avgProfitPerOrderChart', {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: 'Avg Profit per Order ($)',
+                        data: sortedMonths.map(m => monthlyOrders[m].profit / monthlyOrders[m].orders.size),
+                        borderColor: '#CBA135',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function updatePage2Charts() {
+            // Customer Count by Country
+            const customersByCountry = {};
+            rawData.forEach(r => {
+                const country = r.CustomerCountry || 'Unknown';
+                if (!customersByCountry[country]) customersByCountry[country] = new Set();
+                customersByCountry[country].add(r.CustomerName);
+            });
+
+            const countryCustomerCounts = Object.entries(customersByCountry)
+                .map(([country, customers]) => [country, customers.size])
+                .sort((a, b) => b[1] - a[1]);
+
+            updateChart('customerCountByCountryChart', {
+                type: 'bar',
+                data: {
+                    labels: countryCustomerCounts.map(c => c[0]),
+                    datasets: [{
+                        label: 'Customers',
+                        data: countryCustomerCounts.map(c => c[1]),
+                        backgroundColor: '#764ba2'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Revenue by Country (duplicate for page 2)
+            const countryRevenue = {};
+            rawData.forEach(r => {
+                const country = r.CustomerCountry || 'Unknown';
+                countryRevenue[country] = (countryRevenue[country] || 0) + (r.Revenue || 0);
+            });
+
+            const sortedCountries = Object.entries(countryRevenue).sort((a, b) => b[1] - a[1]);
+
+            updateChart('revenueByCountryChart2', {
+                type: 'bar',
+                data: {
+                    labels: sortedCountries.map(c => c[0]),
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: sortedCountries.map(c => c[1]),
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Profit by Country
+            const countryProfit = {};
+            rawData.forEach(r => {
+                const country = r.CustomerCountry || 'Unknown';
+                countryProfit[country] = (countryProfit[country] || 0) + (r.Profit || 0);
+            });
+
+            const sortedByProfit = Object.entries(countryProfit).sort((a, b) => b[1] - a[1]);
+
+            updateChart('profitByCountryChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedByProfit.map(c => c[0]),
+                    datasets: [{
+                        label: 'Profit ($)',
+                        data: sortedByProfit.map(c => c[1]),
+                        backgroundColor: '#28a745'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Orders per Customer Distribution
+            const customerOrders = {};
+            rawData.forEach(r => {
+                const customer = r.CustomerName;
+                if (!customerOrders[customer]) customerOrders[customer] = new Set();
+                customerOrders[customer].add(r.OrderNo);
+            });
+
+            const orderCounts = Object.values(customerOrders).map(orders => orders.size);
+            const orderBins = { '1 order': 0, '2 orders': 0, '3+ orders': 0 };
+            orderCounts.forEach(count => {
+                if (count === 1) orderBins['1 order']++;
+                else if (count === 2) orderBins['2 orders']++;
+                else orderBins['3+ orders']++;
+            });
+
+            updateChart('ordersPerCustomerChart', {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(orderBins),
+                    datasets: [{
+                        data: Object.values(orderBins),
+                        backgroundColor: ['#dc3545', '#ffc107', '#28a745']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Pareto Chart - Cumulative Profit by Customers
+            const customerProfits = {};
+            rawData.forEach(r => {
+                const customer = r.CustomerName;
+                customerProfits[customer] = (customerProfits[customer] || 0) + (r.Profit || 0);
+            });
+
+            const sortedCustomerProfits = Object.entries(customerProfits)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 30);
+
+            const totalProfit = sortedCustomerProfits.reduce((sum, c) => sum + c[1], 0);
+            let cumulative = 0;
+            const cumulativePercent = sortedCustomerProfits.map(c => {
+                cumulative += c[1];
+                return (cumulative / totalProfit * 100).toFixed(1);
+            });
+
+            updateChart('paretoChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedCustomerProfits.map(c => c[0].split(' ')[0]),
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: 'Profit ($)',
+                            data: sortedCustomerProfits.map(c => c[1]),
+                            backgroundColor: '#667eea',
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'line',
+                            label: 'Cumulative %',
+                            data: cumulativePercent,
+                            borderColor: '#CBA135',
+                            backgroundColor: 'transparent',
+                            yAxisID: 'y1',
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { position: 'left', title: { display: true, text: 'Profit ($)' } },
+                        y1: { position: 'right', min: 0, max: 100, title: { display: true, text: 'Cumulative %' }, grid: { drawOnChartArea: false } }
+                    }
+                }
+            });
+        }
+
+        function updatePage3Charts() {
+            // Top Customers Table
+            const customerData = {};
+            rawData.forEach(r => {
+                const customer = r.CustomerName;
+                if (!customerData[customer]) {
+                    customerData[customer] = {
+                        country: r.CustomerCountry,
+                        orders: new Set(),
+                        revenue: 0,
+                        profit: 0,
+                        marginSum: 0,
+                        count: 0
+                    };
+                }
+                customerData[customer].orders.add(r.OrderNo);
+                customerData[customer].revenue += r.Revenue || 0;
+                customerData[customer].profit += r.Profit || 0;
+                customerData[customer].marginSum += r.ProfitMargin || 0;
+                customerData[customer].count++;
+            });
+
+            const sortedCustomers = Object.entries(customerData)
+                .map(([name, data]) => ({
+                    name,
+                    country: data.country,
+                    orders: data.orders.size,
+                    revenue: data.revenue,
+                    profit: data.profit,
+                    margin: (data.marginSum / data.count * 100).toFixed(1)
+                }))
+                .sort((a, b) => b.profit - a.profit)
+                .slice(0, 20);
+
+            const tableBody = document.querySelector('#topCustomersTable tbody');
+            tableBody.innerHTML = '';
+
+            sortedCustomers.forEach(customer => {
+                const row = tableBody.insertRow();
+                const marginClass = customer.margin > 50 ? 'metric-positive' : customer.margin > 30 ? 'metric-warning' : '';
+                row.innerHTML = `
+                    <td><strong>${customer.name}</strong></td>
+                    <td>${customer.country}</td>
+                    <td>${customer.orders}</td>
+                    <td>$${customer.revenue.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td><span class="metric-positive">$${customer.profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</span></td>
+                    <td><span class="${marginClass}">${customer.margin}%</span></td>
+                `;
+            });
+
+            // Revenue vs Profit Scatter
+            const customerScatter = Object.entries(customerData)
+                .map(([name, data]) => ({ x: data.revenue, y: data.profit, label: name }))
+                .slice(0, 50);
+
+            updateChart('revenueProfitScatterChart', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Customers',
+                        data: customerScatter,
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Revenue ($)' } },
+                        y: { title: { display: true, text: 'Profit ($)' } }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `${context.raw.label}: Revenue $${context.raw.x.toFixed(0)}, Profit $${context.raw.y.toFixed(0)}`
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Profit per Order Distribution
+            const orderProfits = {};
+            rawData.forEach(r => {
+                const order = r.OrderNo;
+                orderProfits[order] = (orderProfits[order] || 0) + (r.Profit || 0);
+            });
+
+            const profitValues = Object.values(orderProfits);
+            const profitBins = {
+                '$0-50': 0, '$50-200': 0, '$200-500': 0, '$500-1000': 0, '$1000+': 0
+            };
+
+            profitValues.forEach(profit => {
+                if (profit < 50) profitBins['$0-50']++;
+                else if (profit < 200) profitBins['$50-200']++;
+                else if (profit < 500) profitBins['$200-500']++;
+                else if (profit < 1000) profitBins['$500-1000']++;
+                else profitBins['$1000+']++;
+            });
+
+            updateChart('profitPerOrderDistChart', {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(profitBins),
+                    datasets: [{
+                        label: 'Number of Orders',
+                        data: Object.values(profitBins),
+                        backgroundColor: ['#dc3545', '#ffc107', '#17a2b8', '#28a745', '#667eea']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function updatePage4Charts() {
+            // Units Sold by Category
+            const categoryUnits = {};
+            rawData.forEach(r => {
+                const category = r.ProductCategory || 'Unknown';
+                categoryUnits[category] = (categoryUnits[category] || 0) + (r.OrderQuantity || 0);
+            });
+
+            const sortedCategories = Object.entries(categoryUnits).sort((a, b) => b[1] - a[1]);
+
+            updateChart('unitsByCategoryChart', {
+                type: 'bar',
+                data: {
+                    labels: sortedCategories.map(c => c[0]),
+                    datasets: [{
+                        label: 'Units Sold',
+                        data: sortedCategories.map(c => c[1]),
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Revenue by Category
+            const categoryRevenue = {};
+            rawData.forEach(r => {
+                const category = r.ProductCategory || 'Unknown';
+                categoryRevenue[category] = (categoryRevenue[category] || 0) + (r.Revenue || 0);
+            });
+
+            const sortedByRevenue = Object.entries(categoryRevenue).sort((a, b) => b[1] - a[1]);
+
+            updateChart('revenueByCategoryChart', {
+                type: 'doughnut',
+                data: {
+                    labels: sortedByRevenue.map(c => c[0]),
+                    datasets: [{
+                        data: sortedByRevenue.map(c => c[1]),
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Top Products Table
+            const productData = {};
+            rawData.forEach(r => {
+                const product = r.Product || 'Unknown';
+                if (!productData[product]) {
+                    productData[product] = {
+                        category: r.ProductCategory,
+                        units: 0,
+                        revenue: 0,
+                        profit: 0,
+                        marginSum: 0,
+                        count: 0
+                    };
+                }
+                productData[product].units += r.OrderQuantity || 0;
+                productData[product].revenue += r.Revenue || 0;
+                productData[product].profit += r.Profit || 0;
+                productData[product].marginSum += r.ProfitMargin || 0;
+                productData[product].count++;
+            });
+
+            const sortedProducts = Object.entries(productData)
+                .map(([name, data]) => ({
+                    name: name.length > 30 ? name.substring(0, 30) + '...' : name,
+                    category: data.category,
+                    units: data.units,
+                    revenue: data.revenue,
+                    profit: data.profit,
+                    margin: (data.marginSum / data.count * 100).toFixed(1)
+                }))
+                .sort((a, b) => b.profit - a.profit)
+                .slice(0, 15);
+
+            const productTableBody = document.querySelector('#topProductsTable tbody');
+            productTableBody.innerHTML = '';
+
+            sortedProducts.forEach(product => {
+                const row = productTableBody.insertRow();
+                const marginClass = product.margin > 50 ? 'metric-positive' : product.margin > 30 ? 'metric-warning' : '';
+                row.innerHTML = `
+                    <td><strong>${product.name}</strong></td>
+                    <td>${product.category}</td>
+                    <td>${product.units}</td>
+                    <td>$${product.revenue.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td><span class="metric-positive">$${product.profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</span></td>
+                    <td><span class="${marginClass}">${product.margin}%</span></td>
+                `;
+            });
+
+            // Units vs Profit Scatter
+            const productScatter = Object.entries(productData)
+                .map(([name, data]) => ({ x: data.units, y: data.profit, label: name.substring(0, 20) }))
+                .slice(0, 30);
+
+            updateChart('unitsProfitScatterChart', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Products',
+                        data: productScatter,
+                        backgroundColor: '#764ba2'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Units Sold' } },
+                        y: { title: { display: true, text: 'Profit ($)' } }
+                    }
+                }
+            });
+
+            // Category Mix by Country
+            const countryCategory = {};
+            rawData.forEach(r => {
+                const country = r.CustomerCountry || 'Unknown';
+                const category = r.ProductCategory || 'Unknown';
+                if (!countryCategory[country]) countryCategory[country] = {};
+                countryCategory[country][category] = (countryCategory[country][category] || 0) + (r.Revenue || 0);
+            });
+
+            const countries = Object.keys(countryCategory).sort();
+            const categories = [...new Set(rawData.map(r => r.ProductCategory))].filter(c => c);
+
+            const categoryColors = { 'Bikes': '#667eea', 'Accessories': '#764ba2', 'Clothing': '#f093fb' };
+
+            updateChart('categoryMixByCountryChart', {
+                type: 'bar',
+                data: {
+                    labels: countries,
+                    datasets: categories.map(cat => ({
+                        label: cat,
+                        data: countries.map(country => countryCategory[country][cat] || 0),
+                        backgroundColor: categoryColors[cat] || '#999'
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true }
+                    }
+                }
+            });
+        }
+
+        function updateChart(id, config) {
+            if (charts[id]) {
+                charts[id].destroy();
+            }
+            const ctx = document.getElementById(id);
+            if (ctx) {
+                charts[id] = new Chart(ctx, config);
+            }
+        }
+
+        function showPage(pageNum) {
+            // Update page visibility
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`page${i}`).classList.remove('active');
+            }
+            document.getElementById(`page${pageNum}`).classList.add('active');
+
+            // Update button states
+            const buttons = document.querySelectorAll('.page-btn');
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === pageNum - 1);
+            });
+        }
+
+        // Initialize
+        loadData();
+    </script>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Pau Analytics</p>
+    </div>
+</body>
+</html>
