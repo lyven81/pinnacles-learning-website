@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Value Assistant | Understanding Customer Value</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Column - Fixed Sidebar */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #403B36;
+            margin-bottom: 10px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover, .agentic-link-btn:hover {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn {
+            background-color: #CBA135;
+        }
+
+        .agentic-link-btn:hover {
+            background-color: #B8902E;
+        }
+
+        .contact {
+            margin-top: 30px;
+        }
+
+        .contact h2 {
+            font-size: 1.2em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Column - Chatbot Interface */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 {
+            font-size: 2.2em;
+            color: #403B36;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .suggested-questions {
+            margin-bottom: 30px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 1.3em;
+            color: #403B36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        .chat-messages {
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 50px;
+            text-align: right;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .workflow-step {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title {
+            font-weight: 600;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .workflow-step .step-content {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .data-result {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #b8dce8;
+        }
+
+        .data-result .result-title {
+            font-weight: 600;
+            color: #2c5f7a;
+            margin-bottom: 8px;
+        }
+
+        .data-result ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .final-answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+
+            .message.user {
+                margin-left: 20px;
+            }
+
+            .message.agent {
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/understanding-customer-value.html">Case Study</a>
+            </section>
+
+            <section class="dashboard-link-section">
+                <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/understanding-customer-value.html">Dashboard</a>
+            </section>
+
+            <section class="agentic-link-section">
+                <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/understanding-customer-value.html">AI Assistant</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind? Let's work together to transform your data into actionable insights.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>Phone: +6014-9207099</li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column - Chatbot Interface -->
+        <main class="right-column">
+            <div class="chatbot-header">
+                <h1>AI Customer Value Assistant</h1>
+                <p>Your smart assistant for understanding customer value and making better business decisions.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="suggested-questions">
+                    <h3>Try these questions:</h3>
+                    <button class="question-btn" onclick="showResponse(1)">Who are my most valuable customers?</button>
+                    <button class="question-btn" onclick="showResponse(2)">Which high-value customers haven't purchased recently?</button>
+                    <button class="question-btn" onclick="showResponse(3)">What products do my best customers buy?</button>
+                    <button class="question-btn" onclick="showResponse(4)">Which customer segment should I focus on for growth?</button>
+                    <button class="question-btn" onclick="showResponse(5)">What's the difference between high-value and frequent buyers?</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <p style="text-align: center; color: #999; font-style: italic;">Select a question above to see how the AI agent works</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics</p>
+    </footer>
+
+    <script>
+        const responses = {
+            1: {
+                question: "Who are my most valuable customers?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Identifying high-CLV customers by analyzing total profit contribution across the customer base."
+                    },
+                    {
+                        title: "Data Retrieval - Structured Data (CSV)",
+                        content: "Querying customer profit data and CLV tiers..."
+                    }
+                ],
+                dataResult: {
+                    title: "Query Results:",
+                    items: [
+                        "High-CLV customers generate $10.6 million in profit",
+                        "Medium-CLV customers contribute $1.4 million",
+                        "Low-CLV customers add only $0.12 million",
+                        "High-CLV group carries 87% of total business profit"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Context Search - Unstructured Data (Analysis Report)",
+                        content: "Searching insights about high-value customer characteristics..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Insights Found:",
+                    items: [
+                        "High-CLV customers are fewer in number but carry the business financially",
+                        "Losing a small number of them would hurt profit far more than losing many low-value customers",
+                        "They tend to make fewer but more meaningful purchases like complete bikes or premium upgrades"
+                    ]
+                },
+                answer: "Your most valuable customers are in the high-CLV group, generating $10.6 million (87% of profit) despite being fewer in number. Protect them through good service and relevant follow-up, not discounts."
+            },
+            2: {
+                question: "Which high-value customers haven't purchased recently?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Identifying at-risk high-value customers by checking purchase recency against CLV tier."
+                    },
+                    {
+                        title: "Data Analysis - Structured Data",
+                        content: "Analyzing last purchase dates for high-CLV customers..."
+                    }
+                ],
+                dataResult: {
+                    title: "At-Risk Customer Indicators:",
+                    items: [
+                        "High-CLV customers typically purchase infrequently (1-2 times)",
+                        "Gap between purchases can be 6-12 months naturally",
+                        "Customers inactive beyond 12 months need attention",
+                        "Even losing 5% of high-CLV customers impacts profit significantly"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Context Search - Risk Assessment",
+                        content: "Retrieving retention insights from analysis report..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Retention Intelligence:",
+                    items: [
+                        "High-CLV customers are quiet, efficient, and often overlooked until they are gone",
+                        "They don't need frequent contact but value good service when they do buy",
+                        "Profit is fragile if you rely on few customers without actively protecting them"
+                    ]
+                },
+                answer: "High-value customers naturally buy less often, so gaps of 6-12 months are normal. Flag any inactive beyond 12 months for a personal check-in since losing even a few hurts profit significantly."
+            },
+            3: {
+                question: "What products do my best customers buy?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Analyzing purchase patterns of high-CLV customers by product category."
+                    },
+                    {
+                        title: "Data Retrieval - Product Analysis",
+                        content: "Querying product categories and profit margins..."
+                    }
+                ],
+                dataResult: {
+                    title: "Product Performance by Category:",
+                    items: [
+                        "Bikes: Highest profit per transaction ($196 - $1,407 profit each)",
+                        "Mountain-200 series: Premium bikes with 45% profit margin",
+                        "Road-150 series: Top-tier road bikes with $1,407 profit per sale",
+                        "Accessories: High volume but lower profit per item ($2 - $22 each)"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Context Search - Purchase Behavior",
+                        content: "Searching insights about high-value customer buying patterns..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Behavioral Insights:",
+                    items: [
+                        "High-CLV customers make fewer but more meaningful purchases",
+                        "They buy complete bikes or premium upgrades rather than small accessories",
+                        "Profit per order is the key differentiator, not purchase frequency"
+                    ]
+                },
+                answer: "Your best customers buy complete bikes and premium models like Mountain-200 and Road-150 series, generating $200-$1,400 profit per sale. Focus on bike sales and upgrades rather than pushing accessories."
+            },
+            4: {
+                question: "Which customer segment should I focus on for growth?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Evaluating customer segments for growth potential based on current value and development opportunity."
+                    },
+                    {
+                        title: "Segment Analysis",
+                        content: "Analyzing customer distribution and profit contribution by segment..."
+                    }
+                ],
+                dataResult: {
+                    title: "Segment Overview:",
+                    items: [
+                        "High-CLV: $10.6M profit - Protect and retain (limited growth room)",
+                        "Medium-CLV: $1.4M profit - Best growth opportunity",
+                        "Low-CLV: $0.12M profit - Manage efficiently, don't over-invest",
+                        "One-time buyers: 63% of customers but minimal long-term value"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Strategic Context",
+                        content: "Retrieving growth recommendations from analysis report..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Growth Strategy:",
+                    items: [
+                        "Medium-CLV customers represent the best opportunity for growth",
+                        "They should be encouraged to grow through upgrades and repeat purchases",
+                        "High-value customers should be protected, not pushed for more sales",
+                        "Low-value frequent buyers should be handled efficiently without extra investment"
+                    ]
+                },
+                answer: "Focus on medium-CLV customers for growth since they already show buying intent and can be developed through upgrades and repeat purchases. Protect high-CLV customers but don't push them; handle low-CLV efficiently."
+            },
+            5: {
+                question: "What's the difference between high-value and frequent buyers?",
+                workflow: [
+                    {
+                        title: "Planning",
+                        content: "Comparing purchase frequency against profit contribution to understand the value-frequency relationship."
+                    },
+                    {
+                        title: "Behavioral Analysis",
+                        content: "Analyzing frequency vs. profit patterns across customer tiers..."
+                    }
+                ],
+                dataResult: {
+                    title: "Frequency vs. Value Analysis:",
+                    items: [
+                        "High-CLV customers: Low frequency, high profit per order",
+                        "Low-CLV customers: High frequency, low profit per order",
+                        "63% of customers buy only once",
+                        "Less than 2% return four or more times"
+                    ]
+                },
+                workflow2: [
+                    {
+                        title: "Context Search - Key Insight",
+                        content: "Retrieving analysis on the frequency-value relationship..."
+                    }
+                ],
+                dataResult2: {
+                    title: "Critical Finding:",
+                    items: [
+                        "High activity creates work, not value",
+                        "Frequent transactions do not automatically lead to strong profit",
+                        "The real difference lies in profit per order and purchase quality",
+                        "Volume does not equal value - a busy shop can still have fragile profits"
+                    ]
+                },
+                answer: "High-value customers buy less often but spend big on bikes and premium items, while frequent buyers make many small, low-margin purchases. Being busy doesn't mean being profitable - focus on profit per order, not transaction count."
+            }
+        };
+
+        function showResponse(questionId) {
+            const response = responses[questionId];
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+
+            // Add user question
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = response.question;
+            chatMessages.appendChild(userMsg);
+
+            // Add agent response with workflow
+            setTimeout(() => {
+                const agentMsg = document.createElement('div');
+                agentMsg.className = 'message agent';
+
+                let html = '<span class="agent-label">AI Customer Value Assistant</span>';
+
+                // Add workflow steps
+                response.workflow.forEach(step => {
+                    html += `
+                        <div class="workflow-step">
+                            <div class="step-title">${step.title}</div>
+                            <div class="step-content">${step.content}</div>
+                        </div>
+                    `;
+                });
+
+                // Add data result
+                if (response.dataResult) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult.title}</div>
+                            <ul>
+                                ${response.dataResult.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add second workflow steps if exists
+                if (response.workflow2) {
+                    response.workflow2.forEach(step => {
+                        html += `
+                            <div class="workflow-step">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-content">${step.content}</div>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Add second data result if exists
+                if (response.dataResult2) {
+                    html += `
+                        <div class="data-result">
+                            <div class="result-title">${response.dataResult2.title}</div>
+                            <ul>
+                                ${response.dataResult2.items.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Add final answer
+                html += `
+                    <div class="final-answer">
+                        <span class="answer-label">Answer:</span>
+                        ${response.answer}
+                    </div>
+                `;
+
+                agentMsg.innerHTML = html;
+                chatMessages.appendChild(agentMsg);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
