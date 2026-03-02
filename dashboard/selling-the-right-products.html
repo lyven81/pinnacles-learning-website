@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selling the Right Products - Product Profitability Dashboard | Pau Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #403B36;
+            --secondary-color: #CBA135;
+            --background-color: #FCF9F2;
+            --text-color: #2C2C2C;
+            --card-background: #FFFFFF;
+            --shadow: 0 4px 20px rgba(64, 59, 54, 0.1);
+            --gradient: linear-gradient(135deg, #403B36 0%, #5A524B 100%);
+            --gold-gradient: linear-gradient(135deg, #CBA135 0%, #E8C55A 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
+            color: #FCF9F2;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
+            color: #403B36;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(203, 161, 53, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #CBA135;
+            color: #FCF9F2;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .page-btn.active {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .page-btn:hover:not(.active) {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(64, 59, 54, 0.15);
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 30px auto;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: var(--gradient);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        tr:hover {
+            background-color: rgba(203, 161, 53, 0.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .metric-positive {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .metric-negative {
+            color: #C62828;
+            font-weight: 600;
+        }
+
+        .metric-warning {
+            color: #F57C00;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .page-nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Selling the Right Products</h1>
+            <p>Product Profitability Dashboard - Focus Sales Effort on Products That Actually Drive Profit</p>
+            <div class="cta-buttons">
+                <a href="https://www.pauanalytics.com/index.html" class="cta-button cta-secondary">Home</a>
+                <a href="https://www.pauanalytics.com/case-study/selling-the-right-products.html" class="cta-button cta-secondary">View Full Case Study</a>
+                <a href="https://www.pauanalytics.com/data-analytics.html" class="cta-button cta-secondary">More Case Studies</a>
+            </div>
+        </div>
+
+        <div class="page-nav">
+            <button class="page-btn active" onclick="showPage(1)">Revenue & Profit</button>
+            <button class="page-btn" onclick="showPage(2)">Concentration Risk</button>
+            <button class="page-btn" onclick="showPage(3)">Category Trends</button>
+            <button class="page-btn" onclick="showPage(4)">Products to Fix</button>
+        </div>
+
+        <div id="loading" class="loading">Loading data...</div>
+
+        <!-- Page 1: Revenue & Profit Overview -->
+        <div id="page1" class="page active">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Revenue</div>
+                    <div class="kpi-value" id="totalRevenue">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Profit</div>
+                    <div class="kpi-value" id="totalProfit">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Average Profit Margin</div>
+                    <div class="kpi-value" id="avgMargin">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Products Sold</div>
+                    <div class="kpi-value" id="totalQuantity">-</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Top 10 Products by Revenue</div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Top 10 Products by Profit</div>
+                    <div class="chart-container">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-title">Product Performance Table</div>
+                    <div style="overflow-x: auto; max-height: 400px;">
+                        <table id="productTable">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Revenue</th>
+                                    <th>Profit</th>
+                                    <th>Quantity</th>
+                                    <th>Profit Margin</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Concentration Risk -->
+        <div id="page2" class="page">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Top 5 Products Revenue Share</div>
+                    <div class="kpi-value" id="top5Share">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Bikes Category Share</div>
+                    <div class="kpi-value" id="bikesShare">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Product SKUs</div>
+                    <div class="kpi-value" id="totalSKUs">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Low Margin Products</div>
+                    <div class="kpi-value" id="lowMarginCount">-</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Revenue Share: Top Products vs Others</div>
+                    <div class="chart-container">
+                        <canvas id="concentrationChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Profit by Category</div>
+                    <div class="chart-container">
+                        <canvas id="categoryProfitChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-title">High Volume, Low Margin Products (Scatter)</div>
+                    <div class="chart-container" style="height: 400px;">
+                        <canvas id="scatterChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Category Trends -->
+        <div id="page3" class="page">
+            <div class="chart-card full-width">
+                <div class="chart-title">Category Revenue Performance Over Time</div>
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-grid" style="margin-top: 30px;">
+                <div class="chart-card">
+                    <div class="chart-title">Revenue by Category</div>
+                    <div class="chart-container">
+                        <canvas id="categoryRevenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Top Models by Profit</div>
+                    <div class="chart-container">
+                        <canvas id="modelProfitChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-title">Monthly Profit Trend by Category</div>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="profitTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Products to Fix -->
+        <div id="page4" class="page">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Products Below Avg Margin</div>
+                    <div class="kpi-value" id="fixCount">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Revenue at Risk</div>
+                    <div class="kpi-value" id="revenueAtRisk">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Potential Profit Improvement</div>
+                    <div class="kpi-value" id="potentialGain">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Margin Gap</div>
+                    <div class="kpi-value" id="marginGap">-</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Products to Deprioritize (Low Profit)</div>
+                    <div class="chart-container">
+                        <canvas id="deprioritizeChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Margin Distribution</div>
+                    <div class="chart-container">
+                        <canvas id="marginDistChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card full-width" style="margin-top: 30px;">
+                <div class="chart-title">Products to Fix First (High Revenue, Low Margin)</div>
+                <div style="overflow-x: auto;">
+                    <table id="fixTable">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Revenue</th>
+                                <th>Profit</th>
+                                <th>Quantity</th>
+                                <th>Profit Margin</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global data storage
+        let productSummary = [];
+        let categorySummary = [];
+        let monthlyTrends = [];
+        let modelSummary = [];
+        let countrySummary = [];
+        let kpis = {};
+        let productsToFix = [];
+        let charts = {};
+
+        // Load all datasets
+        async function loadData() {
+            const baseUrl = 'https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/dashboards/data/selling-the-right-products/';
+
+            try {
+                const [products, categories, monthly, models, countries, kpiData, toFix] = await Promise.all([
+                    loadCSV(baseUrl + 'product_summary.csv'),
+                    loadCSV(baseUrl + 'category_summary.csv'),
+                    loadCSV(baseUrl + 'monthly_trends.csv'),
+                    loadCSV(baseUrl + 'model_summary.csv'),
+                    loadCSV(baseUrl + 'country_summary.csv'),
+                    loadCSV(baseUrl + 'kpis.csv'),
+                    loadCSV(baseUrl + 'products_to_fix.csv')
+                ]);
+
+                productSummary = products;
+                categorySummary = categories;
+                monthlyTrends = monthly;
+                modelSummary = models;
+                countrySummary = countries;
+                kpis = kpiData[0] || {};
+                productsToFix = toFix;
+
+                updateDashboard();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = 'Error loading data. Please check console.';
+            }
+        }
+
+        function loadCSV(url) {
+            return new Promise((resolve, reject) => {
+                Papa.parse(url, {
+                    download: true,
+                    header: true,
+                    dynamicTyping: true,
+                    complete: (results) => resolve(results.data.filter(row => Object.values(row).some(v => v !== null && v !== ''))),
+                    error: (error) => reject(error)
+                });
+            });
+        }
+
+        function updateDashboard() {
+            updateKPIs();
+            updatePage1Charts();
+            updatePage2Charts();
+            updatePage3Charts();
+            updatePage4Charts();
+        }
+
+        function updateKPIs() {
+            // Page 1 KPIs
+            document.getElementById('totalRevenue').textContent = '$' + (kpis.total_revenue || 0).toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('totalProfit').textContent = '$' + (kpis.total_profit || 0).toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('avgMargin').textContent = (kpis.avg_profit_margin || 0).toFixed(1) + '%';
+            document.getElementById('totalQuantity').textContent = (kpis.total_quantity || 0).toLocaleString();
+
+            // Page 2 KPIs
+            document.getElementById('top5Share').textContent = (kpis.top5_revenue_share || 0).toFixed(1) + '%';
+            const bikesData = categorySummary.find(c => c.category === 'Bikes');
+            const bikesShare = bikesData ? (bikesData.total_profit / kpis.total_profit * 100).toFixed(1) : 0;
+            document.getElementById('bikesShare').textContent = bikesShare + '%';
+            document.getElementById('totalSKUs').textContent = kpis.total_products || productSummary.length;
+
+            const avgMargin = kpis.avg_profit_margin / 100;
+            const lowMarginProducts = productSummary.filter(p => p.avg_profit_margin < avgMargin);
+            document.getElementById('lowMarginCount').textContent = lowMarginProducts.length;
+
+            // Page 4 KPIs
+            document.getElementById('fixCount').textContent = productsToFix.length;
+            const revenueAtRisk = productsToFix.reduce((sum, p) => sum + (p.total_revenue || 0), 0);
+            document.getElementById('revenueAtRisk').textContent = '$' + revenueAtRisk.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('potentialGain').textContent = '+5-10%';
+            document.getElementById('marginGap').textContent = '10-20%';
+        }
+
+        function updatePage1Charts() {
+            // Top 10 by Revenue
+            const top10Revenue = productSummary.slice(0, 10);
+            updateChart('revenueChart', {
+                type: 'bar',
+                data: {
+                    labels: top10Revenue.map(p => p.product.substring(0, 25)),
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: top10Revenue.map(p => p.total_revenue),
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Top 10 by Profit
+            const top10Profit = [...productSummary].sort((a, b) => b.total_profit - a.total_profit).slice(0, 10);
+            updateChart('profitChart', {
+                type: 'bar',
+                data: {
+                    labels: top10Profit.map(p => p.product.substring(0, 25)),
+                    datasets: [{
+                        label: 'Profit ($)',
+                        data: top10Profit.map(p => p.total_profit),
+                        backgroundColor: '#28a745'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Product Table
+            const tableBody = document.querySelector('#productTable tbody');
+            tableBody.innerHTML = '';
+            productSummary.slice(0, 20).forEach(p => {
+                const marginClass = p.avg_profit_margin > 0.4 ? 'metric-positive' : p.avg_profit_margin < 0.3 ? 'metric-negative' : 'metric-warning';
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${p.product}</strong></td>
+                    <td>$${p.total_revenue.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>$${p.total_profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>${p.total_quantity}</td>
+                    <td><span class="${marginClass}">${(p.avg_profit_margin * 100).toFixed(1)}%</span></td>
+                `;
+            });
+        }
+
+        function updatePage2Charts() {
+            // Concentration donut
+            const top5Revenue = productSummary.slice(0, 5).reduce((sum, p) => sum + p.total_revenue, 0);
+            const othersRevenue = kpis.total_revenue - top5Revenue;
+
+            updateChart('concentrationChart', {
+                type: 'doughnut',
+                data: {
+                    labels: ['Top 5 Products', 'Other Products'],
+                    datasets: [{
+                        data: [top5Revenue, othersRevenue],
+                        backgroundColor: ['#CBA135', '#E0E0E0']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Category profit
+            updateChart('categoryProfitChart', {
+                type: 'bar',
+                data: {
+                    labels: categorySummary.map(c => c.category),
+                    datasets: [{
+                        label: 'Profit ($)',
+                        data: categorySummary.map(c => c.total_profit),
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Scatter plot
+            updateChart('scatterChart', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Products',
+                        data: productSummary.map(p => ({
+                            x: p.total_quantity,
+                            y: p.avg_profit_margin * 100,
+                            label: p.product
+                        })),
+                        backgroundColor: productSummary.map(p =>
+                            p.avg_profit_margin < 0.3 ? '#dc3545' :
+                            p.avg_profit_margin < 0.4 ? '#ffc107' : '#28a745'
+                        ),
+                        pointRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Order Quantity' } },
+                        y: { title: { display: true, text: 'Profit Margin (%)' } }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const p = productSummary[context.dataIndex];
+                                    return `${p.product}: Qty=${p.total_quantity}, Margin=${(p.avg_profit_margin * 100).toFixed(1)}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updatePage3Charts() {
+            // Monthly trends by category
+            const months = [...new Set(monthlyTrends.map(m => m.year_month))].sort();
+            const categories = [...new Set(monthlyTrends.map(m => m.category))];
+
+            const trendDatasets = categories.map((cat, i) => ({
+                label: cat,
+                data: months.map(month => {
+                    const entry = monthlyTrends.find(m => m.year_month === month && m.category === cat);
+                    return entry ? entry.revenue : 0;
+                }),
+                borderColor: ['#667eea', '#764ba2', '#f093fb'][i],
+                backgroundColor: ['rgba(102,126,234,0.1)', 'rgba(118,75,162,0.1)', 'rgba(240,147,251,0.1)'][i],
+                fill: true,
+                tension: 0.4
+            }));
+
+            updateChart('trendChart', {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: trendDatasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    }
+                }
+            });
+
+            // Category revenue bar
+            updateChart('categoryRevenueChart', {
+                type: 'bar',
+                data: {
+                    labels: categorySummary.map(c => c.category),
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: categorySummary.map(c => c.total_revenue),
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Top models by profit
+            const topModels = modelSummary.slice(0, 8);
+            updateChart('modelProfitChart', {
+                type: 'bar',
+                data: {
+                    labels: topModels.map(m => m.model),
+                    datasets: [{
+                        label: 'Profit ($)',
+                        data: topModels.map(m => m.total_profit),
+                        backgroundColor: '#28a745'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Profit trend
+            const profitDatasets = categories.map((cat, i) => ({
+                label: cat,
+                data: months.map(month => {
+                    const entry = monthlyTrends.find(m => m.year_month === month && m.category === cat);
+                    return entry ? entry.profit : 0;
+                }),
+                borderColor: ['#28a745', '#17a2b8', '#ffc107'][i],
+                tension: 0.4
+            }));
+
+            updateChart('profitTrendChart', {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: profitDatasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    }
+                }
+            });
+        }
+
+        function updatePage4Charts() {
+            // Products to deprioritize (lowest profit)
+            const lowestProfit = [...productSummary].sort((a, b) => a.total_profit - b.total_profit).slice(0, 10);
+            updateChart('deprioritizeChart', {
+                type: 'bar',
+                data: {
+                    labels: lowestProfit.map(p => p.product.substring(0, 20)),
+                    datasets: [{
+                        label: 'Profit ($)',
+                        data: lowestProfit.map(p => p.total_profit),
+                        backgroundColor: '#dc3545'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Margin distribution
+            const marginBuckets = {
+                'Below 30%': productSummary.filter(p => p.avg_profit_margin < 0.3).length,
+                '30-40%': productSummary.filter(p => p.avg_profit_margin >= 0.3 && p.avg_profit_margin < 0.4).length,
+                '40-50%': productSummary.filter(p => p.avg_profit_margin >= 0.4 && p.avg_profit_margin < 0.5).length,
+                'Above 50%': productSummary.filter(p => p.avg_profit_margin >= 0.5).length
+            };
+
+            updateChart('marginDistChart', {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(marginBuckets),
+                    datasets: [{
+                        data: Object.values(marginBuckets),
+                        backgroundColor: ['#dc3545', '#ffc107', '#17a2b8', '#28a745']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Fix table
+            const fixTableBody = document.querySelector('#fixTable tbody');
+            fixTableBody.innerHTML = '';
+            productsToFix.forEach((p, i) => {
+                const priority = i < 3 ? 'High' : i < 6 ? 'Medium' : 'Low';
+                const priorityClass = i < 3 ? 'metric-negative' : i < 6 ? 'metric-warning' : '';
+                const row = fixTableBody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${p.product}</strong></td>
+                    <td>$${p.total_revenue.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>$${p.total_profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</td>
+                    <td>${p.total_quantity}</td>
+                    <td><span class="metric-negative">${(p.avg_profit_margin * 100).toFixed(1)}%</span></td>
+                    <td><span class="${priorityClass}">${priority}</span></td>
+                `;
+            });
+        }
+
+        function updateChart(id, config) {
+            if (charts[id]) {
+                charts[id].destroy();
+            }
+            const ctx = document.getElementById(id);
+            if (ctx) {
+                charts[id] = new Chart(ctx, config);
+            }
+        }
+
+        function showPage(pageNum) {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`page${i}`).classList.remove('active');
+            }
+            document.getElementById(`page${pageNum}`).classList.add('active');
+
+            const buttons = document.querySelectorAll('.page-btn');
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === pageNum - 1);
+            });
+        }
+
+        // Initialize
+        loadData();
+    </script>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Pau Analytics</p>
+    </div>
+</body>
+</html>
