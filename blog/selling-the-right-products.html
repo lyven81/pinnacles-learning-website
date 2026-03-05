@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卖得多，不等于赚得多 | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/blog/selling-the-right-products" />
+    <meta name="description" content="营业额高不代表利润高。用数据找出真正带利润的产品，让销售团队把时间花在值得的地方，提升零售业整体盈利表现。" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* Base */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Sidebar */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Content Area */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Sidebar Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        /* Sidebar Buttons */
+        .home-link-section {
+            margin: 12px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Post Meta (date + language badge) */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5em;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .lang-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #CBA135;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Right Column Typography */
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #403B36;
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #CBA135;
+            padding-left: 12px;
+        }
+
+        .right-column h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #555;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.4em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul,
+        .right-column ol {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.4em;
+            padding-left: 1.5em;
+        }
+
+        .right-column li {
+            margin-bottom: 0.4em;
+        }
+
+        /* Blockquote */
+        .right-column blockquote {
+            border-left: 4px solid #e8d898;
+            background-color: #fff9e7;
+            margin: 1.5em 0;
+            padding: 1em 1.5em;
+            border-radius: 0 6px 6px 0;
+            color: #555;
+            font-style: italic;
+        }
+
+        .right-column blockquote p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        /* CTA Block at end of post */
+        .post-cta {
+            margin-top: 3em;
+            padding: 2em;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .post-cta p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .post-cta a.cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #CBA135;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .post-cta a.cta-link:hover {
+            background-color: #a8852a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../blog/index.html" class="home-link-btn">Back to Blog</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../case-study/selling-the-right-products.html" class="home-link-btn">Related Case Study</a>
+            </section>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <main class="right-column">
+            <article class="blog-post-content">
+
+                <!-- Title -->
+                <h1>卖得多，不等于赚得多</h1>
+
+                <!-- Meta: date + language -->
+                <div class="post-meta">
+                    <span class="post-date">5 March 2026</span>
+                    <span class="lang-badge">中文</span>
+                </div>
+
+                <p>您的销售团队每天都很忙——处理订单、跟进客户、推销产品。月底一看，营业额还不错。但利润呢？</p>
+
+                <p>很多零售业老板都有这种感觉：团队明明很努力，但钱就是没有跟上来。问题往往不是团队不够拼，而是大家花时间卖的产品，根本不是真正赚钱的产品。</p>
+
+                <p>这篇文章从产品利润分析的角度，告诉您一件事：<strong>营业额高的产品，不一定是利润高的产品。</strong> 我们会用真实的销售数据，带您看清哪些产品才是真正的"利润引擎"，哪些产品只是让团队看起来相当忙碌，却没有带来实质回报。</p>
+
+                <h2>营业额和利润，是两件不同的事</h2>
+
+                <p>很多老板看销售报告，第一眼就是看哪个产品卖得最多、营业额最高。这很自然，但这个习惯会造成误判。</p>
+
+                <p>在一份涵盖超过 60,000 笔产品销售记录的分析中，我们发现一个清楚的规律：营业额排名靠前的产品，和利润排名靠前的产品，<strong>根本不是同一批</strong>。</p>
+
+                <p>有些产品销量很高、营业额看起来亮眼，但扣掉成本之后，实际贡献的利润却相当有限。反过来，有些产品销量不是最高，但每一笔销售都能带来扎实的利润回报。</p>
+
+                <blockquote>
+                    <p>吉隆坡一家单车零售商的销售主管，曾经把大量精力放在推销配件产品上，因为这些产品每个月的销售笔数最高。直到他把产品按利润重新排序，才发现那些配件的总利润加起来，还比不上一款高端单车型号一个月的贡献。他开始调整团队的销售重点，三个月后，利润明显改善，而团队的工作量反而减少了。</p>
+                </blockquote>
+
+                <p>营业额是一个数字，利润才是结果。两者不能混为一谈。</p>
+
+                <h2>哪些产品才是真正的"利润英雄"？</h2>
+
+                <p>在这份数据中，Mountain-200 系列（黑色和银色，多种尺寸）是无可争议的核心产品。每个型号的营业额约为 130 万至 140 万，对应的利润约为 58 万至 63 万。</p>
+
+                <p>更重要的是，这些产品的营业额和利润是<strong>同步增长</strong>的。卖得多，也赚得多。这才是真正的明星产品。</p>
+
+                <p>反观其他型号，例如 Road-150 Red 和 Road-250 Black，销量不低，营业额也不差，但利润贡献却明显低于 Mountain-200 系列。表面上看起来销售活跃，实际上的财务价值差距很大。</p>
+
+                <p>判断一个产品是否值得主动推销，不能只看它卖出多少件，而要看每一笔销售最终留下多少利润。</p>
+
+                <h2>哪些产品让团队很忙，却没有带来利润？</h2>
+
+                <p>这是很多零售商没有意识到的盲点。</p>
+
+                <p>在这份数据中，有一批配件和消耗品，销售量极高，经常达到数千件，但利润却排在最底部。这些产品包括：</p>
+
+                <ul>
+                    <li>AWC Logo Cap（品牌帽）</li>
+                    <li>Bike Wash Dissolver（单车清洁剂）</li>
+                    <li>Patch Kit / 8 Patches（补胎套装）</li>
+                    <li>Mountain Tire Tube / Road Tire Tube（内胎）</li>
+                    <li>Racing Socks（竞速袜）</li>
+                </ul>
+
+                <p>这些产品占用了销售对话、订单处理时间和库存管理资源，但实际带回来的利润相当有限。</p>
+
+                <p>问题不在于这些产品本身，而在于团队是否应该<strong>主动推销</strong>它们。如果团队花时间主动介绍这些产品，就等于把最宝贵的销售时间用在了回报最低的地方。</p>
+
+                <blockquote>
+                    <p>槟城一家自行车店的老板，长期让店员主动向每位顾客介绍补胎套装和清洁剂，因为这些产品"好卖"。后来做了一次产品利润分析，发现这些配件全年利润加起来，只占总利润的不到 3%。他把政策改为顾客主动询问才介绍，并让店员把时间放在引导顾客了解高端车款上。半年内，平均客单价上升了近 20%。</p>
+                </blockquote>
+
+                <p>卖得多，不代表赚得多。有些产品让您的团队看起来很忙，但忙的方向错了。</p>
+
+                <h2>为什么营业额会"骗人"？</h2>
+
+                <p>数据显示，当我们用营业额和利润两个维度同时来排序产品，会出现明显落差。</p>
+
+                <p>一些产品在营业额排名中表现亮眼，但切换到利润排名后，位置大幅下滑。这种落差就是"销售幻觉"——产品表面上卖得好，但实际上并没有真正替公司赚钱。</p>
+
+                <p>最典型的例子：Road-250 Black 系列（多个尺寸）在销量上相当活跃，却在利润排名中垫底。如果销售团队因为它"卖得动"而主动推销，其实是在替公司制造更多低回报的交易。</p>
+
+                <p>用营业额来衡量产品表现，就像用人气来评价员工——热闹不等于有贡献。</p>
+
+                <h2>80% 的利润，来自哪些产品？</h2>
+
+                <p>这份分析还揭示了一个清楚的 Pareto 规律：<strong>利润高度集中在少数产品上。</strong></p>
+
+                <p>累计利润在达到 80% 之前，产品名单还不到一半。这意味着，只要专注在排名靠前的一小批产品，就能覆盖大部分的利润来源。</p>
+
+                <p>对销售团队来说，这是一个重要信息：您不需要把每一件产品都卖得一样好。您只需要确保最关键的那批产品，得到足够的关注和资源。</p>
+
+                <p>其余产品可以留在货架上，但不需要主动推销。遇到顾客询问时回应就好，不必占用宝贵的销售时间。</p>
+
+                <h2>结语</h2>
+
+                <p>卖得多，是表象。赚得多，才是目标。</p>
+
+                <p>如果您的团队一直很努力，但利润始终没有理想，很可能不是执行力的问题，而是产品重点的问题。</p>
+
+                <p>三件可以马上做的事：</p>
+                <ul>
+                    <li>把产品按<strong>利润</strong>重新排序，而不是营业额或销量</li>
+                    <li>找出您的"利润英雄"产品，确保团队优先推销这些</li>
+                    <li>把低利润产品改为被动销售，不再主动占用销售时间</li>
+                </ul>
+
+                <p>您的团队现在的努力，已经足够了。只要方向对了，结果自然会跟上来。</p>
+
+                <!-- CTA to related case study -->
+                <div class="post-cta">
+                    <p>想看这份分析是如何在真实业务数据中完成的？</p>
+                    <a href="../case-study/selling-the-right-products.html" class="cta-link">阅读完整案例研究 →</a>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
