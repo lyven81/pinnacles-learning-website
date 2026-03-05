@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Top Resellers May Not Be Your Best | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/blog/know-your-reseller" />
+    <meta name="description" content="Most manufacturers rank resellers by revenue — but that hides who's actually profitable. Learn how gross margin analysis reveals where your discount budget should really go." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* Base */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Sidebar */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Content Area */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Sidebar Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        /* Sidebar Buttons */
+        .home-link-section {
+            margin: 12px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Post Meta (date + language badge) */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5em;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .lang-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #CBA135;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Right Column Typography */
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #403B36;
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #CBA135;
+            padding-left: 12px;
+        }
+
+        .right-column h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #555;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.4em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul,
+        .right-column ol {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.4em;
+            padding-left: 1.5em;
+        }
+
+        .right-column li {
+            margin-bottom: 0.4em;
+        }
+
+        /* Blockquote */
+        .right-column blockquote {
+            border-left: 4px solid #e8d898;
+            background-color: #fff9e7;
+            margin: 1.5em 0;
+            padding: 1em 1.5em;
+            border-radius: 0 6px 6px 0;
+            color: #555;
+            font-style: italic;
+        }
+
+        .right-column blockquote p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        /* CTA Block at end of post */
+        .post-cta {
+            margin-top: 3em;
+            padding: 2em;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .post-cta p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .post-cta a.cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #CBA135;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .post-cta a.cta-link:hover {
+            background-color: #a8852a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../blog/index.html" class="home-link-btn">Back to Blog</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../case-study/know-your-reseller.html" class="home-link-btn">Related Case Study</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <main class="right-column">
+            <article class="blog-post-content">
+
+                <!-- Title -->
+                <h1>Your Top Resellers May Not Be Your Best</h1>
+
+                <!-- Meta: date + language -->
+                <div class="post-meta">
+                    <span class="post-date">5 March 2026</span>
+                    <span class="lang-badge">EN</span>
+                </div>
+
+                <p>If you manage a reseller network, you probably have a mental list of your top partners. Chances are, that list is ranked by revenue. And chances are, it is wrong.</p>
+
+                <p>Most manufacturers and distributors reward the resellers who buy the most. Bigger orders, better discounts, more account attention. It feels logical. But revenue tells you how much a reseller is buying; it says nothing about whether those transactions are actually making you money. In many reseller networks, the highest-revenue partners are quietly generating negative gross margins. The manufacturer is losing money on every order they place.</p>
+
+                <p>In this post, we look at what a proper reseller performance analysis reveals when you rank by gross margin instead of revenue, and what that tells you about where your discount budget is actually going.</p>
+
+                <h2>Revenue Is Not the Scorecard You Think It Is</h2>
+
+                <p>Consider a biscuit and cookie manufacturer operating across 10 sales territories with 635 independent resellers. Over 26 months and more than 60,000 orders, the business had a clear view of who was buying. What it lacked was a clear view of who was contributing.</p>
+
+                <p>When resellers were re-ranked by gross margin, the results looked nothing like the revenue leaderboard. Reseller 506 led the entire network with $182,884 in gross margin at an 18% margin rate, a reseller that would not necessarily stand out in a revenue-ranked list. Reseller 697 was the standout exception: it ranked highest in total revenue and delivered $129,468 in gross margin, making it the network's most well-rounded partner. But it was the exception, not the rule.</p>
+
+                <p>The pattern across the rest of the network was consistent: volume and margin moved in opposite directions. Many resellers generating hundreds of thousands in revenue returned negative gross margins. Every transaction with them cost the manufacturer money.</p>
+
+                <blockquote>
+                    <p>A distribution manager at an FMCG brand in the Klang Valley once described a reseller as "one of our most important accounts" — they had been buying in bulk for years. When the team ran a margin analysis for the first time, they found the account had returned a cumulative gross margin of -$38,000 over 18 months. The discounts and payment terms extended to keep the relationship had absorbed everything and more. The account was big. It was not an asset.</p>
+                </blockquote>
+
+                <p>If your reseller evaluation starts and ends with revenue, you are measuring the wrong thing.</p>
+
+                <h2>Your Discount Budget Is Probably Going to the Wrong Resellers</h2>
+
+                <p>The more revealing finding is not which resellers lose money; it is which ones are receiving the most support while doing so.</p>
+
+                <p>In the same reseller network, the partner who received the highest total discount across the 26-month period was Reseller 278: $26,781 in discount support. Their gross margin contribution? -$1,250. The manufacturer gave away the most and got back a loss.</p>
+
+                <p>This was not an isolated case. Across the top 15 discount recipients in the network, more than half returned negative gross margins. Resellers 328 and 166 together received approximately $18,500 in discount and returned over -$64,000 in gross margin. The commercial support extended to maintain these relationships was accelerating the losses, not recovering them.</p>
+
+                <p>Meanwhile, Reseller 650 received $9,802 in discount and generated $71,464 in gross margin, the strongest return-on-discount in the entire network. Reseller 697, the most balanced partner overall, received a comparatively modest $7,773 in discount against $129,468 in margin.</p>
+
+                <blockquote>
+                    <p>Imagine two accounts sitting side by side on a spreadsheet. Account A receives $26,000 in annual discount. Account B receives $10,000. A sales team looking at discount spend would flag Account A as a major investment. But Account A is returning a loss. Account B is returning seven times its discount in margin. The instinct to protect big accounts can cost more than the accounts are worth.</p>
+                </blockquote>
+
+                <p>The direction of your discount budget is a signal. If your largest discounts are going to your lowest-margin resellers, you do not have a reseller problem. You have a resource allocation problem.</p>
+
+                <h2>What Your Reseller Network Actually Looks Like</h2>
+
+                <p>When the 635 resellers were segmented by purchasing behaviour and margin contribution, four groups emerged.</p>
+
+                <p><strong>Champions (65 resellers, 10% of the network)</strong> generate the highest order volumes and the strongest positive gross margins. These are your most valuable distribution partners. However, even within this group, some resellers produce negative margins due to discount structures or pricing terms. Individual margin performance within Champions should be reviewed before extending additional benefits.</p>
+
+                <p><strong>Steady Partners (110 resellers, 17%)</strong> are consistent mid-tier contributors with mostly positive margins. They form the reliable backbone of the network alongside Champions. Together, these two groups (175 resellers) are the ones generating real returns.</p>
+
+                <p><strong>At-Risk resellers (130 resellers, 20%)</strong> have not placed an order in an average of 579 days. In practical terms, these relationships have already ended. They are still counted as active resellers but are generating nothing.</p>
+
+                <p><strong>Low-ROI resellers (330 resellers, 52%)</strong> still place occasional orders but at volumes too small to generate meaningful margin in either direction.</p>
+
+                <p>Put simply: 72% of the reseller network (460 partners) are contributing almost nothing to the manufacturer's bottom line. The manufacturer is maintaining those relationships at varying levels of cost, management time, and discount spend for returns that do not justify the investment.</p>
+
+                <h2>Where to Redirect Your Resources</h2>
+
+                <p>The data points to three immediate actions.</p>
+
+                <p><strong>Concentrate investment on your top 28%.</strong> Champions and Steady Partners (175 resellers) are the partners generating real margin. Better pricing terms, priority account support, and structured loyalty incentives should be directed here. This is where commercial resources will compound.</p>
+
+                <p><strong>Restructure your discount allocation now.</strong> Identify the resellers currently receiving your largest discounts and cross-reference their gross margin contribution. Any reseller returning a negative margin while receiving meaningful discount support should have that discount reduced or removed immediately. Redirect it toward proven margin contributors. Even reallocating a portion of the discount currently going to loss-making resellers would improve overall network profitability.</p>
+
+                <p><strong>Do not ignore the At-Risk segment.</strong> With 130 resellers who have not ordered in nearly 20 months, a small re-engagement exercise is worth running. Some may have paused for addressable reasons: a logistics issue, a pricing concern, a change in their own business. A targeted outreach to this group, with a clear offer, will quickly separate the recoverable from the effectively churned. For those who do not respond, formally close the relationship and redirect that attention elsewhere.</p>
+
+                <p>For the 330 Low-ROI resellers still placing occasional small orders, the most practical move is to set a minimum performance threshold and apply it consistently over the next operating period. This narrows the active network to partners who are actually moving the business forward.</p>
+
+                <h2>Conclusion</h2>
+
+                <p>Managing a reseller network by revenue is a comfortable habit. Revenue is easy to see, easy to report, and easy to celebrate. But it does not tell you which relationships are actually profitable, and it will not show you that your discount budget is flowing toward the partners who are costing you money.</p>
+
+                <p>The manufacturers with the strongest reseller networks are not the ones with the most partners. They are the ones who know which partners to invest in, which to re-engage, and which to let go. That clarity comes from ranking by margin, not volume.</p>
+
+                <p>Three things to act on:</p>
+                <ul>
+                    <li>Re-rank your resellers by gross margin, not revenue</li>
+                    <li>Cross-check your discount recipients against their margin contribution</li>
+                    <li>Set a minimum performance threshold for active reseller status</li>
+                </ul>
+
+                <p>The numbers in your sales data already tell you where to focus. The question is whether you are looking at the right column.</p>
+
+                <!-- CTA to related case study -->
+                <div class="post-cta">
+                    <p>Want to see how this analysis was done on real business data?</p>
+                    <a href="../case-study/know-your-reseller.html" class="cta-link">See the Full Case Study →</a>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
