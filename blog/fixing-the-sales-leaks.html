@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>为什么顾客看了不买？ | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/blog/fixing-the-sales-leaks" />
+    <meta name="description" content="超过 50 万笔购物记录分析显示，网店流失订单主要发生在产品页面和结账流程——了解如何找出问题、优先修复最值得改的地方。" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* Base */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Sidebar */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Content Area */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Sidebar Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        /* Sidebar Buttons */
+        .home-link-section {
+            margin: 12px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Post Meta (date + language badge) */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5em;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .lang-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #CBA135;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Right Column Typography */
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #403B36;
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #CBA135;
+            padding-left: 12px;
+        }
+
+        .right-column h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #555;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.4em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul,
+        .right-column ol {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.4em;
+            padding-left: 1.5em;
+        }
+
+        .right-column li {
+            margin-bottom: 0.4em;
+        }
+
+        /* Blockquote */
+        .right-column blockquote {
+            border-left: 4px solid #CBA135;
+            margin: 1.5em 0;
+            padding: 0.8em 1.2em;
+            background-color: #fff9e7;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .right-column blockquote p {
+            margin-bottom: 0;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* CTA Block at end of post */
+        .post-cta {
+            margin-top: 3em;
+            padding: 2em;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .post-cta p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .post-cta a.cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #CBA135;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .post-cta a.cta-link:hover {
+            background-color: #a8852a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../blog/index.html" class="home-link-btn">Back to Blog</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../case-study/fixing-the-sales-leaks.html" class="home-link-btn">Related Case Study</a>
+            </section>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <main class="right-column">
+            <article class="blog-post-content">
+
+                <!-- Title -->
+                <h1>为什么顾客看了不买？</h1>
+
+                <!-- Meta: date + language -->
+                <div class="post-meta">
+                    <span class="post-date">5 March 2026</span>
+                    <span class="lang-badge">中文</span>
+                </div>
+
+                <p>流量不是问题。问题是，来了又走。</p>
+
+                <p>分析超过 500,000 笔购物记录后，我们发现一件事：大多数网店的最大漏洞，不是流量不够，而是顾客来了、看了，却在同一个地方一次又一次地离开。</p>
+
+                <p>很多网店老板都有这个感受——访客数字还不错，广告也在跑，但下单的人就是少。您以为是价格问题，或者是产品不够好。但数据显示，真正的原因往往藏在两个具体的步骤里：<strong>产品页面</strong>和<strong>结账流程</strong>。</p>
+
+                <p>这篇文章会带您看清楚顾客在哪里停下来、为什么不继续，以及哪些改动最值得先做。</p>
+
+                <h2>顾客流失最多的两个地方</h2>
+
+                <p>在这份分析里，顾客会在两个关键步骤大量流失。</p>
+
+                <p>第一个是从<strong>查看产品</strong>到<strong>加入购物车</strong>。顾客点进来看了，但没有采取行动。这不代表他们不感兴趣，而是代表他们还没被说服。产品页面上可能缺少清晰的描述、真实的评价，或者购买的理由不够有力。</p>
+
+                <p>第二个是从<strong>购物车</strong>到<strong>完成结账</strong>。这一批顾客已经有购买意图了，却在最后一步放弃。结账流程太复杂、步骤太多、或者没有足够的信任感，都会让顾客在这里离开。</p>
+
+                <p>这两个流失点加起来，就是大多数网店每天在悄悄损失的订单。</p>
+
+                <blockquote>
+                    <p>一位在吉隆坡经营服装网店的老板，发现每天有超过 200 人点进产品页面，但加入购物车的不到 30 人。他起初以为是产品不吸引人。后来仔细检查才发现，产品照片只有一张，没有尺码对照表，也没有任何顾客评价。他花了两周补齐这些内容，当月加购率提升了将近 40%。问题不是产品，是信息不够。</p>
+                </blockquote>
+
+                <h2>产品页面：顾客在这里犹豫，但没人知道</h2>
+
+                <p>数据显示，很多顾客在产品页面上停留了一段时间，却没有任何动作。他们在看，但没有被推动往前走。</p>
+
+                <p>这种行为通常意味着一件事：<strong>信息不够清楚，或者不够有说服力。</strong></p>
+
+                <p>产品描述含糊、照片只有一两张、没有顾客评价、找不到退换货说明——这些都会让顾客在心里产生疑虑。他们不是不想买，而是觉得还不够确定。</p>
+
+                <p>要减少这种犹豫，最直接的方法是：</p>
+
+                <ul>
+                    <li>用简单、直接的语言说明产品能解决什么问题</li>
+                    <li>加入真实顾客的评价，哪怕只有几条</li>
+                    <li>提供清楚的尺寸、规格或用法说明</li>
+                    <li>让退换货条款容易找到</li>
+                </ul>
+
+                <p>顾客在产品页面上的犹豫，是可以通过内容改善来解决的。这不需要大幅度的技术改动，只需要把信息补齐。</p>
+
+                <h2>哪些渠道带来真正会买的顾客？</h2>
+
+                <p>不是所有流量都一样。数据清楚显示，<strong>电邮（Email）和付费搜索（Paid Search）</strong>带来的顾客，购买意愿最强，成交率也最高。社交媒体的表现还算不错。自然流量和直接流量的转化率则明显偏低。</p>
+
+                <p>这对营销预算分配有直接影响。</p>
+
+                <p>如果您现在的预算大部分放在自然流量或直接流量上，而电邮营销只是偶尔发一次，结果可能是花了很多精力，带来的却是一批不太会买的访客。</p>
+
+                <p>电邮流量之所以表现最好，是因为这些顾客已经认识您的品牌，有一定的信任基础。他们不是随机点进来的，而是主动回来的。这种流量值得持续投入和维护。</p>
+
+                <h2>手机用户比电脑用户更容易下单</h2>
+
+                <p>这个发现让很多网店老板感到意外：<strong>手机用户的转化率，比电脑用户更高。</strong></p>
+
+                <p>无论是加入购物车，还是完成购买，手机用户的表现都优于电脑用户。这说明手机顾客不只是在随便逛，他们是有购买意图的。</p>
+
+                <blockquote>
+                    <p>一家在槟城销售家居用品的网店，优化手机版购物体验之前，手机用户的结账完成率只有电脑用户的一半左右。他们把手机版的结账页面简化成三个步骤，并加入 e-wallet 付款选项。两个月后，手机端的完成购买率提升了 28%，整体营业额也随之增加。</p>
+                </blockquote>
+
+                <p>如果您的网店还没有针对手机端做过专门优化，这是目前回报最高的改动方向之一。</p>
+
+                <h2>选择太多，反而不买了</h2>
+
+                <p>数据还发现了一个反直觉的现象：<strong>顾客看的产品越多、加入购物车的东西越多，完成购买的可能性反而越低。</strong></p>
+
+                <p>这不是说产品太多不好，而是说选择过多会让顾客感到迷茫，最后什么都不决定。</p>
+
+                <p>解决方法不是减少产品，而是<strong>引导顾客更清楚地做决定</strong>。例如：</p>
+
+                <ul>
+                    <li>在产品页面加入"最多人选择"或"搭配推荐"</li>
+                    <li>结账时简化步骤，减少需要填写的内容</li>
+                    <li>避免在结账流程中出现太多其他产品推荐，分散注意力</li>
+                </ul>
+
+                <p>顾客需要的不是更多选择，而是一个清楚的理由，告诉他们这个就是对的。</p>
+
+                <h2>结论：先修这两个地方，效果最快</h2>
+
+                <p>网店转化率低，背后的原因比大多数人想象的更具体。</p>
+
+                <p>三个马上可以行动的方向：</p>
+
+                <ul>
+                    <li><strong>检查产品页面</strong>：信息是否完整？评价是否够多？有没有清楚说明购买理由？</li>
+                    <li><strong>简化结账流程</strong>：步骤是否太多？手机版是否顺畅？付款方式是否够方便？</li>
+                    <li><strong>把电邮营销放在优先位置</strong>：这是转化率最高的渠道，值得持续投入。</li>
+                </ul>
+
+                <p>流量不是问题。让来了的顾客有理由留下来、有信心买下去，才是真正值得解决的事。</p>
+
+                <!-- CTA to related case study -->
+                <div class="post-cta">
+                    <p>想看这套分析如何应用在真实业务数据上？</p>
+                    <a href="../case-study/fixing-the-sales-leaks.html" class="cta-link">阅读完整案例研究 →</a>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
