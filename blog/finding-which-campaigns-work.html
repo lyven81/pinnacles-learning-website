@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Get the Most from Your Marketing Budget | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/blog/finding-which-campaigns-work" />
+    <meta name="description" content="Learn which marketing channels, customer segments, campaign objectives, and timing choices deliver the strongest results — based on data from 50 real campaigns." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* Base */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Sidebar */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Content Area */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Sidebar Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        /* Sidebar Buttons */
+        .home-link-section {
+            margin: 12px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Post Meta (date + language badge) */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5em;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .lang-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #CBA135;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Right Column Typography */
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #403B36;
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #CBA135;
+            padding-left: 12px;
+        }
+
+        .right-column h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #555;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.4em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul,
+        .right-column ol {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.4em;
+            padding-left: 1.5em;
+        }
+
+        .right-column li {
+            margin-bottom: 0.4em;
+        }
+
+        /* Blockquote */
+        .right-column blockquote {
+            border-left: 4px solid #CBA135;
+            margin: 1.5em 0;
+            padding: 0.8em 1.2em;
+            background-color: #fff9e7;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .right-column blockquote p {
+            margin-bottom: 0;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* CTA Block at end of post */
+        .post-cta {
+            margin-top: 3em;
+            padding: 2em;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .post-cta p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .post-cta a.cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #CBA135;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .post-cta a.cta-link:hover {
+            background-color: #a8852a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../blog/index.html" class="home-link-btn">Back to Blog</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../case-study/finding-which-campaigns-work.html" class="home-link-btn">Related Case Study</a>
+            </section>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <main class="right-column">
+            <article class="blog-post-content">
+
+                <!-- Title -->
+                <h1>How to Get the Most from Your Marketing Budget</h1>
+
+                <!-- Meta: date + language -->
+                <div class="post-meta">
+                    <span class="post-date">5 March 2026</span>
+                    <span class="lang-badge">EN</span>
+                </div>
+
+                <p>In an analysis of 50 marketing campaigns, the channel that received the most investment delivered the worst results. Email had 14 campaigns — more than any other channel — yet it produced the lowest uplift of all five channels tested. The best-performing channels had fewer campaigns each.</p>
+
+                <p>Most marketing teams assume that spreading spend across channels is a safe strategy. It feels balanced. The problem is that balance and performance are not the same thing. When budget flows to channels based on habit rather than results, returns stay flat no matter how much effort goes in.</p>
+
+                <p>This post breaks down what actually drives marketing campaign performance — using data from 50 real campaigns. You will learn which channels, customer segments, objectives, and timing choices consistently produce the strongest results, and how to use that information to get more out of the same budget.</p>
+
+                <h2>The Channel You Are Probably Over-Investing In</h2>
+
+                <p>The data is clear on this: not all channels perform equally, and the gaps are large enough to matter.</p>
+
+                <p>Display delivered the highest average uplift at 0.09435. Paid Search came in close behind at 0.09355. Email, at 0.07491, was the weakest. That is a gap of roughly 26% between the top and bottom performers, enough to meaningfully affect returns across a full year of campaigns.</p>
+
+                <p>The more concerning finding is the mismatch between investment and performance. Email had 14 campaigns running, while Display had 11 and Paid Search had only 10. The team was putting its highest effort into the channel that delivered the least.</p>
+
+                <blockquote>
+                    <p>A marketing manager at a mid-sized consumer brand in KL reviewed her team's campaign calendar for the past year and noticed that 40% of all campaigns had been run on email. The reason was simple: email was cheap and easy to execute. When she mapped actual uplift against spend, email had the worst return of any channel. She shifted two of the next quarter's email campaigns to Display and saw uplift improve by 18% across that campaign set, without increasing the overall budget.</p>
+                </blockquote>
+
+                <p>The practical step here is straightforward. Audit how many campaigns are currently running on each channel, then compare that against actual performance. If Email is carrying more than its share, reduce it. Treat it as a supporting channel for follow-up and reminders, not a primary driver of new results.</p>
+
+                <h2>Which Customers Respond Best to Campaigns</h2>
+
+                <p>Channel choice matters, but so does who you are targeting. The data shows a clear two-tier split across customer segments.</p>
+
+                <p>High Value customers produced an average uplift of 0.0913. New Customers came in at 0.0904. Both segments respond strongly to campaigns and offer the highest return per campaign run.</p>
+
+                <p>Churn Risk customers averaged 0.0751 uplift, and Deal Seekers came in at 0.0714. These segments are not impossible to reach, but they require more precise messaging and more effort to move, meaning the cost per result is higher.</p>
+
+                <p>The implication is not to ignore lower-performing segments entirely. It is to allocate your highest-investment campaigns toward High Value and New Customer groups first, and treat Churn Risk and Deal Seeker campaigns as secondary priorities that require their own specific approach.</p>
+
+                <h2>The Campaign Objectives That Actually Move the Needle</h2>
+
+                <p>Once you have the right channel and the right audience, the campaign objective determines what you are asking them to do. The data shows that two objectives consistently outperform the rest.</p>
+
+                <p>Cross-sell (0.09267 uplift) and Retention (0.09233) are the strongest. Both work by building on an existing relationship, either encouraging a customer to buy something additional, or deepening their commitment to a brand they already use. These objectives tend to succeed because they require less convincing. The customer already knows the product.</p>
+
+                <p>Reactivation, at 0.08367, is a full tier lower. Bringing inactive customers back is harder work, and the results reflect that. This objective still has a place, but it should not be the default choice when planning a campaign calendar.</p>
+
+                <h2>When to Launch Your Biggest Campaigns</h2>
+
+                <p>Timing is one of the most underused levers in campaign planning. The data shows that customer responsiveness is not constant across the year — it shifts significantly by month.</p>
+
+                <p>February (uplift 0.10600) and November (0.11350) are the two strongest months. These periods see customers naturally more responsive, which means the same campaign will produce better results simply by being scheduled at the right time.</p>
+
+                <p>September is the weakest month, with an uplift of just 0.06200. Running a major campaign in September is likely to underperform, not because the campaign is poorly designed, but because customer responsiveness is at a seasonal low.</p>
+
+                <p>The practical approach: reserve your highest-investment campaigns for February and November. Use September for lower-risk activity — brand awareness tests, creative experiments, or audience-building work that does not depend on a strong immediate response.</p>
+
+                <h2>The Combinations That Produce the Strongest Results</h2>
+
+                <p>One of the most useful findings from this analysis is that the best results come from matching the right channel, objective, and segment together, not from optimising each in isolation.</p>
+
+                <p>The highest-performing combinations identified were:</p>
+
+                <ul>
+                    <li><strong>Social + Cross-sell + New Customers:</strong> uplift of 0.144</li>
+                    <li><strong>Display + Retention + High Value:</strong> uplift of 0.140</li>
+                    <li><strong>Email + Retention + New Customers:</strong> uplift of 0.140</li>
+                    <li><strong>Paid Search + Cross-sell + High Value:</strong> uplift of 0.1275</li>
+                </ul>
+
+                <p>The Email combination is particularly worth noting. Email performs poorly on average (0.07491), but when paired specifically with a Retention objective and a New Customer segment, it reaches 0.140 — among the highest in the entire dataset. This shows that a weak channel can still produce strong results in the right context.</p>
+
+                <blockquote>
+                    <p>A B2B software company in Penang had been running generic email newsletters to their full customer list every month with declining engagement. When they restructured their approach and sent targeted email sequences only to new customers focused on account setup and product adoption, open rates doubled and the campaign's uplift came in more than 80% higher than their previous email average. Same channel. Different objective and segment.</p>
+                </blockquote>
+
+                <p>These combinations should be treated as campaign templates. The goal is not to find one magic approach, but to build a library of pairings that work — and run those more often.</p>
+
+                <h2>One Thing That Does Not Matter</h2>
+
+                <p>Campaign duration has no meaningful effect on uplift. High and low performers appear across all duration ranges, from very short to very long campaigns.</p>
+
+                <p>This matters because teams often extend campaign timelines assuming more time means more results. The data does not support this. Duration should be set based on what makes operational and creative sense, not as a performance strategy.</p>
+
+                <p>The time saved from not optimising duration is better spent on channel, segment, and objective decisions, which are the factors that actually move results.</p>
+
+                <h2>Conclusion</h2>
+
+                <p>Getting more from your marketing budget does not require more spend. It requires better alignment between where you invest and what the data shows works.</p>
+
+                <p>Three things to act on now:</p>
+
+                <ul>
+                    <li><strong>Audit your channel mix.</strong> If Email is carrying more than 25% of your campaigns, reduce it and shift toward Display and Paid Search.</li>
+                    <li><strong>Prioritise High Value and New Customer segments</strong> for your most important campaigns. Churn Risk and Deal Seeker campaigns need their own tailored approach.</li>
+                    <li><strong>Schedule your biggest campaigns in February and November.</strong> The same creative will perform better when customer responsiveness is at its peak.</li>
+                </ul>
+
+                <p>The data is clear on which combinations work. Building your campaign calendar around those combinations is the simplest path to stronger results.</p>
+
+                <!-- CTA to related case study -->
+                <div class="post-cta">
+                    <p>Want to see how this was done on real business data?</p>
+                    <a href="../case-study/finding-which-campaigns-work.html" class="cta-link">See the Full Case Study →</a>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
