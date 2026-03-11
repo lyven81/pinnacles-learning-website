@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Your Best-Selling Products May Not Be Your Most Profitable | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/blog/finding-profit-drivers" />
+    <meta name="description" content="Find out why high-margin products don't always drive the most profit — and how to identify which products are really making you money." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* Base */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Sidebar */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Content Area */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Sidebar Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        /* Sidebar Buttons */
+        .home-link-section {
+            margin: 12px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Post Meta (date + language badge) */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5em;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .lang-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #CBA135;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Right Column Typography */
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #403B36;
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #CBA135;
+            padding-left: 12px;
+        }
+
+        .right-column h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #555;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.4em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul,
+        .right-column ol {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.4em;
+            padding-left: 1.5em;
+        }
+
+        .right-column li {
+            margin-bottom: 0.4em;
+        }
+
+        .right-column blockquote {
+            border-left: 4px solid #CBA135;
+            margin: 1.5em 0;
+            padding: 0.8em 1.2em;
+            background-color: #fff9e7;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .right-column blockquote p {
+            margin-bottom: 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* CTA Block at end of post */
+        .post-cta {
+            margin-top: 3em;
+            padding: 2em;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .post-cta p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .post-cta a.cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #CBA135;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .post-cta a.cta-link:hover {
+            background-color: #a8852a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../blog/index.html" class="home-link-btn">Back to Blog</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../case-study/finding-profit-drivers.html" class="home-link-btn">Related Case Study</a>
+            </section>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <main class="right-column">
+            <article class="blog-post-content">
+
+                <!-- Title -->
+                <h1>Why Your Best-Selling Products May Not Be Your Most Profitable</h1>
+
+                <!-- Meta: date + language -->
+                <div class="post-meta">
+                    <span class="post-date">11 March 2026</span>
+                    <span class="lang-badge">EN</span>
+                </div>
+
+                <!-- Introduction -->
+                <p>In an analysis of 60,000 sales transactions across a multi-region retail business, the top-selling product category had margins above 60%. It also contributed far less total profit than a category that sold at much lower margins.</p>
+
+                <p>Most retail managers assume that high margins equal high profit. That assumption leads to decisions that look right on paper but quietly erode the bottom line. The products you push hardest may not be the ones that actually make you money.</p>
+
+                <p>This post breaks down how to identify which products are truly driving profit in your business, why the usual signals are misleading, and what you can do about it, starting this quarter.</p>
+
+                <!-- Section 1 -->
+                <h2>Why Margin Alone Misleads You</h2>
+
+                <p>Margin percentage tells you how efficient a sale is. It does not tell you how much money lands in your pocket.</p>
+
+                <p>Accessories in the analysis had margins consistently above 60%. But because their unit prices are low, each sale generates a small amount of actual profit. A product with a 30% margin but a price ten times higher delivers far more money per transaction.</p>
+
+                <blockquote>
+                    <p>A retail chain manager reviewing his product performance was proud of his accessories category — it had the highest margins in the store. But when he looked at total profit contribution, accessories made up a small fraction of the overall number. His road and mountain bikes, with lower margins, were doing most of the real work. He had been prioritising the wrong products for floor space and promotions.</p>
+                </blockquote>
+
+                <p>Profit comes from price multiplied by volume, not margin alone. A product must have enough price behind it for the margin to matter.</p>
+
+                <!-- Section 2 -->
+                <h2>The Four Product Segments Every Retail Business Has</h2>
+
+                <p>When 60,000 transactions were analysed across product lines, four distinct groups emerged. They did not perform evenly, and treating them the same was costing the business money.</p>
+
+                <p><strong>High-value profit drivers:</strong> A small group of products generating the majority of total profit. In this case, high-end road, mountain, touring, and performance bikes. These have the highest price points and steady demand. Every decision about floor space, availability, and pricing discipline affects this group disproportionately.</p>
+
+                <p><strong>Volume drivers:</strong> Products that sell frequently but at thinner margins. They keep sales momentum going but need tight cost control. Discounting here is dangerous because the margin cushion is already thin.</p>
+
+                <p><strong>Stable but limited contributors:</strong> Products that are reliable but will not move the profit needle significantly. Useful for range, but not worth heavy investment.</p>
+
+                <p><strong>Long-tail low performers:</strong> Products that sell occasionally and contribute little financially. They add complexity, tie up cash, and take staff attention away from what matters. Unless there is a clear strategic reason to keep them, they are a quiet drain.</p>
+
+                <p>Averages hide all of this. A business that looks at overall profit per SKU rather than segment behaviour will consistently under-invest in its real profit drivers.</p>
+
+                <!-- Section 3 -->
+                <h2>Price Is the Strongest Lever, Not Volume or Logistics</h2>
+
+                <p>Of all the factors tested in the analysis, price was the single variable most strongly linked to profit performance. Order size and delivery speed had little meaningful impact.</p>
+
+                <p>This matters because many managers reach for operational improvements when profit stalls. They look at fulfilment speed, stock turnover, and headcount efficiency. These are not wrong to optimise, but they are unlikely to fix a profit problem on their own.</p>
+
+                <blockquote>
+                    <p>A regional manager at a mid-sized retail chain had been focusing on reducing slow-moving stock for two quarters. Inventory improved, but profit barely moved. When she ran a pricing analysis on her top bike models, she found that a 3% increase on three selected models, ones where customers showed low price sensitivity, would deliver more profit improvement in one month than six months of inventory work had produced.</p>
+                </blockquote>
+
+                <p>The insight is not to raise prices broadly. It is to identify which products can absorb a modest increase without losing demand, and act on those specifically.</p>
+
+                <!-- Section 4 -->
+                <h2>Regional Differences Are About Product Fit, Not Effort</h2>
+
+                <p>The analysis covered six regions: the United States, Canada, the United Kingdom, France, Germany, and Australia. Profit performance varied significantly, but not because some regions worked harder.</p>
+
+                <p>The US market supported a broader range of products, including lower-volume items, because demand was deep enough to justify the width. Other regions showed demand concentrated in fewer products. Carrying the same wide assortment in smaller markets added complexity without adding profit.</p>
+
+                <p><strong>What this means in practice:</strong></p>
+                <ul>
+                    <li>High-performing regions can sustain broader assortments; smaller markets need tighter SKU control</li>
+                    <li>Applying the same product mix everywhere assumes all markets behave the same. They do not.</li>
+                    <li>Regional managers should be empowered to cut low-performers from their local range without waiting for a global SKU review</li>
+                </ul>
+
+                <p>Profit leadership in each region comes from matching what is stocked to what that market actually buys, not from replicating the top market's strategy everywhere.</p>
+
+                <!-- Section 5 -->
+                <h2>The Fastest Action You Can Take This Quarter</h2>
+
+                <p>The analysis modelled several short-term scenarios to estimate which action would deliver the fastest profit improvement. The winner was a targeted 3% price increase on selected Mountain-200 bike models, specifically sizes where price sensitivity was low.</p>
+
+                <p>This outperformed other options including reducing low-margin stock and adjusting product assortment. Those actions take months to show results. A price change affects every unit sold from the day it is applied.</p>
+
+                <p>The key is precision. A blanket price increase across all products risks losing demand on price-sensitive items. The approach that works is identifying the specific products where customers are unlikely to walk away from a modest increase, and applying the change only there.</p>
+
+                <p>Three steps to get started:</p>
+                <ol>
+                    <li>Separate your products into the four segments above: profit drivers, volume drivers, stable contributors, long-tail</li>
+                    <li>Within your profit drivers, identify which have shown consistent demand without heavy discounting</li>
+                    <li>Test a modest price increase on those products and track the impact over 30 days before expanding</li>
+                </ol>
+
+                <!-- Conclusion -->
+                <h2>Conclusion</h2>
+
+                <p>Profit improves through focus, not expansion. The products generating the most total profit are rarely the ones with the highest margin percentages. They are the ones with high prices and steady demand, and they deserve disproportionate attention.</p>
+
+                <p>Managing all products with the same rules spreads resources too thin and leaves your real profit drivers under-protected. Segment your range, identify where pricing power exists, and act on it precisely. A small, targeted price change on the right products will outperform months of operational work on the wrong ones.</p>
+
+                <p>The next step is simple: find out which products are actually driving your profit, and start managing them that way.</p>
+
+                <!-- CTA to WhatsApp -->
+                <div class="post-cta">
+                    <p>Want to find out what your own data is saying? Let's look at it together.</p>
+                    <a href="https://wa.me/60149207099?text=%5BCH-B%3A%20finding-profit-drivers%5D%20Hi%20Pau%20Analytics%2C%20I%20read%20your%20blog%20post%20and%20would%20like%20to%20find%20out%20what%20my%20data%20is%20saying." class="cta-link">Chat with Us on WhatsApp →</a>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
