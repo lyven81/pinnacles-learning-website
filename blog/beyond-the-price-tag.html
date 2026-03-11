@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顾客最在乎什么 | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/blog/beyond-the-price-tag" />
+    <meta name="description" content="超过30,000条评价揭示：影响顾客满意度的，不是价格，而是这三件事。了解顾客真正在乎什么，让您的推广更有效。" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        /* Base */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Sidebar */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Content Area */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Sidebar Typography */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        /* Sidebar Buttons */
+        .home-link-section {
+            margin: 12px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Post Meta (date + language badge) */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5em;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .lang-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #CBA135;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Right Column Typography */
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #403B36;
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #CBA135;
+            padding-left: 12px;
+        }
+
+        .right-column h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #555;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.4em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul,
+        .right-column ol {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.4em;
+            padding-left: 1.5em;
+        }
+
+        .right-column li {
+            margin-bottom: 0.4em;
+        }
+
+        .right-column blockquote {
+            border-left: 4px solid #CBA135;
+            margin: 1.5em 0;
+            padding: 0.8em 1.2em;
+            background-color: #fff9e7;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .right-column blockquote p {
+            margin-bottom: 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* CTA Block at end of post */
+        .post-cta {
+            margin-top: 3em;
+            padding: 2em;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .post-cta p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .post-cta a.cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #CBA135;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .post-cta a.cta-link:hover {
+            background-color: #a8852a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../blog/index.html" class="home-link-btn">Back to Blog</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../case-study/beyond-the-price-tag.html" class="home-link-btn">Related Case Study</a>
+            </section>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <main class="right-column">
+            <article class="blog-post-content">
+
+                <!-- Title -->
+                <h1>顾客最在乎什么</h1>
+
+                <!-- Meta: date + language -->
+                <div class="post-meta">
+                    <span class="post-date">11 March 2026</span>
+                    <span class="lang-badge">中文</span>
+                </div>
+
+                <!-- Introduction -->
+                <p>我们分析了超过 30,000 条产品评价，发现一件让很多人意外的事：价格高低，几乎不影响顾客是否满意。</p>
+
+                <p>很多老板以为，只要卖得够便宜，顾客就会满意。或者只要产品功能够多，规格够强，评价就会好。但数据说的，是另一回事。顾客真正在乎的，是几件很具体、很实际的事情，而这些事情，往往被忽略了。</p>
+
+                <p>这篇文章会告诉您，顾客买了产品之后，最在乎什么。了解这些，您就能调整推广方式，把资源放在真正有影响力的地方。</p>
+
+                <!-- Section 1 -->
+                <h2>规格越多，不代表口碑越好</h2>
+
+                <p>很多商家在推广产品时，习惯列出一长串规格，以为功能越多越好卖。但从 30,000 条真实评价来看，顾客并不是这样判断的。</p>
+
+                <p>顾客给好评，靠的不是规格表。他们在乎的是：产品用起来顺不顺、耐不耐用、买了之后会不会后悔。</p>
+
+                <blockquote>
+                    <p>吉隆坡一位经营消费电子产品的老板，一直以为把最新功能的产品放在最显眼的位置就能卖得好。但他发现，真正回头推荐给朋友的顾客，买的都是他认为"普通"的款式——那些耐用、操作简单、不容易出问题的产品。他开始调整陈列方式，把这些产品推到前面，销量反而提升了。</p>
+                </blockquote>
+
+                <p>顾客买产品，买的是一种体验，不是一张参数表。</p>
+
+                <!-- Section 2 -->
+                <h2>顾客最在乎的三件事</h2>
+
+                <p>数据显示，影响顾客满意度最大的三个因素，按重要性排列如下：</p>
+
+                <p><strong>第一：续航与持久性</strong><br>
+                产品能不能用得久，是顾客最看重的一点。无论什么类型的产品，只要"用着用着就出问题"，差评几乎是必然的。正面评价里，"用了很久还是好好的""完全没让我失望"这类话出现得最频繁。</p>
+
+                <p><strong>第二：设计与外观</strong><br>
+                顾客愿意花钱，也愿意分享，很多时候是因为产品"看起来有档次"。设计感强的产品，容易触发情感上的认同，顾客会觉得"买这个，值得"。</p>
+
+                <p><strong>第三：日常表现稳定</strong><br>
+                产品不需要每天都惊艳，但绝对不能每隔一段时间就出状况。稳定可靠，是建立信任最基本的条件。</p>
+
+                <p>相比之下，其他功能，例如摄像或附加特性，对整体满意度的影响明显较小。</p>
+
+                <!-- Section 3 -->
+                <h2>价格不是问题，"值不值"才是</h2>
+
+                <p>数据里有一个颇有意思的发现：不管产品价格高低，顾客的满意度水平其实差不多。便宜的产品，顾客满意；贵的产品，顾客也满意——前提是，产品的表现符合他们的预期。</p>
+
+                <p>问题出在"期望落差"。</p>
+
+                <p>买便宜产品的顾客，期望值本来就低，只要不出大问题，通常不会太失望。但买高价产品的顾客，期望值高得多。一旦产品表现平平，失望会来得更快，差评也更难避免。</p>
+
+                <blockquote>
+                    <p>槟城一位经营日用消费品的老板，推出了一款价格偏高的产品。前几个月销量不错，但评价却一般。他细看内容，发现顾客并不是嫌贵，而是觉得"好像没比便宜那款好多少"。他调整了推广说辞，把重点从价格转到"用了三个月还是一样好用"，评价慢慢变好了。</p>
+                </blockquote>
+
+                <p>推广时，不要只强调价格，要让顾客看到：花这个钱，值得。</p>
+
+                <!-- Section 4 -->
+                <h2>不同年龄层，在乎的事情不一样</h2>
+
+                <p>数据显示，50 至 59 岁的顾客，给出的评分和正面反馈最多。他们注重实用性和可靠性，只要产品稳定好用，满意度自然高。</p>
+
+                <p>相比之下，18 至 49 岁的顾客更挑剔。他们对新功能有更高的期待，标准也更高。这个群体不容易满足，但一旦被打动，也更愿意主动分享和推荐。</p>
+
+                <p>60 岁以上的顾客，满意度相对较低，主要原因是产品操作复杂或售后支持不足。这个群体需要更清晰的说明和更贴心的服务。</p>
+
+                <p><strong>对您的推广有什么意义？</strong></p>
+                <ul>
+                    <li>针对年长顾客：强调简单易用、售后有保障</li>
+                    <li>针对中年顾客：强调稳定可靠、物有所值</li>
+                    <li>针对年轻顾客：强调新功能、设计感和用户体验</li>
+                </ul>
+
+                <p>一套说辞打天下，往往效果有限。了解不同顾客在乎什么，才能说到点子上。</p>
+
+                <!-- Section 5 -->
+                <h2>在哪里买，影响顾客怎么评价</h2>
+
+                <p>同一款产品，在不同平台上卖，收到的评价语气也会不同。</p>
+
+                <p>在价格导向的平台上，顾客本来就抱着"捡便宜"的心态购买，只要产品没有大问题，评价通常正面。在品质导向的平台上，顾客期待更高，评价也更严格，服务体验的好坏会直接影响分数。</p>
+
+                <p>这不是说哪个平台好或不好。而是说，您在不同平台上推广同一款产品，说话的方式应该不一样。</p>
+
+                <ul>
+                    <li>价格导向平台：突出性价比、实惠、超出预期</li>
+                    <li>品质导向平台：突出产品品质、服务保障、可靠性</li>
+                </ul>
+
+                <p>推广内容配合平台调性，才能真正打动那里的顾客。</p>
+
+                <!-- Conclusion -->
+                <h2>结语</h2>
+
+                <p>30,000 条评价告诉我们一件事：顾客满意，靠的不是价格，也不是规格。他们在乎的是产品用起来好不好，买了之后值不值，遇到问题有没有人帮。</p>
+
+                <p>不同年龄层的顾客在乎的事情不同，不同平台的顾客期待也不同。了解这些差异，就能把推广重点放对地方。</p>
+
+                <blockquote>
+                    <p>雪兰莪一位零售商，在调整推广策略之前做了一件简单的事：把过去半年收到的顾客留言整理了一遍，找出出现最多次的词。结果发现，顾客最常提的不是"便宜"或"功能多"，而是"用了很久还是好的"和"有问题马上解决"。他把这两句话放进广告文案，转化率明显提升。</p>
+                </blockquote>
+
+                <p>从顾客的角度出发，才是最有效的推广起点。</p>
+
+                <!-- CTA to WhatsApp -->
+                <div class="post-cta">
+                    <p>想知道您自己的数据在说什么？我们一起来看看。</p>
+                    <a href="https://wa.me/60149207099?text=%5BCH-B%3A%20beyond-the-price-tag%5D%20%e6%82%a8%e5%a5%bd%20Pau%20Analytics%ef%bc%8c%e6%88%91%e8%af%bb%e4%ba%86%e6%82%a8%e7%9a%84%e5%8d%9a%e5%ae%a2%ef%bc%8c%e6%83%b3%e4%ba%86%e8%a7%a3%e6%88%91%e7%9a%84%e6%95%b0%e6%8d%ae%e8%83%8c%e5%90%8e%e8%af%b4%e4%ba%86%e4%bb%80%e4%b9%88%e3%80%82" class="cta-link">WhatsApp 联系我们 →</a>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
