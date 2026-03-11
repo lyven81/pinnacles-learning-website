@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你以为卖东西靠运气？ | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/blog/predicting-sales-cycles" />
+    <meta name="description" content="分析34,500条交易记录发现：网店销售不是随机的。了解旺淡季规律，帮您做出更聪明的备货、促销和现金流决策。" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .home-link-section {
+            margin: 12px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5em;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .lang-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #CBA135;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        .right-column h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: #403B36;
+            line-height: 1.3;
+        }
+
+        .right-column h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #403B36;
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #CBA135;
+            padding-left: 12px;
+        }
+
+        .right-column h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #555;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .right-column p {
+            font-size: 1.05em;
+            margin-bottom: 1.4em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .right-column ul,
+        .right-column ol {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.4em;
+            padding-left: 1.5em;
+        }
+
+        .right-column li {
+            margin-bottom: 0.4em;
+        }
+
+        .right-column blockquote {
+            border-left: 4px solid #CBA135;
+            margin: 1.5em 0;
+            padding: 0.8em 1.2em;
+            background-color: #fff9e7;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .right-column blockquote p {
+            margin-bottom: 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .post-cta {
+            margin-top: 3em;
+            padding: 2em;
+            background-color: #fff9e7;
+            border: 1px solid #e8d898;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .post-cta p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .post-cta a.cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #CBA135;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .post-cta a.cta-link:hover {
+            background-color: #a8852a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.35);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .left-column { position: static; width: 100%; height: auto; box-shadow: none; }
+            .right-column { margin-left: 0; width: 100%; padding: 20px; }
+            footer { margin-left: 0; }
+            .right-column h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../blog/index.html" class="home-link-btn">Back to Blog</a>
+            </section>
+
+            <section class="home-link-section">
+                <a href="../case-study/predicting-sales-cycles.html" class="home-link-btn">Related Case Study</a>
+            </section>
+        </aside>
+
+        <!-- RIGHT CONTENT -->
+        <main class="right-column">
+            <article class="blog-post-content">
+
+                <h1>你以为卖东西靠运气？</h1>
+
+                <div class="post-meta">
+                    <span class="post-date">11 March 2026</span>
+                    <span class="lang-badge">中文</span>
+                </div>
+
+                <p>这个星期卖得好，下个星期却冷冷清清。很多网店老板都经历过这种感觉，以为是运气好坏，或者是广告投得不够。但我们分析了两年、超过 34,500 条交易记录之后，发现了一件事：销售的起伏，根本不是随机的。</p>
+
+                <p>很多卖家靠感觉管理库存，靠直觉决定促销时机。结果就是：旺季来了没货卖，淡季囤了一堆卖不出去的存货。不是能力问题，而是缺少一套清楚的框架来看懂销售规律。</p>
+
+                <p>这篇文章会告诉您，网店销售周期（销售旺淡季）是什么、数据如何帮您识别它，以及掌握这个规律之后，您能做哪些更聪明的决定。</p>
+
+                <h2>销售不是随机的，它有周期</h2>
+
+                <p>很多卖家觉得，销售高低是市场说了算，自己没法预测。但数据说的不是这样。</p>
+
+                <p>在两年的销售记录里，我们发现销售表现可以清楚地分成三类：<strong>旺季</strong>、<strong>普通季</strong>和<strong>淡季</strong>。这三类不是平均分布的，而是有规律地出现，年复一年。分析显示，季节性因素解释了约 <strong>78%</strong> 的每周销售波动。换句话说，大部分的高低起伏，早就写在规律里了。</p>
+
+                <blockquote>
+                    <p>雪兰莪一位经营家居用品的网店老板，每年都觉得某几个月销量特别好，但说不清楚是哪几个月，也不知道原因。他把两年的销售记录整理出来，发现旺季和淡季的出现时间几乎一模一样。从那之后，他开始提前三周备货，再也没有在旺季缺货过。</p>
+                </blockquote>
+
+                <p>销售不靠运气，靠的是看懂规律。</p>
+
+                <h2>旺季和淡季，差距有多大？</h2>
+
+                <p>知道有规律是一回事，知道差距有多大才是另一回事。</p>
+
+                <p>数据显示，旺季周的平均收入比普通周高出约 <strong>RM8,430</strong>。淡季周则比普通周少约 <strong>RM7,914</strong>。普通周的基准收入大约在 <strong>RM54,000 至 55,000</strong> 之间。</p>
+
+                <p>这意味着，旺季和淡季之间的收入差距，可以高达每周 <strong>RM16,000</strong> 以上。对中小型网店来说，这不是小数目。</p>
+
+                <p>在两年的数据里，总共有：</p>
+                <ul>
+                    <li><strong>旺季：32 周</strong></li>
+                    <li><strong>普通季：41 周</strong></li>
+                    <li><strong>淡季：32 周</strong></li>
+                </ul>
+
+                <p>这个分布告诉我们，淡季并不罕见，它几乎占了全年三分之一的时间。如果没有提前准备，淡季很容易变成白白损失的时间。</p>
+
+                <h2>了解销售周期，您能做什么不同的决定？</h2>
+
+                <p>掌握旺淡季规律之后，库存、促销和现金流的决策都会变得更有依据。</p>
+
+                <p><strong>库存规划：</strong> 旺季来临前提前备货，避免旺季到了却卖断货。淡季期间减少进货量，避免资金被积压在仓库里。</p>
+
+                <p><strong>促销时机：</strong> 促销在旺季效果最好，因为顾客本来就有购买意愿，投资回报率更高。淡季可以用小型、定向的促销来刺激销量，但不需要大规模投入。</p>
+
+                <p><strong>现金流管理：</strong> 知道淡季几时到来，就能提前预留资金，避免在销售低谷时出现周转困难。</p>
+
+                <blockquote>
+                    <p>槟城一位卖美妆产品的卖家，过去每逢淡季都会加大广告投入，希望把销量拉上来。但效果不佳，反而花了不少冤枉钱。了解销售周期后，她改变策略，淡季只做小规模的老顾客回购活动，省下来的广告预算留到旺季集中投放，整体利润明显改善。</p>
+                </blockquote>
+
+                <h2>促销真的有效吗？数据量化了答案</h2>
+
+                <p>很多卖家知道促销有用，但不知道"有用"到底是多少。</p>
+
+                <p>分析显示，把一个淡季周提升到普通季水平，平均可以带来约 <strong>RM8,000</strong> 的额外收入。如果成功把两个淡季周拉升，收益约为 <strong>RM16,000</strong>。</p>
+
+                <p>此外，特定事件，例如政府补贴、平台大促或政策变化，可以在短期内带来约 <strong>RM3,000</strong> 的额外收入提升。但这类提升是暂时的，活动结束后销量通常会回落到正常水平。</p>
+
+                <p>这说明促销最好配合销售周期来用，而不是随机地"感觉淡了就打折"。有目标地在对的时间做对的事，才能把每一块钱的促销预算用在刀口上。</p>
+
+                <h2>如何开始识别您自己的销售周期？</h2>
+
+                <p>您不需要等到数据分析师帮您建模，才能开始了解自己的销售规律。以下是几个实际的起点：</p>
+
+                <ol>
+                    <li><strong>整理过去两年的周销售记录。</strong> 哪几周销量特别高？哪几周特别低？把它们标出来。</li>
+                    <li><strong>找出重复出现的时间点。</strong> 旺季是否每年都在差不多的时间出现？淡季是否也有固定的模式？</li>
+                    <li><strong>把销售数字和时间对应起来。</strong> 找出旺季、普通季和淡季各自的平均收入，算清楚差距。</li>
+                    <li><strong>用这个框架来做下一季的备货和促销计划。</strong> 不需要精确预测每一周，只需要知道大方向。</li>
+                </ol>
+
+                <blockquote>
+                    <p>吉隆坡一位卖电子配件的网店老板，花了一个下午整理了两年的销售记录，发现每年的第三季度销量都明显高于其他季度。这个发现让他决定在第三季度开始前多备两个月的畅销产品库存。结果那年旺季，他是同类卖家中少数没有缺货的人，销量明显好于往年同期。</p>
+                </blockquote>
+
+                <h2>结语</h2>
+
+                <p>网店销售的起伏，不是运气，也不是广告投得够不够的问题。大部分的波动，背后都有规律可循。</p>
+
+                <p>掌握销售周期，您就能知道什么时候该备货、什么时候该促销、什么时候该省着用预算。旺季多赚约 RM8,000，淡季少亏约 RM8,000，一年下来的差距，远比您以为的大。</p>
+
+                <p>从现在开始，把您过去两年的销售数据整理一遍。规律就藏在里面，等您去发现。</p>
+
+                <!-- CTA -->
+                <div class="post-cta">
+                    <p>想知道您自己的数据在说什么？我们一起来看看。</p>
+                    <a href="https://wa.me/60149207099?text=%5BCH-B%3A%20predicting-sales-cycles%5D%20%e6%82%a8%e5%a5%bd%20Pau%20Analytics%ef%bc%8c%e6%88%91%e8%af%bb%e4%ba%86%e6%82%a8%e7%9a%84%e5%8d%9a%e5%ae%a2%ef%bc%8c%e6%83%b3%e4%ba%86%e8%a7%a3%e6%88%91%e7%9a%84%e6%95%b0%e6%8d%ae%e8%83%8c%e5%90%8e%e8%af%b4%e4%ba%86%e4%bb%80%e4%b9%88%e3%80%82" class="cta-link">WhatsApp 联系我们 →</a>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
