@@ -7,7 +7,7 @@
 
 window.pauChatbotConfig = {
     // Backend URL — all chat and form submissions point here
-    backendUrl: 'https://web-chat-lead-manager.railway.app',
+    backendUrl: 'https://web-chat-lead-manager-production.up.railway.app',
 
     // Trigger settings
     triggerDelay: 10000, // Show widget after 10 seconds (ms)
