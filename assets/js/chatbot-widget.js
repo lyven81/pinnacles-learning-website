@@ -2,35 +2,28 @@
  * Pau Analytics AI Chatbot Widget
  * Jason - Data Insights Consultant
  *
- * This is a demo/placeholder version. To connect to Dify.AI:
- * 1. Set up your Dify.AI account and create Jason's agent
- * 2. Get your Dify chatbot URL or API endpoint
- * 3. Update DIFY_CONFIG with your credentials
- * 4. The widget will automatically connect to your live agent
+ * Backend: Web Chat Lead Manager (FastAPI on Railway)
+ * Lead capture state machine: waiting_name → waiting_challenge → chatting
  */
 
-// ===== CONFIGURATION =====
-const DIFY_CONFIG = {
-    // Dify.AI connection enabled - chatbot will use real AI instead of demo responses
-    enabled: true,
-
-    // Dify API endpoint (Chat App API) - FULL URL including /chat-messages
-    apiUrl: 'https://api.dify.ai/v1',
-
-    // API Key from Dify dashboard → API Access
-    apiKey: 'app-djPWQ9KsNb18La3HlYaLvjFs',
-
-    conversationId: null
+// ===== BACKEND CONFIG =====
+// backendUrl is set in chatbot-config.js → window.pauChatbotConfig.backendUrl
+const BACKEND_CONFIG = {
+    get baseUrl() {
+        return (window.pauChatbotConfig && window.pauChatbotConfig.backendUrl)
+            ? window.pauChatbotConfig.backendUrl.replace(/\/$/, '')
+            : null;
+    }
 };
 
 // Page-specific greetings
 const PAGE_GREETINGS = {
-    homepage: "Hi there! I'm Jason 👋 I help Malaysian businesses spot opportunities hiding in their data. What brings you here today?",
-    dataAnalytics: "Hey! Looking through our case studies? I can help you find one that matches your industry or challenge. What kind of business do you run?",
-    pricing: "Hi! I'm Jason. Trying to figure out which package fits your needs? Tell me a bit about your business, and I can point you in the right direction."
+    homepage: "Hi! I'm Jason 👋 I help Malaysian businesses make sense of their numbers. What's your name?",
+    dataAnalytics: "Hey! I'm Jason. Looking through our case studies? I can help you find a relevant one. What's your name?",
+    pricing: "Hi! I'm Jason. Trying to figure out the right fit for your business? Let's start — what's your name?"
 };
 
-// Demo conversation flows (used when Dify is not connected)
+// Demo conversation flows (fallback when backend is not connected)
 const DEMO_RESPONSES = {
     greetings: [
         "I run a retail shop",
@@ -40,41 +33,41 @@ const DEMO_RESPONSES = {
     ],
 
     retail: {
-        message: "Ah, retail! Many retail owners I talk to struggle with inventory management or understanding which customers are most valuable. Is that something you're dealing with too?",
+        message: "Ah, retail! Many retail owners I talk to struggle with inventory or understanding which customers are most valuable. Is that something you're dealing with too?",
         caseStudy: {
             title: "Where Revenue Comes From",
             industry: "Retail",
             problem: "Uncertain which products drive revenue",
             solution: "Revenue driver analysis",
             result: "Identified top 20% products driving 80% revenue",
-            caseUrl: "/pinnacles-learning-website/case-study/where-revenue-comes-from.html",
-            dashboardUrl: "/pinnacles-learning-website/dashboard/where-revenue-comes-from.html"
+            caseUrl: "/case-study/where-revenue-comes-from.html",
+            dashboardUrl: "/dashboard/where-revenue-comes-from.html"
         }
     },
 
     gym: {
-        message: "Great! Fitness business can be challenging. Many gym owners I've worked with struggle with member retention - people sign up but stop showing up. Sound familiar?",
+        message: "Fitness business can be tough. Many gym owners I've worked with struggle with member retention — people sign up but stop showing up. Sound familiar?",
         caseStudy: {
             title: "Predicting Gym Member Dropout",
             industry: "Fitness",
             problem: "15% monthly churn without early warning",
             solution: "Visit pattern analysis",
             result: "Reduced churn to 8% with early intervention",
-            caseUrl: "/pinnacles-learning-website/case-study/predicting-gym-member-dropout.html",
-            dashboardUrl: "/pinnacles-learning-website/dashboard/predicting-gym-member-dropout.html"
+            caseUrl: "/case-study/predicting-gym-member-dropout.html",
+            dashboardUrl: "/dashboard/predicting-gym-member-dropout.html"
         }
     },
 
     fnb: {
-        message: "F&B business! That's a tough industry. Many restaurant owners I talk to struggle with menu optimization or understanding customer preferences. Is that on your mind too?",
+        message: "F&B is a tough industry. Many restaurant owners I talk to struggle with menu mix or marketing spend. Is that on your mind too?",
         caseStudy: {
             title: "Finding Which Campaigns Work",
             industry: "Food & Beverage",
             problem: "Marketing budget wasted on ineffective campaigns",
             solution: "Campaign ROI analysis",
             result: "Identified top 3 channels with 5x better ROI",
-            caseUrl: "/pinnacles-learning-website/case-study/finding-which-campaign-work.html",
-            dashboardUrl: "/pinnacles-learning-website/agentic_workflow/finding_which_campaign_work.html"
+            caseUrl: "/case-study/finding-which-campaign-work.html",
+            dashboardUrl: "/agentic_workflow/finding_which_campaign_work.html"
         }
     }
 };
@@ -84,8 +77,15 @@ class PauChatbot {
     constructor(config) {
         this.config = config;
         this.isOpen = false;
-        this.conversationHistory = [];
+
+        // Lead capture state
+        this.chatState = null; // null | 'waiting_name' | 'waiting_challenge' | 'chatting'
+        this.leadId = null;
+        this.visitorName = null;
+
+        // Page context
         this.currentPage = this.detectPage();
+        this.pageSlug = this.detectSlug();
 
         this.init();
     }
@@ -97,17 +97,23 @@ class PauChatbot {
         return 'homepage';
     }
 
+    detectSlug() {
+        const path = window.location.pathname;
+        const match = path.match(/\/blog\/([^/]+)\.html$/);
+        return match ? match[1] : '';
+    }
+
+    detectSource() {
+        const path = window.location.pathname;
+        if (path.includes('landing-page') || path.includes('english-landing') || path.includes('mandarin-landing')) return 'CH-A';
+        if (path.includes('/blog/')) return 'CH-B';
+        return 'CH-W';
+    }
+
     init() {
-        // Create widget HTML
         this.createWidget();
-
-        // Attach event listeners
         this.attachEventListeners();
-
-        // Show widget after delay
         setTimeout(() => this.showWidget(), this.config.triggerDelay || 10000);
-
-        // Check if should auto-open (scroll trigger)
         this.setupScrollTrigger();
     }
 
@@ -137,7 +143,6 @@ class PauChatbot {
 
                     <!-- Messages Area -->
                     <div class="pau-chatbot-messages" id="pau-chatbot-messages">
-                        <!-- Messages will be added here -->
                     </div>
 
                     <!-- Input Area -->
@@ -168,22 +173,18 @@ class PauChatbot {
     }
 
     attachEventListeners() {
-        // Toggle button
         document.getElementById('pau-chatbot-toggle').addEventListener('click', () => {
             this.toggleChat();
         });
 
-        // Close button
         document.getElementById('pau-chatbot-close').addEventListener('click', () => {
             this.closeChat();
         });
 
-        // Send button
         document.getElementById('pau-chatbot-send').addEventListener('click', () => {
             this.sendMessage();
         });
 
-        // Enter key to send
         document.getElementById('pau-chatbot-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 this.sendMessage();
@@ -193,9 +194,7 @@ class PauChatbot {
 
     showWidget() {
         const widget = document.getElementById('pau-chatbot-widget');
-        if (widget) {
-            widget.style.display = 'block';
-        }
+        if (widget) widget.style.display = 'block';
     }
 
     setupScrollTrigger() {
@@ -203,30 +202,26 @@ class PauChatbot {
         window.addEventListener('scroll', () => {
             if (!triggered && window.scrollY > 300) {
                 triggered = true;
-                // Could auto-open here if desired
             }
         });
     }
 
     toggleChat() {
         this.isOpen = !this.isOpen;
-        const window = document.getElementById('pau-chatbot-window');
+        const chatWindow = document.getElementById('pau-chatbot-window');
         const button = document.getElementById('pau-chatbot-toggle');
         const badge = document.querySelector('.pau-chatbot-badge');
 
         if (this.isOpen) {
-            window.classList.add('active');
+            chatWindow.classList.add('active');
             button.style.display = 'none';
-
-            // Hide badge
             if (badge) badge.style.display = 'none';
 
-            // Send welcome message if first time
-            if (this.conversationHistory.length === 0) {
+            if (this.chatState === null) {
                 this.sendWelcomeMessage();
             }
         } else {
-            window.classList.remove('active');
+            chatWindow.classList.remove('active');
             button.style.display = 'flex';
         }
     }
@@ -240,9 +235,8 @@ class PauChatbot {
     sendWelcomeMessage() {
         const greeting = PAGE_GREETINGS[this.currentPage];
         this.addMessage(greeting, 'jason');
-
-        // Add quick replies
-        this.addQuickReplies(DEMO_RESPONSES.greetings);
+        this.chatState = 'waiting_name';
+        document.getElementById('pau-chatbot-input').placeholder = 'Your name...';
     }
 
     addMessage(text, sender, options = {}) {
@@ -262,12 +256,7 @@ class PauChatbot {
 
         messageDiv.appendChild(contentDiv);
         messagesContainer.appendChild(messageDiv);
-
-        // Scroll to bottom
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-        // Store in history
-        this.conversationHistory.push({ text, sender, timestamp: Date.now() });
     }
 
     addQuickReplies(replies) {
@@ -292,80 +281,118 @@ class PauChatbot {
     }
 
     handleQuickReply(reply) {
-        // Add user message
         this.addMessage(reply, 'user');
-
-        // Show typing indicator
         this.showTyping();
-
-        // Simulate response delay
         setTimeout(() => {
             this.hideTyping();
-            this.generateDemoResponse(reply);
-        }, 1500);
+            this.processMessage(reply);
+        }, 1200);
     }
 
     sendMessage() {
         const input = document.getElementById('pau-chatbot-input');
         const message = input.value.trim();
-
         if (!message) return;
 
-        // Add user message
         this.addMessage(message, 'user');
         input.value = '';
 
-        // Check if Dify is enabled
-        if (DIFY_CONFIG.enabled) {
-            this.sendToDify(message);
-        } else {
-            // Demo mode
-            this.showTyping();
-            setTimeout(() => {
-                this.hideTyping();
+        this.showTyping();
+        setTimeout(() => {
+            this.hideTyping();
+            this.processMessage(message);
+        }, 800);
+    }
+
+    processMessage(message) {
+        if (this.chatState === 'waiting_name') {
+            this.visitorName = message;
+            this.chatState = 'waiting_challenge';
+            const prompt = `Nice to meet you, ${this.visitorName}! What business challenge brought you here today?`;
+            this.addMessage(prompt, 'jason');
+            document.getElementById('pau-chatbot-input').placeholder = 'Describe your challenge...';
+            return;
+        }
+
+        if (this.chatState === 'waiting_challenge') {
+            if (BACKEND_CONFIG.baseUrl) {
+                this.startBackendChat(message);
+            } else {
+                // Demo fallback
+                this.chatState = 'demo';
                 this.generateDemoResponse(message);
-            }, 1500);
+            }
+            return;
+        }
+
+        if (this.chatState === 'chatting') {
+            this.continueBackendChat(message);
+            return;
+        }
+
+        // Demo fallback for any other state
+        this.generateDemoResponse(message);
+    }
+
+    async startBackendChat(challenge) {
+        const source = this.detectSource();
+        const payload = {
+            name: this.visitorName || 'Visitor',
+            challenge: challenge,
+            source: source,
+            slug: this.pageSlug,
+            phone: ''
+        };
+
+        try {
+            const response = await fetch(`${BACKEND_CONFIG.baseUrl}/chat/start`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const data = await response.json();
+            this.leadId = data.lead_id;
+            this.chatState = 'chatting';
+            document.getElementById('pau-chatbot-input').placeholder = 'Type your message...';
+            this.addMessage(data.reply, 'jason');
+
+        } catch (error) {
+            console.error('[Jason] /chat/start error:', error);
+            this.addMessage(
+                "I'm having trouble connecting right now. You can reach us at https://tidycal.com/pauanalytics/discovery or WhatsApp +6014-920 7099.",
+                'jason'
+            );
         }
     }
 
-    async sendToDify(message) {
-        // TODO: Implement actual Dify.AI API call
-        // This is a placeholder for when Dify is configured
-
+    async continueBackendChat(message) {
         try {
-            const response = await fetch(DIFY_CONFIG.apiUrl, {
+            const response = await fetch(`${BACKEND_CONFIG.baseUrl}/chat/message`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${DIFY_CONFIG.apiKey}`
-                },
-                body: JSON.stringify({
-                    query: message,
-                    conversation_id: DIFY_CONFIG.conversationId,
-                    user: 'web-visitor'
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ lead_id: this.leadId, message: message })
             });
 
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
             const data = await response.json();
-
-            // Update conversation ID
-            if (data.conversation_id) {
-                DIFY_CONFIG.conversationId = data.conversation_id;
-            }
-
-            // Add Jason's response
-            this.addMessage(data.answer, 'jason');
+            this.addMessage(data.reply, 'jason');
 
         } catch (error) {
-            console.error('Dify API error:', error);
-            this.addMessage("Sorry, I'm having trouble connecting right now. Please try again or contact us at admin@pauanalytics.com", 'jason');
+            console.error('[Jason] /chat/message error:', error);
+            this.addMessage(
+                "Sorry, I lost the connection. You can book a call here: https://tidycal.com/pauanalytics/discovery",
+                'jason'
+            );
         }
     }
 
     generateDemoResponse(userMessage) {
         const lowerMessage = userMessage.toLowerCase();
 
-        // Detect industry
         if (lowerMessage.includes('retail') || lowerMessage.includes('shop')) {
             this.addMessage(DEMO_RESPONSES.retail.message, 'jason');
             setTimeout(() => this.showCaseStudy(DEMO_RESPONSES.retail.caseStudy), 1000);
@@ -376,12 +403,11 @@ class PauChatbot {
             this.addMessage(DEMO_RESPONSES.fnb.message, 'jason');
             setTimeout(() => this.showCaseStudy(DEMO_RESPONSES.fnb.caseStudy), 1000);
         } else if (lowerMessage.includes('browsing') || lowerMessage.includes('just looking')) {
-            this.addMessage("No problem! Feel free to explore our case studies. When you're ready, I'm here to help you find solutions relevant to your business. What industry are you in?", 'jason');
-        } else if (lowerMessage.includes('price') || lowerMessage.includes('package') || lowerMessage.includes('cost')) {
+            this.addMessage("No problem! Feel free to explore. When you're ready, I'm here to help you find solutions for your business. What industry are you in?", 'jason');
+        } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
             this.showPackageComparison();
         } else {
-            // Generic response
-            this.addMessage("That's interesting! To help you better, could you tell me what kind of business you run? (e.g., retail, gym, F&B, banking, etc.)", 'jason');
+            this.addMessage("That's interesting! To help you better, could you tell me what kind of business you run? (e.g. retail, gym, F&B)", 'jason');
         }
     }
 
@@ -401,11 +427,9 @@ class PauChatbot {
                 </div>
             </div>
         `;
-
         this.addMessage(cardHTML, 'jason', { html: true });
-
         setTimeout(() => {
-            this.addMessage("What stood out to you from that case study? Does your business face similar challenges?", 'jason');
+            this.addMessage("Does your business face similar challenges?", 'jason');
         }, 2000);
     }
 
@@ -414,48 +438,20 @@ class PauChatbot {
             <div class="pau-package-table">
                 <table>
                     <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Insight</th>
-                            <th>Standard</th>
-                            <th>Premium</th>
-                        </tr>
+                        <tr><th>Feature</th><th>Insight</th><th>Standard</th><th>Premium</th></tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Report</td>
-                            <td class="pau-check">✓</td>
-                            <td class="pau-check">✓</td>
-                            <td class="pau-check">✓</td>
-                        </tr>
-                        <tr>
-                            <td>Dashboard</td>
-                            <td class="pau-cross">✗</td>
-                            <td class="pau-check">✓</td>
-                            <td class="pau-check">✓</td>
-                        </tr>
-                        <tr>
-                            <td>AI Assistant</td>
-                            <td class="pau-cross">✗</td>
-                            <td class="pau-cross">✗</td>
-                            <td class="pau-check">✓</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Price/month</strong></td>
-                            <td>RM750</td>
-                            <td class="pau-popular">RM1,500 ⭐</td>
-                            <td>RM2,250</td>
-                        </tr>
+                        <tr><td>Report</td><td class="pau-check">✓</td><td class="pau-check">✓</td><td class="pau-check">✓</td></tr>
+                        <tr><td>Dashboard</td><td class="pau-cross">✗</td><td class="pau-check">✓</td><td class="pau-check">✓</td></tr>
+                        <tr><td>AI Assistant</td><td class="pau-cross">✗</td><td class="pau-cross">✗</td><td class="pau-check">✓</td></tr>
                     </tbody>
                 </table>
             </div>
         `;
-
-        this.addMessage("Here's a quick comparison of our packages:", 'jason');
+        this.addMessage("Here's a quick overview of our packages:", 'jason');
         this.addMessage(tableHTML, 'jason', { html: true });
-
         setTimeout(() => {
-            this.addMessage("Which features matter most to you? Or would you like me to recommend a package based on your needs?", 'jason');
+            this.addMessage("Which features matter most to you? Happy to help you figure out the right fit.", 'jason');
         }, 1500);
     }
 
@@ -475,24 +471,13 @@ class PauChatbot {
 
     hideTyping() {
         const typingDiv = document.getElementById('pau-chatbot-typing');
-        if (typingDiv) {
-            typingDiv.remove();
-        }
+        if (typingDiv) typingDiv.remove();
     }
 }
 
 // ===== INITIALIZE ON PAGE LOAD =====
 window.addEventListener('DOMContentLoaded', () => {
-    // Get page-specific config
     const pageConfig = window.pauChatbotConfig || {};
-
-    // Initialize chatbot
     const chatbot = new PauChatbot(pageConfig);
-
-    // Make chatbot accessible globally for debugging
     window.pauChatbot = chatbot;
-
-    console.log('Pau Analytics Chatbot initialized');
-    console.log('Current page:', chatbot.currentPage);
-    console.log('Dify enabled:', DIFY_CONFIG.enabled);
 });

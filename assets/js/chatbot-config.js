@@ -1,38 +1,31 @@
 /**
  * Pau Analytics Chatbot Configuration
  * Page-specific settings for chatbot behavior
+ *
+ * backendUrl: Railway deployment URL — update this when you deploy a new backend
  */
 
-// Configuration object that can be overridden per page
 window.pauChatbotConfig = {
+    // Backend URL — all chat and form submissions point here
+    backendUrl: 'https://web-chat-lead-manager.railway.app',
+
     // Trigger settings
-    triggerDelay: 10000, // Show widget after 10 seconds (10000ms)
-    scrollTrigger: 300, // Pixels scrolled before considering auto-open
+    triggerDelay: 10000, // Show widget after 10 seconds (ms)
+    scrollTrigger: 300,  // Pixels scrolled before scroll trigger activates
 
     // Appearance
-    position: 'bottom-right', // Position of the widget
-    primaryColor: '#8B4513', // Brown theme
-    secondaryColor: '#D2691E', // Peru/tan
+    position: 'bottom-right',
+    primaryColor: '#8B4513',
+    secondaryColor: '#D2691E',
 
     // Behavior
-    autoOpen: false, // Don't auto-open chat window
-    persistConversation: true, // Remember conversation across page loads
-    showNotificationBadge: true, // Show "1" badge on first load
+    autoOpen: false,
+    persistConversation: true,
+    showNotificationBadge: true,
 
-    // Page-specific overrides (set via window.pauChatbotConfig before widget loads)
-    page: 'homepage', // Will be auto-detected: 'homepage', 'dataAnalytics', 'pricing'
-
-    // Analytics (optional)
-    trackEvents: true, // Track chatbot interactions in Google Analytics
-    gaEventCategory: 'Chatbot',
-
-    // Lead capture
-    requireEmail: false, // Don't force email before chatting
-    emailPromptAfter: 5, // Ask for email after 5 messages exchanged
-
-    // Demo mode settings
-    demoMode: true, // Set to false when connected to Dify.AI
-    showDemoWarning: false // Show warning that this is demo mode
+    // Analytics
+    trackEvents: true,
+    gaEventCategory: 'Chatbot'
 };
 
 // Google Analytics event tracking
@@ -45,5 +38,4 @@ function trackChatbotEvent(action, label) {
     }
 }
 
-// Export for use in widget
 window.trackChatbotEvent = trackChatbotEvent;

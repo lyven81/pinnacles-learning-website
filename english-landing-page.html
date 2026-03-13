@@ -820,18 +820,58 @@ function toggleFaq(el) {
   if (!isOpen) item.classList.add('open');
 }
 
-function submitForm(e) {
+async function submitForm(e) {
   e.preventDefault();
-  const name = document.getElementById('f-name').value;
-  const phone = document.getElementById('f-phone').value;
-  const challenge = document.getElementById('f-challenge').value;
-  const msg = encodeURIComponent(
-    '[CH-A] Hi Pau Analytics! I\'d like to claim my free business review.\n\nName: ' + name +
-    '\nWhatsApp: ' + phone + '\nMy biggest challenge: ' + challenge +
-    '\n\nLooking forward to hearing from you!'
-  );
-  window.open('https://wa.me/60149207099?text=' + msg, '_blank');
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const challenge = document.getElementById('f-challenge').value.trim();
+  if (!name || !phone || !challenge) return;
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const backendUrl = (window.pauChatbotConfig && window.pauChatbotConfig.backendUrl)
+    ? window.pauChatbotConfig.backendUrl.replace(/\/$/, '')
+    : null;
+
+  if (!backendUrl) {
+    // Fallback: open WhatsApp if backend not configured
+    const msg = encodeURIComponent('[CH-A] Hi Pau Analytics! Name: ' + name + ' | WhatsApp: ' + phone + ' | Challenge: ' + challenge);
+    window.open('https://wa.me/60149207099?text=' + msg, '_blank');
+    btn.disabled = false;
+    btn.textContent = 'Claim My Free Business Review →';
+    return;
+  }
+
+  try {
+    const res = await fetch(backendUrl + '/chat/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, challenge, source: 'CH-A', slug: '' })
+    });
+    if (!res.ok) throw new Error('Request failed');
+
+    // Show inline confirmation — replace form with success message
+    const formContainer = document.querySelector('.hero-form');
+    formContainer.innerHTML = `
+      <div style="text-align:center;padding:2rem 1rem;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">✅</div>
+        <h3 style="color:#403B36;margin-bottom:0.5rem;">We've received your message!</h3>
+        <p style="color:#555;font-size:0.95rem;">We'll be in touch within 24 hours — usually the same day.</p>
+        <p style="color:#888;font-size:0.85rem;margin-top:1rem;">In the meantime, feel free to <a href="https://wa.me/60149207099" target="_blank" style="color:#25D366;">chat with us on WhatsApp</a>.</p>
+      </div>
+    `;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Claim My Free Business Review →';
+    alert('Something went wrong. Please try again or contact us on WhatsApp.');
+  }
 }
 </script>
+
+<script src="/assets/js/chatbot-config.js"></script>
+<link rel="stylesheet" href="/assets/css/chatbot-widget.css" />
+<script src="/assets/js/chatbot-widget.js"></script>
 </body>
 </html>

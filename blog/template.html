@@ -383,10 +383,14 @@
                 <p>[Summarise 2-3 key takeaways in plain language.]</p>
                 <p>[Close with an actionable thought — what should the reader do next?]</p>
 
-                <!-- CTA to WhatsApp -->
+                <!-- CTA — Web Chat Lead Capture -->
                 <div class="post-cta">
                     <p>Want to find out what your own data is saying? Let's look at it together.</p>
-                    <a href="https://wa.me/60149207099?text=%5BCH-B%3A%20[POST SLUG]%5D%20Hi%20Pau%20Analytics%2C%20I%20read%20your%20blog%20post%20and%20would%20like%20to%20find%20out%20what%20my%20data%20is%20saying." class="cta-link">Chat with Us on WhatsApp →</a>
+                    <div class="cta-form">
+                        <input type="text" id="cta-name" placeholder="Your name (optional)" />
+                        <input type="text" id="cta-challenge" placeholder="Your biggest business challenge *" />
+                        <button class="cta-link" onclick="submitBlogCTA('[POST-SLUG]', 'en')">Chat with Us →</button>
+                    </div>
                 </div>
 
             </article>
@@ -396,5 +400,45 @@
     <footer>
         <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
     </footer>
+
+<script>
+async function submitBlogCTA(slug, lang) {
+  const nameEl = document.getElementById('cta-name');
+  const challengeEl = document.getElementById('cta-challenge');
+  const name = (nameEl ? nameEl.value.trim() : '') || 'Visitor';
+  const challenge = (challengeEl ? challengeEl.value.trim() : '');
+  if (!challenge) { challengeEl && challengeEl.focus(); return; }
+
+  const btn = document.querySelector('.post-cta .cta-link');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+  const backendUrl = (window.pauChatbotConfig && window.pauChatbotConfig.backendUrl)
+    ? window.pauChatbotConfig.backendUrl.replace(/\/$/, '') : null;
+
+  if (!backendUrl) {
+    const msg = encodeURIComponent('[CH-B: ' + slug + '] Name: ' + name + ' | Challenge: ' + challenge);
+    window.open('https://wa.me/60149207099?text=' + msg, '_blank');
+    if (btn) { btn.disabled = false; btn.textContent = 'Chat with Us →'; }
+    return;
+  }
+
+  try {
+    const res = await fetch(backendUrl + '/chat/start', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, challenge, source: 'CH-B', slug, phone: '' })
+    });
+    if (!res.ok) throw new Error('Failed');
+    const cta = document.querySelector('.post-cta');
+    if (cta) cta.innerHTML = '<p style="text-align:center;padding:1rem 0;"><strong>✅ Message received!</strong><br>We typically reply within 24 hours.</p>';
+  } catch (err) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Chat with Us →'; }
+    alert('Something went wrong. Please try again.');
+  }
+}
+</script>
+
+<script src="../assets/js/chatbot-config.js"></script>
+<link rel="stylesheet" href="../assets/css/chatbot-widget.css" />
+<script src="../assets/js/chatbot-widget.js"></script>
 </body>
 </html>

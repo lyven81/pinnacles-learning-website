@@ -813,18 +813,56 @@ function toggleFaq(el) {
   if (!isOpen) item.classList.add('open');
 }
 
-function submitForm(e) {
+async function submitForm(e) {
   e.preventDefault();
-  const name = document.getElementById('f-name').value;
-  const phone = document.getElementById('f-phone').value;
-  const challenge = document.getElementById('f-challenge').value;
-  const msg = encodeURIComponent(
-    '[CH-A] 您好 Pau Analytics！我想领取免费生意检查。\n\n姓名：' + name +
-    '\nWhatsApp：' + phone + '\n我最大的困扰：' + challenge +
-    '\n\n期待您的回复！'
-  );
-  window.open('https://wa.me/60149207099?text=' + msg, '_blank');
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const challenge = document.getElementById('f-challenge').value.trim();
+  if (!name || !phone || !challenge) return;
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+
+  const backendUrl = (window.pauChatbotConfig && window.pauChatbotConfig.backendUrl)
+    ? window.pauChatbotConfig.backendUrl.replace(/\/$/, '')
+    : null;
+
+  if (!backendUrl) {
+    const msg = encodeURIComponent('[CH-A] 您好 Pau Analytics！姓名：' + name + ' | WhatsApp：' + phone + ' | 困扰：' + challenge);
+    window.open('https://wa.me/60149207099?text=' + msg, '_blank');
+    btn.disabled = false;
+    btn.textContent = '立即领取免费生意检查 →';
+    return;
+  }
+
+  try {
+    const res = await fetch(backendUrl + '/chat/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, challenge, source: 'CH-A', slug: '' })
+    });
+    if (!res.ok) throw new Error('Request failed');
+
+    const formContainer = document.querySelector('.hero-form');
+    formContainer.innerHTML = `
+      <div style="text-align:center;padding:2rem 1rem;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">✅</div>
+        <h3 style="color:#403B36;margin-bottom:0.5rem;">我们已收到您的消息！</h3>
+        <p style="color:#555;font-size:0.95rem;">我们将在24小时内联系您——通常当天回复。</p>
+        <p style="color:#888;font-size:0.85rem;margin-top:1rem;">同时，欢迎直接 <a href="https://wa.me/60149207099" target="_blank" style="color:#25D366;">WhatsApp 联系我们</a>。</p>
+      </div>
+    `;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = '立即领取免费生意检查 →';
+    alert('提交失败，请再试一次或通过 WhatsApp 联系我们。');
+  }
 }
 </script>
+
+<script src="/assets/js/chatbot-config.js"></script>
+<link rel="stylesheet" href="/assets/css/chatbot-widget.css" />
+<script src="/assets/js/chatbot-widget.js"></script>
 </body>
 </html>

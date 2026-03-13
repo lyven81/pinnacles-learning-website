@@ -469,5 +469,59 @@
     <footer>
         <p>© 2025 Pau Analytics | <a href="../privacy-policy.html">Privacy Policy</a></p>
     </footer>
+
+<script>
+async function submitBlogCTA(slug, lang) {
+  const nameEl = document.getElementById('cta-name');
+  const challengeEl = document.getElementById('cta-challenge');
+  const name = (nameEl ? nameEl.value.trim() : '') || 'Visitor';
+  const challenge = (challengeEl ? challengeEl.value.trim() : '');
+  if (!challenge) {
+    challengeEl && challengeEl.focus();
+    return;
+  }
+
+  const btn = document.querySelector('.post-cta .cta-link');
+  if (btn) { btn.disabled = true; btn.textContent = lang === 'zh' ? '提交中...' : 'Sending...'; }
+
+  const backendUrl = (window.pauChatbotConfig && window.pauChatbotConfig.backendUrl)
+    ? window.pauChatbotConfig.backendUrl.replace(/\/$/, '')
+    : null;
+
+  if (!backendUrl) {
+    // Fallback: open WhatsApp
+    const msgEn = encodeURIComponent('[CH-B: ' + slug + '] Name: ' + name + ' | Challenge: ' + challenge);
+    const msgZh = encodeURIComponent('[CH-B: ' + slug + '] 姓名：' + name + ' | 困扰：' + challenge);
+    window.open('https://wa.me/60149207099?text=' + (lang === 'zh' ? msgZh : msgEn), '_blank');
+    if (btn) { btn.disabled = false; btn.textContent = lang === 'zh' ? 'WhatsApp 联系我们 →' : 'Chat with Us →'; }
+    return;
+  }
+
+  try {
+    const res = await fetch(backendUrl + '/chat/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, challenge, source: 'CH-B', slug, phone: '' })
+    });
+    if (!res.ok) throw new Error('Failed');
+
+    const cta = document.querySelector('.post-cta');
+    if (cta) {
+      cta.innerHTML = lang === 'zh'
+        ? '<p style="text-align:center;padding:1rem 0;"><strong>✅ 已收到您的留言！</strong><br>我们通常在24小时内回复。</p>'
+        : '<p style="text-align:center;padding:1rem 0;"><strong>✅ Message received!</strong><br>We typically reply within 24 hours.</p>';
+    }
+  } catch (err) {
+    if (btn) { btn.disabled = false; btn.textContent = lang === 'zh' ? 'WhatsApp 联系我们 →' : 'Chat with Us →'; }
+    const errMsg = lang === 'zh' ? '提交失败，请稍后再试。' : 'Something went wrong. Please try again.';
+    alert(errMsg);
+  }
+}
+</script>
+
+<script src="../assets/js/chatbot-config.js"></script>
+<link rel="stylesheet" href="../assets/css/chatbot-widget.css" />
+<script src="../assets/js/chatbot-widget.js"></script>
+
 </body>
 </html>
