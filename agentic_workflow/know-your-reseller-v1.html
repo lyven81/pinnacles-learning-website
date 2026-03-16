@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Reseller Assistant v1 | Know Your Reseller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #403B36;
+            background-color: #ffffff;
+        }
+
+        .container { display: flex; min-height: 100vh; }
+
+        /* Left Column */
+        .left-column {
+            width: 30%;
+            background-color: #f8f8f8;
+            padding: 40px 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .left-column h1 { font-size: 1.8em; font-weight: bold; color: #403B36; margin-bottom: 10px; }
+        .left-column h2 { font-size: 1em; font-weight: 400; color: #666; margin-bottom: 20px; }
+        .intro p { color: #555; margin-bottom: 30px; line-height: 1.8; }
+
+        .home-link-section, .dashboard-link-section, .agentic-link-section { margin: 20px 0; }
+
+        .home-link-btn, .dashboard-link-btn, .agentic-link-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #403B36;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .home-link-btn:hover, .dashboard-link-btn:hover { background-color: #CBA135; }
+        .agentic-link-btn { background-color: #CBA135; }
+        .agentic-link-btn:hover { background-color: #B8902E; }
+
+        .contact { margin-top: 30px; }
+        .contact h2 { font-size: 1.2em; color: #403B36; margin-bottom: 15px; font-weight: 600; }
+        .contact p { color: #555; margin-bottom: 15px; }
+        .contact ul { list-style: none; }
+        .contact li { margin-bottom: 10px; color: #555; }
+        .contact a { color: #CBA135; text-decoration: none; }
+        .contact a:hover { text-decoration: underline; }
+
+        /* Right Column */
+        .right-column {
+            width: 70%;
+            margin-left: 30%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chatbot-header h1 { font-size: 2.2em; color: #403B36; margin-bottom: 10px; font-weight: 600; }
+        .chatbot-header p { font-size: 1.1em; color: #666; line-height: 1.8; }
+
+        /* API Key Section */
+        .api-key-section {
+            background-color: #fff8e8;
+            border: 1px solid #CBA135;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+        }
+
+        .api-key-section h3 { font-size: 1em; color: #403B36; margin-bottom: 8px; font-weight: 600; }
+        .api-key-section p { font-size: 0.88em; color: #666; margin-bottom: 12px; }
+
+        .api-key-row { display: flex; gap: 10px; }
+
+        .api-key-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-family: 'Poppins', sans-serif;
+            color: #403B36;
+        }
+
+        .api-key-input:focus { outline: none; border-color: #CBA135; }
+
+        .btn-save-key {
+            padding: 10px 20px;
+            background-color: #CBA135;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-save-key:hover { background-color: #B8902E; }
+        .key-status { font-size: 0.85em; margin-top: 8px; }
+        .key-status.set { color: #2e7d32; }
+        .key-status.unset { color: #c62828; }
+
+        /* Chat Container */
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Suggested Questions */
+        .suggested-questions { margin-bottom: 25px; }
+        .suggested-questions h3 { font-size: 1.1em; color: #403B36; margin-bottom: 12px; font-weight: 600; }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            color: #403B36;
+            border: 2px solid #CBA135;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background-color: #CBA135;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Input Area */
+        .input-area { margin-bottom: 20px; }
+        .input-area label { display: block; font-size: 1em; font-weight: 600; color: #403B36; margin-bottom: 10px; }
+
+        .input-row { display: flex; gap: 10px; }
+
+        .question-input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            color: #403B36;
+            transition: border-color 0.3s ease;
+        }
+
+        .question-input:focus { outline: none; border-color: #CBA135; }
+
+        .btn-ask {
+            padding: 14px 28px;
+            background-color: #CBA135;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-ask:hover { background-color: #B8902E; }
+        .btn-ask:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        /* Chat Messages */
+        .chat-messages { min-height: 200px; margin-top: 10px; }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background-color: #CBA135;
+            color: #ffffff;
+            margin-left: 60px;
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .message.agent {
+            background-color: #ffffff;
+            color: #403B36;
+            margin-right: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.agent .agent-label {
+            font-weight: 600;
+            color: #CBA135;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Workflow Steps */
+        .workflow-step {
+            margin: 10px 0;
+            padding: 10px 14px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #CBA135;
+            border-radius: 4px;
+        }
+
+        .workflow-step .step-title { font-weight: 600; color: #403B36; margin-bottom: 4px; font-size: 0.95em; }
+        .workflow-step .step-content { color: #666; font-size: 0.9em; }
+
+        /* SQL Block */
+        .sql-block {
+            margin: 12px 0;
+            background-color: #1e1e1e;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .sql-block .sql-label {
+            padding: 6px 14px;
+            background-color: #333;
+            color: #CBA135;
+            font-size: 0.8em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .sql-block pre {
+            padding: 14px;
+            color: #d4d4d4;
+            font-size: 0.88em;
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+        }
+
+        /* Results Table */
+        .results-table-wrap {
+            margin: 14px 0;
+            overflow-x: auto;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88em;
+        }
+
+        .results-table th {
+            background-color: #403B36;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .results-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #403B36;
+        }
+
+        .results-table tr:nth-child(even) td { background-color: #fafafa; }
+        .results-table tr:last-child td { border-bottom: none; }
+
+        .results-count {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+
+        /* Final Answer */
+        .final-answer {
+            margin-top: 14px;
+            padding: 14px 18px;
+            background-color: #e8f8e8;
+            border-radius: 6px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .final-answer .answer-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 6px;
+            display: block;
+            font-size: 0.95em;
+        }
+
+        .final-answer p { color: #333; font-size: 0.95em; line-height: 1.7; }
+
+        /* Error */
+        .error-box {
+            padding: 12px 16px;
+            background-color: #fdecea;
+            border-left: 4px solid #c62828;
+            border-radius: 4px;
+            color: #c62828;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        /* Loading dots */
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.2s steps(3, end) infinite;
+        }
+
+        @keyframes dots {
+            0%  { content: ''; }
+            33% { content: '.'; }
+            66% { content: '..'; }
+            100%{ content: '...'; }
+        }
+
+        /* Reset */
+        .btn-reset {
+            display: block;
+            margin: 16px auto 0;
+            padding: 10px 24px;
+            background: transparent;
+            border: 2px solid #CBA135;
+            color: #CBA135;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reset:hover { background-color: #CBA135; color: #fff; }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p { margin: 0; font-size: 0.9em; }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .left-column { width: 100%; position: relative; height: auto; }
+            .right-column { width: 100%; margin-left: 0; padding: 30px 20px; }
+            .message.user { margin-left: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Left Column -->
+    <aside class="left-column">
+        <header>
+            <h1>Pau Analytics</h1>
+            <h2>Data Analytics Consulting</h2>
+        </header>
+        <section class="intro">
+            <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+        </section>
+
+        <section class="home-link-section">
+            <a class="home-link-btn" href="https://www.pauanalytics.com/index.html">Home</a>
+        </section>
+        <section class="home-link-section">
+            <a class="home-link-btn" href="https://www.pauanalytics.com/case-study/know-your-reseller.html">Case Study</a>
+        </section>
+        <section class="dashboard-link-section">
+            <a class="dashboard-link-btn" href="https://www.pauanalytics.com/dashboard/know-your-reseller-dashboard.html">Dashboard</a>
+        </section>
+        <section class="agentic-link-section">
+            <a class="agentic-link-btn" href="https://www.pauanalytics.com/agentic_workflow/know-your-reseller-v1.html">AI Assistant</a>
+        </section>
+
+        <section class="contact">
+            <h2>Contact</h2>
+            <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+            <ul>
+                <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+            </ul>
+        </section>
+    </aside>
+
+    <!-- Right Column -->
+    <main class="right-column">
+        <div class="chatbot-header">
+            <h1>🤖 AI Reseller Assistant</h1>
+            <p>Ask any question about your reseller data in plain English — get real SQL results and business insights instantly.</p>
+        </div>
+
+        <!-- API Key Section -->
+        <div class="api-key-section" id="apiKeySection">
+            <h3>Enter your Anthropic API Key</h3>
+            <p>Your key is stored only in your browser session and never sent anywhere except the Anthropic API.</p>
+            <div class="api-key-row">
+                <input type="password" class="api-key-input" id="apiKeyInput" placeholder="sk-ant-..." />
+                <button class="btn-save-key" onclick="saveApiKey()">Save Key</button>
+            </div>
+            <div class="key-status unset" id="keyStatus">No API key set</div>
+        </div>
+
+        <div class="chat-container">
+            <!-- Suggested Questions -->
+            <div class="suggested-questions">
+                <h3>Try these questions:</h3>
+                <button class="question-btn" onclick="prefillQuestion('Which resellers have the highest gross margin?')">Which resellers have the highest gross margin?</button>
+                <button class="question-btn" onclick="prefillQuestion('Show me all Champions with negative gross margin')">Show me all Champions with negative gross margin</button>
+                <button class="question-btn" onclick="prefillQuestion('Which segment has the best average margin percentage?')">Which segment has the best average margin percentage?</button>
+                <button class="question-btn" onclick="prefillQuestion('Which resellers received discounts but still lost money?')">Which resellers received discounts but still lost money?</button>
+                <button class="question-btn" onclick="prefillQuestion('Show me the top 10 resellers by total sales revenue')">Show me the top 10 resellers by total sales revenue</button>
+            </div>
+
+            <!-- Input -->
+            <div class="input-area">
+                <label for="questionInput">Ask anything about your reseller data:</label>
+                <div class="input-row">
+                    <input type="text" class="question-input" id="questionInput"
+                        placeholder="e.g. Which At-Risk resellers had positive margins before going inactive?"
+                        onkeydown="if(event.key==='Enter') askQuestion()" />
+                    <button class="btn-ask" id="askBtn" onclick="askQuestion()">Ask</button>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chatMessages">
+                <p style="text-align:center; color:#999; font-style:italic;">Enter your API key above, then ask any question to get started.</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>© 2025 Pau Analytics</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/alasql@4/dist/alasql.min.js"></script>
+<script>
+// ── Embedded Dataset ───────────────────────────────────────────────────────
+const CSV_TEXT = `resellerkey,productkey,salesterritorykey,order_date,order_month,order_quantity,unit_price,discount_amount,sales_total,gross_margin,margin_pct,discount_efficiency,segment
+523,237,3,2020-04-29,2020-04,7,29.994,0,209.958,-59.486,-28.33,0,Steady Partners
+81,457,5,2018-10-29,2018-10,4,44.994,0,179.976,56.244,31.25,0,Champions
+108,482,2,2019-08-21,2019-08,6,5.394,0,32.364,12.192,37.67,0,Steady Partners
+352,360,6,2018-11-21,2018-11,4,1229.459,0,4917.836,494.596,10.06,0,Steady Partners
+290,580,1,2019-10-13,2019-10,3,1020.594,0,3061.782,-185.748,-6.07,0,Champions
+538,520,10,2019-07-23,2019-07,2,31.584,0,63.168,16.424,26.0,0,Champions
+195,483,9,2019-12-18,2019-12,3,72.0,0,216.0,81.36,37.67,0,Low-ROI
+487,445,1,2019-02-13,2019-02,3,35.994,0,107.982,33.744,31.25,0,Steady Partners
+263,579,6,2020-02-11,2020-02,5,728.91,0,3644.55,-131.205,-3.6,0,Steady Partners
+636,254,2,2019-06-29,2019-06,3,183.938,0,551.815,41.386,7.5,0,Low-ROI
+48,560,6,2020-03-17,2020-03,2,728.91,0,1457.82,-52.482,-3.6,0,Low-ROI
+632,353,7,2020-05-10,2020-05,3,1391.994,0,4175.982,379.122,9.08,0,Steady Partners
+239,464,4,2019-06-04,2019-06,4,14.129,0,56.516,17.66,31.25,0,Steady Partners
+307,359,1,2019-08-20,2019-08,1,1376.994,0,1376.994,125.013,9.08,0,Low-ROI
+496,472,6,2020-04-20,2020-04,12,36.83,0,433.121,148.133,34.2,0,Champions
+648,600,4,2020-03-20,2020-03,2,323.994,0,647.988,58.828,9.08,0,Champions
+682,225,9,2019-09-10,2019-09,8,5.394,0,43.152,-12.224,-28.33,0,Steady Partners
+230,471,8,2019-11-01,2019-11,6,38.1,0,228.6,86.106,37.67,0,Steady Partners
+418,547,3,2019-09-18,2019-09,1,48.594,0,48.594,12.634,26.0,0,Champions
+130,333,4,2018-12-20,2018-12,4,469.794,0,1879.176,-67.652,-3.6,0,Steady Partners
+676,397,5,2018-07-01,2018-07,1,24.295,0,24.295,6.317,26.0,0,Champions
+487,454,1,2018-11-08,2018-11,4,35.994,0,143.976,44.992,31.25,0,Steady Partners
+230,487,8,2020-02-10,2020-02,7,32.994,0,230.958,86.996,37.67,0,Steady Partners
+196,309,10,2019-07-17,2019-07,3,818.7,0,2456.1,214.5,8.73,0,Steady Partners
+328,343,4,2018-08-09,2018-08,3,469.794,0,1409.382,-50.739,-3.6,0,Champions
+249,477,9,2019-09-17,2019-09,5,2.994,0,14.97,5.64,37.68,0,Steady Partners
+604,583,1,2019-12-28,2019-12,2,1020.594,0,2041.188,-123.832,-6.07,0,Low-ROI
+78,265,4,2019-05-08,2019-05,2,202.332,0,404.664,30.35,7.5,0,Champions
+254,516,1,2019-09-12,2019-09,10,23.484,0,234.84,61.06,26.0,0,Champions
+493,386,4,2019-11-24,2019-11,1,672.294,0,672.294,-40.786,-6.07,0,Low-ROI
+594,363,2,2020-01-11,2020-01,3,1376.994,0,4130.982,375.039,9.08,0,Steady Partners
+239,213,4,2018-12-08,2018-12,5,20.187,0,100.933,31.543,31.25,0,Steady Partners
+45,342,5,2018-05-28,2018-05,5,419.459,0,2097.295,31.565,1.51,0,Steady Partners
+78,343,4,2018-08-15,2018-08,4,469.794,0,1879.176,-67.652,-3.6,0,Champions
+364,315,3,2018-02-13,2018-02,1,874.794,0,874.794,-9.914,-1.13,0,At-Risk
+257,482,4,2019-08-27,2019-08,4,5.394,0,21.576,8.128,37.67,0,Steady Partners
+170,321,5,2018-12-30,2018-12,8,469.794,0,3758.352,-135.304,-3.6,0,Champions
+523,375,3,2018-10-28,2018-10,3,1308.938,0,3926.813,-35.239,-0.9,0,Steady Partners
+381,354,3,2018-08-10,2018-08,3,1242.852,0,3728.555,374.987,10.06,0,Steady Partners
+636,436,2,2020-06-15,2020-06,1,356.898,0,356.898,-4.045,-1.13,0,Low-ROI
+644,584,1,2019-12-05,2019-12,2,323.994,0,647.988,-39.312,-6.07,0,Steady Partners
+25,230,4,2018-12-22,2018-12,5,28.84,0,144.202,-1.203,-0.83,0,Low-ROI
+461,216,6,2018-12-15,2018-12,6,20.187,0,121.119,37.851,31.25,0,Steady Partners
+544,559,3,2019-09-21,2019-09,6,12.144,0,72.864,18.942,26.0,0,Steady Partners
+118,399,6,2018-09-03,2018-09,6,33.775,0,202.647,52.689,26.0,0,Champions
+206,604,5,2020-05-02,2020-05,1,323.994,0,323.994,-19.656,-6.07,0,Champions
+207,475,5,2019-08-05,2019-08,4,41.994,0,167.976,63.272,37.67,0,Low-ROI
+569,319,6,2018-05-14,2018-05,8,874.794,0,6998.352,-79.312,-1.13,0,At-Risk
+542,474,1,2020-03-20,2020-03,5,41.994,0,209.97,79.09,37.67,0,Steady Partners
+197,471,3,2019-12-09,2019-12,3,38.1,0,114.3,43.053,37.67,0,Steady Partners
+476,428,5,2018-11-20,2018-11,2,209.256,0,418.512,46.874,11.2,0,Steady Partners
+340,588,10,2019-09-02,2019-09,2,461.694,0,923.388,83.832,9.08,0,Steady Partners
+336,462,6,2019-02-15,2019-02,4,14.129,0,56.516,17.66,31.25,0,Steady Partners
+697,588,1,2019-08-18,2019-08,11,446.304,0,4811.159,193.601,4.02,0,Champions
+299,581,6,2019-10-04,2019-10,7,1020.594,0,7144.158,-433.412,-6.07,0,Champions
+54,581,2,2019-12-31,2019-12,2,1020.594,0,2041.188,-123.832,-6.07,0,Champions
+414,470,2,2019-04-23,2019-04,9,22.794,0,205.146,64.107,31.25,0,Steady Partners
+125,543,2,2019-10-03,2019-10,4,37.254,0,149.016,38.744,26.0,0,Steady Partners
+534,319,6,2018-05-15,2018-05,1,874.794,0,874.794,-9.914,-1.13,0,At-Risk
+130,433,4,2019-03-23,2019-03,1,324.453,0,324.453,24.334,7.5,0,Steady Partners
+618,383,2,2019-04-17,2019-04,4,600.263,0,2401.05,-21.546,-0.9,0,Champions
+612,342,5,2017-08-26,2017-08,5,419.459,104.865,1992.43,-73.3,-3.68,5.2632,Low-ROI
+575,315,2,2017-11-26,2017-11,5,874.794,218.699,4155.272,-268.268,-6.46,5.2632,At-Risk
+255,580,4,2019-11-20,2019-11,1,1020.594,0,1020.594,-61.916,-6.07,0,Steady Partners
+198,343,3,2019-05-03,2019-05,2,469.794,0,939.588,-33.826,-3.6,0,At-Risk
+460,326,6,2018-02-22,2018-02,2,419.459,0,838.918,12.626,1.51,0,Low-ROI
+101,325,6,2018-08-05,2018-08,1,469.794,0,469.794,-16.913,-3.6,0,Low-ROI
+9,394,5,2018-11-30,2018-11,2,20.52,0,41.04,10.67,26.0,0,Low-ROI
+688,501,9,2020-06-02,2020-06,2,72.876,0,145.752,37.896,26.0,0,Steady Partners
+218,336,1,2018-02-16,2018-02,2,419.459,0,838.918,12.626,1.51,0,Steady Partners
+306,384,3,2020-06-02,2020-06,2,672.294,0,1344.588,-81.572,-6.07,0,Low-ROI
+505,506,1,2020-04-21,2020-04,1,200.052,0,200.052,0.2,0.1,0,Low-ROI
+408,576,6,2019-09-06,2019-09,10,1430.442,0,14304.42,-514.96,-3.6,0,Steady Partners
+476,515,5,2019-11-27,2019-11,1,16.272,0,16.272,4.231,26.0,0,Steady Partners
+309,223,4,2017-11-16,2017-11,3,5.187,1.556,14.004,-3.111,-22.22,11.1111,Champions
+146,350,1,2017-09-20,2017-09,4,2024.994,404.999,7694.977,102.601,1.33,5.2632,Champions
+436,376,4,2020-02-28,2020-02,2,1466.01,0,2932.02,-177.876,-6.07,0,Champions
+221,374,4,2020-01-25,2020-01,2,1466.01,0,2932.02,-177.876,-6.07,0,Champions
+479,414,6,2018-08-03,2018-08,1,149.031,0,149.031,38.748,26.0,0,Champions
+422,347,5,2017-11-15,2017-11,3,2039.994,611.998,5507.984,-228.478,-4.15,11.1111,Steady Partners
+436,233,4,2019-05-22,2019-05,5,28.84,0,144.202,-1.203,-0.83,0,Champions
+312,347,4,2017-08-23,2017-08,1,2039.994,102.0,1937.994,25.84,1.33,5.2632,Champions
+522,477,2,2019-11-13,2019-11,2,2.994,0,5.988,2.256,37.68,0,Low-ROI
+146,597,1,2019-10-04,2019-10,1,323.994,0,323.994,29.414,9.08,0,Champions
+605,562,1,2020-05-15,2020-05,6,1430.442,0,8582.652,-308.976,-3.6,0,Steady Partners
+566,391,5,2019-05-27,2019-05,2,88.932,0,177.864,46.244,26.0,0,Champions
+697,513,1,2020-05-15,2020-05,3,218.454,0,655.362,57.234,8.73,0,Champions
+108,331,2,2018-08-29,2018-08,2,469.794,0,939.588,-33.826,-3.6,0,Steady Partners
+221,330,4,2018-04-28,2018-04,1,419.459,0,419.459,6.313,1.51,0,Champions
+360,507,3,2020-02-13,2020-02,1,200.052,0,200.052,0.2,0.1,0,Low-ROI
+155,315,6,2017-09-05,2017-09,3,874.794,131.219,2493.163,-160.961,-6.46,5.2632,Champions
+684,325,2,2019-05-09,2019-05,4,469.794,0,1879.176,-67.652,-3.6,0,Champions
+661,527,6,2019-11-24,2019-11,1,158.43,0,158.43,13.836,8.73,0,Low-ROI
+479,605,6,2019-11-14,2019-11,1,323.994,0,323.994,-19.656,-6.07,0,Champions
+469,351,1,2017-08-21,2017-08,4,2024.994,404.999,7694.977,102.601,1.33,5.2632,At-Risk
+660,234,3,2019-07-22,2019-07,14,28.994,0,397.8,-141.088,-35.47,0,Champions
+476,352,5,2019-02-20,2019-02,2,1242.852,0,2485.704,249.992,10.06,0,Steady Partners
+119,468,6,2018-07-11,2018-07,1,22.794,0,22.794,7.123,31.25,0,Steady Partners
+173,383,6,2019-06-02,2019-06,4,600.263,0,2401.05,-21.546,-0.9,0,Champions
+110,564,1,2020-01-25,2020-01,1,1430.442,0,1430.442,-51.496,-3.6,0,Steady Partners
+133,453,4,2018-09-14,2018-09,18,32.995,0,564.206,118.778,21.05,0,Steady Partners
+72,329,2,2018-12-15,2018-12,2,469.794,0,939.588,-33.826,-3.6,0,Champions
+633,560,8,2020-03-24,2020-03,1,728.91,0,728.91,-26.241,-3.6,0,Low-ROI
+167,379,4,2018-11-19,2018-11,8,1308.938,0,10471.5,-93.972,-0.9,0,Champions
+47,352,6,2018-09-03,2018-09,3,1242.852,0,3728.555,374.987,10.06,0,Low-ROI
+206,329,5,2019-05-01,2019-05,2,469.794,0,939.588,-33.826,-3.6,0,Champions
+286,580,10,2019-10-18,2019-10,1,1020.594,0,1020.594,-61.916,-6.07,0,Low-ROI
+530,458,5,2019-04-06,2019-04,1,44.994,0,44.994,14.061,31.25,0,Steady Partners
+182,552,1,2020-03-16,2020-03,2,54.894,0,109.788,28.544,26.0,0,Steady Partners
+206,330,5,2018-05-02,2018-05,1,419.459,0,419.459,6.313,1.51,0,Champions
+146,468,1,2018-07-04,2018-07,5,22.794,0,113.97,35.615,31.25,0,Champions
+312,229,4,2017-11-14,2017-11,1,28.84,2.884,25.956,-5.768,-22.22,11.1111,Champions
+594,400,2,2020-04-09,2020-04,1,37.152,0,37.152,9.659,26.0,0,Steady Partners
+376,233,10,2019-02-05,2019-02,3,28.84,0,86.521,-0.722,-0.83,0,Steady Partners
+167,221,4,2018-08-22,2018-08,6,20.187,0,121.119,37.851,31.25,0,Champions
+21,513,4,2019-09-29,2019-09,1,218.454,0,218.454,19.078,8.73,0,Steady Partners
+426,287,6,2019-08-15,2019-08,3,202.332,0,606.996,-6.879,-1.13,0,Steady Partners
+175,308,7,2019-05-08,2019-05,2,744.273,0,1488.545,166.717,11.2,0,Champions
+355,587,7,2020-01-14,2020-01,3,461.694,0,1385.082,125.748,9.08,0,Steady Partners
+115,524,1,2019-08-03,2019-08,2,158.43,0,316.86,27.672,8.73,0,Low-ROI
+618,324,2,2018-01-11,2018-01,1,419.459,0,419.459,6.313,1.51,0,Champions
+302,565,8,2020-04-08,2020-04,8,445.41,0,3563.28,-128.28,-3.6,0,Steady Partners
+166,321,4,2018-07-26,2018-07,2,469.794,0,939.588,-33.826,-3.6,0,Champions
+676,411,5,2018-10-16,2018-10,2,125.415,0,250.83,65.216,26.0,0,Champions
+281,472,6,2019-09-12,2019-09,6,38.1,0,228.6,86.106,37.67,0,Steady Partners
+522,222,2,2019-08-16,2019-08,5,20.994,0,104.97,39.54,37.67,0,Low-ROI
+484,356,10,2019-05-09,2019-05,2,1242.852,0,2485.704,249.992,10.06,0,At-Risk
+166,375,4,2019-01-25,2019-01,1,1308.938,0,1308.938,-11.746,-0.9,0,Champions
+256,332,4,2018-02-12,2018-02,2,419.459,0,838.918,12.626,1.51,0,Low-ROI
+272,295,1,2019-12-03,2019-12,2,818.7,0,1637.4,143.0,8.73,0,Steady Partners
+187,476,4,2020-06-06,2020-06,3,41.994,0,125.982,47.454,37.67,0,Steady Partners
+72,331,2,2018-09-14,2018-09,6,469.794,0,2818.764,-101.478,-3.6,0,Champions
+355,512,7,2019-10-06,2019-10,2,218.454,0,436.908,38.156,8.73,0,Steady Partners
+21,396,4,2019-03-29,2019-03,2,74.838,0,149.676,38.916,26.0,0,Steady Partners
+368,475,5,2019-09-26,2019-09,10,41.994,0,419.94,158.18,37.67,0,Low-ROI
+108,545,2,2020-05-24,2020-05,3,24.294,0,72.882,18.948,26.0,0,Steady Partners
+343,265,1,2019-05-25,2019-05,2,202.332,0,404.664,30.35,7.5,0,Champions
+166,253,4,2017-07-26,2017-07,1,178.581,23.216,155.365,-20.835,-13.41,14.9429,Champions
+396,393,2,2018-08-17,2018-08,6,137.694,0,826.164,214.8,26.0,0,Steady Partners
+417,285,4,2018-06-08,2018-06,2,178.581,0,357.162,4.762,1.33,0,Low-ROI
+436,369,4,2019-05-22,2019-05,7,1466.01,0,10262.07,-369.432,-3.6,0,Champions
+442,221,6,2019-04-12,2019-04,15,18.504,0,263.686,55.516,21.05,0,Champions
+530,357,5,2019-10-07,2019-10,2,1391.994,0,2783.988,252.748,9.08,0,Steady Partners
+594,428,2,2018-10-12,2018-10,9,209.256,0,1883.304,210.933,11.2,0,Steady Partners
+196,501,10,2020-04-12,2020-04,3,72.876,0,218.628,56.844,26.0,0,Steady Partners
+391,606,7,2019-08-08,2019-08,1,323.994,0,323.994,-19.656,-6.07,0,Low-ROI
+95,561,4,2019-10-05,2019-10,1,1430.442,0,1430.442,-51.496,-3.6,0,Low-ROI
+647,215,4,2018-06-14,2018-06,2,20.187,0,40.373,16.317,40.42,0,At-Risk
+173,322,6,2018-06-03,2018-06,1,419.459,0,419.459,6.313,1.51,0,Champions
+328,341,4,2018-08-09,2018-08,2,469.794,0,939.588,-33.826,-3.6,0,Champions`;
+
+// ── Parse CSV ──────────────────────────────────────────────────────────────
+function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    const headers = lines[0].split(',');
+    return lines.slice(1).map(line => {
+        const vals = line.split(',');
+        const obj = {};
+        headers.forEach((h, i) => {
+            const v = vals[i] !== undefined ? vals[i].trim() : '';
+            obj[h.trim()] = isNaN(v) || v === '' ? v : parseFloat(v);
+        });
+        return obj;
+    });
+}
+
+const resellerData = parseCSV(CSV_TEXT);
+
+// Load into AlaSQL
+if (typeof alasql !== 'undefined') {
+    alasql.tables.resellers = { data: resellerData };
+}
+
+// ── API Key Management ─────────────────────────────────────────────────────
+function saveApiKey() {
+    const key = document.getElementById('apiKeyInput').value.trim();
+    if (!key.startsWith('sk-ant-')) {
+        setKeyStatus('Key must start with sk-ant-', false);
+        return;
+    }
+    sessionStorage.setItem('anthropic_key', key);
+    document.getElementById('apiKeyInput').value = '';
+    setKeyStatus('API key saved for this session', true);
+}
+
+function setKeyStatus(msg, ok) {
+    const el = document.getElementById('keyStatus');
+    el.textContent = msg;
+    el.className = 'key-status ' + (ok ? 'set' : 'unset');
+}
+
+function getApiKey() {
+    return sessionStorage.getItem('anthropic_key') || '';
+}
+
+// Restore key status on load
+window.addEventListener('load', () => {
+    if (getApiKey()) setKeyStatus('API key is set for this session', true);
+});
+
+// ── Pre-fill question ──────────────────────────────────────────────────────
+function prefillQuestion(q) {
+    document.getElementById('questionInput').value = q;
+    document.getElementById('questionInput').focus();
+}
+
+// ── System Prompt ──────────────────────────────────────────────────────────
+const SYSTEM_PROMPT = `You are a SQL query generator for a reseller sales dataset.
+The table is named "resellers" and has exactly these columns:
+- resellerkey: number (reseller ID)
+- productkey: number (product ID)
+- salesterritorykey: number (territory/region ID, 1–10)
+- order_date: string (YYYY-MM-DD)
+- order_month: string (YYYY-MM)
+- order_quantity: number
+- unit_price: number
+- discount_amount: number
+- sales_total: number (revenue)
+- gross_margin: number (positive = profit, negative = loss)
+- margin_pct: number (gross margin as percentage)
+- discount_efficiency: number
+- segment: string — ONLY these exact values: "Champions", "Steady Partners", "Low-ROI", "At-Risk"
+
+Rules:
+1. Return ONLY a valid SQL query. No explanation, no markdown, no code fences, no commentary.
+2. Use AlaSQL-compatible syntax (standard SQL subset).
+3. Use ROUND(value, 2) for all decimal columns in SELECT.
+4. Default LIMIT is 15 rows unless the user asks for more or fewer.
+5. For ranking/top queries, use ORDER BY with DESC or ASC.
+6. Segment string comparisons are case-sensitive — match exactly.
+7. Never use subqueries; use simple SELECT with WHERE, GROUP BY, ORDER BY, LIMIT only.
+8. For aggregation questions, use GROUP BY resellerkey with SUM(), AVG(), COUNT().`;
+
+// ── Claude API Call ────────────────────────────────────────────────────────
+async function callClaude(systemPrompt, userMessage, maxTokens = 400) {
+    const key = getApiKey();
+    if (!key) throw new Error('No API key set. Please enter your Anthropic API key above.');
+
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': key,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+            model: 'claude-haiku-4-5',
+            max_tokens: maxTokens,
+            system: systemPrompt,
+            messages: [{ role: 'user', content: userMessage }]
+        })
+    });
+
+    if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.error?.message || `API error ${resp.status}`);
+    }
+
+    const data = await resp.json();
+    return data.content[0].text.trim();
+}
+
+// ── Run SQL ────────────────────────────────────────────────────────────────
+function runSQL(sql) {
+    try {
+        return { rows: alasql(sql), error: null };
+    } catch (e) {
+        return { rows: [], error: e.message };
+    }
+}
+
+// ── Build Results Table HTML ───────────────────────────────────────────────
+function buildTable(rows) {
+    if (!rows || rows.length === 0) return '<p style="color:#888;font-style:italic;">No results found.</p>';
+    const cols = Object.keys(rows[0]);
+    let html = `<div class="results-count">${rows.length} row${rows.length !== 1 ? 's' : ''} returned</div>`;
+    html += '<div class="results-table-wrap"><table class="results-table"><thead><tr>';
+    cols.forEach(c => { html += `<th>${c}</th>`; });
+    html += '</tr></thead><tbody>';
+    rows.forEach(row => {
+        html += '<tr>';
+        cols.forEach(c => {
+            const v = row[c];
+            html += `<td>${v !== null && v !== undefined ? v : '—'}</td>`;
+        });
+        html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    return html;
+}
+
+// ── Main Ask Function ──────────────────────────────────────────────────────
+async function askQuestion() {
+    const question = document.getElementById('questionInput').value.trim();
+    if (!question) return;
+
+    const chatMessages = document.getElementById('chatMessages');
+    const askBtn = document.getElementById('askBtn');
+
+    // Clear previous
+    chatMessages.innerHTML = '';
+    askBtn.disabled = true;
+
+    // User bubble
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user';
+    userMsg.textContent = question;
+    chatMessages.appendChild(userMsg);
+
+    // Agent response container
+    const agentMsg = document.createElement('div');
+    agentMsg.className = 'message agent';
+    agentMsg.innerHTML = '<span class="agent-label">🤖 AI Reseller Assistant</span>';
+    chatMessages.appendChild(agentMsg);
+
+    function addStep(icon, title, content) {
+        const step = document.createElement('div');
+        step.className = 'workflow-step';
+        step.innerHTML = `<div class="step-title">${icon} ${title}</div><div class="step-content">${content}</div>`;
+        agentMsg.appendChild(step);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return step;
+    }
+
+    function addHTML(html) {
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        agentMsg.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    try {
+        // Step 1
+        const s1 = addStep('📋', 'Planning', '<span class="loading-dots">Analysing your question</span>');
+
+        // Generate SQL
+        const sql = await callClaude(SYSTEM_PROMPT, question, 400);
+        s1.querySelector('.step-content').textContent = `Understood: "${question}"`;
+
+        // Step 2
+        const s2 = addStep('🔍', 'Generating SQL Query', '<span class="loading-dots">Writing SQL</span>');
+        await new Promise(r => setTimeout(r, 300));
+        s2.querySelector('.step-content').textContent = 'Query ready.';
+
+        // Show SQL
+        addHTML(`<div class="sql-block"><div class="sql-label">SQL QUERY</div><pre>${sql}</pre></div>`);
+
+        // Step 3 — Execute
+        const s3 = addStep('⚙️', 'Running Query on Dataset', '<span class="loading-dots">Querying 150 reseller records</span>');
+        const { rows, error } = runSQL(sql);
+
+        if (error) {
+            s3.querySelector('.step-content').textContent = 'Query error.';
+            addHTML(`<div class="error-box">SQL Error: ${error}</div>`);
+            askBtn.disabled = false;
+            addResetButton();
+            return;
+        }
+
+        s3.querySelector('.step-content').textContent = `${rows.length} row${rows.length !== 1 ? 's' : ''} returned.`;
+
+        // Show table
+        addHTML(buildTable(rows));
+
+        // Step 4 — Explain
+        const s4 = addStep('💡', 'Generating Business Insight', '<span class="loading-dots">Interpreting results</span>');
+
+        const explainPrompt = `A business analyst asked: "${question}"
+SQL used: ${sql}
+Results (first 10 rows): ${JSON.stringify(rows.slice(0, 10))}
+Total rows returned: ${rows.length}
+
+Write 2–3 sentences explaining what these results mean as a business insight. Be specific and actionable. No bullet points.`;
+
+        const explanation = await callClaude('You are a concise business analyst summarising SQL query results into plain-language insights.', explainPrompt, 300);
+        s4.querySelector('.step-content').textContent = 'Done.';
+
+        addHTML(`<div class="final-answer"><span class="answer-label">✅ Insight</span><p>${explanation}</p></div>`);
+
+    } catch (err) {
+        addHTML(`<div class="error-box">${err.message}</div>`);
+    }
+
+    askBtn.disabled = false;
+    addResetButton();
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function addResetButton() {
+    const chatMessages = document.getElementById('chatMessages');
+    const btn = document.createElement('button');
+    btn.className = 'btn-reset';
+    btn.textContent = 'Ask Another Question';
+    btn.onclick = () => {
+        chatMessages.innerHTML = '<p style="text-align:center;color:#999;font-style:italic;">Ask another question above.</p>';
+        document.getElementById('questionInput').value = '';
+        document.getElementById('questionInput').focus();
+    };
+    chatMessages.appendChild(btn);
+}
+</script>
+</body>
+</html>
