@@ -666,6 +666,53 @@
         padding: 8px 12px;
       }
     }
+
+    /* Stats Strip */
+    .stats-strip {
+      background-color: #403B36;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .stats-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #CBA135;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .stats-inner {
+        gap: 2rem;
+      }
+      .stat-number {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -699,9 +746,27 @@
   <section class="hero-section">
     <div class="hero-content">
       <h1>Data Analytics & AI Solutions</h1>
-      <p>Turn your business data into direction. Build smart tools that work.</p>
+      <p>Data and AI that help your business grow.</p>
     </div>
   </section>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-number">40+</span>
+        <span class="stat-label">Case Studies</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">40+</span>
+        <span class="stat-label">Dashboards</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">13</span>
+        <span class="stat-label">AI Tools Built</span>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
     <div class="magazine-container">
