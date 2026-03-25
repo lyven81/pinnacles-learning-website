@@ -158,44 +158,6 @@
         .contact a { color: #CBA135; font-weight: 500; }
         .contact a:hover { text-decoration: underline; }
 
-        /* ── At a Glance fact card ── */
-        .fact-card {
-            margin-top: 24px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .fact-card h2 {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: #403B36;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 1rem;
-        }
-
-        .fact-list { list-style: none; padding: 0; margin: 0; }
-
-        .fact-list li {
-            display: flex;
-            flex-direction: column;
-            padding: 0.55rem 0;
-            border-bottom: 1px solid #e8e8e8;
-            font-size: 0.85em;
-        }
-
-        .fact-list li:last-child { border-bottom: none; }
-
-        .fact-label {
-            color: #7a6f68;
-            font-weight: 500;
-            font-size: 0.78em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        .fact-value { color: #403B36; font-weight: 500; }
 
         /* ── About sections ── */
         .about-section { margin-bottom: 2em; }
@@ -240,12 +202,6 @@
             margin-bottom: 0.3em;
         }
 
-        .deliverables-list .example {
-            color: #666;
-            font-size: 0.95em;
-            font-style: italic;
-        }
-
         /* ── Expertise grid ── */
         .expertise-grid {
             display: grid;
@@ -271,46 +227,6 @@
 
         .expertise-item .description { color: #555; font-size: 0.95em; line-height: 1.6; }
 
-        /* ── Problem list ── */
-        .problem-list { list-style: none; padding: 0; margin: 1.5em 0; }
-
-        .problem-list li {
-            padding-left: 1.5em;
-            position: relative;
-            margin-bottom: 0.8em;
-            color: #333;
-            font-size: 1.05em;
-        }
-
-        .problem-list li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #CBA135;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        /* ── Benefits list ── */
-        .benefits-list { list-style: none; padding: 0; margin: 1.5em 0; }
-
-        .benefits-list li {
-            padding-left: 1.5em;
-            position: relative;
-            margin-bottom: 0.8em;
-            color: #333;
-            font-size: 1.05em;
-        }
-
-        .benefits-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #4CAF50;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
         /* ── Footer ── */
         footer {
             text-align: center;
@@ -325,35 +241,50 @@
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; align-items: flex-start; }
-            .navbar nav { margin-top: 0.5rem; }
-            .navbar nav a { margin-left: 0; margin-right: 1rem; }
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.75rem 1rem;
+            }
+            .navbar nav {
+                margin-top: 0.4rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.3rem 0;
+            }
+            .navbar nav a {
+                margin-left: 0;
+                margin-right: 1rem;
+                font-size: 0.85rem;
+            }
 
-.container { flex-direction: column; }
+            .container { flex-direction: column; }
 
             .left-column {
-                position: static;
-                width: 100%;
-                height: auto;
-                box-shadow: none;
-                top: auto;
+                display: none;
             }
 
             .right-column {
                 margin-left: 0;
                 width: 100%;
-                padding: 20px;
+                padding: 24px 16px;
             }
 
             footer { margin-left: 0; }
 
-            .right-column h1 { font-size: 2rem; }
+            .right-column h1 { font-size: 1.8rem; }
             .right-column p { font-size: 1em; }
 
             .expertise-grid { grid-template-columns: 1fr; gap: 1em; }
 
             .deliverables-list li { padding-left: 2.5em; }
             .deliverables-list .icon { font-size: 1.5em; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar nav a { font-size: 0.8rem; margin-right: 0.75rem; }
+            .right-column h1 { font-size: 1.5rem; }
+            .expertise-grid { gap: 0.75em; }
         }
     </style>
 </head>
@@ -392,36 +323,6 @@
                 </ul>
             </section>
 
-            <!-- At a Glance -->
-            <section class="fact-card">
-                <h2>At a Glance</h2>
-                <ul class="fact-list">
-                    <li>
-                        <span class="fact-label">Clients</span>
-                        <span class="fact-value">Malaysian SME owners &amp; managers</span>
-                    </li>
-                    <li>
-                        <span class="fact-label">Industries</span>
-                        <span class="fact-value">Retail, F&amp;B, Property, HR, Finance</span>
-                    </li>
-                    <li>
-                        <span class="fact-label">Analysis types</span>
-                        <span class="fact-value">6 categories</span>
-                    </li>
-                    <li>
-                        <span class="fact-label">Deliverables</span>
-                        <span class="fact-value">Case study + Dashboard + AI Assistant</span>
-                    </li>
-                    <li>
-                        <span class="fact-label">Language</span>
-                        <span class="fact-value">English, Bahasa Malaysia</span>
-                    </li>
-                    <li>
-                        <span class="fact-label">Email</span>
-                        <span class="fact-value"><a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></span>
-                    </li>
-                </ul>
-            </section>
         </aside>
 
         <!-- Right Column -->
