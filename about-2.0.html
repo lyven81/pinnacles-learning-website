@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Pau Analytics</title>
+    <link rel="canonical" href="https://www.pauanalytics.com/about.html" />
+    <meta name="description" content="We help Malaysian SMEs turn data into direction. Learn about our mission to make data analytics practical, accessible, and genuinely useful for business growth." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#FCF9F2">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #222;
+        }
+
+        /* Container for Layout */
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Left Column */
+        .left-column {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Right Column */
+        .right-column {
+            margin-left: 30%;
+            width: 70%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Typography — Left Column */
+        .left-column h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+            color: #403B36;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .left-column p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        /* Typography — Right Column */
+        .right-column h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 1em;
+            color: #403B36;
+        }
+
+        .right-column p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Home Link Button */
+        .home-link-section {
+            margin: 20px 0;
+        }
+
+        .home-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5dc;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link-btn:hover {
+            background-color: #CBA135;
+            color: white;
+            border-color: #CBA135;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(203, 161, 53, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact h2 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+            color: #403B36;
+        }
+
+        .contact p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact a {
+            color: #CBA135;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fact Card (At a Glance) */
+        .fact-card {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .fact-card h2 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #403B36;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .fact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .fact-list li {
+            display: flex;
+            flex-direction: column;
+            padding: 0.55rem 0;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 0.85em;
+        }
+
+        .fact-list li:last-child {
+            border-bottom: none;
+        }
+
+        .fact-label {
+            color: #7a6f68;
+            font-weight: 500;
+            font-size: 0.78em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .fact-value {
+            color: #403B36;
+            font-weight: 500;
+        }
+
+        /* About Sections */
+        .about-section {
+            margin-bottom: 2em;
+        }
+
+        /* Intro paragraphs */
+        .intro-paragraphs p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .intro-paragraphs p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-paragraphs strong {
+            color: #403B36;
+        }
+
+        /* Deliverables List */
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+            margin: 2em 0;
+        }
+
+        .deliverables-list li {
+            margin-bottom: 1.5em;
+            padding-left: 3em;
+            position: relative;
+        }
+
+        .deliverables-list .icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.8em;
+        }
+
+        .deliverables-list .title {
+            font-weight: 700;
+            color: #403B36;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 0.3em;
+        }
+
+        .deliverables-list .description {
+            color: #555;
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 0.3em;
+        }
+
+        .deliverables-list .example {
+            color: #666;
+            font-size: 0.95em;
+            font-style: italic;
+        }
+
+        /* Expertise Grid */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5em;
+            margin: 2em 0;
+        }
+
+        .expertise-item {
+            padding: 1.2em;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #CBA135;
+        }
+
+        .expertise-item .title {
+            font-weight: 700;
+            color: #403B36;
+            font-size: 1.05em;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        .expertise-item .description {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Problem List */
+        .problem-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+
+        .problem-list li {
+            padding-left: 1.5em;
+            position: relative;
+            margin-bottom: 0.8em;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .problem-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #CBA135;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Benefits List */
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+
+        .benefits-list li {
+            padding-left: 1.5em;
+            position: relative;
+            margin-bottom: 0.8em;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-left: 30%;
+        }
+
+        footer a {
+            color: #CBA135;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-column {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .right-column {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .right-column h1 {
+                font-size: 2rem;
+            }
+
+            .right-column p {
+                font-size: 1em;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+                gap: 1em;
+            }
+
+            .deliverables-list li {
+                padding-left: 2.5em;
+            }
+
+            .deliverables-list .icon {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Left Sidebar -->
+        <aside class="left-column">
+            <header>
+                <h1>Pau Analytics</h1>
+                <h2>Data Analytics Consulting</h2>
+            </header>
+            <section class="intro">
+                <p>We help Malaysian SMEs turn data into direction. Specializing in practical analytics solutions that drive real business growth.</p>
+            </section>
+
+            <!-- Home Link Button -->
+            <section class="home-link-section">
+                <a href="index.html" class="home-link-btn">Home</a>
+            </section>
+
+            <!-- Contact -->
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Ready to turn your data into actionable insights? Let's work together to unlock your business potential.</p>
+                <ul>
+                    <li>Email: <a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/60149207099">+6014-920 7099</a></li>
+                </ul>
+            </section>
+
+            <!-- At a Glance -->
+            <section class="fact-card">
+                <h2>At a Glance</h2>
+                <ul class="fact-list">
+                    <li>
+                        <span class="fact-label">Clients</span>
+                        <span class="fact-value">Malaysian SME owners &amp; managers</span>
+                    </li>
+                    <li>
+                        <span class="fact-label">Industries</span>
+                        <span class="fact-value">Retail, F&amp;B, Property, HR, Finance</span>
+                    </li>
+                    <li>
+                        <span class="fact-label">Analysis types</span>
+                        <span class="fact-value">6 categories</span>
+                    </li>
+                    <li>
+                        <span class="fact-label">Deliverables</span>
+                        <span class="fact-value">Case study + Dashboard + AI Assistant</span>
+                    </li>
+                    <li>
+                        <span class="fact-label">Language</span>
+                        <span class="fact-value">English, Bahasa Malaysia</span>
+                    </li>
+                    <li>
+                        <span class="fact-label">Email</span>
+                        <span class="fact-value"><a href="mailto:admin@pauanalytics.com">admin@pauanalytics.com</a></span>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column -->
+        <main class="right-column">
+            <section class="about-content">
+                <header>
+                    <h1>About Pau Analytics</h1>
+                </header>
+
+                <!-- Intro (replacing generic mission statement) -->
+                <section class="about-section intro-paragraphs">
+                    <p>Pau Analytics helps Malaysian SME owners make sense of their business data. We work with owners and managers in retail, F&amp;B, property, and services who have data sitting in spreadsheets — but no clear picture of what it means or what to do next.</p>
+                    <p>We take your raw data and turn it into something you can actually use. That means a written case study that tells the business story, an interactive dashboard you can explore yourself, and — for complex decisions — an AI assistant that answers questions about your data in plain language.</p>
+                    <p>We cover six categories of analysis: <strong>predictive modelling</strong>, <strong>regression</strong>, <strong>statistical testing</strong>, <strong>segmentation</strong>, <strong>optimization</strong>, and <strong>time series</strong>. Each project starts with a business question — not a dataset — so the output is always tied to a decision you need to make.</p>
+                    <p>If you have data and a problem, we can help you understand what the data is saying and what to do about it.</p>
+                </section>
+
+                <!-- What We Deliver -->
+                <section class="about-section">
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">What We Deliver</h2>
+                    <ul class="deliverables-list">
+                        <li>
+                            <span class="icon">📋</span>
+                            <span class="title">Analyst Reports</span>
+                            <span class="description">Know exactly where your business is losing money and which customers are about to leave—in plain language, with clear next steps.</span>
+                            <span class="example">Example: "Your top 20% customers generate 65% of revenue, but 15% show early churn signals—here's how to keep them."</span>
+                        </li>
+                        <li>
+                            <span class="icon">📊</span>
+                            <span class="title">Dashboards</span>
+                            <span class="description">See your sales, inventory, and customer trends in one place—updated in real time so you make decisions on today's numbers, not last month's.</span>
+                            <span class="example">Example: Monitor daily revenue, stock levels, and campaign performance on one screen.</span>
+                        </li>
+                        <li>
+                            <span class="icon">🤖</span>
+                            <span class="title">AI Assistant (24/7)</span>
+                            <span class="description">An AI assistant that watches your business 24/7 and alerts you the moment something needs attention—before a small dip becomes a big loss.</span>
+                            <span class="example">Example: "Alert: Campaign CTR dropped 30% this week—here's what to check first."</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Our Expertise -->
+                <section class="about-section">
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">What We Help You Do</h2>
+                    <div class="expertise-grid">
+                        <div class="expertise-item">
+                            <span class="title">Predict which customers will leave before they do</span>
+                            <span class="description">Spot early warning signs so you can act before losing revenue—not after.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Find your most profitable customers and focus on them</span>
+                            <span class="description">Know who drives your revenue and where to concentrate your marketing budget.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Test what works and stop spending on what doesn't</span>
+                            <span class="description">Compare campaigns, channels, and strategies—so every ringgit goes where it counts.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Forecast demand so you stock the right products at the right time</span>
+                            <span class="description">Plan inventory around real patterns—avoid overstocking and stockouts.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Identify what's actually driving your revenue up or down</span>
+                            <span class="description">Understand the real factors behind your numbers instead of guessing.</span>
+                        </div>
+                        <div class="expertise-item">
+                            <span class="title">Know whether a campaign worked or just got lucky</span>
+                            <span class="description">Get clear answers on what's genuinely effective—so you repeat wins, not flukes.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Problems We Solve -->
+                <section class="about-section">
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">Problems We Solve</h2>
+                    <ul class="problem-list">
+                        <li>Keeping customers loyal</li>
+                        <li>Planning inventory smarter</li>
+                        <li>Understanding which campaigns work</li>
+                        <li>Optimizing pricing</li>
+                        <li>Managing operations efficiently</li>
+                        <li>Running marketing with confidence</li>
+                        <li>Making strategic decisions</li>
+                    </ul>
+                    <p style="margin-top: 1em;">Every analysis is built from your perspective. No confusing jargon, no overwhelming complexity.</p>
+                </section>
+
+                <!-- Our Approach -->
+                <section class="about-section">
+                    <p>Our reports and dashboards are designed to be practical and easy to understand. The goal isn't impressive tech talk or numbers on a screen—it's clarity that helps you act with confidence. You'll see measurable results, not complicated methodologies.</p>
+                </section>
+
+                <section class="about-section">
+                    <p>This is about using what you already have—your business data—to make better decisions and grow smartly. We work together to serve your customers better and drive real business growth. It's partnership, not just service delivery.</p>
+                </section>
+
+                <!-- Key Benefits -->
+                <section class="about-section">
+                    <h2 style="color: #403B36; font-size: 1.5em; margin-bottom: 1em;">Key Benefits</h2>
+                    <ul class="benefits-list">
+                        <li>2-3 weeks delivery time</li>
+                        <li>No confusing jargon—plain language reports</li>
+                        <li>Measurable results you can act on</li>
+                        <li>Partnership approach, not just service delivery</li>
+                    </ul>
+                </section>
+
+                <!-- Final CTA -->
+                <section class="about-section">
+                    <p>We're here to be your trusted partner in turning data into direction. Whether you're just starting with analytics or looking to get more value from existing data, we'll help you every step of the way. Let's make your data work for you.</p>
+                </section>
+
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Pau Analytics | <a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
