@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Data Analytics Consulting for SMEs | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/" />
+  <meta name="description" content="We offer data analytics consulting for SMEs in Malaysia. Get insights on inventory forecasting, churn prediction, marketing ROI, and pricing optimization with custom dashboards." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Pau Analytics",
+  "url": "https://www.pauanalytics.com",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "admin@pauanalytics.com",
+    "areaServed": "MY",
+    "availableLanguage": ["en", "ms"]
+  }]
+}
+</script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XSLR3FV22"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3XSLR3FV22');
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.cta-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          gtag('event', 'cta_click', { event_category: 'engagement', event_label: btn.textContent.trim() });
+        });
+      });
+    });
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#FCF9F2">
+
+  <style>
+    /* ═══════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════ */
+    :root {
+      --brown:        #403B36;
+      --brown-mid:    #5a5349;
+      --brown-light:  #7a6f68;
+      --cream:        #FCF9F2;
+      --cream-border: #e0ddd3;
+      --gold:         #CBA135;
+      --gold-hover:   #b08e2e;
+      --white:        #ffffff;
+      --text:         #333333;
+      --muted:        #666666;
+      --shadow-sm:    0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md:    0 6px 20px rgba(0,0,0,0.08);
+      --shadow-lg:    0 10px 30px rgba(0,0,0,0.12);
+      --radius:       12px;
+      --transition:   0.3s ease;
+    }
+
+    /* ═══════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+    }
+
+    body { display: flex; flex-direction: column; }
+
+    a { text-decoration: none; }
+
+    /* ═══════════════════════════════════════
+       COOKIE CONSENT
+    ═══════════════════════════════════════ */
+    #cookieConsent {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      background-color: var(--brown);
+      color: var(--white);
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      z-index: 9999;
+      display: none;
+    }
+
+    #cookieConsent button {
+      background-color: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 10px 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: background-color var(--transition);
+    }
+
+    #cookieConsent button:hover { background-color: var(--gold-hover); }
+
+    /* ═══════════════════════════════════════
+       STICKY HEADER & NAVBAR
+    ═══════════════════════════════════════ */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      background-color: var(--cream);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .navbar .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--brown);
+    }
+
+    .navbar nav a {
+      margin-left: 1.5rem;
+      color: var(--brown);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color var(--transition);
+    }
+
+    .navbar nav a:hover { color: var(--gold); }
+
+    /* ═══════════════════════════════════════
+       SEARCH
+    ═══════════════════════════════════════ */
+    .search-section {
+      background-color: var(--cream);
+      padding: 0.75rem 2rem;
+      border-top: 1px solid var(--cream-border);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .search-input {
+      padding: 8px 40px 8px 14px;
+      border: 2px solid var(--cream-border);
+      border-radius: 25px;
+      font-size: 0.88rem;
+      width: 100%;
+      background: var(--white);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(203,161,53,0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+
+    .search-results {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-radius: 10px;
+      box-shadow: var(--shadow-lg);
+      max-height: 420px;
+      overflow-y: auto;
+      z-index: 1200;
+      display: none;
+    }
+
+    .search-result-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .search-result-item:hover { background-color: var(--cream); }
+    .search-result-item:last-child { border-bottom: none; }
+
+    .search-result-category {
+      font-size: 0.72rem;
+      color: var(--brown-light);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .search-result-description {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .search-result-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .search-result-btn {
+      padding: 4px 12px;
+      border: 1px solid var(--cream-border);
+      background: var(--cream);
+      color: var(--brown);
+      border-radius: 15px;
+      font-size: 0.73rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .search-result-btn:hover {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+
+    .no-results {
+      padding: 20px;
+      text-align: center;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.88rem;
+    }
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.08);
+      z-index: 1098;
+      display: none;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero-section {
+      position: relative;
+      height: 460px;
+      background: linear-gradient(135deg, var(--brown) 0%, var(--brown-mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(203,161,53,0.12) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .hero-section p {
+      font-size: 1.25rem;
+      opacity: 0.92;
+    }
+
+    /* ═══════════════════════════════════════
+       STATS STRIP
+    ═══════════════════════════════════════ */
+    .stats-strip {
+      background-color: var(--brown);
+      color: var(--white);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .stats-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ═══════════════════════════════════════
+       CONTAINER & MAGAZINE LAYOUT
+    ═══════════════════════════════════════ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .magazine-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* ═══════════════════════════════════════
+       STORY CARD — FULL WIDTH
+    ═══════════════════════════════════════ */
+    .story-card-full {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: row;
+      min-height: 350px;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .story-card-full:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .story-image {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .story-content {
+      flex: 1;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ═══════════════════════════════════════
+       STORY CARD — GRID (SIDE BY SIDE)
+    ═══════════════════════════════════════ */
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .story-card-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .story-card-content { padding: 2rem; }
+
+    /* ═══════════════════════════════════════
+       SHARED STORY ELEMENTS
+    ═══════════════════════════════════════ */
+    .story-badge {
+      display: inline-block;
+      background-color: var(--gold);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .story-badge.ai { background-color: var(--brown); }
+
+    .story-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .story-card .story-title { font-size: 1.4rem; }
+
+    .story-description {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.65;
+    }
+
+    .story-card .story-description { font-size: 0.93rem; }
+
+    .story-result {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin: 1rem 0 1.5rem;
+    }
+
+    .story-card .story-result { font-size: 1.35rem; margin: 0.8rem 0 1.2rem; }
+
+    .story-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .story-card .story-buttons { gap: 0.75rem; margin-top: 1rem; }
+
+    /* ═══════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════ */
+    .cta-button {
+      display: inline-block;
+      background-color: var(--gold);
+      color: var(--white);
+      padding: 11px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color var(--transition), transform 0.15s;
+    }
+
+    .cta-button:hover {
+      background-color: var(--gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .cta-button.secondary {
+      background-color: transparent;
+      color: var(--brown);
+      border: 2px solid var(--brown);
+    }
+
+    .cta-button.secondary:hover {
+      background-color: var(--brown);
+      color: var(--white);
+    }
+
+    .cta-button.primary {
+      background-color: var(--gold);
+      font-size: 1.15rem;
+      padding: 14px 34px;
+    }
+
+    .cta-button.primary:hover { background-color: var(--gold-hover); }
+
+    .story-card .cta-button { font-size: 0.88rem; padding: 9px 18px; }
+
+    /* ═══════════════════════════════════════
+       CLOSING BANNER
+    ═══════════════════════════════════════ */
+    .closing-banner {
+      background: linear-gradient(135deg, var(--brown) 0%, var(--brown-mid) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 3.5rem 2rem;
+      border-radius: var(--radius);
+      margin-top: 1rem;
+    }
+
+    .closing-banner h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .closing-banner p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      background-color: var(--brown);
+      color: var(--white);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.88rem;
+      margin-top: auto;
+    }
+
+    footer a { color: var(--gold); }
+    footer a:hover { text-decoration: underline; }
+
+    /* ═══════════════════════════════════════
+       FADE-IN ANIMATION
+    ═══════════════════════════════════════ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .navbar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .navbar nav a { margin-left: 0; margin-right: 1rem; font-size: 0.9rem; }
+
+      .hero-section { height: 360px; }
+      .hero-section h1 { font-size: 2rem; }
+      .hero-section p { font-size: 1.05rem; }
+
+      .container { padding: 2rem 1rem; }
+
+      .story-card-full { flex-direction: column; min-height: auto; }
+      .story-image { min-height: 200px; }
+      .story-content { padding: 2rem; }
+      .story-title { font-size: 1.5rem; }
+
+      .story-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+      .closing-banner h2 { font-size: 1.5rem; }
+      .closing-banner p { font-size: 1rem; }
+      .cta-button.primary { font-size: 1rem; padding: 12px 24px; }
+
+      .stats-inner { gap: 2rem; }
+      .stat-number { font-size: 2rem; }
+
+      .search-section { padding: 0.75rem 1rem; }
+      .search-container { max-width: 100%; }
+      .search-result-buttons { flex-direction: column; }
+      .search-result-btn { text-align: center; padding: 7px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <div class="sticky-header">
+    <div class="navbar">
+      <div class="brand">Pau Analytics</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="data-analytics.html">Case Studies</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+
+    <!-- Search -->
+    <div class="search-section">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search case studies..." id="searchInput" autocomplete="off">
+        <span class="search-icon">🔍</span>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+  <div class="search-overlay" id="searchOverlay"></div>
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Data Analytics &amp; AI Solutions</h1>
+      <p>Data and AI that help your business grow.</p>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-number">40+</span>
+        <span class="stat-label">Case Studies</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">40+</span>
+        <span class="stat-label">Dashboards</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">13</span>
+        <span class="stat-label">AI Tools Built</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="magazine-container">
+
+      <!-- Story 1: Evaluating Customer Experience (Full Width) -->
+      <article class="story-card-full fade-in">
+        <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/evaluating-customer-experience/cover-image.jpeg'); filter: brightness(0.7);"></div>
+        <div class="story-content">
+          <span class="story-badge">Optimization Analysis</span>
+          <h2 class="story-title">Evaluating Store Customer Experience</h2>
+          <p class="story-description">Identify which stores are underperforming and what's holding them back. A regional manager used data analytics across 43 stores to pinpoint critical gaps, fix behavioural issues, and lift customer experience scores from 72.9% to above 80%.</p>
+          <div class="story-buttons">
+            <a href="https://www.pauanalytics.com/case-study/evaluating-customer-experience.html" class="cta-button" target="_blank">Read More</a>
+            <a href="https://www.pauanalytics.com/dashboard/evaluating-customer-experience.html" class="cta-button secondary" target="_blank">Dashboard</a>
+            <a href="https://www.pauanalytics.com/agentic_workflow/evaluating-customer-experience.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stories 2 & 3: Side by Side -->
+      <div class="story-grid">
+        <article class="story-card fade-in">
+          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/where-revenue-comes-from/cover%20image.png'); filter: brightness(0.7);"></div>
+          <div class="story-card-content">
+            <span class="story-badge">Predictive Modeling</span>
+            <h3 class="story-title">Where Revenue Comes From</h3>
+            <p class="story-description">Predict which products, campaigns, and customers drive revenue growth. Discover what really drives sales in household and lifestyle retail to optimize marketing, inventory, and customer retention.</p>
+            <div class="story-buttons">
+              <a href="https://www.pauanalytics.com/case-study/where-revenue-comes-from.html" class="cta-button" target="_blank">Read More</a>
+              <a href="https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html" class="cta-button secondary" target="_blank">Dashboard</a>
+              <a href="https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card fade-in">
+          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/know-your-reseller/cover%20image.jpeg'); filter: brightness(0.7);"></div>
+          <div class="story-card-content">
+            <span class="story-badge">Segmentation Analysis</span>
+            <h3 class="story-title">Know Your Reseller</h3>
+            <p class="story-description">Find out which resellers are actually making you money — and which ones are costing you more than they earn. A Malaysian manufacturer used data analytics to rank 635 resellers by gross margin and redirect support to partners that deliver real returns.</p>
+            <div class="story-buttons">
+              <a href="https://www.pauanalytics.com/case-study/know-your-reseller.html" class="cta-button" target="_blank">Read More</a>
+              <a href="https://www.pauanalytics.com/dashboard/know-your-reseller-dashboard.html" class="cta-button secondary" target="_blank">Dashboard</a>
+              <a href="https://www.pauanalytics.com/agentic_workflow/know-your-reseller.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Story 4: Selling the Right Products (Full Width) -->
+      <article class="story-card-full fade-in">
+        <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/selling-the-right-products/cover-image.jpeg'); filter: brightness(0.7);"></div>
+        <div class="story-content">
+          <span class="story-badge">Optimization Analysis</span>
+          <h2 class="story-title">Selling the Right Products</h2>
+          <p class="story-description">Find out which products are actually driving your profit — and which ones are filling up your team's time without returns. A bicycle retailer used data analytics to identify their true profit carriers and redirected sales focus away from high-volume accessories that contributed almost nothing to the bottom line.</p>
+          <div class="story-buttons">
+            <a href="https://www.pauanalytics.com/case-study/selling-the-right-products.html" class="cta-button" target="_blank">Read More</a>
+            <a href="https://www.pauanalytics.com/dashboard/selling-the-right-products.html" class="cta-button secondary" target="_blank">Dashboard</a>
+            <a href="https://www.pauanalytics.com/agentic_workflow/selling-the-right-products.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stories 5 & 6: Side by Side -->
+      <div class="story-grid">
+        <article class="story-card fade-in">
+          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/predicting-sales-cycles/cover%20image.png'); filter: brightness(0.7);"></div>
+          <div class="story-card-content">
+            <span class="story-badge">Time Series Analysis</span>
+            <h3 class="story-title">Predicting Sales Cycles</h3>
+            <p class="story-description">Discover seasonal patterns in your weekly sales. Learn when to stock up and when to hold back using data-driven forecasting for smarter inventory decisions.</p>
+            <div class="story-buttons">
+              <a href="https://www.pauanalytics.com/case-study/predicting-sales-cycles.html" class="cta-button" target="_blank">Read More</a>
+              <a href="https://www.pauanalytics.com/dashboard/predicting-sales-cycles.html" class="cta-button secondary" target="_blank">Dashboard</a>
+              <a href="https://www.pauanalytics.com/agentic_workflow/predicting-sales-cycles.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card fade-in">
+          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/finding-profit-drivers/cover%20image.png'); filter: brightness(0.7);"></div>
+          <div class="story-card-content">
+            <span class="story-badge">Optimization Analysis</span>
+            <h3 class="story-title">Finding Profit Drivers</h3>
+            <p class="story-description">Discover which products are actually making money — and which ones are quietly diluting your margins. A bicycle shop manager used data analytics to focus on the right products and pricing decisions.</p>
+            <div class="story-buttons">
+              <a href="https://www.pauanalytics.com/case-study/finding-profit-drivers.html" class="cta-button" target="_blank">Read More</a>
+              <a href="https://www.pauanalytics.com/dashboard/finding-profit-drivers.html" class="cta-button secondary" target="_blank">Dashboard</a>
+              <a href="https://www.pauanalytics.com/agentic_workflow/finding-profit-drivers.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Story 7: Understanding Customer Value (Full Width) -->
+      <article class="story-card-full fade-in">
+        <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/understanding-customer-value/cover%20image.png'); filter: brightness(0.7);"></div>
+        <div class="story-content">
+          <span class="story-badge">Customer Retention</span>
+          <h2 class="story-title">Understanding Customer Value</h2>
+          <p class="story-description">A bicycle shop with 18,400 customers discovered that fewer than 2% of them generated the bulk of its profit. Find out how identifying your highest-value customers — and protecting them — can transform a busy shop into a profitable one.</p>
+          <div class="story-buttons">
+            <a href="https://www.pauanalytics.com/case-study/understanding-customer-value.html" class="cta-button" target="_blank">Read More</a>
+            <a href="https://www.pauanalytics.com/dashboard/understanding-customer-value.html" class="cta-button secondary" target="_blank">Dashboard</a>
+            <a href="https://www.pauanalytics.com/agentic_workflow/understanding-customer-value.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Closing Banner -->
+    <section class="closing-banner fade-in">
+      <h2>Ready to Transform Your Business?</h2>
+      <p>Let's turn your data into direction and build smart tools that work.</p>
+      <a href="https://wa.me/60149207099" class="cta-button primary">Book a Call</a>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Pau Analytics | <a href="https://www.pauanalytics.com/privacy-policy.html">Privacy Policy</a></p>
+  </footer>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookieConsent">
+    This website uses cookies to improve your experience.
+    <button id="acceptCookies">Accept</button>
+  </div>
+
+  <!-- Chatbot Widget -->
+  <link rel="stylesheet" href="assets/css/chatbot-widget.css">
+  <script src="assets/js/chatbot-config.js"></script>
+  <script>window.pauChatbotConfig.page = 'homepage';</script>
+  <script src="assets/js/chatbot-widget.js"></script>
+
+  <script>
+    /* ── Cookie consent ── */
+    window.onload = function () {
+      var banner = document.getElementById('cookieConsent');
+      if (!localStorage.getItem('cookieAccepted')) banner.style.display = 'block';
+      document.getElementById('acceptCookies').onclick = function () {
+        localStorage.setItem('cookieAccepted', 'true');
+        banner.style.display = 'none';
+      };
+    };
+
+    /* ── Fade-in on scroll ── */
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(el => io.observe(el));
+
+    /* ── Case studies database ── */
+    const caseStudies = [
+      { title: "Who Is Most at Risk of Leaving the Bank", description: "Identify which bank customers are most likely to churn.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/who-is-most-at-risk-of-leaving-the-bank.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/who-is-most-at-risk-of-leaving-the-bank.html" },
+      { title: "Saving the Silent Spenders", description: "Identify which VIP coffee customers are about to stop buying.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/saving-the-silent-spenders.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/saving-the-silent-spenders.html" },
+      { title: "Who's Likely to Quit", description: "Predict which employees are likely to quit before they resign.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/who-is-likely-to-quit.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/who-is-likely-to-quit.html" },
+      { title: "Where Revenue Comes From", description: "Predict which products, campaigns, and customers drive revenue growth.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/where-revenue-comes-from.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" },
+      { title: "When Good Cars Lose Value", description: "Learn which car features hold value best over time.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/when-good-cars-lose-value.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/when-good-cars-lose-value.html" },
+      { title: "Grow Smarter, Not Bigger", description: "Find out if hiring more employees actually increases revenue.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/grow-smarter-not-bigger.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/grow-smarter-not-bigger.html" },
+      { title: "Do Dollars Drive Decisions?", description: "Discover how income levels influence customer buying decisions.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/do-dollars-drive-decisions.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/do-dollars-drive-decisions.html" },
+      { title: "What Causes Product Returns", description: "Discover what price factors trigger the most product returns.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/what-causes-product-returns.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/what-causes-product-returns.html" },
+      { title: "Fixing the Sales Leaks", description: "Discover where shoppers abandon and which channels convert best.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/fixing-the-sales-leaks.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/fixing-the-sales-leaks.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/fixing-the-sales-leaks.html" },
+      { title: "Did You Sleep Well Last Night?", description: "Explore what hotel factors contribute to better guest sleep quality.", category: "Statistical Testing", caseStudyUrl: "https://www.pauanalytics.com/case-study/did-you-sleep-well-last-night.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/did-you-sleep-well-last-night.html" },
+      { title: "Connected or Disconnected?", description: "Learn if social media usage strengthens or weakens relationships.", category: "Statistical Testing", caseStudyUrl: "https://www.pauanalytics.com/case-study/connected-or-disconnected.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/connected-or-disconnected.html" },
+      { title: "Nasi Lemak vs Kopi-O Preference Analysis", description: "Discover cultural preferences between nasi lemak and kopi-o choices.", category: "Statistical Testing", caseStudyUrl: "https://www.pauanalytics.com/case-study/nasi-lemak-vs-kopi-o-preference.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/nasi-lemak-vs-kopi-o-preference.html" },
+      { title: "The Hidden Patterns in Malaysian Real Estate", description: "Uncover hidden patterns that drive Malaysian real estate success.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/hidden-patterns-malaysian-real-estate.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/hidden-patterns-malaysian-real-estate.html" },
+      { title: "From Clicks to Check-Ins", description: "Transform hotel search traffic into confirmed bookings.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/from-clicks-to-check-ins.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/from-clicks-to-check-ins.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/from-clicks-to-check-ins.html" },
+      { title: "What Men and Women Buy", description: "Gender-based product preference analysis.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/what-men-and-women-buy.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/what-men-and-women-buy.html" },
+      { title: "Not All Shoppers Are Equal", description: "Learn what customer spending patterns reveal.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/not-all-shoppers-are-equal.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/not-all-shoppers-are-equal.html" },
+      { title: "The Hidden Power of Affiliates", description: "Uncover the hidden power of affiliate marketing partnerships.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/hidden-power-of-affiliates.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/hidden-power-of-affiliates.html" },
+      { title: "Predicting Product Sales", description: "Find out which advertising channels deliver the most sales per dollar.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-product-sales.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-product-sales.html" },
+      { title: "Beyond the Buzzwords", description: "Discover which jewelry keywords actually deliver clicks and sales.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/beyond-the-buzzwords.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/beyond-the-buzzwords.html" },
+      { title: "Predicting Holiday Peaks", description: "Forecast holiday streaming peaks to optimize campaign timing and spending.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-holiday-peaks.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-holiday-peaks.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/predicting-holiday-peaks.html" },
+      { title: "Understanding Customer Value", description: "A bicycle shop retailer discovered that a tiny group of high-value customers generated most of the profit.", category: "Customer Retention", caseStudyUrl: "https://www.pauanalytics.com/case-study/understanding-customer-value.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/understanding-customer-value.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/understanding-customer-value.html" },
+      { title: "Fruit Sales Forecast - October 2024", description: "Predict seasonal fruit demand to maximize sales.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/fruit-sales-forecast-october-2024.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/fruit-sales-forecast-october-2024.html" },
+      { title: "RON95 Fuel Price Volatility Analysis", description: "Forecast RON95 fuel prices to anticipate market volatility and costs.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/ron95-fuel-price-volatility.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/ron95-fuel-price-volatility.html" },
+      { title: "Predicting Sales Cycles", description: "Turn seasonal patterns into smarter inventory decisions.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-sales-cycles.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-sales-cycles.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/predicting-sales-cycles.html" },
+      { title: "Selling the Right Products", description: "Find out which products are actually driving your profit.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/selling-the-right-products.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/selling-the-right-products.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/selling-the-right-products.html" },
+      { title: "Know Your Reseller", description: "Find out which resellers are making you money.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/know-your-reseller.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/know-your-reseller-dashboard.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/know-your-reseller.html" },
+      { title: "Evaluating Store Customer Experience", description: "Identify which stores are underperforming and what's holding them back.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/evaluating-customer-experience.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/evaluating-customer-experience.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/evaluating-customer-experience.html" }
+    ];
+
+    /* ── Search logic ── */
+    const searchInput  = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const searchOverlay = document.getElementById('searchOverlay');
+
+    function performSearch(query) {
+      if (query.length < 2) {
+        searchResults.style.display = 'none';
+        searchOverlay.style.display = 'none';
+        return;
+      }
+      const q = query.toLowerCase();
+      const filtered = caseStudies.filter(s =>
+        s.title.toLowerCase().includes(q) ||
+        s.description.toLowerCase().includes(q) ||
+        s.category.toLowerCase().includes(q)
+      );
+      if (filtered.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">No case studies found. Try different keywords.</div>';
+      } else {
+        searchResults.innerHTML = filtered.map(s => `
+          <div class="search-result-item">
+            <div class="search-result-category">${s.category}</div>
+            <div class="search-result-title">${s.title}</div>
+            <div class="search-result-description">${s.description}</div>
+            <div class="search-result-buttons">
+              <a href="${s.caseStudyUrl}" class="search-result-btn" target="_blank">Read More</a>
+              <a href="${s.dashboardUrl}" class="search-result-btn" target="_blank">Dashboard</a>
+              ${s.agenticUrl ? `<a href="${s.agenticUrl}" class="search-result-btn" target="_blank">AI Assistant</a>` : ''}
+            </div>
+          </div>`).join('');
+      }
+      searchResults.style.display = 'block';
+      searchOverlay.style.display = 'block';
+    }
+
+    function closeSearch() {
+      searchResults.style.display = 'none';
+      searchOverlay.style.display = 'none';
+      searchInput.value = '';
+    }
+
+    searchInput.addEventListener('input', e => performSearch(e.target.value));
+    searchOverlay.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
+  </script>
+
+</body>
+</html>
