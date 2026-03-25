@@ -63,131 +63,6 @@
 
         .navbar nav a:hover { color: #CBA135; }
 
-        /* ── Search (Sticky Header) ── */
-        .search-section {
-            background-color: #FCF9F2;
-            padding: 0.75rem 2rem;
-            border-top: 1px solid #e0ddd3;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .search-container {
-            position: relative;
-            max-width: 300px;
-            width: 100%;
-        }
-
-        .search-input {
-            padding: 8px 40px 8px 14px;
-            border: 2px solid #e0ddd3;
-            border-radius: 25px;
-            font-size: 0.88rem;
-            width: 100%;
-            background: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #CBA135;
-            box-shadow: 0 0 0 3px rgba(203,161,53,0.15);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-            pointer-events: none;
-            font-size: 0.9rem;
-        }
-
-        .search-results {
-            position: absolute;
-            top: calc(100% + 6px);
-            left: 0; right: 0;
-            background: #ffffff;
-            border: 1px solid #e0ddd3;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            max-height: 420px;
-            overflow-y: auto;
-            z-index: 1200;
-            display: none;
-        }
-
-        .search-result-item {
-            padding: 14px 16px;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .search-result-item:hover { background-color: #FCF9F2; }
-        .search-result-item:last-child { border-bottom: none; }
-
-        .search-result-category {
-            font-size: 0.72rem;
-            color: #7a6f68;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
-        }
-
-        .search-result-title {
-            font-weight: 600;
-            color: #CBA135;
-            font-size: 0.92rem;
-            margin-bottom: 4px;
-        }
-
-        .search-result-description {
-            color: #666;
-            font-size: 0.82rem;
-            line-height: 1.5;
-            margin-bottom: 8px;
-        }
-
-        .search-result-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
-
-        .search-result-btn {
-            padding: 4px 12px;
-            border: 1px solid #e0ddd3;
-            background: #FCF9F2;
-            color: #403B36;
-            border-radius: 15px;
-            font-size: 0.73rem;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.2s;
-        }
-
-        .search-result-btn:hover {
-            background: #CBA135;
-            color: #ffffff;
-            border-color: #CBA135;
-        }
-
-        .no-results {
-            padding: 20px;
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            font-size: 0.88rem;
-        }
-
-        .search-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.08);
-            z-index: 1098;
-            display: none;
-        }
-
         /* ── Two-column layout ── */
         .container {
             display: flex;
@@ -198,10 +73,10 @@
 
         .left-column {
             position: fixed;
-            top: 105px;
+            top: 64px;
             left: 0;
             width: 30%;
-            height: calc(100vh - 105px);
+            height: calc(100vh - 64px);
             overflow-y: auto;
             background-color: #f8f8f8;
             padding: 20px;
@@ -454,10 +329,7 @@
             .navbar nav { margin-top: 0.5rem; }
             .navbar nav a { margin-left: 0; margin-right: 1rem; }
 
-            .search-section { padding: 0.75rem 1rem; }
-            .search-container { max-width: 100%; }
-
-            .container { flex-direction: column; }
+.container { flex-direction: column; }
 
             .left-column {
                 position: static;
@@ -500,15 +372,7 @@
                 <a href="contact.html">Contact</a>
             </nav>
         </div>
-        <div class="search-section">
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search case studies..." id="searchInput" autocomplete="off">
-                <span class="search-icon">🔍</span>
-                <div class="search-results" id="searchResults"></div>
-            </div>
-        </div>
     </div>
-    <div class="search-overlay" id="searchOverlay"></div>
 
     <div class="container">
 
@@ -683,83 +547,6 @@
         <p>© 2025 Pau Analytics | <a href="privacy-policy.html">Privacy Policy</a></p>
     </footer>
 
-    <script>
-        /* ── Case studies database ── */
-        const caseStudies = [
-            { title: "Who Is Most at Risk of Leaving the Bank", description: "Identify which bank customers are most likely to churn.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/who-is-most-at-risk-of-leaving-the-bank.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/who-is-most-at-risk-of-leaving-the-bank.html" },
-            { title: "Saving the Silent Spenders", description: "Identify which VIP coffee customers are about to stop buying.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/saving-the-silent-spenders.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/saving-the-silent-spenders.html" },
-            { title: "Who's Likely to Quit", description: "Predict which employees are likely to quit before they resign.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/who-is-likely-to-quit.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/who-is-likely-to-quit.html" },
-            { title: "Where Revenue Comes From", description: "Predict which products, campaigns, and customers drive revenue growth.", category: "Predictive Modeling", caseStudyUrl: "https://www.pauanalytics.com/case-study/where-revenue-comes-from.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" },
-            { title: "When Good Cars Lose Value", description: "Learn which car features hold value best over time.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/when-good-cars-lose-value.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/when-good-cars-lose-value.html" },
-            { title: "Grow Smarter, Not Bigger", description: "Find out if hiring more employees actually increases revenue.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/grow-smarter-not-bigger.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/grow-smarter-not-bigger.html" },
-            { title: "Do Dollars Drive Decisions?", description: "Discover how income levels influence customer buying decisions.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/do-dollars-drive-decisions.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/do-dollars-drive-decisions.html" },
-            { title: "What Causes Product Returns", description: "Discover what price factors trigger the most product returns.", category: "Regression Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/what-causes-product-returns.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/what-causes-product-returns.html" },
-            { title: "Fixing the Sales Leaks", description: "Discover where shoppers abandon and which channels convert best.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/fixing-the-sales-leaks.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/fixing-the-sales-leaks.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/fixing-the-sales-leaks.html" },
-            { title: "Did You Sleep Well Last Night?", description: "Explore what hotel factors contribute to better guest sleep quality.", category: "Statistical Testing", caseStudyUrl: "https://www.pauanalytics.com/case-study/did-you-sleep-well-last-night.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/did-you-sleep-well-last-night.html" },
-            { title: "Connected or Disconnected?", description: "Learn if social media usage strengthens or weakens relationships.", category: "Statistical Testing", caseStudyUrl: "https://www.pauanalytics.com/case-study/connected-or-disconnected.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/connected-or-disconnected.html" },
-            { title: "Nasi Lemak vs Kopi-O Preference Analysis", description: "Discover cultural preferences between nasi lemak and kopi-o choices.", category: "Statistical Testing", caseStudyUrl: "https://www.pauanalytics.com/case-study/nasi-lemak-vs-kopi-o-preference.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/nasi-lemak-vs-kopi-o-preference.html" },
-            { title: "The Hidden Patterns in Malaysian Real Estate", description: "Uncover hidden patterns that drive Malaysian real estate success.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/hidden-patterns-malaysian-real-estate.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/hidden-patterns-malaysian-real-estate.html" },
-            { title: "From Clicks to Check-Ins", description: "Transform hotel search traffic into confirmed bookings.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/from-clicks-to-check-ins.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/from-clicks-to-check-ins.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/from-clicks-to-check-ins.html" },
-            { title: "What Men and Women Buy", description: "Gender-based product preference analysis.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/what-men-and-women-buy.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/what-men-and-women-buy.html" },
-            { title: "Not All Shoppers Are Equal", description: "Learn what customer spending patterns reveal.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/not-all-shoppers-are-equal.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/not-all-shoppers-are-equal.html" },
-            { title: "The Hidden Power of Affiliates", description: "Uncover the hidden power of affiliate marketing partnerships.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/hidden-power-of-affiliates.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/hidden-power-of-affiliates.html" },
-            { title: "Predicting Product Sales", description: "Find out which advertising channels deliver the most sales per dollar.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-product-sales.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-product-sales.html" },
-            { title: "Beyond the Buzzwords", description: "Discover which jewelry keywords actually deliver clicks and sales.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/beyond-the-buzzwords.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/beyond-the-buzzwords.html" },
-            { title: "Predicting Holiday Peaks", description: "Forecast holiday streaming peaks to optimize campaign timing and spending.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-holiday-peaks.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-holiday-peaks.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/predicting-holiday-peaks.html" },
-            { title: "Understanding Customer Value", description: "A bicycle shop retailer discovered that a tiny group of high-value customers generated most of the profit.", category: "Customer Retention", caseStudyUrl: "https://www.pauanalytics.com/case-study/understanding-customer-value.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/understanding-customer-value.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/understanding-customer-value.html" },
-            { title: "Fruit Sales Forecast - October 2024", description: "Predict seasonal fruit demand to maximize sales.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/fruit-sales-forecast-october-2024.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/fruit-sales-forecast-october-2024.html" },
-            { title: "RON95 Fuel Price Volatility Analysis", description: "Forecast RON95 fuel prices to anticipate market volatility and costs.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/ron95-fuel-price-volatility.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/ron95-fuel-price-volatility.html" },
-            { title: "Predicting Sales Cycles", description: "Turn seasonal patterns into smarter inventory decisions.", category: "Time Series Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/predicting-sales-cycles.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/predicting-sales-cycles.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/predicting-sales-cycles.html" },
-            { title: "Selling the Right Products", description: "Find out which products are actually driving your profit.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/selling-the-right-products.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/selling-the-right-products.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/selling-the-right-products.html" },
-            { title: "Know Your Reseller", description: "Find out which resellers are making you money.", category: "Segmentation Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/know-your-reseller.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/know-your-reseller-dashboard.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/know-your-reseller.html" },
-            { title: "Evaluating Store Customer Experience", description: "Identify which stores are underperforming and what's holding them back.", category: "Optimization Analysis", caseStudyUrl: "https://www.pauanalytics.com/case-study/evaluating-customer-experience.html", dashboardUrl: "https://www.pauanalytics.com/dashboard/evaluating-customer-experience.html", agenticUrl: "https://www.pauanalytics.com/agentic_workflow/evaluating-customer-experience.html" }
-        ];
-
-        const searchInput   = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-        const searchOverlay = document.getElementById('searchOverlay');
-
-        function performSearch(query) {
-            if (query.length < 2) {
-                searchResults.style.display = 'none';
-                searchOverlay.style.display = 'none';
-                return;
-            }
-            const q = query.toLowerCase();
-            const filtered = caseStudies.filter(s =>
-                s.title.toLowerCase().includes(q) ||
-                s.description.toLowerCase().includes(q) ||
-                s.category.toLowerCase().includes(q)
-            );
-            if (filtered.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">No case studies found. Try different keywords.</div>';
-            } else {
-                searchResults.innerHTML = filtered.map(s => `
-                    <div class="search-result-item">
-                        <div class="search-result-category">${s.category}</div>
-                        <div class="search-result-title">${s.title}</div>
-                        <div class="search-result-description">${s.description}</div>
-                        <div class="search-result-buttons">
-                            <a href="${s.caseStudyUrl}" class="search-result-btn" target="_blank">Read More</a>
-                            <a href="${s.dashboardUrl}" class="search-result-btn" target="_blank">Dashboard</a>
-                            ${s.agenticUrl ? `<a href="${s.agenticUrl}" class="search-result-btn" target="_blank">AI Assistant</a>` : ''}
-                        </div>
-                    </div>`).join('');
-            }
-            searchResults.style.display = 'block';
-            searchOverlay.style.display = 'block';
-        }
-
-        function closeSearch() {
-            searchResults.style.display = 'none';
-            searchOverlay.style.display = 'none';
-            searchInput.value = '';
-        }
-
-        searchInput.addEventListener('input', e => performSearch(e.target.value));
-        searchOverlay.addEventListener('click', closeSearch);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
-    </script>
 
 </body>
 </html>
