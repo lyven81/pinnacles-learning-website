@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -78,14 +77,13 @@
     ═══════════════════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html, body {
-      height: 100%;
+    html { scroll-behavior: smooth; }
+
+    body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--cream);
       color: var(--text);
     }
-
-    body { display: flex; flex-direction: column; }
 
     a { text-decoration: none; }
 
@@ -120,264 +118,184 @@
     #cookieConsent button:hover { background-color: var(--gold-hover); }
 
     /* ═══════════════════════════════════════
-       STICKY HEADER & NAVBAR
+       TOP NAV
     ═══════════════════════════════════════ */
-    .sticky-header {
+    #topnav {
       position: sticky;
       top: 0;
-      z-index: 1100;
-      background-color: var(--cream);
+      z-index: 1000;
+      background: var(--cream);
+      border-bottom: 1px solid var(--cream-border);
       box-shadow: var(--shadow-sm);
     }
 
-    .navbar {
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      justify-content: space-between;
+      height: 64px;
     }
 
-    .navbar .brand {
-      font-size: 1.2rem;
+    .nav-brand {
+      font-size: 1.15rem;
       font-weight: 600;
       color: var(--brown);
+      flex-shrink: 0;
     }
 
-    .navbar nav a {
-      margin-left: 1.5rem;
+    .nav-links {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 0.1rem;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
       color: var(--brown);
       font-weight: 500;
-      font-size: 0.95rem;
-      transition: color var(--transition);
-    }
-
-    .navbar nav a:hover { color: var(--gold); }
-
-    /* ═══════════════════════════════════════
-       SEARCH
-    ═══════════════════════════════════════ */
-    .search-section {
-      background-color: var(--cream);
-      padding: 0.75rem 2rem;
-      border-top: 1px solid var(--cream-border);
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .search-container {
-      position: relative;
-      max-width: 300px;
-      width: 100%;
-    }
-
-    .search-input {
-      padding: 8px 40px 8px 14px;
-      border: 2px solid var(--cream-border);
-      border-radius: 25px;
       font-size: 0.88rem;
-      width: 100%;
-      background: var(--white);
-      font-family: 'Poppins', sans-serif;
-      color: var(--text);
-      transition: border-color var(--transition), box-shadow var(--transition);
+      transition: background-color 0.2s, color 0.2s;
     }
 
-    .search-input:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(203,161,53,0.15);
-    }
-
-    .search-icon {
-      position: absolute;
-      right: 14px; top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      pointer-events: none;
-      font-size: 0.9rem;
-    }
-
-    .search-results {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0; right: 0;
-      background: var(--white);
-      border: 1px solid var(--cream-border);
-      border-radius: 10px;
-      box-shadow: var(--shadow-lg);
-      max-height: 420px;
-      overflow-y: auto;
-      z-index: 1200;
-      display: none;
-    }
-
-    .search-result-item {
-      padding: 14px 16px;
-      border-bottom: 1px solid #f0f0f0;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .search-result-item:hover { background-color: var(--cream); }
-    .search-result-item:last-child { border-bottom: none; }
-
-    .search-result-category {
-      font-size: 0.72rem;
-      color: var(--brown-light);
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-
-    .search-result-title {
-      font-weight: 600;
-      color: var(--gold);
-      font-size: 0.92rem;
-      margin-bottom: 4px;
-    }
-
-    .search-result-description {
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .search-result-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
-
-    .search-result-btn {
-      padding: 4px 12px;
-      border: 1px solid var(--cream-border);
-      background: var(--cream);
-      color: var(--brown);
-      border-radius: 15px;
-      font-size: 0.73rem;
-      font-family: 'Poppins', sans-serif;
-      transition: all 0.2s;
-    }
-
-    .search-result-btn:hover {
-      background: var(--gold);
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: var(--gold);
       color: var(--white);
-      border-color: var(--gold);
     }
 
-    .no-results {
-      padding: 20px;
-      text-align: center;
-      color: var(--muted);
-      font-style: italic;
-      font-size: 0.88rem;
-    }
-
-    .search-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.08);
-      z-index: 1098;
-      display: none;
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--cream-border);
+      margin: 0 0.5rem;
+      flex-shrink: 0;
     }
 
     /* ═══════════════════════════════════════
-       HERO
+       SECTIONS
     ═══════════════════════════════════════ */
-    .hero-section {
-      position: relative;
-      height: 460px;
-      background: linear-gradient(135deg, var(--brown) 0%, var(--brown-mid) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      text-align: center;
-      overflow: hidden;
-      margin-bottom: 0;
-    }
+    .section { padding: 5rem 0; }
+    .section-cream { background: var(--cream); }
+    .section-white { background: var(--white); }
+    .section-dark  { background: var(--brown); }
 
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 30% 60%, rgba(203,161,53,0.12) 0%, transparent 60%);
-    }
-
-    .hero-content {
-      max-width: 800px;
-      padding: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-section h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
-    }
-
-    .hero-section p {
-      font-size: 1.25rem;
-      opacity: 0.92;
-    }
-
-    /* ═══════════════════════════════════════
-       STATS STRIP
-    ═══════════════════════════════════════ */
-    .stats-strip {
-      background-color: var(--brown);
-      color: var(--white);
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .stats-inner {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      flex-wrap: wrap;
-    }
-
-    .stat-item { text-align: center; }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--gold);
-      display: block;
-      line-height: 1.1;
-    }
-
-    .stat-label {
-      font-size: 0.82rem;
-      opacity: 0.8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 4px;
-      display: block;
-    }
-
-    /* ═══════════════════════════════════════
-       CONTAINER & MAGAZINE LAYOUT
-    ═══════════════════════════════════════ */
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 3rem 2rem;
+      padding: 0 2rem;
     }
 
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-dark .section-tag {
+      background: rgba(203,161,53,0.18);
+      color: var(--gold);
+    }
+
+    .section-header h2 {
+      font-size: 2.1rem;
+      font-weight: 600;
+      color: var(--brown);
+      line-height: 1.25;
+    }
+
+    .section-dark .section-header h2 { color: var(--white); }
+
+    /* ═══════════════════════════════════════
+       ABOUT — TWO COLUMN
+    ═══════════════════════════════════════ */
+    .content-grid {
+      display: grid;
+      gap: 3rem;
+    }
+
+    .content-grid.two-col {
+      grid-template-columns: 1fr 340px;
+      align-items: start;
+    }
+
+    .content-text p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .content-text p:last-child { margin-bottom: 0; }
+
+    .content-text strong { color: var(--brown); }
+
+    .fact-card {
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-top: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+
+    .fact-card h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--brown);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.25rem;
+    }
+
+    .fact-list { list-style: none; }
+
+    .fact-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--cream-border);
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .fact-list li:last-child { border-bottom: none; }
+
+    .fact-label {
+      color: var(--brown-light);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .fact-value { text-align: right; color: var(--brown); }
+
+    /* ═══════════════════════════════════════
+       OUR WORK — MAGAZINE LAYOUT
+    ═══════════════════════════════════════ */
     .magazine-container {
       display: flex;
       flex-direction: column;
       gap: 3rem;
     }
 
-    /* ═══════════════════════════════════════
-       STORY CARD — FULL WIDTH
-    ═══════════════════════════════════════ */
     .story-card-full {
       background: var(--white);
       border-radius: var(--radius);
@@ -385,7 +303,7 @@
       box-shadow: var(--shadow-md);
       display: flex;
       flex-direction: row;
-      min-height: 350px;
+      min-height: 340px;
       transition: transform var(--transition), box-shadow var(--transition);
     }
 
@@ -408,9 +326,6 @@
       justify-content: center;
     }
 
-    /* ═══════════════════════════════════════
-       STORY CARD — GRID (SIDE BY SIDE)
-    ═══════════════════════════════════════ */
     .story-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -438,55 +353,46 @@
 
     .story-card-content { padding: 2rem; }
 
-    /* ═══════════════════════════════════════
-       SHARED STORY ELEMENTS
-    ═══════════════════════════════════════ */
     .story-badge {
       display: inline-block;
       background-color: var(--gold);
       color: var(--white);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      padding: 0.35rem 0.9rem;
+      padding: 0.3rem 0.85rem;
       border-radius: 20px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
       width: fit-content;
     }
 
-    .story-badge.ai { background-color: var(--brown); }
-
     .story-title {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 600;
       color: var(--brown);
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
       line-height: 1.3;
     }
 
-    .story-card .story-title { font-size: 1.4rem; }
+    .story-card .story-title { font-size: 1.35rem; }
 
     .story-description {
-      font-size: 1rem;
+      font-size: 0.97rem;
       color: var(--muted);
-      margin-bottom: 0.5rem;
       line-height: 1.65;
     }
 
-    .story-card .story-description { font-size: 0.93rem; }
+    .story-card .story-description { font-size: 0.91rem; }
 
-    .story-result {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--gold);
-      margin: 1rem 0 1.5rem;
+    .story-buttons {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
     }
 
-    .story-card .story-result { font-size: 1.35rem; margin: 0.8rem 0 1.2rem; }
-
-    .story-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
-    .story-card .story-buttons { gap: 0.75rem; margin-top: 1rem; }
+    .story-card .story-buttons { margin-top: 1.1rem; gap: 0.65rem; }
 
     /* ═══════════════════════════════════════
        BUTTONS
@@ -495,10 +401,11 @@
       display: inline-block;
       background-color: var(--gold);
       color: var(--white);
-      padding: 11px 24px;
+      padding: 10px 22px;
       border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: background-color var(--transition), transform 0.15s;
     }
 
@@ -520,13 +427,198 @@
 
     .cta-button.primary {
       background-color: var(--gold);
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       padding: 14px 34px;
     }
 
     .cta-button.primary:hover { background-color: var(--gold-hover); }
 
-    .story-card .cta-button { font-size: 0.88rem; padding: 9px 18px; }
+    .story-card .cta-button { font-size: 0.85rem; padding: 8px 16px; }
+
+    /* ═══════════════════════════════════════
+       HOW IT WORKS — PROCESS CARDS
+    ═══════════════════════════════════════ */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .process-card {
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-top: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .process-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .process-num {
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+      opacity: 0.55;
+    }
+
+    .process-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 0.75rem;
+    }
+
+    .process-card p {
+      font-size: 0.91rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════
+       RESULTS — STAT COUNTERS
+    ═══════════════════════════════════════ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item {}
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .stat-suffix {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 0.6rem;
+    }
+
+    /* ═══════════════════════════════════════
+       FIND A CASE STUDY — SEARCH
+    ═══════════════════════════════════════ */
+    .search-box {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-input-full {
+      width: 100%;
+      padding: 1rem 3.5rem 1rem 1.5rem;
+      border: 2px solid var(--cream-border);
+      border-radius: 50px;
+      font-size: 0.97rem;
+      font-family: 'Poppins', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .search-input-full:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(203,161,53,0.15);
+    }
+
+    .search-icon-full {
+      position: absolute;
+      right: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .search-results-list {
+      margin-top: 1.25rem;
+      display: none;
+    }
+
+    .search-result-item {
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 0.75rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .search-result-item:hover { box-shadow: var(--shadow-md); }
+
+    .search-result-category {
+      font-size: 0.7rem;
+      color: var(--brown-light);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .search-result-description {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .search-result-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .search-result-btn {
+      padding: 5px 14px;
+      border: 1px solid var(--cream-border);
+      background: var(--cream);
+      color: var(--brown);
+      border-radius: 20px;
+      font-size: 0.76rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .search-result-btn:hover {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+
+    .no-results {
+      text-align: center;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+      padding: 2rem 0;
+    }
 
     /* ═══════════════════════════════════════
        CLOSING BANNER
@@ -535,9 +627,8 @@
       background: linear-gradient(135deg, var(--brown) 0%, var(--brown-mid) 100%);
       color: var(--white);
       text-align: center;
-      padding: 3.5rem 2rem;
+      padding: 4rem 2rem;
       border-radius: var(--radius);
-      margin-top: 1rem;
     }
 
     .closing-banner h2 {
@@ -547,9 +638,9 @@
     }
 
     .closing-banner p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       margin-bottom: 2rem;
-      opacity: 0.9;
+      opacity: 0.88;
     }
 
     /* ═══════════════════════════════════════
@@ -559,20 +650,35 @@
       background-color: var(--brown);
       color: var(--white);
       text-align: center;
-      padding: 1.5rem;
-      font-size: 0.88rem;
-      margin-top: auto;
+      padding: 1.5rem 2rem;
+      font-size: 0.86rem;
     }
 
     footer a { color: var(--gold); }
     footer a:hover { text-decoration: underline; }
+
+    .footer-links {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
 
     /* ═══════════════════════════════════════
        FADE-IN ANIMATION
     ═══════════════════════════════════════ */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(22px);
       transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
@@ -584,214 +690,317 @@
     /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .nav-links { gap: 0; }
+      .nav-links a { font-size: 0.82rem; padding: 0.35rem 0.6rem; }
+    }
+
     @media (max-width: 768px) {
-      .navbar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-      .navbar nav a { margin-left: 0; margin-right: 1rem; font-size: 0.9rem; }
+      .nav-inner { height: auto; padding: 0.75rem 1.25rem; flex-wrap: wrap; gap: 0.5rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.15rem; }
+      .nav-divider { display: none; }
 
-      .hero-section { height: 360px; }
-      .hero-section h1 { font-size: 2rem; }
-      .hero-section p { font-size: 1.05rem; }
+      .section { padding: 3.5rem 0; }
+      .container { padding: 0 1.25rem; }
+      .section-header h2 { font-size: 1.65rem; }
 
-      .container { padding: 2rem 1rem; }
+      .content-grid.two-col { grid-template-columns: 1fr; }
 
       .story-card-full { flex-direction: column; min-height: auto; }
       .story-image { min-height: 200px; }
       .story-content { padding: 2rem; }
       .story-title { font-size: 1.5rem; }
+      .story-grid { grid-template-columns: 1fr; }
 
-      .story-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .process-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 
       .closing-banner h2 { font-size: 1.5rem; }
-      .closing-banner p { font-size: 1rem; }
       .cta-button.primary { font-size: 1rem; padding: 12px 24px; }
 
-      .stats-inner { gap: 2rem; }
-      .stat-number { font-size: 2rem; }
-
-      .search-section { padding: 0.75rem 1rem; }
-      .search-container { max-width: 100%; }
-      .search-result-buttons { flex-direction: column; }
-      .search-result-btn { text-align: center; padding: 7px 12px; }
+      .search-input-full { font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Header -->
-  <div class="sticky-header">
-    <div class="navbar">
-      <div class="brand">Pau Analytics</div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="data-analytics.html">Case Studies</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+  <!-- ═══════════════════════════════════════
+       TOP NAV
+  ═══════════════════════════════════════ -->
+  <nav id="topnav">
+    <div class="nav-inner">
+      <span class="nav-brand">Pau Analytics</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#our-work">Our Work</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#find-a-case-study">Find a Case Study</a></li>
+        <li class="nav-divider" aria-hidden="true"></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- Search -->
-    <div class="search-section">
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search case studies..." id="searchInput" autocomplete="off">
-        <span class="search-icon">🔍</span>
-        <div class="search-results" id="searchResults"></div>
-      </div>
-    </div>
-  </div>
-  <div class="search-overlay" id="searchOverlay"></div>
+  <main>
 
-  <!-- Hero -->
-  <section class="hero-section">
-    <div class="hero-content">
-      <h1>Data Analytics &amp; AI Solutions</h1>
-      <p>Data and AI that help your business grow.</p>
-    </div>
-  </section>
-
-  <!-- Stats Strip -->
-  <div class="stats-strip">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <span class="stat-number">40+</span>
-        <span class="stat-label">Case Studies</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">40+</span>
-        <span class="stat-label">Dashboards</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">13</span>
-        <span class="stat-label">AI Tools Built</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="container">
-    <div class="magazine-container">
-
-      <!-- Story 1: Evaluating Customer Experience (Full Width) -->
-      <article class="story-card-full fade-in">
-        <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/evaluating-customer-experience/cover-image.jpeg'); filter: brightness(0.7);"></div>
-        <div class="story-content">
-          <span class="story-badge">Optimization Analysis</span>
-          <h2 class="story-title">Evaluating Store Customer Experience</h2>
-          <p class="story-description">Identify which stores are underperforming and what's holding them back. A regional manager used data analytics across 43 stores to pinpoint critical gaps, fix behavioural issues, and lift customer experience scores from 72.9% to above 80%.</p>
-          <div class="story-buttons">
-            <a href="https://www.pauanalytics.com/case-study/evaluating-customer-experience.html" class="cta-button" target="_blank">Read More</a>
-            <a href="https://www.pauanalytics.com/dashboard/evaluating-customer-experience.html" class="cta-button secondary" target="_blank">Dashboard</a>
-            <a href="https://www.pauanalytics.com/agentic_workflow/evaluating-customer-experience.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+    <!-- ═══════════════════════════════════════
+         SECTION 1 — ABOUT
+    ═══════════════════════════════════════ -->
+    <section id="about" class="section section-cream">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Who We Are</span>
+          <h2>Data Analytics Consulting for Malaysian SMEs</h2>
+        </div>
+        <div class="content-grid two-col fade-in">
+          <div class="content-text">
+            <p>Pau Analytics helps Malaysian SME owners make sense of their business data. We work with owners and managers in retail, F&B, property, and services who have data sitting in spreadsheets — but no clear picture of what it means or what to do next.</p>
+            <p>We take your raw data and turn it into something you can actually use. That means a written case study that tells the business story, an interactive dashboard you can explore yourself, and — for complex decisions — an AI assistant that answers questions about your data in plain language.</p>
+            <p>We cover six categories of analysis: <strong>predictive modelling</strong>, <strong>regression</strong>, <strong>statistical testing</strong>, <strong>segmentation</strong>, <strong>optimization</strong>, and <strong>time series</strong>. Each project starts with a business question — not a dataset — so the output is always tied to a decision you need to make.</p>
+            <p>If you have data and a problem, we can help you understand what the data is saying and what to do about it.</p>
+          </div>
+          <div>
+            <div class="fact-card">
+              <h4>At a Glance</h4>
+              <ul class="fact-list">
+                <li><span class="fact-label">Clients</span><span class="fact-value">Malaysian SME owners &amp; managers</span></li>
+                <li><span class="fact-label">Industries</span><span class="fact-value">Retail, F&amp;B, Property, HR, Finance</span></li>
+                <li><span class="fact-label">Analysis types</span><span class="fact-value">6 categories</span></li>
+                <li><span class="fact-label">Deliverables</span><span class="fact-value">Case study + Dashboard + AI Assistant</span></li>
+                <li><span class="fact-label">Language</span><span class="fact-value">English, Bahasa Malaysia</span></li>
+                <li><span class="fact-label">Contact</span><span class="fact-value">admin@pauanalytics.com</span></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </article>
-
-      <!-- Stories 2 & 3: Side by Side -->
-      <div class="story-grid">
-        <article class="story-card fade-in">
-          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/where-revenue-comes-from/cover%20image.png'); filter: brightness(0.7);"></div>
-          <div class="story-card-content">
-            <span class="story-badge">Predictive Modeling</span>
-            <h3 class="story-title">Where Revenue Comes From</h3>
-            <p class="story-description">Predict which products, campaigns, and customers drive revenue growth. Discover what really drives sales in household and lifestyle retail to optimize marketing, inventory, and customer retention.</p>
-            <div class="story-buttons">
-              <a href="https://www.pauanalytics.com/case-study/where-revenue-comes-from.html" class="cta-button" target="_blank">Read More</a>
-              <a href="https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html" class="cta-button secondary" target="_blank">Dashboard</a>
-              <a href="https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" class="cta-button secondary" target="_blank">AI Assistant</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="story-card fade-in">
-          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/know-your-reseller/cover%20image.jpeg'); filter: brightness(0.7);"></div>
-          <div class="story-card-content">
-            <span class="story-badge">Segmentation Analysis</span>
-            <h3 class="story-title">Know Your Reseller</h3>
-            <p class="story-description">Find out which resellers are actually making you money — and which ones are costing you more than they earn. A Malaysian manufacturer used data analytics to rank 635 resellers by gross margin and redirect support to partners that deliver real returns.</p>
-            <div class="story-buttons">
-              <a href="https://www.pauanalytics.com/case-study/know-your-reseller.html" class="cta-button" target="_blank">Read More</a>
-              <a href="https://www.pauanalytics.com/dashboard/know-your-reseller-dashboard.html" class="cta-button secondary" target="_blank">Dashboard</a>
-              <a href="https://www.pauanalytics.com/agentic_workflow/know-your-reseller.html" class="cta-button secondary" target="_blank">AI Assistant</a>
-            </div>
-          </div>
-        </article>
       </div>
-
-      <!-- Story 4: Selling the Right Products (Full Width) -->
-      <article class="story-card-full fade-in">
-        <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/selling-the-right-products/cover-image.jpeg'); filter: brightness(0.7);"></div>
-        <div class="story-content">
-          <span class="story-badge">Optimization Analysis</span>
-          <h2 class="story-title">Selling the Right Products</h2>
-          <p class="story-description">Find out which products are actually driving your profit — and which ones are filling up your team's time without returns. A bicycle retailer used data analytics to identify their true profit carriers and redirected sales focus away from high-volume accessories that contributed almost nothing to the bottom line.</p>
-          <div class="story-buttons">
-            <a href="https://www.pauanalytics.com/case-study/selling-the-right-products.html" class="cta-button" target="_blank">Read More</a>
-            <a href="https://www.pauanalytics.com/dashboard/selling-the-right-products.html" class="cta-button secondary" target="_blank">Dashboard</a>
-            <a href="https://www.pauanalytics.com/agentic_workflow/selling-the-right-products.html" class="cta-button secondary" target="_blank">AI Assistant</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Stories 5 & 6: Side by Side -->
-      <div class="story-grid">
-        <article class="story-card fade-in">
-          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/predicting-sales-cycles/cover%20image.png'); filter: brightness(0.7);"></div>
-          <div class="story-card-content">
-            <span class="story-badge">Time Series Analysis</span>
-            <h3 class="story-title">Predicting Sales Cycles</h3>
-            <p class="story-description">Discover seasonal patterns in your weekly sales. Learn when to stock up and when to hold back using data-driven forecasting for smarter inventory decisions.</p>
-            <div class="story-buttons">
-              <a href="https://www.pauanalytics.com/case-study/predicting-sales-cycles.html" class="cta-button" target="_blank">Read More</a>
-              <a href="https://www.pauanalytics.com/dashboard/predicting-sales-cycles.html" class="cta-button secondary" target="_blank">Dashboard</a>
-              <a href="https://www.pauanalytics.com/agentic_workflow/predicting-sales-cycles.html" class="cta-button secondary" target="_blank">AI Assistant</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="story-card fade-in">
-          <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/finding-profit-drivers/cover%20image.png'); filter: brightness(0.7);"></div>
-          <div class="story-card-content">
-            <span class="story-badge">Optimization Analysis</span>
-            <h3 class="story-title">Finding Profit Drivers</h3>
-            <p class="story-description">Discover which products are actually making money — and which ones are quietly diluting your margins. A bicycle shop manager used data analytics to focus on the right products and pricing decisions.</p>
-            <div class="story-buttons">
-              <a href="https://www.pauanalytics.com/case-study/finding-profit-drivers.html" class="cta-button" target="_blank">Read More</a>
-              <a href="https://www.pauanalytics.com/dashboard/finding-profit-drivers.html" class="cta-button secondary" target="_blank">Dashboard</a>
-              <a href="https://www.pauanalytics.com/agentic_workflow/finding-profit-drivers.html" class="cta-button secondary" target="_blank">AI Assistant</a>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <!-- Story 7: Understanding Customer Value (Full Width) -->
-      <article class="story-card-full fade-in">
-        <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/understanding-customer-value/cover%20image.png'); filter: brightness(0.7);"></div>
-        <div class="story-content">
-          <span class="story-badge">Customer Retention</span>
-          <h2 class="story-title">Understanding Customer Value</h2>
-          <p class="story-description">A bicycle shop with 18,400 customers discovered that fewer than 2% of them generated the bulk of its profit. Find out how identifying your highest-value customers — and protecting them — can transform a busy shop into a profitable one.</p>
-          <div class="story-buttons">
-            <a href="https://www.pauanalytics.com/case-study/understanding-customer-value.html" class="cta-button" target="_blank">Read More</a>
-            <a href="https://www.pauanalytics.com/dashboard/understanding-customer-value.html" class="cta-button secondary" target="_blank">Dashboard</a>
-            <a href="https://www.pauanalytics.com/agentic_workflow/understanding-customer-value.html" class="cta-button secondary" target="_blank">AI Assistant</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- Closing Banner -->
-    <section class="closing-banner fade-in">
-      <h2>Ready to Transform Your Business?</h2>
-      <p>Let's turn your data into direction and build smart tools that work.</p>
-      <a href="https://wa.me/60149207099" class="cta-button primary">Book a Call</a>
     </section>
 
-  </div>
+    <!-- ═══════════════════════════════════════
+         SECTION 2 — OUR WORK
+    ═══════════════════════════════════════ -->
+    <section id="our-work" class="section section-white">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Featured Work</span>
+          <h2>Real Business Problems, Solved With Data</h2>
+        </div>
+        <div class="magazine-container">
+
+          <!-- Story 1: Evaluating Customer Experience (Full Width) -->
+          <article class="story-card-full fade-in">
+            <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/evaluating-customer-experience/cover-image.jpeg'); filter: brightness(0.7);"></div>
+            <div class="story-content">
+              <span class="story-badge">Optimization Analysis</span>
+              <h2 class="story-title">Evaluating Store Customer Experience</h2>
+              <p class="story-description">Identify which stores are underperforming and what's holding them back. A regional manager used data analytics across 43 stores to pinpoint critical gaps, fix behavioural issues, and lift customer experience scores from 72.9% to above 80%.</p>
+              <div class="story-buttons">
+                <a href="https://www.pauanalytics.com/case-study/evaluating-customer-experience.html" class="cta-button" target="_blank">Read More</a>
+                <a href="https://www.pauanalytics.com/dashboard/evaluating-customer-experience.html" class="cta-button secondary" target="_blank">Dashboard</a>
+                <a href="https://www.pauanalytics.com/agentic_workflow/evaluating-customer-experience.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Stories 2 & 3: Side by Side -->
+          <div class="story-grid">
+            <article class="story-card fade-in">
+              <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/where-revenue-comes-from/cover%20image.png'); filter: brightness(0.7);"></div>
+              <div class="story-card-content">
+                <span class="story-badge">Predictive Modeling</span>
+                <h3 class="story-title">Where Revenue Comes From</h3>
+                <p class="story-description">Predict which products, campaigns, and customers drive revenue growth. Discover what really drives sales in household and lifestyle retail to optimize marketing, inventory, and customer retention.</p>
+                <div class="story-buttons">
+                  <a href="https://www.pauanalytics.com/case-study/where-revenue-comes-from.html" class="cta-button" target="_blank">Read More</a>
+                  <a href="https://www.pauanalytics.com/dashboard/where-revenue-comes-from.html" class="cta-button secondary" target="_blank">Dashboard</a>
+                  <a href="https://www.pauanalytics.com/agentic_workflow/where-revenue-comes-from.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="story-card fade-in">
+              <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/know-your-reseller/cover%20image.jpeg'); filter: brightness(0.7);"></div>
+              <div class="story-card-content">
+                <span class="story-badge">Segmentation Analysis</span>
+                <h3 class="story-title">Know Your Reseller</h3>
+                <p class="story-description">Find out which resellers are actually making you money — and which ones are costing you more than they earn. A Malaysian manufacturer used data analytics to rank 635 resellers by gross margin and redirect support to partners that deliver real returns.</p>
+                <div class="story-buttons">
+                  <a href="https://www.pauanalytics.com/case-study/know-your-reseller.html" class="cta-button" target="_blank">Read More</a>
+                  <a href="https://www.pauanalytics.com/dashboard/know-your-reseller-dashboard.html" class="cta-button secondary" target="_blank">Dashboard</a>
+                  <a href="https://www.pauanalytics.com/agentic_workflow/know-your-reseller.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Story 4: Selling the Right Products (Full Width) -->
+          <article class="story-card-full fade-in">
+            <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/selling-the-right-products/cover-image.jpeg'); filter: brightness(0.7);"></div>
+            <div class="story-content">
+              <span class="story-badge">Optimization Analysis</span>
+              <h2 class="story-title">Selling the Right Products</h2>
+              <p class="story-description">Find out which products are actually driving your profit — and which ones are filling up your team's time without returns. A bicycle retailer used data analytics to identify their true profit carriers and redirected sales focus away from high-volume accessories that contributed almost nothing to the bottom line.</p>
+              <div class="story-buttons">
+                <a href="https://www.pauanalytics.com/case-study/selling-the-right-products.html" class="cta-button" target="_blank">Read More</a>
+                <a href="https://www.pauanalytics.com/dashboard/selling-the-right-products.html" class="cta-button secondary" target="_blank">Dashboard</a>
+                <a href="https://www.pauanalytics.com/agentic_workflow/selling-the-right-products.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Stories 5 & 6: Side by Side -->
+          <div class="story-grid">
+            <article class="story-card fade-in">
+              <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/predicting-sales-cycles/cover%20image.png'); filter: brightness(0.7);"></div>
+              <div class="story-card-content">
+                <span class="story-badge">Time Series Analysis</span>
+                <h3 class="story-title">Predicting Sales Cycles</h3>
+                <p class="story-description">Discover seasonal patterns in your weekly sales. Learn when to stock up and when to hold back using data-driven forecasting for smarter inventory decisions.</p>
+                <div class="story-buttons">
+                  <a href="https://www.pauanalytics.com/case-study/predicting-sales-cycles.html" class="cta-button" target="_blank">Read More</a>
+                  <a href="https://www.pauanalytics.com/dashboard/predicting-sales-cycles.html" class="cta-button secondary" target="_blank">Dashboard</a>
+                  <a href="https://www.pauanalytics.com/agentic_workflow/predicting-sales-cycles.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="story-card fade-in">
+              <div class="story-card-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/finding-profit-drivers/cover%20image.png'); filter: brightness(0.7);"></div>
+              <div class="story-card-content">
+                <span class="story-badge">Optimization Analysis</span>
+                <h3 class="story-title">Finding Profit Drivers</h3>
+                <p class="story-description">Discover which products are actually making money — and which ones are quietly diluting your margins. A bicycle shop manager used data analytics to focus on the right products and pricing decisions.</p>
+                <div class="story-buttons">
+                  <a href="https://www.pauanalytics.com/case-study/finding-profit-drivers.html" class="cta-button" target="_blank">Read More</a>
+                  <a href="https://www.pauanalytics.com/dashboard/finding-profit-drivers.html" class="cta-button secondary" target="_blank">Dashboard</a>
+                  <a href="https://www.pauanalytics.com/agentic_workflow/finding-profit-drivers.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Story 7: Understanding Customer Value (Full Width) -->
+          <article class="story-card-full fade-in">
+            <div class="story-image" style="background-image: url('https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/understanding-customer-value/cover%20image.png'); filter: brightness(0.7);"></div>
+            <div class="story-content">
+              <span class="story-badge">Customer Retention</span>
+              <h2 class="story-title">Understanding Customer Value</h2>
+              <p class="story-description">A bicycle shop with 18,400 customers discovered that fewer than 2% of them generated the bulk of its profit. Find out how identifying your highest-value customers — and protecting them — can transform a busy shop into a profitable one.</p>
+              <div class="story-buttons">
+                <a href="https://www.pauanalytics.com/case-study/understanding-customer-value.html" class="cta-button" target="_blank">Read More</a>
+                <a href="https://www.pauanalytics.com/dashboard/understanding-customer-value.html" class="cta-button secondary" target="_blank">Dashboard</a>
+                <a href="https://www.pauanalytics.com/agentic_workflow/understanding-customer-value.html" class="cta-button secondary" target="_blank">AI Assistant</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3 — HOW IT WORKS
+    ═══════════════════════════════════════ -->
+    <section id="how-it-works" class="section section-cream">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">The Process</span>
+          <h2>From Data to Direction</h2>
+        </div>
+        <div class="process-grid">
+          <div class="process-card fade-in">
+            <div class="process-num">01</div>
+            <h3>Share Your Data</h3>
+            <p>Tell us about your business challenge and share your dataset — whether it's a spreadsheet, CSV export, or system report. We work with whatever you have.</p>
+          </div>
+          <div class="process-card fade-in">
+            <div class="process-num">02</div>
+            <h3>We Analyse &amp; Build</h3>
+            <p>We clean your data, run the appropriate analysis, and write a case study that explains the findings in plain language. We also build an interactive dashboard and, where useful, an AI assistant.</p>
+          </div>
+          <div class="process-card fade-in">
+            <div class="process-num">03</div>
+            <h3>You Get Insights &amp; Tools</h3>
+            <p>You receive clear, actionable findings tied directly to a business decision — plus tools you can use every day, without needing a data analyst on call.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4 — RESULTS
+    ═══════════════════════════════════════ -->
+    <section id="results" class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">In Numbers</span>
+          <h2>What We've Built</h2>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item fade-in">
+            <span class="stat-number" data-target="40"><span class="count">0</span><span class="stat-suffix">+</span></span>
+            <span class="stat-label">Case Studies</span>
+          </div>
+          <div class="stat-item fade-in">
+            <span class="stat-number" data-target="40"><span class="count">0</span><span class="stat-suffix">+</span></span>
+            <span class="stat-label">Dashboards</span>
+          </div>
+          <div class="stat-item fade-in">
+            <span class="stat-number" data-target="13"><span class="count">0</span></span>
+            <span class="stat-label">AI Assistants</span>
+          </div>
+          <div class="stat-item fade-in">
+            <span class="stat-number" data-target="6"><span class="count">0</span></span>
+            <span class="stat-label">Analysis Categories</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 5 — FIND A CASE STUDY
+    ═══════════════════════════════════════ -->
+    <section id="find-a-case-study" class="section section-cream">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Browse</span>
+          <h2>Find a Case Study</h2>
+        </div>
+        <div class="search-box fade-in">
+          <input type="text" class="search-input-full" placeholder="Search by topic, industry, or analysis type…" id="searchInput" autocomplete="off">
+          <span class="search-icon-full">🔍</span>
+        </div>
+        <div class="search-results-list" id="searchResults"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CLOSING BANNER
+    ═══════════════════════════════════════ -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="closing-banner fade-in">
+          <h2>Ready to Transform Your Business?</h2>
+          <p>Let's turn your data into direction and build smart tools that work.</p>
+          <a href="https://wa.me/60149207099" class="cta-button primary">Book a Call</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
     <p>© 2025 Pau Analytics | <a href="https://www.pauanalytics.com/privacy-policy.html">Privacy Policy</a></p>
+    <nav class="footer-links">
+      <a href="blog/index.html">Blog</a>
+      <a href="data-analytics.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </footer>
 
   <!-- Cookie Consent Banner -->
@@ -808,21 +1017,68 @@
 
   <script>
     /* ── Cookie consent ── */
-    window.onload = function () {
+    window.addEventListener('load', function () {
       var banner = document.getElementById('cookieConsent');
       if (!localStorage.getItem('cookieAccepted')) banner.style.display = 'block';
       document.getElementById('acceptCookies').onclick = function () {
         localStorage.setItem('cookieAccepted', 'true');
         banner.style.display = 'none';
       };
-    };
+    });
+
+    /* ── Active nav highlight ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('#topnav .nav-links a[href^="#"]');
+
+    const navObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`#topnav .nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => navObserver.observe(s));
 
     /* ── Fade-in on scroll ── */
     const fadeEls = document.querySelectorAll('.fade-in');
-    const io = new IntersectionObserver(entries => {
+    const fadeObserver = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    fadeEls.forEach(el => io.observe(el));
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    /* ── Animated stat counters ── */
+    function animateCounter(el, target, duration) {
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(ease * target);
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const statItems = document.querySelectorAll('.stat-item');
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const parent = entry.target.closest('[data-target]');
+          if (!parent || parent.dataset.animated) return;
+          parent.dataset.animated = true;
+          const target = parseInt(parent.dataset.target, 10);
+          const countEl = parent.querySelector('.count');
+          animateCounter(countEl, target, 1200);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObserver.observe(el));
 
     /* ── Case studies database ── */
     const caseStudies = [
@@ -856,17 +1112,16 @@
     ];
 
     /* ── Search logic ── */
-    const searchInput  = document.getElementById('searchInput');
+    const searchInput   = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
-    const searchOverlay = document.getElementById('searchOverlay');
 
-    function performSearch(query) {
-      if (query.length < 2) {
+    searchInput.addEventListener('input', function () {
+      const q = this.value.trim().toLowerCase();
+      if (q.length < 2) {
         searchResults.style.display = 'none';
-        searchOverlay.style.display = 'none';
+        searchResults.innerHTML = '';
         return;
       }
-      const q = query.toLowerCase();
       const filtered = caseStudies.filter(s =>
         s.title.toLowerCase().includes(q) ||
         s.description.toLowerCase().includes(q) ||
@@ -888,18 +1143,14 @@
           </div>`).join('');
       }
       searchResults.style.display = 'block';
-      searchOverlay.style.display = 'block';
-    }
+    });
 
-    function closeSearch() {
-      searchResults.style.display = 'none';
-      searchOverlay.style.display = 'none';
-      searchInput.value = '';
-    }
-
-    searchInput.addEventListener('input', e => performSearch(e.target.value));
-    searchOverlay.addEventListener('click', closeSearch);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        searchResults.style.display = 'none';
+        searchInput.value = '';
+      }
+    });
   </script>
 
 </body>
