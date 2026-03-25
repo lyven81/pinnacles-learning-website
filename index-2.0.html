@@ -83,6 +83,8 @@
       font-family: 'Poppins', sans-serif;
       background-color: var(--cream);
       color: var(--text);
+      display: flex;
+      flex-direction: column;
     }
 
     a { text-decoration: none; }
@@ -118,63 +120,163 @@
     #cookieConsent button:hover { background-color: var(--gold-hover); }
 
     /* ═══════════════════════════════════════
-       TOP NAV
+       STICKY HEADER & NAVBAR
     ═══════════════════════════════════════ */
-    #topnav {
+    .sticky-header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: var(--cream);
-      border-bottom: 1px solid var(--cream-border);
+      z-index: 1100;
+      background-color: var(--cream);
       box-shadow: var(--shadow-sm);
     }
 
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    .navbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      height: 64px;
+      align-items: center;
+      padding: 1rem 2rem;
     }
 
-    .nav-brand {
-      font-size: 1.15rem;
+    .navbar .brand {
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--brown);
-      flex-shrink: 0;
     }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      align-items: center;
-      gap: 0.1rem;
-    }
-
-    .nav-links a {
-      display: block;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
+    .navbar nav a {
+      margin-left: 1.5rem;
       color: var(--brown);
       font-weight: 500;
+      font-size: 0.95rem;
+      transition: color var(--transition);
+    }
+
+    .navbar nav a:hover { color: var(--gold); }
+
+    /* ═══════════════════════════════════════
+       SEARCH (STICKY HEADER)
+    ═══════════════════════════════════════ */
+    .search-section {
+      background-color: var(--cream);
+      padding: 0.75rem 2rem;
+      border-top: 1px solid var(--cream-border);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .search-input {
+      padding: 8px 40px 8px 14px;
+      border: 2px solid var(--cream-border);
+      border-radius: 25px;
       font-size: 0.88rem;
-      transition: background-color 0.2s, color 0.2s;
+      width: 100%;
+      background: var(--white);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      transition: border-color var(--transition), box-shadow var(--transition);
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      background-color: var(--gold);
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(203,161,53,0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+
+    .search-results {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-radius: 10px;
+      box-shadow: var(--shadow-lg);
+      max-height: 420px;
+      overflow-y: auto;
+      z-index: 1200;
+      display: none;
+    }
+
+    .search-result-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .search-result-item:hover { background-color: var(--cream); }
+    .search-result-item:last-child { border-bottom: none; }
+
+    .search-result-category {
+      font-size: 0.72rem;
+      color: var(--brown-light);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .search-result-description {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .search-result-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .search-result-btn {
+      padding: 4px 12px;
+      border: 1px solid var(--cream-border);
+      background: var(--cream);
+      color: var(--brown);
+      border-radius: 15px;
+      font-size: 0.73rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .search-result-btn:hover {
+      background: var(--gold);
       color: var(--white);
+      border-color: var(--gold);
     }
 
-    .nav-divider {
-      width: 1px;
-      height: 20px;
-      background: var(--cream-border);
-      margin: 0 0.5rem;
-      flex-shrink: 0;
+    .no-results {
+      padding: 20px;
+      text-align: center;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.88rem;
+    }
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.08);
+      z-index: 1098;
+      display: none;
     }
 
     /* ═══════════════════════════════════════
@@ -222,70 +324,6 @@
     }
 
     .section-dark .section-header h2 { color: var(--white); }
-
-    /* ═══════════════════════════════════════
-       ABOUT — TWO COLUMN
-    ═══════════════════════════════════════ */
-    .content-grid {
-      display: grid;
-      gap: 3rem;
-    }
-
-    .content-grid.two-col {
-      grid-template-columns: 1fr 340px;
-      align-items: start;
-    }
-
-    .content-text p {
-      font-size: 0.97rem;
-      line-height: 1.8;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .content-text p:last-child { margin-bottom: 0; }
-
-    .content-text strong { color: var(--brown); }
-
-    .fact-card {
-      background: var(--white);
-      border: 1px solid var(--cream-border);
-      border-top: 3px solid var(--gold);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-    }
-
-    .fact-card h4 {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--brown);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 1.25rem;
-    }
-
-    .fact-list { list-style: none; }
-
-    .fact-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--cream-border);
-      font-size: 0.88rem;
-      color: var(--text);
-    }
-
-    .fact-list li:last-child { border-bottom: none; }
-
-    .fact-label {
-      color: var(--brown-light);
-      font-weight: 500;
-      flex-shrink: 0;
-    }
-
-    .fact-value { text-align: right; color: var(--brown); }
 
     /* ═══════════════════════════════════════
        OUR WORK — MAGAZINE LAYOUT
@@ -491,8 +529,6 @@
       text-align: center;
     }
 
-    .stat-item {}
-
     .stat-number {
       font-size: 3rem;
       font-weight: 700;
@@ -514,110 +550,6 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       margin-top: 0.6rem;
-    }
-
-    /* ═══════════════════════════════════════
-       FIND A CASE STUDY — SEARCH
-    ═══════════════════════════════════════ */
-    .search-box {
-      max-width: 640px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .search-input-full {
-      width: 100%;
-      padding: 1rem 3.5rem 1rem 1.5rem;
-      border: 2px solid var(--cream-border);
-      border-radius: 50px;
-      font-size: 0.97rem;
-      font-family: 'Poppins', sans-serif;
-      background: var(--white);
-      color: var(--text);
-      box-shadow: var(--shadow-sm);
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-
-    .search-input-full:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(203,161,53,0.15);
-    }
-
-    .search-icon-full {
-      position: absolute;
-      right: 1.4rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 1rem;
-      pointer-events: none;
-    }
-
-    .search-results-list {
-      margin-top: 1.25rem;
-      display: none;
-    }
-
-    .search-result-item {
-      background: var(--white);
-      border: 1px solid var(--cream-border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 0.75rem;
-      transition: box-shadow 0.2s;
-    }
-
-    .search-result-item:hover { box-shadow: var(--shadow-md); }
-
-    .search-result-category {
-      font-size: 0.7rem;
-      color: var(--brown-light);
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-
-    .search-result-title {
-      font-weight: 600;
-      color: var(--gold);
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-    }
-
-    .search-result-description {
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
-    }
-
-    .search-result-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
-
-    .search-result-btn {
-      padding: 5px 14px;
-      border: 1px solid var(--cream-border);
-      background: var(--cream);
-      color: var(--brown);
-      border-radius: 20px;
-      font-size: 0.76rem;
-      font-family: 'Poppins', sans-serif;
-      transition: all 0.2s;
-    }
-
-    .search-result-btn:hover {
-      background: var(--gold);
-      color: var(--white);
-      border-color: var(--gold);
-    }
-
-    .no-results {
-      text-align: center;
-      color: var(--muted);
-      font-style: italic;
-      font-size: 0.9rem;
-      padding: 2rem 0;
     }
 
     /* ═══════════════════════════════════════
@@ -652,26 +584,11 @@
       text-align: center;
       padding: 1.5rem 2rem;
       font-size: 0.86rem;
+      margin-top: auto;
     }
 
     footer a { color: var(--gold); }
     footer a:hover { text-decoration: underline; }
-
-    .footer-links {
-      margin-top: 0.5rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.82rem;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--gold); }
 
     /* ═══════════════════════════════════════
        FADE-IN ANIMATION
@@ -690,21 +607,14 @@
     /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
-    @media (max-width: 900px) {
-      .nav-links { gap: 0; }
-      .nav-links a { font-size: 0.82rem; padding: 0.35rem 0.6rem; }
-    }
-
     @media (max-width: 768px) {
-      .nav-inner { height: auto; padding: 0.75rem 1.25rem; flex-wrap: wrap; gap: 0.5rem; }
-      .nav-links { flex-wrap: wrap; gap: 0.15rem; }
-      .nav-divider { display: none; }
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .navbar nav { margin-top: 0.5rem; }
+      .navbar nav a { margin-left: 0; margin-right: 1rem; }
 
       .section { padding: 3.5rem 0; }
       .container { padding: 0 1.25rem; }
       .section-header h2 { font-size: 1.65rem; }
-
-      .content-grid.two-col { grid-template-columns: 1fr; }
 
       .story-card-full { flex-direction: column; min-height: auto; }
       .story-image { min-height: 200px; }
@@ -718,71 +628,46 @@
       .closing-banner h2 { font-size: 1.5rem; }
       .cta-button.primary { font-size: 1rem; padding: 12px 24px; }
 
-      .search-input-full { font-size: 0.9rem; }
+      .search-section { padding: 0.75rem 1rem; }
+      .search-container { max-width: 100%; }
+      .search-result-buttons { flex-direction: column; }
+      .search-result-btn { text-align: center; padding: 7px 12px; }
     }
   </style>
 </head>
 <body>
 
   <!-- ═══════════════════════════════════════
-       TOP NAV
+       STICKY HEADER (same as index.html)
   ═══════════════════════════════════════ -->
-  <nav id="topnav">
-    <div class="nav-inner">
-      <span class="nav-brand">Pau Analytics</span>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#our-work">Our Work</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#find-a-case-study">Find a Case Study</a></li>
-        <li class="nav-divider" aria-hidden="true"></li>
-        <li><a href="blog/index.html">Blog</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+  <div class="sticky-header">
+    <div class="navbar">
+      <div class="brand">Pau Analytics</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="data-analytics.html">Case Studies</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-  </nav>
+    <div class="search-section">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search case studies..." id="searchInput" autocomplete="off">
+        <span class="search-icon">🔍</span>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+  <div class="search-overlay" id="searchOverlay"></div>
 
   <main>
 
     <!-- ═══════════════════════════════════════
-         SECTION 1 — ABOUT
+         SECTION 1 — OUR WORK (Featured Work)
     ═══════════════════════════════════════ -->
-    <section id="about" class="section section-cream">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Who We Are</span>
-          <h2>Data Analytics Consulting for Malaysian SMEs</h2>
-        </div>
-        <div class="content-grid two-col fade-in">
-          <div class="content-text">
-            <p>Pau Analytics helps Malaysian SME owners make sense of their business data. We work with owners and managers in retail, F&B, property, and services who have data sitting in spreadsheets — but no clear picture of what it means or what to do next.</p>
-            <p>We take your raw data and turn it into something you can actually use. That means a written case study that tells the business story, an interactive dashboard you can explore yourself, and — for complex decisions — an AI assistant that answers questions about your data in plain language.</p>
-            <p>We cover six categories of analysis: <strong>predictive modelling</strong>, <strong>regression</strong>, <strong>statistical testing</strong>, <strong>segmentation</strong>, <strong>optimization</strong>, and <strong>time series</strong>. Each project starts with a business question — not a dataset — so the output is always tied to a decision you need to make.</p>
-            <p>If you have data and a problem, we can help you understand what the data is saying and what to do about it.</p>
-          </div>
-          <div>
-            <div class="fact-card">
-              <h4>At a Glance</h4>
-              <ul class="fact-list">
-                <li><span class="fact-label">Clients</span><span class="fact-value">Malaysian SME owners &amp; managers</span></li>
-                <li><span class="fact-label">Industries</span><span class="fact-value">Retail, F&amp;B, Property, HR, Finance</span></li>
-                <li><span class="fact-label">Analysis types</span><span class="fact-value">6 categories</span></li>
-                <li><span class="fact-label">Deliverables</span><span class="fact-value">Case study + Dashboard + AI Assistant</span></li>
-                <li><span class="fact-label">Language</span><span class="fact-value">English, Bahasa Malaysia</span></li>
-                <li><span class="fact-label">Contact</span><span class="fact-value">admin@pauanalytics.com</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════
-         SECTION 2 — OUR WORK
-    ═══════════════════════════════════════ -->
-    <section id="our-work" class="section section-white">
+    <section id="our-work" class="section section-cream">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Featured Work</span>
@@ -902,9 +787,9 @@
     </section>
 
     <!-- ═══════════════════════════════════════
-         SECTION 3 — HOW IT WORKS
+         SECTION 2 — HOW IT WORKS
     ═══════════════════════════════════════ -->
-    <section id="how-it-works" class="section section-cream">
+    <section id="how-it-works" class="section section-white">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">The Process</span>
@@ -931,7 +816,7 @@
     </section>
 
     <!-- ═══════════════════════════════════════
-         SECTION 4 — RESULTS
+         SECTION 3 — RESULTS
     ═══════════════════════════════════════ -->
     <section id="results" class="section section-dark">
       <div class="container">
@@ -961,26 +846,9 @@
     </section>
 
     <!-- ═══════════════════════════════════════
-         SECTION 5 — FIND A CASE STUDY
-    ═══════════════════════════════════════ -->
-    <section id="find-a-case-study" class="section section-cream">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Browse</span>
-          <h2>Find a Case Study</h2>
-        </div>
-        <div class="search-box fade-in">
-          <input type="text" class="search-input-full" placeholder="Search by topic, industry, or analysis type…" id="searchInput" autocomplete="off">
-          <span class="search-icon-full">🔍</span>
-        </div>
-        <div class="search-results-list" id="searchResults"></div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════
          CLOSING BANNER
     ═══════════════════════════════════════ -->
-    <section class="section section-white">
+    <section class="section section-cream">
       <div class="container">
         <div class="closing-banner fade-in">
           <h2>Ready to Transform Your Business?</h2>
@@ -994,13 +862,6 @@
 
   <footer>
     <p>© 2025 Pau Analytics | <a href="https://www.pauanalytics.com/privacy-policy.html">Privacy Policy</a></p>
-    <nav class="footer-links">
-      <a href="blog/index.html">Blog</a>
-      <a href="data-analytics.html">Case Studies</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
   </footer>
 
   <!-- Cookie Consent Banner -->
@@ -1026,22 +887,6 @@
       };
     });
 
-    /* ── Active nav highlight ── */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks  = document.querySelectorAll('#topnav .nav-links a[href^="#"]');
-
-    const navObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(a => a.classList.remove('active'));
-          const active = document.querySelector(`#topnav .nav-links a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-
-    sections.forEach(s => navObserver.observe(s));
-
     /* ── Fade-in on scroll ── */
     const fadeEls = document.querySelectorAll('.fade-in');
     const fadeObserver = new IntersectionObserver(entries => {
@@ -1063,17 +908,15 @@
       requestAnimationFrame(tick);
     }
 
-    const statItems = document.querySelectorAll('.stat-item');
     const counterObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const parent = entry.target.closest('[data-target]');
-          if (!parent || parent.dataset.animated) return;
-          parent.dataset.animated = true;
-          const target = parseInt(parent.dataset.target, 10);
-          const countEl = parent.querySelector('.count');
-          animateCounter(countEl, target, 1200);
-          counterObserver.unobserve(entry.target);
+          const el = entry.target;
+          if (el.dataset.animated) return;
+          el.dataset.animated = true;
+          const target = parseInt(el.dataset.target, 10);
+          animateCounter(el.querySelector('.count'), target, 1200);
+          counterObserver.unobserve(el);
         }
       });
     }, { threshold: 0.5 });
@@ -1114,14 +957,15 @@
     /* ── Search logic ── */
     const searchInput   = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
+    const searchOverlay = document.getElementById('searchOverlay');
 
-    searchInput.addEventListener('input', function () {
-      const q = this.value.trim().toLowerCase();
-      if (q.length < 2) {
+    function performSearch(query) {
+      if (query.length < 2) {
         searchResults.style.display = 'none';
-        searchResults.innerHTML = '';
+        searchOverlay.style.display = 'none';
         return;
       }
+      const q = query.toLowerCase();
       const filtered = caseStudies.filter(s =>
         s.title.toLowerCase().includes(q) ||
         s.description.toLowerCase().includes(q) ||
@@ -1143,14 +987,18 @@
           </div>`).join('');
       }
       searchResults.style.display = 'block';
-    });
+      searchOverlay.style.display = 'block';
+    }
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        searchResults.style.display = 'none';
-        searchInput.value = '';
-      }
-    });
+    function closeSearch() {
+      searchResults.style.display = 'none';
+      searchOverlay.style.display = 'none';
+      searchInput.value = '';
+    }
+
+    searchInput.addEventListener('input', e => performSearch(e.target.value));
+    searchOverlay.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
   </script>
 
 </body>
